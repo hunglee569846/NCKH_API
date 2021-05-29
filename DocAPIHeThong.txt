@@ -1,0 +1,50 @@
+--------------------------------Note phần môn học--------------------------------
+
+ --TypeApprover: 
+	 0 - GangVien,
+	 1 - HoiDong,
+	 2 - PhanBienvsPhanBien
+
+-tạo mới học kỳ sau đó cào tạo môn học
+*post* https://quanlydoan.live/api/index.html#/MonHoc/post_api_MonHoc__mamonhoc___tenmonhoc___idhocky_ (phần này có type truyền lên môn học nào cần tạo hội đồng hoặc phản biện *api chưa làm)
+*GET* https://quanlydoan.live/api/index.html#/MonHoc/get_api_MonHoc__idhocky_ (danh sách tất cả môn học theo học kỳ)
+*PUT* https://quanlydoan.live/api/index.html#/MonHoc/put_api_MonHoc__idmonhoc_ (sửa thông tin môn học)
+
+
+-------------------------------Giang viên thêm mới từ API Edusoft về hệ thống QLDA--------------------
+*GET*http://localhost:8009/api/index.html#/DeTai/get_api_DeTai_GetAllByHocKy__idhocky_ (idHocKy)
+- Lấy danh sách đề tài theo idHocKy
+*GET*http://localhost:8009/api/GiangVienHuongDan/GetAllGiangVienHuongDan/(idHocKy)
+- danh sách giảng viên theo học kỳ
+*GET* http://localhost:8009/api/GiangVienHuongDan/GetAllGiangVienHuongDan
+- lấy danh sách tất cả giảng viên
+*POST*http://localhost:8009/api/GiangVienHuongDan
+-thêm mới giảng viên vào môn hoc của học kỳ (một môn học 2GV giống nhau báo lỗi)
+*PUT*http://localhost:8009/api/GiangVienHuongDan/UpDate
+- Sửa thông tin GV chỉ sửa đvi, Email, điện thoai 
+*DELETE* http://localhost:8009/api/GiangVienHuongDan/Delete/(idGvhdTheoKy)
+- Xóa theo id này là khóa chính của bản ghi
+
+
+-----------------------------Đề tài -----------------------------------
+*GET* https://quanlydoan.live/api/index.html#/DeTai/get_api_DeTai_GetAllByHocKy__idhocky_(danh sách đề tài lấy theo kỳ)
+*GET* https://quanlydoan.live/api/index.html#/DeTai/get_api_DeTai_GetAllByMonHocInHocKy__idhocky___idmonhoc_ (ds đề tài lấy theo kỳ và môn học)
+*GET* https://quanlydoan.live/api/index.html#/DeTai/get_api_DeTai_GetAllCT__idhocky___isApprove_(Danh sách đề tài được duyệt hay ko được duyệt trong kỳ (đẩy thêm IsApprove(true,fasle)))
+*POST* https://quanlydoan.live/api/index.html#/DeTai/post_api_DeTai_InsertDeTai__madetai___idhocky___idmonhoc___idsinhvien___tensinhvien___masinhvien_
+(--thêm mới đề tài. phần này đề tài phải được duyệt sau đó mới thêm chi tiết đề tài có gắn gvhd tạo nên chi tiết đề tài.
+ -- Chi tiết đề tài có chứa cac thông tin của gvhd (bắt buộc thêm Emai gvhd và sinh viên sau này có gửi mail thông báo))
+*PUT* https://quanlydoan.live/api/index.html#/DeTai/put_api_DeTai_Update__iddetai_ (sửa thông tin đề tài chỉ sửa tên, điểm số sau khi được gvh hoặc hội đồng và phản biện đanh giá mới update lại, điểm này cần có thể dùng để kiểm tra điều kiện tiên quyết của sinhh viên( API chưa ktra))
+*PUT* https://quanlydoan.live/api/index.html#/DeTai/put_api_DeTai_Approve__iddetai___isApprove_ (phê duyệt đề tài chỉ update lại IsApprove = true hoặc ngược lại nếu ko được phê duyệt)
+*DELETE* https://quanlydoan.live/api/index.html#/DeTai/delete_api_DeTai_Delete__iddetai_ (Xóa mềm đề tài(mềm có nghĩa còn dữ liệu và lấy lại được), đồng thời xóa luôn chi tiết đề tài)
+
+
+-------------------------Chi tiết đề tài ------------------
+*GET* https://quanlydoan.live/api/index.html#/ChiTietDeTai/get_api_ChiTietDeTai_SerchByIdDeTai__iddetai_(danh sach chi tiết đề tài(danh sách người hướng dẫn cho 1 đề tài))
+*POST* https://quanlydoan.live/api/index.html#/ChiTietDeTai/post_api_ChiTietDeTai_ChiTietDeTai__iddetai___idGVHD_(thêm mới chi tiết đề tài(giao đề tài về cho giảng viên))
+*DELETE* https://quanlydoan.live/api/index.html#/ChiTietDeTai/delete_api_ChiTietDeTai_Delete__idChiTietDeTai_(Xóa chi tiết đề tài)
+(
+--phần này còn xử lý đổi giảng viên hướng dẫn của đề tài.
+-- trường hợp trong kỳ có giảng viên hướng dẫn bận công tác không thể hướng dẫn được nữa đề tài được chuyển sang cho người khác hướng dẫn
+)
+
+

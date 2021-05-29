@@ -1,0 +1,24 @@
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\bin\Release\netcoreapp3.1\WebSite.Core.Domain.deps.json
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\bin\Release\netcoreapp3.1\WebSite.Core.Domain.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\bin\Release\netcoreapp3.1\WebSite.Core.Domain.pdb
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\bin\Release\netcoreapp3.1\NCKH.Infrastruture.Binding.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\bin\Release\netcoreapp3.1\NCKH.Infrastruture.Binding.pdb
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\obj\Release\netcoreapp3.1\WebSite.Core.Domain.csprojAssemblyReference.cache
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\obj\Release\netcoreapp3.1\WebSite.Core.Domain.AssemblyInfoInputs.cache
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\obj\Release\netcoreapp3.1\WebSite.Core.Domain.AssemblyInfo.cs
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\obj\Release\netcoreapp3.1\WebSite.Core.Domain.csproj.CoreCompileInputs.cache
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\obj\Release\netcoreapp3.1\WebSite.Core.Domain.csproj.CopyComplete
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\obj\Release\netcoreapp3.1\WebSite.Core.Domain.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\obj\Release\netcoreapp3.1\WebSite.Core.Domain.pdb
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\bin\Release\netcoreapp3.1\WebSite.Core.Domain.deps.json
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\bin\Release\netcoreapp3.1\WebSite.Core.Domain.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\bin\Release\netcoreapp3.1\WebSite.Core.Domain.pdb
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\bin\Release\netcoreapp3.1\NCKH.Infrastruture.Binding.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\bin\Release\netcoreapp3.1\NCKH.Infrastruture.Binding.pdb
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\obj\Release\netcoreapp3.1\WebSite.Core.Domain.csprojAssemblyReference.cache
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\obj\Release\netcoreapp3.1\WebSite.Core.Domain.AssemblyInfoInputs.cache
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\obj\Release\netcoreapp3.1\WebSite.Core.Domain.AssemblyInfo.cs
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\obj\Release\netcoreapp3.1\WebSite.Core.Domain.csproj.CoreCompileInputs.cache
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\obj\Release\netcoreapp3.1\WebSite.Core.Domain.csproj.CopyComplete
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\obj\Release\netcoreapp3.1\WebSite.Core.Domain.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\obj\Release\netcoreapp3.1\WebSite.Core.Domain.pdb

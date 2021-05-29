@@ -1,0 +1,332 @@
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\CreateEdusoftDB.dll.config
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\CreateEdusoftDB.pdb
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\csc.exe
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\csc.exe.config
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\csc.rsp
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\csi.exe
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\csi.exe.config
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\csi.rsp
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.AppContext.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Console.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.IO.Compression.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Net.Http.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Net.Sockets.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.ValueTuple.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Xml.XPath.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\vbc.exe
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\vbc.exe.config
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\vbc.rsp
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\VBCSCompiler.exe
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\obj\Debug\CreateEdusoftDB.csprojAssemblyReference.cache
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\obj\Debug\CreateEdusoftDB.csproj.CoreCompileInputs.cache
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\obj\Debug\CreateEdusoftDB.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\obj\Debug\CreateEdusoftDB.pdb
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\CreateEdusoftDB.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\Antlr3.Runtime.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\EntityFramework.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\EntityFramework.SqlServer.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\Newtonsoft.Json.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Helpers.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Mvc.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Optimization.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Razor.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.WebPages.Deployment.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.WebPages.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.WebPages.Razor.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\WebGrease.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\EntityFramework.xml
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\EntityFramework.SqlServer.xml
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Helpers.xml
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Mvc.xml
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Optimization.xml
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Razor.xml
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.WebPages.xml
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.WebPages.Deployment.xml
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.WebPages.Razor.xml
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\Newtonsoft.Json.xml
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\Antlr3.Runtime.pdb
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\obj\Debug\CreateEdusoftDB.csproj.CopyComplete
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\CreateEdusoftDB.dll.config
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\CreateEdusoftDB.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\CreateEdusoftDB.pdb
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\csc.exe
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\csc.exe.config
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\csc.rsp
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\csi.exe
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\csi.exe.config
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\csi.rsp
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.Managed.Core.targets
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.Win32.Primitives.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.AppContext.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Collections.Immutable.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Console.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Globalization.Calendars.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.IO.Compression.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.IO.Compression.ZipFile.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.IO.FileSystem.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Net.Http.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Net.Sockets.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Reflection.Metadata.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Threading.Tasks.Extensions.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.ValueTuple.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Xml.XmlDocument.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Xml.XPath.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\vbc.exe
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\vbc.exe.config
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\vbc.rsp
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\VBCSCompiler.exe
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\VBCSCompiler.exe.config
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\Antlr3.Runtime.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\EntityFramework.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\EntityFramework.SqlServer.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\Microsoft.Web.Infrastructure.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\Newtonsoft.Json.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Helpers.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Mvc.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Optimization.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Razor.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.WebPages.Deployment.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.WebPages.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.WebPages.Razor.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\WebGrease.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\EntityFramework.xml
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\EntityFramework.SqlServer.xml
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Helpers.xml
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Mvc.xml
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Optimization.xml
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Razor.xml
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.WebPages.xml
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.WebPages.Deployment.xml
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.WebPages.Razor.xml
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\Newtonsoft.Json.xml
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\Antlr3.Runtime.pdb
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\obj\Debug\CreateEdusoftDB.csprojAssemblyReference.cache
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\obj\Debug\CreateEdusoftDB.csproj.CoreCompileInputs.cache
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\obj\Debug\CreateEdusoftDB.csproj.CopyComplete
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\obj\Debug\CreateEdusoftDB.dll
+D:\NCKH-Project\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\obj\Debug\CreateEdusoftDB.pdb
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\CreateEdusoftDB.dll.config
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\CreateEdusoftDB.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\CreateEdusoftDB.pdb
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\csc.exe
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\csc.exe.config
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\csc.rsp
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\csi.exe
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\csi.exe.config
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\csi.rsp
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.AppContext.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Console.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.IO.Compression.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Net.Http.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Net.Sockets.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.ValueTuple.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Xml.XPath.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\vbc.exe
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\vbc.exe.config
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\vbc.rsp
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\VBCSCompiler.exe
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\Antlr3.Runtime.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\EntityFramework.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\EntityFramework.SqlServer.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\Newtonsoft.Json.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Helpers.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Mvc.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Optimization.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Razor.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.WebPages.Deployment.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.WebPages.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.WebPages.Razor.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\WebGrease.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\EntityFramework.xml
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\EntityFramework.SqlServer.xml
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Helpers.xml
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Mvc.xml
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Optimization.xml
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Razor.xml
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.WebPages.xml
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.WebPages.Deployment.xml
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.WebPages.Razor.xml
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\Newtonsoft.Json.xml
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\Antlr3.Runtime.pdb
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\obj\Debug\CreateEdusoftDB.csprojAssemblyReference.cache
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\obj\Debug\CreateEdusoftDB.csproj.CoreCompileInputs.cache
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\obj\Debug\CreateEdusoftDB.csproj.CopyComplete
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\obj\Debug\CreateEdusoftDB.dll
+C:\Users\HUY HUNG\Desktop\NCKH-QLDA\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\obj\Debug\CreateEdusoftDB.pdb
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\CreateEdusoftDB.dll.config
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\CreateEdusoftDB.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\CreateEdusoftDB.pdb
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\csc.exe
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\csc.exe.config
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\csc.rsp
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\csi.exe
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\csi.exe.config
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\csi.rsp
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.AppContext.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Console.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.IO.Compression.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Net.Http.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Net.Sockets.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.ValueTuple.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Xml.XPath.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\vbc.exe
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\vbc.exe.config
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\vbc.rsp
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\VBCSCompiler.exe
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\Antlr3.Runtime.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\EntityFramework.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\EntityFramework.SqlServer.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\Newtonsoft.Json.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Helpers.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Mvc.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Optimization.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Razor.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.WebPages.Deployment.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.WebPages.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.WebPages.Razor.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\WebGrease.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\EntityFramework.xml
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\EntityFramework.SqlServer.xml
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Helpers.xml
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Mvc.xml
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Optimization.xml
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.Razor.xml
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.WebPages.xml
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.WebPages.Deployment.xml
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\System.Web.WebPages.Razor.xml
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\Newtonsoft.Json.xml
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\Antlr3.Runtime.pdb
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\obj\Debug\CreateEdusoftDB.csprojAssemblyReference.cache
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\obj\Debug\CreateEdusoftDB.csproj.CoreCompileInputs.cache
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\obj\Debug\CreateEdusoftDB.csproj.CopyComplete
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\obj\Debug\CreateEdusoftDB.dll
+C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\CreateEdusoftDB\obj\Debug\CreateEdusoftDB.pdb

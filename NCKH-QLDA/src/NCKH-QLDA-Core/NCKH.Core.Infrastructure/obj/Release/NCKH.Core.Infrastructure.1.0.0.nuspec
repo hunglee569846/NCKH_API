@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>NCKH.Core.Infrastructure</id>
+    <version>1.0.0</version>
+    <authors>NCKH.Core.Infrastructure</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework=".NETCoreApp3.1">
+        <dependency id="NCKH.Core.Domain" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="Autofac" version="6.1.0" exclude="Build,Analyzers" />
+        <dependency id="Dapper" version="2.0.35" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Logging.Abstractions" version="3.1.9" exclude="Build,Analyzers" />
+        <dependency id="System.Data.SqlClient" version="4.8.2" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Infrastructure\bin\Release\netcoreapp3.1\NCKH.Core.Infrastructure.dll" target="lib\netcoreapp3.1\NCKH.Core.Infrastructure.dll" />
+  </files>
+</package>

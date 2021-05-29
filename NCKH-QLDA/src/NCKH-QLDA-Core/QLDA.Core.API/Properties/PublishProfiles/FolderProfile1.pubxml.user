@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\PublicEdusoftApi</_PublishTargetUrl>
+    <History>True|2021-04-28T02:28:07.7696481Z;False|2021-04-28T09:27:25.9585208+07:00;True|2021-04-25T14:04:41.4660197+07:00;True|2021-04-24T00:53:36.7334456+07:00;True|2021-04-23T13:08:44.6865401+07:00;</History>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,14 @@
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Infrastructure\obj\Release\netcoreapp3.1\NCKH.Core.Infrastructure.csprojAssemblyReference.cache
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Infrastructure\obj\Release\netcoreapp3.1\NCKH.Core.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Infrastructure\obj\Release\netcoreapp3.1\NCKH.Core.Infrastructure.AssemblyInfo.cs
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Infrastructure\obj\Release\netcoreapp3.1\NCKH.Core.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Infrastructure\bin\Release\netcoreapp3.1\NCKH.Core.Infrastructure.deps.json
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Infrastructure\bin\Release\netcoreapp3.1\NCKH.Core.Infrastructure.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Infrastructure\bin\Release\netcoreapp3.1\NCKH.Core.Infrastructure.pdb
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Infrastructure\bin\Release\netcoreapp3.1\NCKH.Core.Domain.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Infrastructure\bin\Release\netcoreapp3.1\NCKH.Infrastruture.Binding.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Infrastructure\bin\Release\netcoreapp3.1\NCKH.Core.Domain.pdb
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Infrastructure\bin\Release\netcoreapp3.1\NCKH.Infrastruture.Binding.pdb
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Infrastructure\obj\Release\netcoreapp3.1\NCKH.Core.Infrastructure.csproj.CopyComplete
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Infrastructure\obj\Release\netcoreapp3.1\NCKH.Core.Infrastructure.dll
+C:\Users\HUNG7510\Desktop\NCKH-QLDA\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Infrastructure\obj\Release\netcoreapp3.1\NCKH.Core.Infrastructure.pdb

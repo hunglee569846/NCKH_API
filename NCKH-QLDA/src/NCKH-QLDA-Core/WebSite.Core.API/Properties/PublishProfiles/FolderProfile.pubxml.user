@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\Public_NCKH_Web</_PublishTargetUrl>
+    <History>True|2021-05-19T06:28:39.9059388Z;True|2021-05-17T17:39:43.8341974+07:00;True|2021-05-17T14:30:45.5271086+07:00;True|2021-05-17T08:19:05.0442538+07:00;True|2021-05-14T09:26:34.1775438+07:00;True|2021-05-11T16:16:44.8622090+07:00;True|2021-05-08T09:00:16.3005351+07:00;False|2021-05-08T08:59:22.6775204+07:00;False|2021-05-08T08:58:40.0533279+07:00;True|2021-05-07T08:34:00.3624865+07:00;</History>
+  </PropertyGroup>
+</Project>
