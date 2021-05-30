@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "s9uZT4XuY0TWg1tJ2PtlObCCyd8cdEtyCo9nHi2V17/mO8qTyiNMMUmvBY/LaXbk6aFFmR36lVRwJAUV7VKKqw==",
+  "dgSpecHash": "/gGNGaaZP+09B1/pvH9A13cv0ThAEDWJot9NJ4HyRfzQ6F/uJ+vozbbo2QNW/b1Lcv5MeqC/dFZFeu3glsIvnA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\HUNG7510\\Desktop\\API-Developer\\project-loi-dll\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\WebSite.Core.API\\WebSite.Core.API.csproj",
+  "projectFilePath": "C:\\Users\\HUNG7510\\Desktop\\WebNCKH\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\WebSite.Core.API\\WebSite.Core.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HUNG7510\\.nuget\\packages\\autofac\\6.0.0\\autofac.6.0.0.nupkg.sha512",
     "C:\\Users\\HUNG7510\\.nuget\\packages\\autofac.extensions.dependencyinjection\\7.0.2\\autofac.extensions.dependencyinjection.7.0.2.nupkg.sha512",

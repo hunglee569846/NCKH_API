@@ -35,10 +35,20 @@ namespace WebSite.Core.Infrastructure.Services
         //Khoi tao mon hoc tien quyet
         public async Task<ActionResultResponese<string>> InsertAsync(MonHocMeta monHocMeta, string idhocky,TypeDataApprover typeApprover, string creatorUserId, string creatorFullName,string mamonhoc,string tenmonhoc)
         {
+            var checExits = await _ihocKyscRepository.CheckExisIsActivetAsync(idhocky);
+            if (!checExits)
+                return new ActionResultResponese<string>(-5, "Học kỳ không tồn tại.", "Học kỳ");
             var idmonhoc = Guid.NewGuid().ToString();
-            var checExits = await _imonhocRepository.CheckExits(idmonhoc, mamonhoc);
-            if (checExits)
-                return new ActionResultResponese<string>(-3, "Mã đã tồn tại.", "Môn học");
+            var checkExitsInMonHoc = await _imonhocRepository.CheckExits(idmonhoc, mamonhoc);
+            if (checkExitsInMonHoc)
+                return new ActionResultResponese<string>(-3, "Môn học đã tồn tại.", "Môn học");
+
+            var checkExitsMaMonHoc = await _imonhocRepository.CheckExitsMaMonHoc(mamonhoc);
+            if (checkExitsMaMonHoc)
+                return new ActionResultResponese<string>(-9, "Mã đã tồn tại.", "Môn học");
+
+            var getInfo = await _imonhocRepository.SearchInfo(monHocMeta.IdMonTienQuyet);
+            string montienquyet = "0";
             var monhoc = new MonHoc()
             {
                 IdMonHoc = idmonhoc,
@@ -49,15 +59,15 @@ namespace WebSite.Core.Infrastructure.Services
                 TypeApprover = typeApprover,
                 CreatorUserId = creatorUserId?.Trim(),
                 CreatorFullName = creatorFullName?.Trim(),
-                IdMonTienQuyet = monHocMeta.IdMonTienQuyet?.Trim(),
-                NameMonTienQuyet = monHocMeta.NameMonTienQuyet?.Trim()
+                IdMonTienQuyet = getInfo == null ? montienquyet.ToString(): getInfo.IdMonHoc?.Trim(),//getInfo.IdMonHoc?.Trim(),//
+                NameMonTienQuyet = getInfo == null ? montienquyet.ToString(): getInfo.NameMonTienQuyet?.Trim() //getInfo.TenMonHoc?.Trim() //
             };
             if (monhoc == null)
                 return new ActionResultResponese<string>(-4, "Dữ liệu rỗng", "Môn học");
             var result = await _imonhocRepository.InsertAsync(monhoc);
             if (result <= 0)
                 return new ActionResultResponese<string>(result, "Thêm mới thất bại", "Môn học");
-            return new ActionResultResponese<string>(result, "Thêm mới thanh công", "Môn học");
+            return new ActionResultResponese<string>(result, "Thêm mới thành công", "Môn học");
             
         }
 
@@ -86,6 +96,17 @@ namespace WebSite.Core.Infrastructure.Services
             if (result <= 0)
                 return new ActionResultResponese<string>(result, "Sửa thất bại", "Môn học");
             return new ActionResultResponese<string>(result, "Sửa thành công", "Môn học");
+        }
+
+       public async Task<ActionResultResponese<string>> DeleteAsync(string idMonHoc, string idHocKy)
+        {
+            var checExits = await _imonhocRepository.CheckMonHocInHocKyExits(idMonHoc, idHocKy);
+            if (!checExits)
+                return new ActionResultResponese<string>(-8, "Môn học không có trong kỳ.", "Môn học");
+            var result = await _imonhocRepository.DeleteAsync(idMonHoc, idHocKy);
+            if (result <= 0)
+                return new ActionResultResponese<string>(result, "Xóa thất bại", "Môn học");
+            return new ActionResultResponese<string>(result, "Xóa thành công", "Môn học");
         }
     }
 }

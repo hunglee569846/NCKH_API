@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HUNG7510\\Desktop\\API-Developer\\project-loi-dll\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\WebSite.Core.Domain\\WebSite.Core.Domain.csproj": {}
+    "C:\\Users\\HUNG7510\\Desktop\\WebNCKH\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\WebSite.Core.Domain\\WebSite.Core.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HUNG7510\\Desktop\\API-Developer\\project-loi-dll\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.Infrastruture.Binding\\NCKH.Infrastruture.Binding.csproj": {
+    "C:\\Users\\HUNG7510\\Desktop\\WebNCKH\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.Infrastruture.Binding\\NCKH.Infrastruture.Binding.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HUNG7510\\Desktop\\API-Developer\\project-loi-dll\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.Infrastruture.Binding\\NCKH.Infrastruture.Binding.csproj",
+        "projectUniqueName": "C:\\Users\\HUNG7510\\Desktop\\WebNCKH\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.Infrastruture.Binding\\NCKH.Infrastruture.Binding.csproj",
         "projectName": "NCKH.Infrastruture.Binding",
-        "projectPath": "C:\\Users\\HUNG7510\\Desktop\\API-Developer\\project-loi-dll\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.Infrastruture.Binding\\NCKH.Infrastruture.Binding.csproj",
+        "projectPath": "C:\\Users\\HUNG7510\\Desktop\\WebNCKH\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.Infrastruture.Binding\\NCKH.Infrastruture.Binding.csproj",
         "packagesPath": "C:\\Users\\HUNG7510\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HUNG7510\\Desktop\\API-Developer\\project-loi-dll\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.Infrastruture.Binding\\obj\\",
+        "outputPath": "C:\\Users\\HUNG7510\\Desktop\\WebNCKH\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.Infrastruture.Binding\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -110,14 +110,14 @@
         }
       }
     },
-    "C:\\Users\\HUNG7510\\Desktop\\API-Developer\\project-loi-dll\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\WebSite.Core.Domain\\WebSite.Core.Domain.csproj": {
+    "C:\\Users\\HUNG7510\\Desktop\\WebNCKH\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\WebSite.Core.Domain\\WebSite.Core.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HUNG7510\\Desktop\\API-Developer\\project-loi-dll\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\WebSite.Core.Domain\\WebSite.Core.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\HUNG7510\\Desktop\\WebNCKH\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\WebSite.Core.Domain\\WebSite.Core.Domain.csproj",
         "projectName": "WebSite.Core.Domain",
-        "projectPath": "C:\\Users\\HUNG7510\\Desktop\\API-Developer\\project-loi-dll\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\WebSite.Core.Domain\\WebSite.Core.Domain.csproj",
+        "projectPath": "C:\\Users\\HUNG7510\\Desktop\\WebNCKH\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\WebSite.Core.Domain\\WebSite.Core.Domain.csproj",
         "packagesPath": "C:\\Users\\HUNG7510\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HUNG7510\\Desktop\\API-Developer\\project-loi-dll\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\WebSite.Core.Domain\\obj\\",
+        "outputPath": "C:\\Users\\HUNG7510\\Desktop\\WebNCKH\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\WebSite.Core.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -140,8 +140,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\HUNG7510\\Desktop\\API-Developer\\project-loi-dll\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.Infrastruture.Binding\\NCKH.Infrastruture.Binding.csproj": {
-                "projectPath": "C:\\Users\\HUNG7510\\Desktop\\API-Developer\\project-loi-dll\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.Infrastruture.Binding\\NCKH.Infrastruture.Binding.csproj"
+              "C:\\Users\\HUNG7510\\Desktop\\WebNCKH\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.Infrastruture.Binding\\NCKH.Infrastruture.Binding.csproj": {
+                "projectPath": "C:\\Users\\HUNG7510\\Desktop\\WebNCKH\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.Infrastruture.Binding\\NCKH.Infrastruture.Binding.csproj"
               }
             }
           }

@@ -79,6 +79,8 @@ namespace WebSite.Core.Infrastructure.Repository
                     {
                         param.Add("@NgaySua", hoidong.NgaySua);
                     }
+                    param.Add("@CreatorUserId", hoidong.CreatorUserId);
+                    param.Add("@CreatorFullName", hoidong.CreatorFullName);
                     param.Add("@IsActive", hoidong.IsActive);
                     param.Add("@IsDelete", hoidong.IsDelete);
                     rowAffect = await conn.ExecuteAsync("[dbo].[spHoiDongTotNghiep_Insert]", param, commandType: CommandType.StoredProcedure);
@@ -107,6 +109,8 @@ namespace WebSite.Core.Infrastructure.Repository
                     param.Add("@TenHoiDong", hoidong.TenHoiDong);
                     param.Add("@NgayBaoVe", hoidong.NgayBaoVe);
                     param.Add("@NgaySua", hoidong.NgaySua);
+                    param.Add("@LastUpdateUserId", hoidong.LastUpdateUserId);
+                    param.Add("@LastUpdateFullName", hoidong.LastUpdateFullName);
                     rowAffect = await conn.ExecuteAsync("[dbo].[spHoiDongTotNghiep_Update]", param, commandType: CommandType.StoredProcedure);
                     return rowAffect;
                 }
@@ -131,6 +135,72 @@ namespace WebSite.Core.Infrastructure.Repository
 					SELECT IIF(EXISTS(SELECT 1 FROM dbo.HoiDongTotNghieps WHERE IdHoiDong = @idhoidong AND IdHocKy = @idhocky AND IsActive = 1 AND IsDelete = 0 ),1,0)";
 
                     var result = await con.ExecuteScalarAsync<bool>(sql, new { IdHoiDong = idhoidong , IdHocKy  = idhocky});
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                // _logger.LogError(ex, "CheckExistActiveAsync HocKyRepository Error.");
+                return false;
+            }
+        }
+
+        public async Task<HoiDongTotNghiep> GetInfo(string idhoidongtotnghiep)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_ConnectionString))
+                {
+                    if (conn.State == ConnectionState.Closed)
+                        await conn.OpenAsync();
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@IdHoiDongTotNghiep", idhoidongtotnghiep);
+                    return await conn.QuerySingleOrDefaultAsync<HoiDongTotNghiep>("[dbo].[spHoiDongTotNghiep_GetInfo]", param, commandType: CommandType.StoredProcedure);
+                    
+                }
+            }
+            catch (Exception)
+            {
+                //_logger.LogError(ex, "[dbo].[spHoiDongTotNghiep_Update] UpdateAllByIdHocKy HoiDongTotNghiepService Error.");
+                return null;
+            }
+        }
+
+        public async Task<int> DeleteAsync(string idhoidong)
+        {
+            try
+            {
+                var rowAffect = 0;
+                using (SqlConnection conn = new SqlConnection(_ConnectionString))
+                {
+                    if (conn.State == ConnectionState.Closed)
+                        await conn.OpenAsync();
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@IdHoiDongTotNghiep", idhoidong);
+                    rowAffect = await conn.ExecuteAsync("[dbo].[spHoiDongTotNghiep_DeleteAsync]", param, commandType: CommandType.StoredProcedure);
+                    return rowAffect;
+                }
+            }
+            catch (Exception)
+            {
+                //_logger.LogError(ex, "[dbo].[spHoiDongTotNghiep_Update] DeleteAsync HoiDongTotNghiepRepository Error.");
+                return -1;
+            }
+        }
+
+        public async Task<bool> CheckExitIsActive(string idhoidong)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(_ConnectionString))
+                {
+                    if (con.State == ConnectionState.Closed)
+                        await con.OpenAsync();
+
+                    var sql = @"
+					SELECT IIF(EXISTS(SELECT 1 FROM dbo.HoiDongTotNghieps WHERE IdHoiDong = @idhoidong AND IsActive = 1 AND IsDelete = 0 ),1,0)";
+
+                    var result = await con.ExecuteScalarAsync<bool>(sql, new { IdHoiDong = idhoidong});
                     return result;
                 }
             }

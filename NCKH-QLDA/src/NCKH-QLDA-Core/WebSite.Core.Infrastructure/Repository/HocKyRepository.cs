@@ -130,7 +130,30 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
 
-       
+        public async Task<bool> CheckExisMaHocKy(string mahocky)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(_connectionString))
+                {
+                    if (con.State == ConnectionState.Closed)
+                        await con.OpenAsync();
+
+                    var sql = @"
+					SELECT IIF (EXISTS (SELECT 1 FROM dbo.HocKys WHERE MaHocKy = @mahocky AND IsActive = 1 AND IsDelete = 0), 1, 0)";
+
+                    var result = await con.ExecuteScalarAsync<bool>(sql, new {MaHocKy = mahocky });
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                // _logger.LogError(ex, "CheckExistActiveAsync HocKyRepository Error.");
+                return false;
+            }
+        }
+
+
         public async Task<bool> CheckExisIsActivetAsync(string idHocKy)
         {
             try

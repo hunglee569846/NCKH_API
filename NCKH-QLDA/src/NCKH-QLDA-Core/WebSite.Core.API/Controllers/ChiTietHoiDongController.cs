@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NCKH.Infrastruture.Binding;
 using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebSite.Core.Domain.IServices;
+using WebSite.Core.Domain.ModelMeta;
 
 namespace WebSite.Core.API.Controllers
 {
@@ -13,15 +16,15 @@ namespace WebSite.Core.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [SwaggerTag("Insert, Update, Delete, GetAll")]
-    public class ChiTietHoiDongController : ControllerBase
+    public class ChiTietHoiDongController : CoreApiControllerBase
     {
-        //private readonly IDeTaiService _ideTaiService;
+        private readonly IChiTietHoiDongService _ChitietHoiDongService;
 
-        //public DeTaiController(IDeTaiService ideTaiService)
-        //{
-        //    _ideTaiService = ideTaiService;
+        public ChiTietHoiDongController(IChiTietHoiDongService chitietHoiDongService)
+        {
+            _ChitietHoiDongService = chitietHoiDongService;
 
-        //}
+        }
         //[AcceptVerbs("GET"), Route("GetAllByHocKy/{idhocky}")]
         //[SwaggerOperation(Summary = "SearchByHocKy Detai", Description = "Requires login verification!", OperationId = "SearchByHocKy", Tags = new[] { "DeTai" })]
         //public async Task<IActionResult> GetAllByHocKyAsync(string idhocky)
@@ -29,10 +32,49 @@ namespace WebSite.Core.API.Controllers
         //    var result = await _ideTaiService.GetByIdHocKyAsync(idhocky);
         //    if (result.Code <= 0)
         //    {
-        //        //_logger.LogError("Search DeTai controller error " + result.Code);
+        //        _logger.LogError("Search DeTai controller error " + result.Code);
         //        return BadRequest(result);
         //    }
         //    return Ok(result);
         //}
+
+        [AcceptVerbs("POST"), Route("InsertListChiTietHoiDong/{idhoidong}")]
+        [SwaggerOperation(Summary = "InsertList ChiTietHoiDong", Description = "Requires login verification!", OperationId = "InsertListChiTietHoiDong", Tags = new[] { "ChiTietHoiDong" })]
+        public async Task<IActionResult> InsertListChiTietHoiDongAsync([FromBody] List<ChiTietHoiDongMeta> listchitiethoidong, string idhoidong)
+        {
+            var result = await _ChitietHoiDongService.InserListDeTaiAsync(listchitiethoidong, idhoidong,CurrentUser.MaGiangVien,CurrentUser.FullName);
+            if (result.Code <= 0)
+            {
+                //_logger.LogError("Search DeTai controller error " + result.Code);
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+
+        [AcceptVerbs("POST"), Route("InsertChiTietHoiDong/{idhoidong}/{idgiangvien}")]
+        [SwaggerOperation(Summary = "InsertChiTietHoiDong", Description = "Requires login verification!", OperationId = "InsertChiTietHoiDong", Tags = new[] { "ChiTietHoiDong" })]
+        public async Task<IActionResult> InsertAsync(string idgiangvien, string idhoidong)
+        {
+            var result = await _ChitietHoiDongService.InserAsync(idhoidong,idgiangvien, CurrentUser.MaGiangVien, CurrentUser.FullName);
+            if (result.Code <= 0)
+            {
+                //_logger.LogError("Search DeTai controller error " + result.Code);
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+
+        [AcceptVerbs("DELETE"), Route("DeleteChiTietHoiDong/{idhoidong}")]
+        [SwaggerOperation(Summary = "DeleteChiTietHoiDong", Description = "Requires login verification!", OperationId = "DeleteChiTietHoiDong", Tags = new[] { "ChiTietHoiDong" })]
+        public async Task<IActionResult> DeleteChiTietHoiDongAsync(string idhoidong)
+        {
+            var result = await _ChitietHoiDongService.DeleteAsync(idhoidong);
+            if (result.Code <= 0)
+            {
+                //_logger.LogError("Search DeTai controller error " + result.Code);
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
     }
 }

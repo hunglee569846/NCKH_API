@@ -23,20 +23,25 @@ namespace WebSite.Core.Infrastructure.Services
         {
             return await _ihocKyRepository.SelectAll();
         }
-        public async Task<ActionResultResponese<string>> InsertAsync(HocKyMeta hockymeta,string creatorId,string creatorFullName)
+        public async Task<ActionResultResponese<string>> InsertAsync(string mahocky, string tenhocky, string userId, string fullName)
         {
             var idhocky = Guid.NewGuid().ToString();
-            var checExist = await _ihocKyRepository.CheckExistAsync(idhocky, hockymeta.MaHocKy);
+            var checExist = await _ihocKyRepository.CheckExistAsync(idhocky, mahocky);
             if (checExist)
                 return new ActionResultResponese<string>(-2, "Mã học kỳ đã tồn tại", "Học Kỳ");
+
+            var checExistMaHocKy = await _ihocKyRepository.CheckExisMaHocKy(mahocky);
+            if (checExistMaHocKy)
+                return new ActionResultResponese<string>(-2, "Mã học kỳ đã tồn tại", "Học Kỳ");
+
             var hockynew = new HocKy()
             {
                 IdHocKy = idhocky,
-                MaHocKy = hockymeta.MaHocKy,
-                TenHocKy = hockymeta.TenHocKy,
+                MaHocKy = mahocky,
+                TenHocKy = tenhocky,
                 NgayTao = DateTime.Now,
-                CreatetorId = creatorId,
-                CreatorFullName = creatorFullName
+                CreatetorId = userId,
+                CreatorFullName = fullName
             };
             if (hockynew == null)
                 return new ActionResultResponese<string>(-3, "Dữ liệu rỗng", "Học Kỳ");

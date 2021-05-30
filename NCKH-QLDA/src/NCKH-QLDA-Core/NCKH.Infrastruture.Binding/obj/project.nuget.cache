@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kBUcjRxX59VOHF2ah+/eT1WIFsIIePG3HduupnVRbehM1xOvW3e8+TL/VWCWnFzv4cMOJwlE18W02Qvctg0toQ==",
+  "dgSpecHash": "0Exo/eOFeYBXF8MmvNUTLO6qSe94aQm8jIM+I1sPgMiXfqYFjw3JJ6Se7VajyYLMfZdqe8neUwhCJcPkWXYG4g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\HUNG7510\\Desktop\\API-Developer\\project-loi-dll\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.Infrastruture.Binding\\NCKH.Infrastruture.Binding.csproj",
+  "projectFilePath": "C:\\Users\\HUNG7510\\Desktop\\WebNCKH\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.Infrastruture.Binding\\NCKH.Infrastruture.Binding.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HUNG7510\\.nuget\\packages\\bouncycastle.netcoresdk\\1.9.3.1\\bouncycastle.netcoresdk.1.9.3.1.nupkg.sha512",
     "C:\\Users\\HUNG7510\\.nuget\\packages\\fluentvalidation\\9.2.0\\fluentvalidation.9.2.0.nupkg.sha512",
