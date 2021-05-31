@@ -72,7 +72,7 @@ namespace WebSite.Core.Infrastructure.Services
                 return new ActionResultResponese<string>(-5, "Môn học không tồn tại.", "Môn học.");
             var monhocInfo = await _monhocRepository.SearchInfo(idhocky);
 
-            var checkIsDat = await _deTaiRepository.CheckIsDat(idmonhoc, idsinhvien);
+            var checkIsDat = await _deTaiRepository.CheckIsDat(monhocInfo.IdMonTienQuyet, idsinhvien);
             if (!checkIsDat)
                 return new ActionResultResponese<string>(-21, "Sinh viên chưa hoàn thành môn "+ monhocInfo.TenMonHoc + " là môn tiên quyết.", "Môn học.");
 

@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "E8WJ44W8T906eNmCwH1KDyWZSaV4nz/mA2Eja39x/de0eH7lrd0Se0GNTNKasneLPbDlGVjen0lXEBtgKl75vg==",
   "success": true,
   "projectFilePath": "C:\\Users\\HUY HUNG\\Desktop\\NCKH_API\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\WebSite.Core.Infrastructure\\WebSite.Core.Infrastructure.csproj",
+=======
+  "dgSpecHash": "9nEEWpqSm+7BKhnqrmVecW+Tq7UtSRSkcw8QAhaEVzA8c+EtYb4B14jcfjgoI1xJuoWaorVF8cQL1MV7gYawEQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\HUNG7510\\Desktop\\WebNCKH\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\WebSite.Core.Infrastructure\\WebSite.Core.Infrastructure.csproj",
+>>>>>>> 5155c68c7c4241a980abd3c84e9c091a3b09872c
   "expectedPackageFiles": [
     "C:\\Users\\HUY HUNG\\.nuget\\packages\\autofac\\6.0.0\\autofac.6.0.0.nupkg.sha512",
     "C:\\Users\\HUY HUNG\\.nuget\\packages\\bouncycastle.netcoresdk\\1.9.3.1\\bouncycastle.netcoresdk.1.9.3.1.nupkg.sha512",

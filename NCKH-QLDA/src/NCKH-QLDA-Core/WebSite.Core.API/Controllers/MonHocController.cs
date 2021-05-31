@@ -71,6 +71,20 @@ namespace WebSite.Core.API.Controllers
             }
             return Ok(result);
         }
+
+        [SwaggerOperation(Summary = "DeleteAsync", Description = "Requires login verification!", OperationId = "DeleteAsync", Tags = new[] { "MonHoc" })]
+        [AcceptVerbs("DELETE"), Route("{idmonhoc}/{idhocky}")]
+        public async Task<IActionResult> DeleteAsync(string idmonhoc, string idhocky)
+        {
+            var result = await _imonhocService.DeleteAsync(idhocky, idmonhoc);
+            if (result.Code <= 0)
+            {
+                //_logger.LogError("Insert MonHocs controller error " + result.Code);
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+
     }
 }
 

@@ -13,6 +13,9 @@ namespace WebSite.Core.Domain.IRepository
         Task<SearchResult<HoiDongTotNghiepViewModel>> SelectAll(string idhocky);
         Task<int> InsertAsync(HoiDongTotNghiep hoidong);
         Task<int> UpdateAsync(HoiDongTotNghiep hoidong);
+        Task<int> DeleteAsync(string idhoidong);
         Task<bool> CheckExit(string idhoidong, string idhocky);
+        Task<bool> CheckExitIsActive(string idhoidong);
+        Task<HoiDongTotNghiep> GetInfo(string idhoidongtotnghiep);
     }
 }

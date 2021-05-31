@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NCKH.Infrastruture.Binding;
 using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace WebSite.Core.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [SwaggerTag("Insert, Update, Delete, GetAll")]
-    public class HoiDongTotNghiepController : ControllerBase
+    public class HoiDongTotNghiepController : CoreApiControllerBase
     {
         private readonly IHoiDongTotNghiepService _hoiDongTotNghiepService;
         public HoiDongTotNghiepController(IHoiDongTotNghiepService hoiDongTotNghiepService)
@@ -35,7 +36,7 @@ namespace WebSite.Core.API.Controllers
         [AcceptVerbs("POST"), Route("InsertHoiDong/{idhocky}/{idmonhoc}")]
         public async Task<IActionResult> InsertAsync([FromBody]HoiDongTotNghiepMeta hoidongMeta, string idhocky, string idmonhoc)
         {
-            var result = await _hoiDongTotNghiepService.InsertAsync(hoidongMeta, idhocky, idmonhoc);
+            var result = await _hoiDongTotNghiepService.InsertAsync(hoidongMeta, idhocky, idmonhoc,CurrentUser.MaGiangVien,CurrentUser.FullName);
             return Ok(result);
         }
 
@@ -43,7 +44,15 @@ namespace WebSite.Core.API.Controllers
         [AcceptVerbs("PUT"), Route("UpdateHoiDong/{idhoidong}/{idhocky}")]
         public async Task<IActionResult> UpdateAsync([FromBody] HoiDongTotNghiepMeta hoidongMeta, string idhoidong, string idhocky)
         {
-            var result = await _hoiDongTotNghiepService.UpdateAsync(hoidongMeta, idhoidong, idhocky);
+            var result = await _hoiDongTotNghiepService.UpdateAsync(hoidongMeta, idhoidong, idhocky,CurrentUser.MaGiangVien,CurrentUser.FullName);
+            return Ok(result);
+        }
+        
+        [SwaggerOperation(Summary = "DeleteHoiDong", Description = "Requires login verification!", OperationId = "DeleteHoiDong", Tags = new[] { "HoiDongTotNghiep" })]
+        [AcceptVerbs("DELETE"), Route("DeleteHoiDongAsync/{idhoidong}")]
+        public async Task<IActionResult> DeleteAsync(string idhoidong)
+        {
+            var result = await _hoiDongTotNghiepService.DeleteAsync(idhoidong);
             return Ok(result);
         }
     }

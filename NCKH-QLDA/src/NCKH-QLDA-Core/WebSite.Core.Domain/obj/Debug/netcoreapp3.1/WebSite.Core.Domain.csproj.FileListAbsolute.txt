@@ -70,6 +70,7 @@ C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-
 C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\obj\Debug\netcoreapp3.1\WebSite.Core.Domain.csproj.CopyComplete
 C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\obj\Debug\netcoreapp3.1\WebSite.Core.Domain.dll
 C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\obj\Debug\netcoreapp3.1\WebSite.Core.Domain.pdb
+<<<<<<< HEAD
 C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\bin\Debug\netcoreapp3.1\WebSite.Core.Domain.deps.json
 C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\bin\Debug\netcoreapp3.1\WebSite.Core.Domain.dll
 C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\bin\Debug\netcoreapp3.1\WebSite.Core.Domain.pdb
@@ -82,3 +83,17 @@ C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite
 C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\obj\Debug\netcoreapp3.1\WebSite.Core.Domain.csproj.CopyComplete
 C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\obj\Debug\netcoreapp3.1\WebSite.Core.Domain.dll
 C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\obj\Debug\netcoreapp3.1\WebSite.Core.Domain.pdb
+=======
+C:\Users\HUNG7510\Desktop\WebNCKH\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\obj\Debug\netcoreapp3.1\WebSite.Core.Domain.csprojAssemblyReference.cache
+C:\Users\HUNG7510\Desktop\WebNCKH\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\obj\Debug\netcoreapp3.1\WebSite.Core.Domain.AssemblyInfoInputs.cache
+C:\Users\HUNG7510\Desktop\WebNCKH\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\obj\Debug\netcoreapp3.1\WebSite.Core.Domain.AssemblyInfo.cs
+C:\Users\HUNG7510\Desktop\WebNCKH\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\obj\Debug\netcoreapp3.1\WebSite.Core.Domain.csproj.CoreCompileInputs.cache
+C:\Users\HUNG7510\Desktop\WebNCKH\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\obj\Debug\netcoreapp3.1\WebSite.Core.Domain.dll
+C:\Users\HUNG7510\Desktop\WebNCKH\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\obj\Debug\netcoreapp3.1\WebSite.Core.Domain.pdb
+C:\Users\HUNG7510\Desktop\WebNCKH\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\bin\Debug\netcoreapp3.1\WebSite.Core.Domain.deps.json
+C:\Users\HUNG7510\Desktop\WebNCKH\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\bin\Debug\netcoreapp3.1\WebSite.Core.Domain.dll
+C:\Users\HUNG7510\Desktop\WebNCKH\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\bin\Debug\netcoreapp3.1\WebSite.Core.Domain.pdb
+C:\Users\HUNG7510\Desktop\WebNCKH\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\bin\Debug\netcoreapp3.1\NCKH.Infrastruture.Binding.dll
+C:\Users\HUNG7510\Desktop\WebNCKH\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\bin\Debug\netcoreapp3.1\NCKH.Infrastruture.Binding.pdb
+C:\Users\HUNG7510\Desktop\WebNCKH\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.Domain\obj\Debug\netcoreapp3.1\WebSite.Core.Domain.csproj.CopyComplete
+>>>>>>> 5155c68c7c4241a980abd3c84e9c091a3b09872c

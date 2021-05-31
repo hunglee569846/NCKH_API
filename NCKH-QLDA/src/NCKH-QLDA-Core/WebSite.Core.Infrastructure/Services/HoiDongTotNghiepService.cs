@@ -13,18 +13,21 @@ namespace WebSite.Core.Infrastructure.Services
     public class HoiDongTotNghiepService : IHoiDongTotNghiepService
     {
         private readonly IHoiDongTotNghiepRepository _hoiDongTotNghiepRepository;
+        private readonly IChiTietHoiDongRepository _chitiethoidongRepository;
         private readonly IHocKysRepository _hocKysRepository;
         private readonly IMonHocRepository _monhocRepository;
         private readonly IDeTaiRepository _detaiRepository;
         public HoiDongTotNghiepService(IHoiDongTotNghiepRepository hhoiDongTotNghiepRepository,
                                         IHocKysRepository hocKysRepository,
                                         IMonHocRepository monhocRepository,
-                                        IDeTaiRepository detaiRepository)
+                                        IDeTaiRepository detaiRepository,
+                                        IChiTietHoiDongRepository chitiethoidongRepository)
         {
             _hoiDongTotNghiepRepository = hhoiDongTotNghiepRepository;
             _hocKysRepository = hocKysRepository;
             _monhocRepository = monhocRepository;
             _detaiRepository = detaiRepository;
+            _chitiethoidongRepository = chitiethoidongRepository;
         }
 
         public async Task<SearchResult<HoiDongTotNghiepViewModel>> GetByIdHocKy(string idhocky)
@@ -35,7 +38,7 @@ namespace WebSite.Core.Infrastructure.Services
             return await _hoiDongTotNghiepRepository.SelectAll(idhocky);
         }
 
-       public async Task<ActionResultResponese<string>> InsertAsync(HoiDongTotNghiepMeta hoidongMeta, string idhocky, string idmonhoc)
+       public async Task<ActionResultResponese<string>> InsertAsync(HoiDongTotNghiepMeta hoidongMeta, string idhocky, string idmonhoc,string creatorUserId, string creatorFullName)
         {
             string id = Guid.NewGuid().ToString();
 
@@ -70,7 +73,9 @@ namespace WebSite.Core.Infrastructure.Services
                 TenMonHoc = infoMonHoc.TenMonHoc?.Trim(),
                 NgayTao = DateTime.Now,
                 NgayBaoVe = hoidongMeta.NgayBaoVe,
-                NgaySua = DateTime.Now
+                NgaySua = DateTime.Now,
+                CreatorUserId = creatorUserId?.Trim(),
+                CreatorFullName = creatorFullName?.Trim()
             };
             if (hoidong == null)
                 return new ActionResultResponese<string>(-6, "Nhập sai dữ liệu","Hội đồng.");
@@ -81,7 +86,7 @@ namespace WebSite.Core.Infrastructure.Services
 
         }
         
-       public async Task<ActionResultResponese<string>> UpdateAsync(HoiDongTotNghiepMeta hoidongMeta, string idhoidong,string idhockky)
+       public async Task<ActionResultResponese<string>> UpdateAsync(HoiDongTotNghiepMeta hoidongMeta, string idhoidong,string idhockky, string LastUpdateUserId, string LastUpdateFullName)
         {
             var checkhoidong = await _hoiDongTotNghiepRepository.CheckExit(idhoidong, idhockky);
             if (!checkhoidong)
@@ -93,7 +98,9 @@ namespace WebSite.Core.Infrastructure.Services
                 MaHoiDong = hoidongMeta.MaHoiDong?.Trim(),
                 TenHoiDong = hoidongMeta.TenHoiDong?.Trim(),
                 NgayBaoVe = hoidongMeta.NgayBaoVe,
-                NgaySua = DateTime.Now
+                NgaySua = DateTime.Now,
+                LastUpdateUserId = LastUpdateUserId?.Trim(),
+                LastUpdateFullName = LastUpdateFullName?.Trim()
             };
             if (hoidong == null)
                 return new ActionResultResponese<string>(-16, "Nhập sai dữ liệu", "Hội đồng.");
@@ -101,6 +108,20 @@ namespace WebSite.Core.Infrastructure.Services
             if (result <= 0)
                 return new ActionResultResponese<string>(-17, "Sửa mới thất bại.", "Hội đồng.");
             return new ActionResultResponese<string>(1, "Sửa mới thành công", "Hội đồng.");
+        }
+
+        public async Task<ActionResultResponese<string>> DeleteAsync(string idhoidong)
+        {
+            var checkhoidong = await _hoiDongTotNghiepRepository.CheckExitIsActive(idhoidong);
+            if (!checkhoidong)
+                return new ActionResultResponese<string>(-14, "Hội đồng không tồn tại.", "Hội đồng.");
+
+            await _chitiethoidongRepository.DeleteByIdHoiDongAsync(idhoidong);
+
+            var result = await _hoiDongTotNghiepRepository.DeleteAsync(idhoidong);
+            if (result <= 0)
+                return new ActionResultResponese<string>(-17, "Xóa thất bại.", "Hội đồng.");
+            return new ActionResultResponese<string>(1, "Xóa thành công", "Hội đồng.");
         }
     }
 }

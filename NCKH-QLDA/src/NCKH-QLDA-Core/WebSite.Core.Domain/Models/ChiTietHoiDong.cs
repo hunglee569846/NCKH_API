@@ -11,7 +11,12 @@ namespace WebSite.Core.Domain.Models
         public string MaHoiDong { get; set; }
         public string TenHoiDong { get; set; }
         public string IdGiangVien { get; set; }
+        public string MaGiangVien { get; set; }
         public string TenGiangVien { get; set; }
+        public string CreatorUserId { get; set; }
+        public string CreatorUserFullName { get; set; }
+        public string LastUpdateUserId { get; set; }
+        public string LastUpdateFullName { get; set; }
         public DateTime? NgayTao { get; set; }
         public bool? IsActive { get; set; }
         public bool? IsDelete { get; set; }

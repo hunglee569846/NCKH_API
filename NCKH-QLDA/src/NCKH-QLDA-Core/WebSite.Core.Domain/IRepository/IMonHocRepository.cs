@@ -14,8 +14,11 @@ namespace WebSite.Core.Domain.IRepository
         Task<SearchResult<MonHocSearchViewModel>> SelectAllByIdHocKy(string idhocky);
         Task<int> InsertAsync(MonHoc monhoc);
         Task<int> UpdateAsync(MonHoc monhoc);
+        Task<int> DeleteAsync(string idMonHoc,string idHocKy);
         Task<bool> CheckExits(string idmonhoc, string mamonhoc);
+        Task<bool> CheckMonHocInHocKyExits(string idmonhoc, string idhocky);
         Task<bool> CheckExitsIsActvive(string idmonhoc);
+        Task<bool> CheckExitsMaMonHoc(string mamonhoc);
         Task<MonHocSearchViewModel> SearchInfo(string idmonhoc);
     }
 }

@@ -44,7 +44,7 @@ namespace WebSite.Core.Infrastructure.Repository
             }
             catch (Exception)
             {
-                //_logger.LogError(ex, "[dbo].[spMonHoc_SelectAllByHocky] SelectAllByIdHocKy MonHocService Error.");
+                //_logger.LogError(ex, "[dbo].[spMonHoc_SelectAllByHocky] SelectAllByIdHocKy MonHocRepository Error.");
                 return new SearchResult<MonHocSearchViewModel> { TotalRows = 0, Data = null };
             }
         }
@@ -68,7 +68,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     param.Add("@IsDelete", monhoc.IsDelete);
                     param.Add("@TypeApprove", monhoc.TypeApprover);
                     param.Add("@CreatorUserId", monhoc.CreatorUserId);
-                    param.Add("@CreatorFullName", monhoc.CreatorUserId);
+                    param.Add("@CreatorFullName", monhoc.CreatorFullName);
                     param.Add("@IdMonTienQuyet", monhoc.IdMonTienQuyet);
                     param.Add("@NameMonTienQuyet", monhoc.NameMonTienQuyet);
                     rowAffect = await conn.ExecuteAsync("[dbo].[spMonHoc_InsertAsync]", param, commandType: CommandType.StoredProcedure);
@@ -101,7 +101,7 @@ namespace WebSite.Core.Infrastructure.Repository
             }
             catch (Exception)
             {
-                // _logger.LogError(ex, "CheckExistActiveAsync HocKyRepository Error.");
+                // _logger.LogError(ex, "CheckExistActiveAsync MonHocRepository Error.");
                 return false;
             }
         }
@@ -124,10 +124,54 @@ namespace WebSite.Core.Infrastructure.Repository
             }
             catch (Exception)
             {
-                // _logger.LogError(ex, "CheckExistActiveAsync HocKyRepository Error.");
+                // _logger.LogError(ex, "CheckExistActiveAsync MonHocRepository Error.");
                 return false;
             }
 
+        }
+        public async Task<bool> CheckExitsMaMonHoc(string mamonhoc)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(_connectionString))
+                {
+                    if (con.State == ConnectionState.Closed)
+                        await con.OpenAsync();
+
+                    var sql = @"
+					SELECT IIF (EXISTS (SELECT 1 FROM dbo.MonHocs WHERE MaMonHoc = @mamonhoc AND IsActive = 1 AND IsDelete = 0), 1, 0)";
+
+                    var result = await con.ExecuteScalarAsync<bool>(sql, new { MaMonHoc = mamonhoc });
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                // _logger.LogError(ex, "CheckExistActiveAsync MonHocRepository Error.");
+                return false;
+            }
+        }
+        public async Task<bool> CheckMonHocInHocKyExits(string idmonhoc, string idhocky)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(_connectionString))
+                {
+                    if (con.State == ConnectionState.Closed)
+                        await con.OpenAsync();
+
+                    var sql = @"
+					SELECT IIF (EXISTS (SELECT 1 FROM dbo.MonHocs WHERE IdMonHoc = @idmonhoc AND IdHocKy =@idhocky AND IsActive = 1 AND IsDelete = 0), 1, 0)";
+
+                    var result = await con.ExecuteScalarAsync<bool>(sql, new { IdMonHoc = idmonhoc, IdHocKy = idhocky });
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                // _logger.LogError(ex, "CheckExistActiveAsync MonHocRepository Error.");
+                return false;
+            }
         }
         public async Task<int> UpdateAsync(MonHoc monhoc)
         {
@@ -150,10 +194,34 @@ namespace WebSite.Core.Infrastructure.Repository
             }
             catch (Exception)
             {
-                //_logger.LogError(ex, "[dbo].[spMonHoc_EditById] UpdateAllByIdHocKy MonHocService Error.");
+                //_logger.LogError(ex, "[dbo].[spMonHoc_EditById] UpdateAllByIdHocKy MonHocRepository Error.");
                 return -1;
             }
 
+        }
+
+
+        public async Task<int> DeleteAsync(string idMonHoc, string idHocKy)
+        {
+            try
+            {
+                var rowAffect = 0;
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    if (conn.State == ConnectionState.Closed)
+                        await conn.OpenAsync();
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@IdMonHoc", idMonHoc);
+                    param.Add("@IdHocKy", idHocKy);
+                    rowAffect = await conn.ExecuteAsync("[dbo].[spMonHoc_DeleteAsync]", param, commandType: CommandType.StoredProcedure);
+                    return rowAffect;
+                }
+            }
+            catch (Exception)
+            {
+                //_logger.LogError(ex, "[dbo].[spMonHoc_DeleteAsync] DeleteAsync MonHocRepository Error.");
+                return -1;
+            }
         }
         public async Task<MonHocSearchViewModel> SearchInfo(string idmonhoc)
         {

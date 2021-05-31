@@ -18,5 +18,6 @@ namespace WebSite.Core.Domain.IRepository
         Task<int> UpdateAsync(string idhocky, string mahocky, string tenhocky, DateTime? ngaysua, string userId, string fullName);
         Task<bool> CheckExistAsync(string idHocKy,string maHocky);
         Task<bool> CheckExisIsActivetAsync(string idHocKy);
+        Task<bool> CheckExisMaHocKy(string mahocky);
     }
 }
