@@ -68,3 +68,17 @@ C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-
 C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\Core.Infrastructure\obj\Debug\netcoreapp3.1\Core.Infrastructure.csproj.CopyComplete
 C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\Core.Infrastructure\obj\Debug\netcoreapp3.1\Core.Infrastructure.dll
 C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\Core.Infrastructure\obj\Debug\netcoreapp3.1\Core.Infrastructure.pdb
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\Core.Infrastructure\bin\Debug\netcoreapp3.1\Core.Infrastructure.deps.json
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\Core.Infrastructure\bin\Debug\netcoreapp3.1\Core.Infrastructure.dll
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\Core.Infrastructure\bin\Debug\netcoreapp3.1\Core.Infrastructure.pdb
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\Core.Infrastructure\bin\Debug\netcoreapp3.1\Core.Domain.dll
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\Core.Infrastructure\bin\Debug\netcoreapp3.1\NCKH.Infrastruture.Binding.dll
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\Core.Infrastructure\bin\Debug\netcoreapp3.1\Core.Domain.pdb
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\Core.Infrastructure\bin\Debug\netcoreapp3.1\NCKH.Infrastruture.Binding.pdb
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\Core.Infrastructure\obj\Debug\netcoreapp3.1\Core.Infrastructure.csprojAssemblyReference.cache
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\Core.Infrastructure\obj\Debug\netcoreapp3.1\Core.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\Core.Infrastructure\obj\Debug\netcoreapp3.1\Core.Infrastructure.AssemblyInfo.cs
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\Core.Infrastructure\obj\Debug\netcoreapp3.1\Core.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\Core.Infrastructure\obj\Debug\netcoreapp3.1\Core.Infrastructure.csproj.CopyComplete
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\Core.Infrastructure\obj\Debug\netcoreapp3.1\Core.Infrastructure.dll
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\Core.Infrastructure\obj\Debug\netcoreapp3.1\Core.Infrastructure.pdb

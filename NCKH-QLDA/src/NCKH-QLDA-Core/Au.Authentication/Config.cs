@@ -43,7 +43,7 @@ namespace Au.Authentication
                         "GHM_Core"
                     },
                     UserClaims = { "role", "admin", "user"}
-                },
+                }
                 //new ApiResource("GHM_Api_Gateway", "GHM API Gateway managerment resources.")
                 //{
                 //    ApiSecrets = new List<Secret>

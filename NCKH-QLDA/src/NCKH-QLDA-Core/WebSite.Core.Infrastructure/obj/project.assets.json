@@ -8693,23 +8693,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\HUNG7510\\.nuget\\packages\\": {},
+    "C:\\Users\\HUY HUNG\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HUNG7510\\Desktop\\API-Developer\\project-loi-dll\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\WebSite.Core.Infrastructure\\WebSite.Core.Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\HUY HUNG\\Desktop\\NCKH_API\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\WebSite.Core.Infrastructure\\WebSite.Core.Infrastructure.csproj",
       "projectName": "WebSite.Core.Infrastructure",
-      "projectPath": "C:\\Users\\HUNG7510\\Desktop\\API-Developer\\project-loi-dll\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\WebSite.Core.Infrastructure\\WebSite.Core.Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\HUNG7510\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HUNG7510\\Desktop\\API-Developer\\project-loi-dll\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\WebSite.Core.Infrastructure\\obj\\",
+      "projectPath": "C:\\Users\\HUY HUNG\\Desktop\\NCKH_API\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\WebSite.Core.Infrastructure\\WebSite.Core.Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\HUY HUNG\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\HUY HUNG\\Desktop\\NCKH_API\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\WebSite.Core.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\HUNG7510\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\HUY HUNG\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.1.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -8718,16 +8718,16 @@
         "netcoreapp3.1"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\DevExpress 20.1\\Components\\System\\Components\\Packages": {},
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "D:\\DevExpres20.1\\Components\\System\\Components\\Packages": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\HUNG7510\\Desktop\\API-Developer\\project-loi-dll\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\WebSite.Core.Domain\\WebSite.Core.Domain.csproj": {
-              "projectPath": "C:\\Users\\HUNG7510\\Desktop\\API-Developer\\project-loi-dll\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\WebSite.Core.Domain\\WebSite.Core.Domain.csproj"
+            "C:\\Users\\HUY HUNG\\Desktop\\NCKH_API\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\WebSite.Core.Domain\\WebSite.Core.Domain.csproj": {
+              "projectPath": "C:\\Users\\HUY HUNG\\Desktop\\NCKH_API\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\WebSite.Core.Domain\\WebSite.Core.Domain.csproj"
             }
           }
         }

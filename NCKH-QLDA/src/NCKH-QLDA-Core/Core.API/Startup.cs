@@ -199,7 +199,6 @@ namespace Core.API
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
