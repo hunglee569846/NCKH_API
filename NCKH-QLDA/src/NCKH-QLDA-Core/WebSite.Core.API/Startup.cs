@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using NCKH.Infrastruture.Binding.CustomAttributes;
+using NCKH.Infrastruture.Binding.Middleware;
 using NCKH.Infrastruture.Binding.ModelBinders;
 using NCKH.Infrastruture.Binding.OperationFilter;
 using Swashbuckle.AspNetCore.Swagger;
@@ -203,7 +204,8 @@ namespace WebSite.Core.API
                 options.ShowExtensions();
                 options.DocExpansion(DocExpansion.None);
             });
-
+            app.Map(pathMatch: "/Error", MiddlewareExtension.GHMError);
+            app.GHMWelcome();
         }
     }
 }

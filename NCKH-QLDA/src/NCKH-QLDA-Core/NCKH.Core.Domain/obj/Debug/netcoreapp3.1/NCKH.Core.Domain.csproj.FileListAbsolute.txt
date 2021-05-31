@@ -106,3 +106,15 @@ C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-
 C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Domain\obj\Debug\netcoreapp3.1\NCKH.Core.Domain.csproj.CopyComplete
 C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Domain\obj\Debug\netcoreapp3.1\NCKH.Core.Domain.dll
 C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Domain\obj\Debug\netcoreapp3.1\NCKH.Core.Domain.pdb
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Domain\bin\Debug\netcoreapp3.1\NCKH.Core.Domain.deps.json
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Domain\bin\Debug\netcoreapp3.1\NCKH.Core.Domain.dll
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Domain\bin\Debug\netcoreapp3.1\NCKH.Core.Domain.pdb
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Domain\bin\Debug\netcoreapp3.1\NCKH.Infrastruture.Binding.dll
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Domain\bin\Debug\netcoreapp3.1\NCKH.Infrastruture.Binding.pdb
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Domain\obj\Debug\netcoreapp3.1\NCKH.Core.Domain.csprojAssemblyReference.cache
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Domain\obj\Debug\netcoreapp3.1\NCKH.Core.Domain.AssemblyInfoInputs.cache
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Domain\obj\Debug\netcoreapp3.1\NCKH.Core.Domain.AssemblyInfo.cs
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Domain\obj\Debug\netcoreapp3.1\NCKH.Core.Domain.csproj.CoreCompileInputs.cache
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Domain\obj\Debug\netcoreapp3.1\NCKH.Core.Domain.csproj.CopyComplete
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Domain\obj\Debug\netcoreapp3.1\NCKH.Core.Domain.dll
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Core.Domain\obj\Debug\netcoreapp3.1\NCKH.Core.Domain.pdb

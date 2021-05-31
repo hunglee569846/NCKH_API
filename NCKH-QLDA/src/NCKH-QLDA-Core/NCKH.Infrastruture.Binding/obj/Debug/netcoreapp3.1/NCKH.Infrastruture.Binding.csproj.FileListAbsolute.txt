@@ -77,6 +77,17 @@ C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-
 C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Infrastruture.Binding\obj\Debug\netcoreapp3.1\NCKH.Infrastruture.Binding.csproj.CoreCompileInputs.cache
 C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Infrastruture.Binding\obj\Debug\netcoreapp3.1\NCKH.Infrastruture.Binding.dll
 C:\Users\HUNG7510\Desktop\API-Developer\project-loi-dll\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Infrastruture.Binding\obj\Debug\netcoreapp3.1\NCKH.Infrastruture.Binding.pdb
+<<<<<<< HEAD
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Infrastruture.Binding\bin\Debug\netcoreapp3.1\NCKH.Infrastruture.Binding.deps.json
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Infrastruture.Binding\bin\Debug\netcoreapp3.1\NCKH.Infrastruture.Binding.dll
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Infrastruture.Binding\bin\Debug\netcoreapp3.1\NCKH.Infrastruture.Binding.pdb
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Infrastruture.Binding\obj\Debug\netcoreapp3.1\NCKH.Infrastruture.Binding.csprojAssemblyReference.cache
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Infrastruture.Binding\obj\Debug\netcoreapp3.1\NCKH.Infrastruture.Binding.AssemblyInfoInputs.cache
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Infrastruture.Binding\obj\Debug\netcoreapp3.1\NCKH.Infrastruture.Binding.AssemblyInfo.cs
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Infrastruture.Binding\obj\Debug\netcoreapp3.1\NCKH.Infrastruture.Binding.csproj.CoreCompileInputs.cache
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Infrastruture.Binding\obj\Debug\netcoreapp3.1\NCKH.Infrastruture.Binding.dll
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Infrastruture.Binding\obj\Debug\netcoreapp3.1\NCKH.Infrastruture.Binding.pdb
+=======
 C:\Users\HUNG7510\Desktop\WebNCKH\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Infrastruture.Binding\bin\Debug\netcoreapp3.1\NCKH.Infrastruture.Binding.deps.json
 C:\Users\HUNG7510\Desktop\WebNCKH\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Infrastruture.Binding\bin\Debug\netcoreapp3.1\NCKH.Infrastruture.Binding.dll
 C:\Users\HUNG7510\Desktop\WebNCKH\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Infrastruture.Binding\bin\Debug\netcoreapp3.1\NCKH.Infrastruture.Binding.pdb
@@ -86,3 +97,4 @@ C:\Users\HUNG7510\Desktop\WebNCKH\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Inf
 C:\Users\HUNG7510\Desktop\WebNCKH\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Infrastruture.Binding\obj\Debug\netcoreapp3.1\NCKH.Infrastruture.Binding.csproj.CoreCompileInputs.cache
 C:\Users\HUNG7510\Desktop\WebNCKH\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Infrastruture.Binding\obj\Debug\netcoreapp3.1\NCKH.Infrastruture.Binding.dll
 C:\Users\HUNG7510\Desktop\WebNCKH\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\NCKH.Infrastruture.Binding\obj\Debug\netcoreapp3.1\NCKH.Infrastruture.Binding.pdb
+>>>>>>> 5155c68c7c4241a980abd3c84e9c091a3b09872c

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NCKH.Infrastruture.Binding;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Threading.Tasks;
 using WebSite.Core.Domain.Constansts;
@@ -13,7 +14,7 @@ namespace WebSite.Core.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [SwaggerTag("Insert, Update, Delete, GetAll")]
-    public class GiangVienHuongDanController : ControllerBase
+    public class GiangVienHuongDanController : CoreApiControllerBase
     {
         private readonly IGiangVienHuongDanService _iGiangVienHuongDanService;
 
@@ -42,7 +43,7 @@ namespace WebSite.Core.API.Controllers
         [SwaggerOperation(Summary = "Insert GiangVienHuongDanTheoKy", Description = "TypeGVHD: 0 - NgoaiTruong,1 - trongTruong", OperationId = "InsertGiangVienHuongDanTheoKy", Tags = new[] { "GiangVienHuongDan" })]
         public async Task<IActionResult> InsertAsync([FromBody]GiangVienHDMeta gvhdMeta,string idhocky,string idmonhoc, TypeGVHD typegvhd)
         {
-            var result = await _iGiangVienHuongDanService.InsertAsync(gvhdMeta,idhocky,idmonhoc, typegvhd);
+            var result = await _iGiangVienHuongDanService.InsertAsync(gvhdMeta,idhocky,idmonhoc, typegvhd,CurrentUser.MaGiangVien,CurrentUser.FullName);
             if (result.Code <= 0)
             {
                 //  _logger.LogError("Insert GiangVienHuongDan controller code: " + result.Code + " .Message: " + result.Message);
@@ -55,7 +56,7 @@ namespace WebSite.Core.API.Controllers
         [SwaggerOperation(Summary = "Update GiangVienHuongDanTheoKy", Description = "Requires login verification!", OperationId = "UpdateGiangVienHuongDanTheoKy", Tags = new[] { "GiangVienHuongDan" })]
         public async Task<IActionResult> UpdateAsync([FromBody] GVHDupdateMeta gvhdkyUpdateMeta, string idGVHD, string idGvhdTheoKy, TypeGVHD tygvhd)
         {
-            var result = await _iGiangVienHuongDanService.UpdateAsync(gvhdkyUpdateMeta, idGVHD, idGvhdTheoKy, tygvhd);
+            var result = await _iGiangVienHuongDanService.UpdateAsync(gvhdkyUpdateMeta, idGVHD, idGvhdTheoKy, tygvhd,CurrentUser.MaGiangVien,CurrentUser.FullName);
             if (result.Code <= 0)
             {
                 //  _logger.LogError("Update GiangVienHuongDan controller code: " + result.Code + " .Message: " + result.Message);
@@ -68,7 +69,7 @@ namespace WebSite.Core.API.Controllers
         [SwaggerOperation(Summary = "Delete GiangVienHuongDanTheoKy", Description = "Requires login verification!", OperationId = "DeleteGiangVienHuongDanTheoKy", Tags = new[] { "GiangVienHuongDan" })]
         public async Task<IActionResult> DeleteAsync(string idGvhdTheoKy)
         {
-            var result = await _iGiangVienHuongDanService.DeleteAsync(idGvhdTheoKy);
+            var result = await _iGiangVienHuongDanService.DeleteAsync(idGvhdTheoKy,CurrentUser.MaGiangVien,CurrentUser.FullName);
             if (result.Code <= 0)
             {
                 //  _logger.LogError("Delete GiangVienHuongDan controller code: " + result.Code + " .Message: " + result.Message);
