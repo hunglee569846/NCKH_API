@@ -14,8 +14,8 @@ namespace WebSite.Core.Domain.IServices
     {
         Task<List<GiangVienHuongDanViewModel>> SelectAllAsync();
         Task<SearchResult<GiangVienHuongDanViewModel>> GetByIdHocKyAsync(string idhocky);
-        Task<ActionResultResponese<string>> InsertAsync(GiangVienHDMeta gvhdkyMeta,string idhocky,string idmonhoc, TypeGVHD tygvhd);
-        Task<ActionResultResponese<string>> UpdateAsync(GVHDupdateMeta gvhdkyUpdateMeta,string idGVHD,string idGvhdTheoKy, TypeGVHD tygvhd);
-        Task<ActionResultResponese<string>> DeleteAsync(string idGHVHDTheoKy);
+        Task<ActionResultResponese<string>> InsertAsync(GiangVienHDMeta gvhdkyMeta,string idhocky,string idmonhoc, TypeGVHD tygvhd,string CreatorUserId, string CreatorFullName);
+        Task<ActionResultResponese<string>> UpdateAsync(GVHDupdateMeta gvhdkyUpdateMeta,string idGVHD,string idGvhdTheoKy, TypeGVHD tygvhd, string LastUpdateUserId, string LastUpdateFullName);
+        Task<ActionResultResponese<string>> DeleteAsync(string idgvhdTheoky, string deleteUserId, string deleteFullName);
     }
 }

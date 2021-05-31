@@ -19,6 +19,11 @@ namespace WebSite.Core.Domain.Models
         public bool? IsDelete { get; set; }
         public DateTime? NgayTao { get; set; }
         public DateTime? NgayXoa { get; set; }
+        public DateTime? NgaySua { get; set; }
+        public string CreatorUserId { get; set; }
+        public string CreatorFullName { get; set; }
+        public string LastUpdateUserId { get; set; }
+        public string LastUpdateFullName { get; set; }
         public GVHDTheoKy()
         {
             NgayTao = DateTime.Now;

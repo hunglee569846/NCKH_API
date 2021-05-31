@@ -84,10 +84,8 @@ namespace WebSite.Core.Infrastructure.Repository
                     {
                         para.Add("@NgayTao", giangvientheoky.NgayTao);
                     }
-                    if (giangvientheoky.NgayXoa != DateTime.MinValue && giangvientheoky.NgayXoa != null)
-                    {
-                        para.Add("@NgayXoa", giangvientheoky.NgayXoa);
-                    }
+                    para.Add("@CreatorUserId", giangvientheoky.CreatorUserId);
+                    para.Add("@CreartorFullName", giangvientheoky.CreatorFullName);
                     rowAffect = await conn.ExecuteAsync("[dbo].[spGVHD_InsertByIdHocKy]", para, commandType: CommandType.StoredProcedure);
                     return rowAffect;
                 }
@@ -122,7 +120,7 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
 
-        public async Task<int> UpdatetAsync(GVHDTheoKy gvhdkyUpdate)
+        public async Task<int> UpdatetAsync(GVHDTheoKy giangvienhuongdan)
         {
             try
             {
@@ -132,12 +130,17 @@ namespace WebSite.Core.Infrastructure.Repository
                     if (conn.State == ConnectionState.Closed)
                         await conn.OpenAsync();
                     DynamicParameters para = new DynamicParameters();
-                    para.Add("@IdGVHDTheoKy", gvhdkyUpdate.IdGVHDTheoKy);
-                    para.Add("@DonViCongTac", gvhdkyUpdate.DonViCongTac);
-                    para.Add("@Email", gvhdkyUpdate.Email);
-                    para.Add("@DienThoai", gvhdkyUpdate.DienThoai);
-                    para.Add("@Type", gvhdkyUpdate.Type);
-
+                    para.Add("@IdGVHDTheoKy", giangvienhuongdan.IdGVHDTheoKy);
+                    para.Add("@DonViCongTac", giangvienhuongdan.DonViCongTac);
+                    para.Add("@Email", giangvienhuongdan.Email);
+                    para.Add("@DienThoai", giangvienhuongdan.DienThoai);
+                    para.Add("@Type", giangvienhuongdan.Type);
+                    if (giangvienhuongdan.NgayTao != DateTime.MinValue && giangvienhuongdan.NgayTao != null)
+                    {
+                        para.Add("@NgayTao", giangvienhuongdan.NgayTao);
+                    }
+                    para.Add("@LastUpdateUserId", giangvienhuongdan.LastUpdateUserId);
+                    para.Add("@LastUpdateFullName", giangvienhuongdan.LastUpdateFullName);
                     rowAffect = await conn.ExecuteAsync("[dbo].[spGiangVienHuongDan_UpdateAsync]", para, commandType: CommandType.StoredProcedure);
                     return rowAffect;
                 }
@@ -195,7 +198,7 @@ namespace WebSite.Core.Infrastructure.Repository
 
         }
 
-        public async Task<int> DeleteByIdAsync(string idgvhdTheoky)
+        public async Task<int> DeleteByIdAsync(string idgvhdTheoky,string deleteUserId,string deleteFullName,DateTime? ngayxoa)
         {
             try
             {
@@ -206,7 +209,12 @@ namespace WebSite.Core.Infrastructure.Repository
                         await conn.OpenAsync();
                     DynamicParameters para = new DynamicParameters();
                     para.Add("@IdGVHDTheoKy", idgvhdTheoky);
-
+                    para.Add("@DeleteUserId", deleteUserId);
+                    para.Add("@DeleteFullName", deleteFullName);
+                    if(ngayxoa != DateTime.MinValue && ngayxoa != null)
+                    {
+                        para.Add("@NgayXoa", ngayxoa);
+                    }
                     rowAffect = await conn.ExecuteAsync("[dbo].[spGiangVienHuongDan_DeleteAsync]", para, commandType: CommandType.StoredProcedure);
                     return rowAffect;
                 }

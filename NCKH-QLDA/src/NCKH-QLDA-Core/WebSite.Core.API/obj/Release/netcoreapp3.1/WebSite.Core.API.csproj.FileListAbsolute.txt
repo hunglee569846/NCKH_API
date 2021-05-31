@@ -1,6 +1,6 @@
+C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.API\bin\Release\netcoreapp3.1\web.config
 C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.API\bin\Release\netcoreapp3.1\appsettings.Development.json
 C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.API\bin\Release\netcoreapp3.1\appsettings.json
-C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.API\bin\Release\netcoreapp3.1\web.config
 C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.API\bin\Release\netcoreapp3.1\WebSite.Core.API.exe
 C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.API\bin\Release\netcoreapp3.1\WebSite.Core.API.deps.json
 C:\Users\HUY HUNG\Desktop\NCKH_API\NCKH_API\NCKH-QLDA\src\NCKH-QLDA-Core\WebSite.Core.API\bin\Release\netcoreapp3.1\WebSite.Core.API.runtimeconfig.json

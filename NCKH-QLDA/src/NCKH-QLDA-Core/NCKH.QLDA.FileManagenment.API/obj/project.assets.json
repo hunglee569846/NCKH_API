@@ -3550,7 +3550,6 @@
       "path": "microsoft.netcore.windows.apisets/1.0.1",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "microsoft.netcore.windows.apisets.1.0.1.nupkg.sha512",
@@ -4026,6 +4025,7 @@
       "path": "runtime.win-arm64.runtime.native.system.data.sqlclient.sni/4.4.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
@@ -4041,6 +4041,7 @@
       "path": "runtime.win-x64.runtime.native.system.data.sqlclient.sni/4.4.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
@@ -4056,6 +4057,7 @@
       "path": "runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
@@ -8832,19 +8834,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\HUY HUNG\\Desktop\\NCKH_API\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.QLDA.FileManagenment.API\\NCKH.QLDA.FileManagenment.API.csproj",
       "projectName": "NCKH.QLDA.FileManagenment.API",
       "projectPath": "C:\\Users\\HUY HUNG\\Desktop\\NCKH_API\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.QLDA.FileManagenment.API\\NCKH.QLDA.FileManagenment.API.csproj",
       "packagesPath": "C:\\Users\\HUY HUNG\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\HUY HUNG\\Desktop\\NCKH_API\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.QLDA.FileManagenment.API\\obj\\",
-=======
-      "projectUniqueName": "C:\\Users\\HUNG7510\\Desktop\\WebNCKH\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.QLDA.FileManagenment.API\\NCKH.QLDA.FileManagenment.API.csproj",
-      "projectName": "NCKH.QLDA.FileManagenment.API",
-      "projectPath": "C:\\Users\\HUNG7510\\Desktop\\WebNCKH\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.QLDA.FileManagenment.API\\NCKH.QLDA.FileManagenment.API.csproj",
-      "packagesPath": "C:\\Users\\HUNG7510\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HUNG7510\\Desktop\\WebNCKH\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.QLDA.FileManagenment.API\\obj\\",
->>>>>>> 5155c68c7c4241a980abd3c84e9c091a3b09872c
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -8867,13 +8861,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-<<<<<<< HEAD
             "C:\\Users\\HUY HUNG\\Desktop\\NCKH_API\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.Infrastruture.Binding\\NCKH.Infrastruture.Binding.csproj": {
               "projectPath": "C:\\Users\\HUY HUNG\\Desktop\\NCKH_API\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.Infrastruture.Binding\\NCKH.Infrastruture.Binding.csproj"
-=======
-            "C:\\Users\\HUNG7510\\Desktop\\WebNCKH\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.Infrastruture.Binding\\NCKH.Infrastruture.Binding.csproj": {
-              "projectPath": "C:\\Users\\HUNG7510\\Desktop\\WebNCKH\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.Infrastruture.Binding\\NCKH.Infrastruture.Binding.csproj"
->>>>>>> 5155c68c7c4241a980abd3c84e9c091a3b09872c
             }
           }
         }

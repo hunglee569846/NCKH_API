@@ -8,6 +8,5 @@ namespace WebSite.Core.Domain.ModelMeta
     public class MonHocMeta
     {
         public string IdMonTienQuyet { get; set; }
-        public string NameMonTienQuyet { get; set; }
     }
 }

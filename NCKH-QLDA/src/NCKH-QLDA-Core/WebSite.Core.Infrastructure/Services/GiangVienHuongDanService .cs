@@ -40,7 +40,7 @@ namespace WebSite.Core.Infrastructure.Services
 			return await _giangVienHuongDanRepository.SelectByIdHocKyAsync(idhocky);
 		}
 
-		public async Task<ActionResultResponese<string>> InsertAsync(GiangVienHDMeta gvhdkyMeta, string idhocky,string idmonhoc,TypeGVHD tygvhd)
+		public async Task<ActionResultResponese<string>> InsertAsync(GiangVienHDMeta gvhdkyMeta, string idhocky,string idmonhoc,TypeGVHD tygvhd, string CreatorUserId, string creatorFullName)
         {
 			var id = Guid.NewGuid().ToString();
 			var checkHocKy = await _hockyRepository.CheckExisIsActivetAsync(idhocky);
@@ -67,7 +67,9 @@ namespace WebSite.Core.Infrastructure.Services
 				Email = gvhdkyMeta.Email?.Trim(),
 				DienThoai = gvhdkyMeta.DienThoai?.Trim(),
 				Type = tygvhd,
-				NgayTao = DateTime.Now
+				NgayTao = DateTime.Now,
+				CreatorUserId = CreatorUserId?.Trim(),
+				CreatorFullName = creatorFullName?.Trim()
 			};
 			if (gvhdky == null)
 				return new ActionResultResponese<string>(-8, "Dữ liệu trống.", "Giang viên hướng dẫn theo kỳ.");
@@ -77,7 +79,7 @@ namespace WebSite.Core.Infrastructure.Services
 			return new ActionResultResponese<string>(result, "Thêm mới thành công.", "Giang viên hướng dẫn theo kỳ.");
 		}
 
-		public async Task<ActionResultResponese<string>> UpdateAsync(GVHDupdateMeta gvhdkyUpdateMeta, string idGVHD, string idGvhdTheoKy, TypeGVHD tygvhd)
+		public async Task<ActionResultResponese<string>> UpdateAsync(GVHDupdateMeta gvhdkyUpdateMeta, string idGVHD, string idGvhdTheoKy, TypeGVHD tygvhd,string CreatorUserId,string creatorFullName)
         {
 			var checkGVHDTheoKy = await _giangVienHuongDanRepository.CheckExits(idGvhdTheoKy);
 			if (!checkGVHDTheoKy)
@@ -93,6 +95,8 @@ namespace WebSite.Core.Infrastructure.Services
 				Email = gvhdkyUpdateMeta.Email?.Trim(),
 				DienThoai = gvhdkyUpdateMeta.DienThoai?.Trim(),
 				Type = tygvhd,
+				LastUpdateUserId = CreatorUserId?.Trim(),
+				LastUpdateFullName = creatorFullName?.Trim()
 			};
 			if (gvhdky == null)
 				return new ActionResultResponese<string>(-12, "Dữ liệu trống.", "Giang viên hướng dẫn theo kỳ.");
@@ -102,12 +106,14 @@ namespace WebSite.Core.Infrastructure.Services
 			return new ActionResultResponese<string>(result, "Sửa thành công.", "Giang viên hướng dẫn theo kỳ.");
 		}
 
-		public async Task<ActionResultResponese<string>> DeleteAsync(string idGHVHDTheoKy)
+		public async Task<ActionResultResponese<string>> DeleteAsync(string idgvhdTheoky, string deleteUserId, string deleteFullName)
         {
-			var checkGVHDTheoKy = await _giangVienHuongDanRepository.CheckExits(idGHVHDTheoKy);
+
+			var checkGVHDTheoKy = await _giangVienHuongDanRepository.CheckExits(idgvhdTheoky);
 			if (!checkGVHDTheoKy)
 				return new ActionResultResponese<string>(-13, "Bản ghi không tồn tại.", "Giang viên hướng dẫn theo kỳ.");
-			var result = await _giangVienHuongDanRepository.DeleteByIdAsync(idGHVHDTheoKy);
+			var ngayxoa = DateTime.Now;
+			var result = await _giangVienHuongDanRepository.DeleteByIdAsync(idgvhdTheoky,deleteUserId,deleteFullName,ngayxoa);
 			if (result <= 0)
 				return new ActionResultResponese<string>(result, "Xóa thất bại.", "Giang viên hướng dẫn theo kỳ.");
 			return new ActionResultResponese<string>(result, "Xóa thành công.", "Giang viên hướng dẫn theo kỳ.");

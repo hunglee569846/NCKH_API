@@ -1,14 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "tByk0HHPmsPu7e+4lkxNerT0EAgWJN7ERj5a6COKCHt6s9Rvpldf6+qN7DlU5kgg3vU/H3dB63qyJ45ptpcQmw==",
   "success": true,
   "projectFilePath": "C:\\Users\\HUY HUNG\\Desktop\\NCKH_API\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\Au.Authentication\\Au.Authentication.csproj",
-=======
-  "dgSpecHash": "dvImXtRfz8WdvJ5cyoCxHMib/ZQ+jOPBDmw5jiedRb1rCebEvdcYwjX1CpwpQi6A0PJrbXZdD+OXm/wRNI2e6g==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\HUNG7510\\Desktop\\WebNCKH\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\Au.Authentication\\Au.Authentication.csproj",
->>>>>>> 5155c68c7c4241a980abd3c84e9c091a3b09872c
   "expectedPackageFiles": [
     "C:\\Users\\HUY HUNG\\.nuget\\packages\\autofac\\5.2.0\\autofac.5.2.0.nupkg.sha512",
     "C:\\Users\\HUY HUNG\\.nuget\\packages\\autofac.extensions.dependencyinjection\\6.0.0\\autofac.extensions.dependencyinjection.6.0.0.nupkg.sha512",

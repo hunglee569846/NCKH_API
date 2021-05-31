@@ -3314,7 +3314,6 @@
       "path": "microsoft.netcore.windows.apisets/1.0.1",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "microsoft.netcore.windows.apisets.1.0.1.nupkg.sha512",
@@ -8296,19 +8295,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\HUY HUNG\\Desktop\\NCKH_API\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.Infrastruture.Binding\\NCKH.Infrastruture.Binding.csproj",
       "projectName": "NCKH.Infrastruture.Binding",
       "projectPath": "C:\\Users\\HUY HUNG\\Desktop\\NCKH_API\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.Infrastruture.Binding\\NCKH.Infrastruture.Binding.csproj",
       "packagesPath": "C:\\Users\\HUY HUNG\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\HUY HUNG\\Desktop\\NCKH_API\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.Infrastruture.Binding\\obj\\",
-=======
-      "projectUniqueName": "C:\\Users\\HUNG7510\\Desktop\\WebNCKH\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.Infrastruture.Binding\\NCKH.Infrastruture.Binding.csproj",
-      "projectName": "NCKH.Infrastruture.Binding",
-      "projectPath": "C:\\Users\\HUNG7510\\Desktop\\WebNCKH\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.Infrastruture.Binding\\NCKH.Infrastruture.Binding.csproj",
-      "packagesPath": "C:\\Users\\HUNG7510\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HUNG7510\\Desktop\\WebNCKH\\NCKH_API\\NCKH-QLDA\\src\\NCKH-QLDA-Core\\NCKH.Infrastruture.Binding\\obj\\",
->>>>>>> 5155c68c7c4241a980abd3c84e9c091a3b09872c
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

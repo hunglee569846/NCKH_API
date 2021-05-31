@@ -77,14 +77,17 @@ namespace WebSite.Core.Infrastructure.Services
             var checExits = await _imonhocRepository.CheckExitsIsActvive(idmonhoc);
             if (!checExits)
                 return new ActionResultResponese<string>(-5, "Mã không tồn tại.", "Môn học");
+
+            var getInfo = await _imonhocRepository.SearchInfo(monhocmeta.IdMonTienQuyet);
+            string montienquyet = "0";
             var monhoc = new MonHoc()
             {
                 IdMonHoc = idmonhoc,
                 MaMonHoc = mamonhoc?.Trim(),
                 IdHocKy = idhocky?.Trim(),
                 TenMonHoc = tenmonhoc?.Trim(),
-                IdMonTienQuyet = monhocmeta.IdMonTienQuyet?.Trim(),
-                NameMonTienQuyet = monhocmeta.NameMonTienQuyet?.Trim(),
+                IdMonTienQuyet = getInfo == null ? montienquyet.ToString() : getInfo.IdMonHoc?.Trim(),//getInfo.IdMonHoc?.Trim(),//
+                NameMonTienQuyet = getInfo == null ? montienquyet.ToString() : getInfo.NameMonTienQuyet?.Trim(), //getInfo.TenMonHoc?.Trim() //
                 TypeApprover = typeApprover,
                 LastUpdateUserId = lastUpdateUserId,
                 LastUpdateFullName = lastUpdateFullName,
