@@ -35,13 +35,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebSite.Core.API", "WebSite
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentications", "Authentications", "{DAC81BFC-C176-43BC-B1D1-09E49EB43220}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Au.Authentication", "Au.Authentication\Au.Authentication.csproj", "{829E4BF6-F952-4813-8399-A27B91B9A785}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Au.Authentication", "Au.Authentication\Au.Authentication.csproj", "{829E4BF6-F952-4813-8399-A27B91B9A785}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Domain", "Core.Domain\Core.Domain.csproj", "{A7A02950-883C-401F-801F-2F315FCE9610}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Domain", "Core.Domain\Core.Domain.csproj", "{A7A02950-883C-401F-801F-2F315FCE9610}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Infrastructure", "Core.Infrastructure\Core.Infrastructure.csproj", "{497655C7-4F64-466D-B088-2EC8162FF730}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Infrastructure", "Core.Infrastructure\Core.Infrastructure.csproj", "{497655C7-4F64-466D-B088-2EC8162FF730}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.API", "Core.API\Core.API.csproj", "{41070580-F251-4129-9B0F-8AD667EA2D8B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.API", "Core.API\Core.API.csproj", "{41070580-F251-4129-9B0F-8AD667EA2D8B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
