@@ -70,12 +70,16 @@ namespace WebSite.Core.Infrastructure.Services
             var checExistMonHoc = await _monhocRepository.CheckExitsIsActvive(idmonhoc);
             if (!checExistMonHoc)
                 return new ActionResultResponese<string>(-5, "Môn học không tồn tại.", "Môn học.");
+           
             var monhocInfo = await _monhocRepository.SearchInfo(idhocky);
-
-            var checkIsDat = await _deTaiRepository.CheckIsDat(monhocInfo.IdMonTienQuyet, idsinhvien);
-            if (!checkIsDat)
-                return new ActionResultResponese<string>(-21, "Sinh viên chưa hoàn thành môn "+ monhocInfo.TenMonHoc + " là môn tiên quyết.", "Môn học.");
-
+            var idTienQuyet = "0";
+            if (monhocInfo.IdMonTienQuyet != idTienQuyet)
+            {
+                var checkIsDat = await _deTaiRepository.CheckIsDat(monhocInfo.IdMonTienQuyet, idsinhvien);
+                if (!checkIsDat)
+                    return new ActionResultResponese<string>(-21, "Sinh viên chưa hoàn thành môn " + monhocInfo.TenMonHoc + " là môn tiên quyết.", "Môn học.");
+            }
+            
             var checkExits = await _deTaiRepository.CheckExits(id);
             if (checkExits)
                 return new ActionResultResponese<string>(-6, "IdDeTai đã tồn tại.", "Đề tài.");
