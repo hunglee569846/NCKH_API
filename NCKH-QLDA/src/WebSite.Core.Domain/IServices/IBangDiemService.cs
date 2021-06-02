@@ -9,6 +9,6 @@ namespace WebSite.Core.Domain.IServices
 {
     public interface IBangDiemService
     {
-        Task<ActionResultResponese<string>> InsertAsync(BangDiemMeta bangdiemMeta,string creatorUserId,string creatorFullName );
+        Task<ActionResultResponese<string>> InsertAsync(string iddetai, string idGVHD, string idhoidong, string idhocky, string idmonhoc, string creatorUserId, string creatorFullName);
     }
 }

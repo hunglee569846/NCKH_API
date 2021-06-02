@@ -25,7 +25,7 @@ namespace WebSite.Core.Infrastructure.Services
             _chitiethoidongRepository = chitiethoidongRepository;
 
         }
-        public async Task<ActionResultResponese<string>> InserListDeTaiAsync(List<ChiTietHoiDongMeta> listChiTietHoiDongmeta, string idhoidong, string creartorUserId, string creartorFullName)
+        public async Task<ActionResultResponese<string>> InserListDeTaiAsync(List<ChiTietHoiDongMeta> listChiTietHoiDongmeta, string idhoidong,string idhocky,string idmonhoc, string creartorUserId, string creartorFullName)
         {
             //thông tin hội đồng
             var getinfoHoiDong = await _hoidongtotnghiepRepository.GetInfo(idhoidong);
@@ -39,7 +39,7 @@ namespace WebSite.Core.Infrastructure.Services
             var listHoiDong = new List<ChiTietHoiDong>();
             foreach (var idgiangvien in listidgiangvien)
             {
-                var getinfoGVHD = await _giangVienHuongDanRepository.GetInfo(idgiangvien.IdGiangVien);
+                var getinfoGVHD = await _giangVienHuongDanRepository.GetInfo(idgiangvien.IdGiangVien,idhocky,idmonhoc);
                 if (getinfoGVHD == null)
                     return new ActionResultResponese<string>(-4, "Giảng viên không tồn tại", "Giảng viên");
 
@@ -74,14 +74,14 @@ namespace WebSite.Core.Infrastructure.Services
 
         }
 
-        public async Task<ActionResultResponese<string>> InserAsync(string idhoidong, string idgvhd, string creartorUserId, string creartorFullName)
+        public async Task<ActionResultResponese<string>> InserAsync(string idhoidong, string idgvhd,string idhocky,string idmonhoc, string creartorUserId, string creartorFullName)
         {
             //thông tin hội đồng
             var getinfoHoiDong = await _hoidongtotnghiepRepository.GetInfo(idhoidong);
             if (getinfoHoiDong == null)
                 return new ActionResultResponese<string>(-2, "Thông tin hội đồng không tồn tại.", "Hội đồng");
 
-             var getinfoGVHD = await _giangVienHuongDanRepository.GetInfo(idgvhd);
+             var getinfoGVHD = await _giangVienHuongDanRepository.GetInfo(idgvhd, idhocky, idmonhoc);
              if (getinfoGVHD == null)
                  return new ActionResultResponese<string>(-4, "Giảng viên không tồn tại", "Giảng viên");
 

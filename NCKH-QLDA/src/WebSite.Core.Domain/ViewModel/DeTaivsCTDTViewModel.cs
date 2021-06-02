@@ -17,12 +17,9 @@ namespace WebSite.Core.Domain.ViewModel
         public string TenMonHoc { get; set; }
         public double? DiemTrungBinh { get; set; }
         public bool? IsDat { get; set; }
-        public DateTime? NgayTao { get; set; }
-        public DateTime? NgayXoa { get; set; }
-        public DateTime? NgaySua { get; set; }
-        public string MaNguoiTao { get; set; }
-        public string TrnNguoiTao { get; set; }
-        public string NguoiXoa { get; set; }
+        public DateTime? CreateTime { get; set; }
+        public string CreatorUserId { get; set; }
+        public string CreatorFullName { get; set; }
         public List<ChiTietDeTaiViewModel> ChiTietDeTai { get; set; }
     }
 }

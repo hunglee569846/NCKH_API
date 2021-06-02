@@ -9,7 +9,7 @@ namespace WebSite.Core.Domain.IRepository
     {
         Task<SearchResult<DeTaiSearchViewModel>> SelectByIdHocKy(string idhocky);
         Task<SearchResult<DeTaiSearchViewModel>> SelectByIdMonHocInHocKy(string idhocky,string idmonhoc);
-        Task<DeTai> GetInfo(string iddetai);
+        Task<DeTai> GetInfo(string iddetai, string idhocky, string idmonhoc);
         Task<SearchResult<DeTaivsCTDTViewModel>> SelectByIdCTDTAsync(string idhocky, bool isApprove);
         Task<int> InsertAsync(DeTai detai);
         Task<int> UpdateAsync(DeTai detai);
@@ -21,5 +21,6 @@ namespace WebSite.Core.Domain.IRepository
         Task<bool> CheckMaDeTai(string madetai); //kiem tra ton tai ma de tai
         Task<bool> CheckExitsActive(string idhocky, string idmonhoc); //kiem tra tồn tại của mon hoc trong hoc kỳ
         Task<bool> CheckExitsKyHoc(string idhocky); //kiem tra tồn tại của mon hoc trong hoc kỳ
+        //Task<bool> CheckExitsMonHocAndHocKy(string idhocky,string idmonhoc,string iddetai); //kiem tra tồn tại của de tai trong hoc ky mon hoc
     }
 }

@@ -11,9 +11,9 @@ namespace WebSite.Core.Domain.IRepository
 {
     public interface IGiangVienHuongDanRepository
     {
-        Task<List<GiangVienHuongDanViewModel>> SelectAllAsync();
+        Task<SearchResult<GiangVienHuongDanViewModel>> SelectAllAsync();
         Task<SearchResult<GiangVienHuongDanViewModel>> SelectByIdHocKyAsync(string idhocky);
-        Task<GVHDTheoKy> GetInfo(string idGVHD);
+        Task<GVHDTheoKy> GetInfo(string idGVHD, string idhocky, string idmonhoc);
         Task<int> InsertAsync(GVHDTheoKy gvhdky);
         Task<int> UpdatetAsync(GVHDTheoKy gvhdky);
         Task<int> DeleteByIdAsync(string idgvhdTheoky, string deleteUserId, string deleteFullName, DateTime? ngayxoa);

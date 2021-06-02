@@ -64,12 +64,12 @@ namespace WebSite.Core.Infrastructure.Repository
                     param.Add("@MaGVPB", phanbien.MaGVPB);
                     param.Add("@TenGVPB", phanbien.TenGVPB);
                     param.Add("@IdDetai", phanbien.IdDetai);
-                    param.Add("@MaDeTai", phanbien.MaDeTai);
-                    param.Add("@Diem", phanbien.Diem);
-                    param.Add("@Note", phanbien.Note);
                     param.Add("@IdHocKy", phanbien.IdHocKy);
-                    param.Add("@NgayTao", phanbien.NgayTao);
-                    param.Add("@NgaySua", phanbien.NgaySua);
+                    param.Add("@IdMonHoc", phanbien.IdMonHoc);
+                    param.Add("@Diem", phanbien.Diem);
+                    param.Add("@CreateTime", phanbien.CreateTime);
+                    param.Add("@CreatorUserId", phanbien.CreatorUserId);
+                    param.Add("@CreatorFullName", phanbien.CreatorFullName);
                     param.Add("@IsActive", phanbien.IsActive);
                     param.Add("@IsDelete", phanbien.IsDelete);
                     rowAffect = await conn.ExecuteAsync("[dbo].[spPhanBien_InsertAsync]", param, commandType: CommandType.StoredProcedure);
@@ -99,10 +99,10 @@ namespace WebSite.Core.Infrastructure.Repository
                     param.Add("@MaGVPB", phanbien.MaGVPB);
                     param.Add("@TenGVPB", phanbien.TenGVPB);
                     param.Add("@IdDetai", phanbien.IdDetai);
-                    param.Add("@MaDeTai", phanbien.MaDeTai);
                     param.Add("@Note", phanbien.Note);
-                    param.Add("@IdHocKy", phanbien.IdHocKy);
-                    param.Add("@NgaySua", phanbien.NgaySua);
+                    param.Add("@NgaySua", phanbien.LastUpdate);
+                    param.Add("@LastUpdateUserId", phanbien.lastUpdateUserId);
+                    param.Add("@LastUpdateFullName", phanbien.LastUpdateFullName);
                     rowAffect = await conn.ExecuteAsync("[dbo].[spPhanBien_UpdateAsync]", param, commandType: CommandType.StoredProcedure);
                     return rowAffect;
                 }
@@ -114,7 +114,7 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
 
-        public async Task<bool> CheckExis(string idphanbien, string idhocky)
+        public async Task<bool> CheckExis(string idGVPB, string idhocky,string idmonhoc,string iddetai)
         {
             try
             {
@@ -124,9 +124,31 @@ namespace WebSite.Core.Infrastructure.Repository
                         await con.OpenAsync();
 
                     var sql = @"
-					SELECT IIF (EXISTS (SELECT 1 FROM dbo.PhanBiens WHERE IdPhanBien = @idphanbien AND IdHocKy = @idhocky AND IsActive = 1 AND IsDelete = 0), 1, 0)";
+					SELECT IIF (EXISTS (SELECT 1 FROM dbo.PhanBiens WHERE IdGVPB = @idGVPB AND IdHocKy = @idhocky AND IdMonHoc = @idmonhoc AND IdDetai = @iddetai AND IsActive = 1 AND IsDelete = 0), 1, 0)";
 
-                    var result = await con.ExecuteScalarAsync<bool>(sql, new { IdPhanBien = idphanbien, IdHocKy = idhocky });
+                    var result = await con.ExecuteScalarAsync<bool>(sql, new { IdPhanBien = idGVPB, IdHocKy = idhocky , IdMonHoc = idmonhoc, IdDetai = iddetai });
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                // _logger.LogError(ex, "CheckExistActiveAsync HocKyRepository Error.");
+                return false;
+            }
+        }
+        public async Task<bool> CheckExisActive(string idphanbien)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(_connectionString))
+                {
+                    if (con.State == ConnectionState.Closed)
+                        await con.OpenAsync();
+
+                    var sql = @"
+					SELECT IIF (EXISTS (SELECT 1 FROM dbo.PhanBiens WHERE IdPhanBien = @idphanbien AND IsActive = 1 AND IsDelete = 0), 1, 0)";
+
+                    var result = await con.ExecuteScalarAsync<bool>(sql, new { IdPhanBien = idphanbien});
                     return result;
                 }
             }

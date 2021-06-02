@@ -64,14 +64,9 @@ namespace WebSite.Core.Infrastructure.Repository
                     param.Add("@MaDeTai", chitietdetai.MaDeTai);
                     param.Add("@IdGVHD", chitietdetai.IdGVHD);
                     param.Add("@MaGVHD", chitietdetai.MaGVHD);
-                    param.Add("@TenGVHD", chitietdetai.TenGVHD);
-                    param.Add("@DiemSo", chitietdetai.DiemSo);
-                    param.Add("@NhanXet", chitietdetai.NhanXet);
-                    param.Add("@NgayTao", chitietdetai.NgayTao);
-                    param.Add("@NgaySua", chitietdetai.NgaySua);
-                    param.Add("@NgayXoa", chitietdetai.NgaySua);
-                    param.Add("@MaNguoiTao", chitietdetai.MaNguoiTao);
-                    param.Add("@TenNguoiTao", chitietdetai.TenNguoiTao);
+                    param.Add("@CreateTime", chitietdetai.CreateTime);
+                    param.Add("@CreatorUserId", chitietdetai.CreatorUserId);
+                    param.Add("@CreatorFullName", chitietdetai.CreatorFullName);
                     param.Add("@IsDelete", chitietdetai.IsDelete);
                     param.Add("@IsActive", chitietdetai.IsActive);
 

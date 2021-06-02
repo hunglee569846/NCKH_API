@@ -62,16 +62,18 @@ namespace WebSite.Core.Infrastructure.Services
         }
         public async Task<ActionResultResponese<string>> InsertAsync(DeTaiInsertMeta detaiInsertMeta, string madetai, string idhocky, string idmonhoc, string idsinhvien, string tensinhvien,string masinhvien, string maNguoiTao,string tenNguoiTao)
         {
-            var id = Guid.NewGuid().ToString();
+            var checkDeTai = await _deTaiRepository.CheckMaDeTai(madetai);
+            if (checkDeTai)
+                return new ActionResultResponese<string>(-31, "Mã đề tài đã tồn tại.", "Đề tài.");
             var checExitHocKy = await _hockyRepository.CheckExisIsActivetAsync(idhocky);
             if (!checExitHocKy)
                 return new ActionResultResponese<string>(-4, "Học kỳ không tồn tại.", "Học kỳ.");
-            var hockyInfo = await _hockyRepository.SearchInfo(idhocky);
+          //  var hockyInfo = await _hockyRepository.SearchInfo(idhocky);
             var checExistMonHoc = await _monhocRepository.CheckExitsIsActvive(idmonhoc);
             if (!checExistMonHoc)
                 return new ActionResultResponese<string>(-5, "Môn học không tồn tại.", "Môn học.");
            
-            var monhocInfo = await _monhocRepository.SearchInfo(idhocky);
+            var monhocInfo = await _monhocRepository.SearchInfo(idmonhoc);
             var idTienQuyet = "0";
             if (monhocInfo.IdMonTienQuyet != idTienQuyet)
             {
@@ -79,13 +81,15 @@ namespace WebSite.Core.Infrastructure.Services
                 if (!checkIsDat)
                     return new ActionResultResponese<string>(-21, "Sinh viên chưa hoàn thành môn " + monhocInfo.TenMonHoc + " là môn tiên quyết.", "Môn học.");
             }
-            
+            var id = Guid.NewGuid().ToString();
             var checkExits = await _deTaiRepository.CheckExits(id);
             if (checkExits)
                 return new ActionResultResponese<string>(-6, "IdDeTai đã tồn tại.", "Đề tài.");
             var checkExitsMaDeTai = await _deTaiRepository.CheckExits(madetai);
             if (checkExitsMaDeTai)
                 return new ActionResultResponese<string>(-7, "Mã đề tài đã tồn tại.", "Đề tài.");
+
+            
             var detai = new DeTai()
             {
                 IdDeTai = id?.Trim(),
@@ -94,16 +98,14 @@ namespace WebSite.Core.Infrastructure.Services
                 IdSinhVien = idsinhvien?.Trim(),
                 TenSinhVien = tensinhvien?.Trim(),
                 IdHocKy = idhocky?.Trim(),
-                TenHocKy = hockyInfo.TenHocKy?.Trim(),
                 IdMonHoc = idmonhoc?.Trim(),
-                TenMonHoc = monhocInfo.TenMonHoc?.Trim(),
                 DonViThucTap = detaiInsertMeta.DonViThucTap?.Trim(),
                 Email = detaiInsertMeta.Email?.Trim(),
                 DiemTrungBinh = 0,
                 IsDat = false,
-                NgayTao = DateTime.Now,
-                MaNguoiTao = maNguoiTao?.Trim(),
-                TenNguoiTao = tenNguoiTao?.Trim(),
+                CreateTime = DateTime.Now,
+                CreatorUserId = maNguoiTao?.Trim(),
+                CreatorFullName = tenNguoiTao?.Trim(),
                 MaSinhVien = masinhvien?.Trim()
             };
             if (detai == null)
@@ -125,9 +127,9 @@ namespace WebSite.Core.Infrastructure.Services
             {
                 IdDeTai = iddetai?.Trim(),
                 TenDeTai = detaiUpdateMeta.TenDeTai?.Trim(),
-                NgaySua = DateTime.Now,
-                MaNguoiSua = maNguoiSua?.Trim(),
-                TenNguoisua = tenNguoisua?.Trim()
+                LastUpdate = DateTime.Now,
+                lastUpdateUserId = maNguoiSua?.Trim(),
+                LastUpdateFullName = tenNguoisua?.Trim()
             };
             if (detai == null)
                 return new ActionResultResponese<string>(-13, "Dữ liệu trống", "Đề tài.");

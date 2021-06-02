@@ -17,14 +17,16 @@ namespace WebSite.Core.Domain.ViewModel
         public string TenMonHoc { get; set; }
         public double? DiemTrungBinh { get; set; }
         public bool? IsDat { get; set; }
-        public DateTime? NgayTao { get; set; }
-        public DateTime? NgayXoa { get; set; }
-        public DateTime? NgaySua { get; set; }
-        public string MaNguoiTao { get; set; }
-        public string TenNguoiTao { get; set; }
-        public string MaNguoiSua { get; set; }
-        public string TenNguoiSua { get; set; }
-        
+        public DateTime? CreateTime { get; set; }
+        public DateTime? DeteteTime { get; set; }
+        public DateTime? LastUpdate { get; set; }
+        public string CreatorUserId { get; set; }
+        public string lastUpdateUserId { get; set; }
+        public string DeleteUserId { get; set; }
+        public string CreatorFullName { get; set; }
+        public string DeleteFullName { get; set; }
+        public string LastUpdateFullName { get; set; }
+
 
     }
 }

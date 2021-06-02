@@ -19,14 +19,20 @@ namespace WebSite.Core.Infrastructure.Repository
         {
             _connectionString = connectionString;
         }
-        public async Task<List<GiangVienHuongDanViewModel>> SelectAllAsync()
+        public async Task<SearchResult<GiangVienHuongDanViewModel>> SelectAllAsync()
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 if (conn.State == ConnectionState.Closed)
                     await conn.OpenAsync();
-                var Result = await conn.QueryAsync<GiangVienHuongDanViewModel>("[dbo].[spGiangVienHuongDan]");
-                return Result.ToList();
+                using (var multi = await conn.QueryMultipleAsync("[dbo].[spGiangVienHuongDan_SelectAll]", commandType: CommandType.StoredProcedure))
+                {
+                    return new SearchResult<GiangVienHuongDanViewModel>()
+                    {
+                        TotalRows = (await multi.ReadAsync<int>()).SingleOrDefault(),
+                        Data = (await multi.ReadAsync<GiangVienHuongDanViewModel>()).ToList()
+                    };
+                }
             }
 
         }
@@ -80,9 +86,9 @@ namespace WebSite.Core.Infrastructure.Repository
                     para.Add("@Type", giangvientheoky.Type);
                     para.Add("@IsActive", giangvientheoky.IsActive);
                     para.Add("@IsDelete", giangvientheoky.IsDelete);
-                    if (giangvientheoky.NgayTao != DateTime.MinValue && giangvientheoky.NgayTao != null)
+                    if (giangvientheoky.CreateTime != DateTime.MinValue && giangvientheoky.CreateTime != null)
                     {
-                        para.Add("@NgayTao", giangvientheoky.NgayTao);
+                        para.Add("@NgayTao", giangvientheoky.CreateTime);
                     }
                     para.Add("@CreatorUserId", giangvientheoky.CreatorUserId);
                     para.Add("@CreartorFullName", giangvientheoky.CreatorFullName);
@@ -135,11 +141,11 @@ namespace WebSite.Core.Infrastructure.Repository
                     para.Add("@Email", giangvienhuongdan.Email);
                     para.Add("@DienThoai", giangvienhuongdan.DienThoai);
                     para.Add("@Type", giangvienhuongdan.Type);
-                    if (giangvienhuongdan.NgayTao != DateTime.MinValue && giangvienhuongdan.NgayTao != null)
+                    if (giangvienhuongdan.CreateTime != DateTime.MinValue && giangvienhuongdan.CreateTime != null)
                     {
-                        para.Add("@NgayTao", giangvienhuongdan.NgayTao);
+                        para.Add("@NgayTao", giangvienhuongdan.CreateTime);
                     }
-                    para.Add("@LastUpdateUserId", giangvienhuongdan.LastUpdateUserId);
+                    para.Add("@LastUpdateUserId", giangvienhuongdan.lastUpdateUserId);
                     para.Add("@LastUpdateFullName", giangvienhuongdan.LastUpdateFullName);
                     rowAffect = await conn.ExecuteAsync("[dbo].[spGiangVienHuongDan_UpdateAsync]", para, commandType: CommandType.StoredProcedure);
                     return rowAffect;
@@ -225,8 +231,8 @@ namespace WebSite.Core.Infrastructure.Repository
                 return -1;
             }
         }
-
-        public async Task<GVHDTheoKy> GetInfo(string idGVHD)
+        
+        public async Task<GVHDTheoKy> GetInfo(string idGVHD,string idhocky,string idmonhoc)
         {
             try
             {
@@ -236,6 +242,8 @@ namespace WebSite.Core.Infrastructure.Repository
                         await conn.OpenAsync();
                     DynamicParameters para = new DynamicParameters();
                     para.Add("@IdGHVD", idGVHD);
+                    para.Add("@IdHocKy", idhocky);
+                    para.Add("@IdMonHoc", idmonhoc);
 
                     return await conn.QuerySingleOrDefaultAsync<GVHDTheoKy>("[dbo].[spGVHDTheoKys_GetInfo]", para, commandType: CommandType.StoredProcedure);
                      

@@ -11,7 +11,7 @@ using WebSite.Core.Domain.ModelMeta;
 
 namespace WebSite.Core.API.Controllers
 {
-    [Authorize]
+   // [Authorize]
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
@@ -68,7 +68,7 @@ namespace WebSite.Core.API.Controllers
         [SwaggerOperation(Summary = "InsertAsync Detai", Description = "Requires login verification!", OperationId = "InsertAsync", Tags = new[] { "DeTai" })]
         public async Task<IActionResult> InsertAsync([FromBody] DeTaiInsertMeta detaiInsertMeta, string madetai, string idhocky, string idmonhoc, string idsinhvien, string tensinhvien,string masinhvien)
         {
-            var result = await _ideTaiService.InsertAsync(detaiInsertMeta, madetai, idhocky, idmonhoc, idsinhvien, tensinhvien,masinhvien,CurrentUser.IdAcount,CurrentUser.FullName);
+            var result = await _ideTaiService.InsertAsync(detaiInsertMeta, madetai, idhocky, idmonhoc, idsinhvien, tensinhvien,masinhvien,CurrentUser.MaGiangVien,CurrentUser.FullName);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Search DeTai controller error " + result.Code);
@@ -81,7 +81,7 @@ namespace WebSite.Core.API.Controllers
         [SwaggerOperation(Summary = "UpdateAsync Detai", Description = "Requires login verification!", OperationId = "UpdateAsync", Tags = new[] { "DeTai" })]
         public async Task<IActionResult> InsertAsync([FromBody] DeTaiUpdateMeta detaiUpdateMeta, string iddetai)
         {
-            var result = await _ideTaiService.UpdateAsync(detaiUpdateMeta, iddetai,CurrentUser.IdAcount,CurrentUser.FullName);
+            var result = await _ideTaiService.UpdateAsync(detaiUpdateMeta, iddetai,CurrentUser.MaGiangVien,CurrentUser.FullName);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Search DeTai controller error " + result.Code);
@@ -90,18 +90,18 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
         //phê duyệt đề tài
-        [AcceptVerbs("PUT"), Route("Approve/{iddetai}/{isApprove}")]
-        [SwaggerOperation(Summary = "UpdateApproveAsync Detai", Description = "Requires login verification!", OperationId = "UpdateApproveAsync", Tags = new[] { "DeTai" })]
-        public async Task<IActionResult> UpdateApproveAsync(string iddetai, bool isApprove)
-        {
-            var result = await _ideTaiService.UpdateAproveAsync(iddetai, isApprove);
-            if (result.Code <= 0)
-            {
-                //_logger.LogError("Search DeTai controller error " + result.Code);
-                return BadRequest(result);
-            }
-            return Ok(result);
-        }
+        //[AcceptVerbs("PUT"), Route("Approve/{iddetai}/{isApprove}")]
+        //[SwaggerOperation(Summary = "UpdateApproveAsync Detai", Description = "Requires login verification!", OperationId = "UpdateApproveAsync", Tags = new[] { "DeTai" })]
+        //public async Task<IActionResult> UpdateApproveAsync(string iddetai, bool isApprove)
+        //{
+        //    var result = await _ideTaiService.UpdateAproveAsync(iddetai, isApprove);
+        //    if (result.Code <= 0)
+        //    {
+        //        //_logger.LogError("Search DeTai controller error " + result.Code);
+        //        return BadRequest(result);
+        //    }
+        //    return Ok(result);
+        //}
 
         [AcceptVerbs("DELETE"), Route("Delete/{iddetai}")]
         [SwaggerOperation(Summary = "DeleteAsync Detai", Description = "Requires login verification!", OperationId = "DeleteAsync", Tags = new[] { "DeTai" })]

@@ -138,20 +138,17 @@ namespace WebSite.Core.Infrastructure.Repository
                     para.Add("@IdSinVien", detai.IdSinhVien);
                     para.Add("@TenSinhVien", detai.TenSinhVien);
                     para.Add("@IdHocKy", detai.IdHocKy);
-                    para.Add("@TenHocKy", detai.TenHocKy);
                     para.Add("@IdMonHoc", detai.IdMonHoc);
-                    para.Add("@TenMonHoc", detai.TenMonHoc);
                     para.Add("@DiemTrungBinh", detai.DiemTrungBinh);
                     para.Add("@IsDat", detai.IsDat);
                     para.Add("@IsActive", detai.IsActive);
                     para.Add("@IsDelete", detai.IsDelete);
-                    para.Add("@NgayTao", detai.NgayTao);
+                    para.Add("@CreateTime", detai.CreateTime);
                     para.Add("@DonViThucTap", detai.DonViThucTap);
                     para.Add("@Email", detai.Email);
-                    para.Add("@IsApprove", detai.IsApprove);
                     para.Add("@MaSinhVien", detai.MaSinhVien);
-                    para.Add("@MaNguoiTao", detai.MaNguoiTao);
-                    para.Add("@TenNguoiTao", detai.TenNguoiTao);
+                    para.Add("@CreatorUserId", detai.CreatorUserId);
+                    para.Add("@CreatorFullName", detai.CreatorFullName);
 
                     rowAffect = await conn.ExecuteAsync("[dbo].[spDeTai_InsertAsync]", para, commandType: CommandType.StoredProcedure);
                     return rowAffect;
@@ -176,9 +173,9 @@ namespace WebSite.Core.Infrastructure.Repository
                     DynamicParameters para = new DynamicParameters();
                     para.Add("@IdDeTai", detai.IdDeTai);
                     para.Add("@TenDeTai", detai.TenDeTai);
-                    para.Add("@NgaySua", detai.NgaySua);
-                    para.Add("@MaNguoiSua", detai.MaNguoiSua);
-                    para.Add("@TenNguoiSua", detai.TenNguoisua);
+                    para.Add("@LastUpdate", detai.LastUpdate);
+                    para.Add("@lastUpdateUserId", detai.lastUpdateUserId);
+                    para.Add("@LastUpdateFullName", detai.LastUpdateFullName);
 
                     rowAffect = await conn.ExecuteAsync("[dbo].[spDeTai_UpdateAsync]", para, commandType: CommandType.StoredProcedure);
                     return rowAffect;
@@ -330,7 +327,7 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
 
-        public async Task<DeTai> GetInfo(string iddetai)
+        public async Task<DeTai> GetInfo(string iddetai,string idhocky,string idmonhoc)
         {
             try
             {
@@ -340,6 +337,8 @@ namespace WebSite.Core.Infrastructure.Repository
                         await conn.OpenAsync();
                     DynamicParameters para = new DynamicParameters();
                     para.Add("@IdDeTai", iddetai);
+                    para.Add("@IdHocKy", idhocky);
+                    para.Add("@IdMonHoc", idmonhoc);
                     return await conn.QuerySingleOrDefaultAsync<DeTai>("[dbo].[spDeTai_GetInfo]", para, commandType: CommandType.StoredProcedure);
                 }
             }
@@ -361,6 +360,9 @@ namespace WebSite.Core.Infrastructure.Repository
                         await conn.OpenAsync();
                     DynamicParameters para = new DynamicParameters();
                     para.Add("@IdDeTai", iddetai);
+                    para.Add("@DeleteUserId", iddetai);
+                    para.Add("@DeleteFullName", iddetai);
+                    para.Add("@DeteteTime", iddetai);
                     rowAffect = await conn.ExecuteAsync("[dbo].[spDeTai_DeleteAsync]", para, commandType: CommandType.StoredProcedure);
                     return rowAffect;
                 }

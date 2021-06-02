@@ -4,15 +4,16 @@ using WebSite.Core.Domain.IServices;
 using WebSite.Core.Domain.ModelMeta;
 using Swashbuckle.AspNetCore.Annotations;
 using Microsoft.AspNetCore.Authorization;
+using NCKH.Infrastruture.Binding;
 
 namespace WebSite.Core.API.Controllers
 {
-    [Authorize]
+   // [Authorize]
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     [SwaggerTag("Insert, Update, Delete, GetAll")]
-    public class PhanBienController : ControllerBase
+    public class PhanBienController : CoreApiControllerBase
     {
         private readonly IPhanBienServicve _phanbiencService;
         public PhanBienController(IPhanBienServicve phanbiencService)
@@ -34,10 +35,10 @@ namespace WebSite.Core.API.Controllers
         }
 
         [SwaggerOperation(Summary = "InsertPhanBien", Description = "Requires login verification!", OperationId = "InsertPhanBienAsync", Tags = new[] { "PhanBien" })]
-        [AcceptVerbs("POST"), Route("{idGVPB}/{iddetai}/{idhocky}")]
-        public async Task<IActionResult> GetAllAsync([FromBody]PhanBienMeta phanbienMeta, string idGVPB, string iddetai, string idhocky)
+        [AcceptVerbs("POST"), Route("{idGVPB}/{iddetai}/{idhocky}/{idmonhoc}")]
+        public async Task<IActionResult> GetAllAsync([FromBody]PhanBienMeta phanbienMeta, string idGVPB, string iddetai, string idhocky,string idmonhoc)
         {
-            var result = await _phanbiencService.InsertByHk(phanbienMeta, idGVPB, iddetai, idhocky);
+            var result = await _phanbiencService.InsertByHk(phanbienMeta, idGVPB, iddetai, idhocky,idmonhoc,CurrentUser.MaGiangVien,CurrentUser.FullName);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Search PhanBien controller error " + result.Code);
@@ -47,10 +48,10 @@ namespace WebSite.Core.API.Controllers
         }
 
         [SwaggerOperation(Summary = "UpdateAsyncPhanBien", Description = "Requires login verification!", OperationId = "UpdateAsync", Tags = new[] { "PhanBien" })]
-        [AcceptVerbs("PUT"), Route("{idGVPB}/{iddetai}/{idhocky}/{idPhanBien}")]
-        public async Task<IActionResult> UpdateAsync([FromBody] PhanBienUpdateMeta phanbienupdateMeta, string idGVPB, string iddetai, string idhocky,string idPhanBien)
+        [AcceptVerbs("PUT"), Route("{idGVPB}/{iddetai}/{idhocky}/{idmonhoc}/{idPhanBien}")]
+        public async Task<IActionResult> UpdateAsync([FromBody] PhanBienUpdateMeta phanbienupdateMeta, string idGVPB, string iddetai, string idhocky,string idmonhoc, string idPhanBien)
         {
-            var result = await _phanbiencService.Update(phanbienupdateMeta, idGVPB, iddetai, idhocky, idPhanBien);
+            var result = await _phanbiencService.Update(phanbienupdateMeta, idGVPB, iddetai, idhocky,idmonhoc, idPhanBien,CurrentUser.MaGiangVien,CurrentUser.FullName);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Search PhanBien controller error " + result.Code);
@@ -60,10 +61,10 @@ namespace WebSite.Core.API.Controllers
         }
 
         [SwaggerOperation(Summary = "UpdateDiemPhanBien", Description = "Requires login verification!", OperationId = "UpdateDiemAsync", Tags = new[] { "PhanBien" })]
-        [AcceptVerbs("PUT"), Route("{idPhanBien}/{idhocky}/{Diem}")]
-        public async Task<IActionResult> UpdateDiemAsync([FromBody] NoteMeta note, float Diem, string idhocky, string idPhanBien)
+        [AcceptVerbs("PUT"), Route("{idPhanBien}/{idhocky}/{idmonhoc}/{Diem}/{iddetai}")]
+        public async Task<IActionResult> UpdateDiemAsync([FromBody] NoteMeta note, float Diem, string idhocky, string idmonhoc, string idPhanBien,string iddetai)
         {
-            var result = await _phanbiencService.UpdateDiemAsync(idPhanBien, idhocky, Diem, note);
+            var result = await _phanbiencService.UpdateDiemAsync(idPhanBien, idhocky,idmonhoc, Diem, note,iddetai);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Search PhanBien controller error " + result.Code);
@@ -73,10 +74,10 @@ namespace WebSite.Core.API.Controllers
         }
 
         [SwaggerOperation(Summary = "DeletePhanBien", Description = "Requires login verification!", OperationId = "DeletePhanBienAsync", Tags = new[] { "PhanBien" })]
-        [AcceptVerbs("DELETE"), Route("{idPhanBien}/{idhocky}")]
-        public async Task<IActionResult> DeleteAsync(string idhocky, string idPhanBien)
+        [AcceptVerbs("DELETE"), Route("{idPhanBien}/{idhocky}/{idmonhoc}")]
+        public async Task<IActionResult> DeleteAsync(string idPhanBien, string idhocky,string idmonhoc)
         {
-            var result = await _phanbiencService.DeleteAsync(idPhanBien, idhocky);
+            var result = await _phanbiencService.DeleteAsync(idPhanBien, idhocky,idmonhoc);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Search PhanBien controller error " + result.Code);

@@ -26,22 +26,18 @@ namespace WebSite.Core.Infrastructure.Services
             _detaiRepository = detaiRepository;
             _giangVienHuongDanRepository = giangVienHuongDanRepository;
         }
-       public async Task<ActionResultResponese<string>> InserAsync(ChiTietDeTaiMeta chitietdetaimeta,string iddetai,string idgvhd,string maNguoiTao,string tenNguoiTao)
+       public async Task<ActionResultResponese<string>> InserAsync(ChiTietDeTaiMeta chitietdetaimeta,string iddetai,string idgvhd,string idhocky,string idmonhoc,string maNguoiTao,string tenNguoiTao)
         {
             //check ton tai ban ghi
             var checkExit = await _detaiRepository.CheckExits(iddetai);
             if (!checkExit)
                 return new ActionResultResponese<string>(-3, "Đề tài không tồn tại.", "Đề tài.");
-            // checkApprove phê duyệt
-            var checkApprove = await _detaiRepository.CheckApprove(iddetai);
-            if (!checkApprove)
-                return new ActionResultResponese<string>(-11, "Đề tài không được phê duyệt.", "Đề tài.");
             //thông tin giảng viên
-            var getinfoGVHD = await _giangVienHuongDanRepository.GetInfo(idgvhd);
+            var getinfoGVHD = await _giangVienHuongDanRepository.GetInfo(idgvhd,idhocky,idmonhoc);
             if (getinfoGVHD == null)
                 return new ActionResultResponese<string>(-4, "Giảng viên không tồn tại.", "Giảng viên.");
             //thông tin đề tài
-            var getinfoDeTai = await _detaiRepository.GetInfo(iddetai);
+            var getinfoDeTai = await _detaiRepository.GetInfo(iddetai, idhocky, idmonhoc);
             if (getinfoDeTai == null)
                 return new ActionResultResponese<string>(-5, "Thông tin đề tài không tồn tại.", "Đề tài.");
             
@@ -58,12 +54,9 @@ namespace WebSite.Core.Infrastructure.Services
                 MaDeTai = getinfoDeTai.MaDeTai?.Trim(),
                 IdGVHD = idgvhd?.Trim(),
                 MaGVHD = getinfoGVHD.MaGVHD?.Trim(),
-                TenGVHD = getinfoGVHD.TenGVHD?.Trim(),
-                DiemSo = chitietdetaimeta.DiemSo,
-                NhanXet = chitietdetaimeta.NhanXet?.Trim(),
-                NgayTao = DateTime.Now,
-                MaNguoiTao = maNguoiTao?.Trim(),
-                TenNguoiTao =tenNguoiTao?.Trim(),
+                CreateTime = DateTime.Now,
+                CreatorUserId = maNguoiTao?.Trim(),
+                CreatorFullName =tenNguoiTao?.Trim(),
                 IsActive = true,
                 IsDelete = false
             };
@@ -94,12 +87,12 @@ namespace WebSite.Core.Infrastructure.Services
             return new ActionResultResponese<string>(result, "Xóa chi tiết đề tài thành công.", "Chi tiết đề tài.");
         }
 
-        public async Task<ActionResultResponese<string>> InserListDeTaiAsync(List<ChiTietDeTaiListDeTaiMeta> listdetaimeta, string idgvhd, string maNguoiTao, string tenNguoiTao)
+        public async Task<ActionResultResponese<string>> InserListDeTaiAsync(List<ChiTietDeTaiListDeTaiMeta> listdetaimeta, string idgvhd,string idhocky,string idmonhoc, string maNguoiTao, string tenNguoiTao)
         {
 
             
             //thông tin giảng viên
-            var getinfoGVHD = await _giangVienHuongDanRepository.GetInfo(idgvhd);
+            var getinfoGVHD = await _giangVienHuongDanRepository.GetInfo(idgvhd, idhocky,idmonhoc);
             if (getinfoGVHD == null)
                 return new ActionResultResponese<string>(-11, "Giảng viên không tồn tại.", "Giảng viên.");
 
@@ -110,7 +103,7 @@ namespace WebSite.Core.Infrastructure.Services
             foreach (var iddetai in listiddetai)
             {
                 //thông tin đề tài
-                var getinfoDeTai = await _detaiRepository.GetInfo(iddetai.IdDeTai);
+                var getinfoDeTai = await _detaiRepository.GetInfo(iddetai.IdDeTai, idhocky, idmonhoc);
                 if (getinfoDeTai == null)
                     return new ActionResultResponese<string>(-12, "Thông tin đề tài không tồn tại.", "Đề tài.");
 
@@ -136,11 +129,9 @@ namespace WebSite.Core.Infrastructure.Services
                     IdDeTai = iddetai.IdDeTai?.Trim(),
                     MaDeTai = getinfoDeTai.MaDeTai?.Trim(),
                     IdGVHD = idgvhd?.Trim(),
-                    MaGVHD = getinfoGVHD.MaGVHD?.Trim(),
-                    TenGVHD = getinfoGVHD.TenGVHD?.Trim(),
-                    NgayTao = DateTime.Now,
-                    MaNguoiTao = maNguoiTao?.Trim(),
-                    TenNguoiTao = tenNguoiTao?.Trim(),
+                    CreateTime = DateTime.Now,
+                    CreatorUserId = maNguoiTao?.Trim(),
+                    CreatorFullName = tenNguoiTao?.Trim(),
                     IsActive = true,
                     IsDelete = false
                 });

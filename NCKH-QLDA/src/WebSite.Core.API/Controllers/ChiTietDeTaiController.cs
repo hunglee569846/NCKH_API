@@ -9,7 +9,7 @@ using WebSite.Core.Domain.ModelMeta;
 
 namespace WebSite.Core.API.Controllers
 {
-    [Authorize]
+   // [Authorize]
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
@@ -23,10 +23,10 @@ namespace WebSite.Core.API.Controllers
         }
         
         [SwaggerOperation(Summary = "InsertAsyncChiTietDeTai", Description = "Requires login verification!", OperationId = "InsertAsyncChiTietDeTai", Tags = new[] { "ChiTietDeTai" })]
-        [AcceptVerbs("POST"), Route("ChiTietDeTai/{iddetai}/{idGVHD}")]
-        public async Task<IActionResult> InsertAsync(ChiTietDeTaiMeta chitietdetai,string iddetai,string idGVHD)
+        [AcceptVerbs("POST"), Route("ChiTietDeTai/{iddetai}/{idGVHD}/{idhocky}/{idmonhoc}")]
+        public async Task<IActionResult> InsertAsync(ChiTietDeTaiMeta chitietdetai,string iddetai,string idGVHD,string idhocky,string idmonhoc)
         {
-            var result = await _chitietdetaiService.InserAsync(chitietdetai, iddetai, idGVHD,CurrentUser.MaGiangVien,CurrentUser.FullName);
+            var result = await _chitietdetaiService.InserAsync(chitietdetai, iddetai, idGVHD,idhocky,idmonhoc,CurrentUser.MaGiangVien,CurrentUser.FullName);
             if(result.Code <= 0)
             {
                return BadRequest(result);
@@ -35,10 +35,10 @@ namespace WebSite.Core.API.Controllers
         }
 
         [SwaggerOperation(Summary = "InsertAsyncListChiTietDeTai", Description = "Requires login verification!", OperationId = "InsertAsyncListChiTietDeTai", Tags = new[] { "ChiTietDeTai" })]
-        [AcceptVerbs("POST"), Route("ListChiTietDeTai/{idGVHD}")]
-        public async Task<IActionResult> InsertListChitietDTAsync([FromBody]List<ChiTietDeTaiListDeTaiMeta> listchitietdetai,string idGVHD)
+        [AcceptVerbs("POST"), Route("ListChiTietDeTai/{idGVHD}/{idhocky}/{idmonhoc}")]
+        public async Task<IActionResult> InsertListChitietDTAsync([FromBody]List<ChiTietDeTaiListDeTaiMeta> listchitietdetai,string idGVHD, string idhocky, string idmonhoc)
         {
-            var result = await _chitietdetaiService.InserListDeTaiAsync(listchitietdetai, idGVHD, CurrentUser.MaGiangVien, CurrentUser.FullName);
+            var result = await _chitietdetaiService.InserListDeTaiAsync(listchitietdetai, idGVHD,idhocky,idmonhoc, CurrentUser.MaGiangVien, CurrentUser.FullName);
             if (result.Code <= 0)
             {
                 return BadRequest(result);

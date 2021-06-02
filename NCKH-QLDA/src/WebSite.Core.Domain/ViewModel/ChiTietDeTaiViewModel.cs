@@ -14,8 +14,8 @@ namespace WebSite.Core.Domain.ViewModel
         public string TenGVHD { get; set; }
         public double? DiemSo { get; set; }
         public string NhanXet { get; set; }
-        public string TeNguoiTao { get; set; }
-        public string MaNguoiTao { get; set; }
-        public DateTime? NgayTao { get; set; }
+        public DateTime? CreateTime { get; set; }
+        public string CreatorUserId { get; set; }
+        public string CreatorFullName { get; set; }
     }
 }

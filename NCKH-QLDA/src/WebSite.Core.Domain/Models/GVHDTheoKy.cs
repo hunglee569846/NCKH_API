@@ -17,17 +17,18 @@ namespace WebSite.Core.Domain.Models
         public TypeGVHD Type { get; set; }
         public bool? IsActive { get; set; }
         public bool? IsDelete { get; set; }
-        public DateTime? NgayTao { get; set; }
-        public DateTime? NgayXoa { get; set; }
-        public DateTime? NgaySua { get; set; }
+        public DateTime? CreateTime { get; set; }
+        public DateTime? DeteteTime { get; set; }
+        public DateTime? LastUpdate { get; set; }
         public string CreatorUserId { get; set; }
+        public string lastUpdateUserId { get; set; }
+        public string DeleteUserId { get; set; }
         public string CreatorFullName { get; set; }
-        public string LastUpdateUserId { get; set; }
+        public string DeleteFullName { get; set; }
         public string LastUpdateFullName { get; set; }
         public GVHDTheoKy()
         {
-            NgayTao = DateTime.Now;
-            NgayXoa = null;
+            CreateTime = DateTime.Now;
             IsActive = true;
             IsDelete = false;
         }

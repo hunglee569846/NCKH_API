@@ -12,7 +12,8 @@ namespace WebSite.Core.Domain.IRepository
         Task<int> InsertByHk(PhanBien phanbien);
         Task<int> Update(PhanBien phanbien);
         Task<int> UpdateDiem(NoteMeta note,float diem,string idPhanBien);
-        Task<bool> CheckExis(string idphanbien,string idhocky);
+        Task<bool> CheckExis(string idGVPB,string idhocky,string idmonhoc,string iddetai);
+        Task<bool> CheckExisActive(string idphanbien);
         Task<int> DeleteAsync(string idphanbien);
     }
 }

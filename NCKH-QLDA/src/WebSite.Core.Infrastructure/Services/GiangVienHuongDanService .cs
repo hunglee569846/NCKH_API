@@ -27,7 +27,7 @@ namespace WebSite.Core.Infrastructure.Services
 		}
 
 
-		public async Task<List<GiangVienHuongDanViewModel>> SelectAllAsync()
+		public async Task<SearchResult<GiangVienHuongDanViewModel>> SelectAllAsync()
 		{
 			return await _giangVienHuongDanRepository.SelectAllAsync();
 		}
@@ -67,7 +67,7 @@ namespace WebSite.Core.Infrastructure.Services
 				Email = gvhdkyMeta.Email?.Trim(),
 				DienThoai = gvhdkyMeta.DienThoai?.Trim(),
 				Type = tygvhd,
-				NgayTao = DateTime.Now,
+				CreateTime = DateTime.Now,
 				CreatorUserId = CreatorUserId?.Trim(),
 				CreatorFullName = creatorFullName?.Trim()
 			};
@@ -95,7 +95,7 @@ namespace WebSite.Core.Infrastructure.Services
 				Email = gvhdkyUpdateMeta.Email?.Trim(),
 				DienThoai = gvhdkyUpdateMeta.DienThoai?.Trim(),
 				Type = tygvhd,
-				LastUpdateUserId = CreatorUserId?.Trim(),
+				lastUpdateUserId = CreatorUserId?.Trim(),
 				LastUpdateFullName = creatorFullName?.Trim()
 			};
 			if (gvhdky == null)

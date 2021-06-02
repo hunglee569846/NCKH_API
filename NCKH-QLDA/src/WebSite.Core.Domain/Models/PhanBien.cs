@@ -11,18 +11,25 @@ namespace WebSite.Core.Domain.Models
         public string MaGVPB { get; set; }
         public string TenGVPB { get; set; }
         public string IdDetai { get; set; }
-        public string MaDeTai { get; set; }
         public float? Diem { get; set; }
         public string Note { get; set; }
         public string IdHocKy { get; set; }
-        public DateTime? NgayTao { get; set; }
-        public DateTime? NgaySua { get; set; }
+        public string IdMonHoc { get; set; }
+        public DateTime? CreateTime { get; set; }
+        public DateTime? DeteteTime { get; set; }
+        public DateTime? LastUpdate { get; set; }
+        public string CreatorUserId { get; set; }
+        public string lastUpdateUserId { get; set; }
+        public string DeleteUserId { get; set; }
+        public string CreatorFullName { get; set; }
+        public string DeleteFullName { get; set; }
+        public string LastUpdateFullName { get; set; }
         public bool? IsActive { get; set; }
         public bool? IsDelete { get; set; }
         public PhanBien()
         {
             Diem = 0;
-            NgayTao = DateTime.Now;
+            CreateTime = DateTime.Now;
             IsDelete = false;
             IsActive = true;
         }

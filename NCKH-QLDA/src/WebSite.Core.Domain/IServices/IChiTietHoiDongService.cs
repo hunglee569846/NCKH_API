@@ -9,8 +9,8 @@ namespace WebSite.Core.Domain.IServices
 {
     public interface IChiTietHoiDongService
     {
-        Task<ActionResultResponese<string>> InserAsync(string idhoidong, string idgvhd, string creartorUserId, string creartorFullName);
-        Task<ActionResultResponese<string>> InserListDeTaiAsync(List<ChiTietHoiDongMeta> listChiTietHoiDongmeta, string idhoidong, string creartorUserId, string creartorFullName);
+        Task<ActionResultResponese<string>> InserAsync(string idhoidong, string idgvhd, string idhocky, string idmonhoc, string creartorUserId, string creartorFullName);
+        Task<ActionResultResponese<string>> InserListDeTaiAsync(List<ChiTietHoiDongMeta> listChiTietHoiDongmeta, string idhoidong,string idhocky,string idmonhoc, string creartorUserId, string creartorFullName);
         Task<ActionResultResponese<string>> DeleteAsync(string idchitietHD);
         //Task<SearchResult<DeTaivsCTDTViewModel>> SelectByDeTaiAsync(string iddetai);
     }

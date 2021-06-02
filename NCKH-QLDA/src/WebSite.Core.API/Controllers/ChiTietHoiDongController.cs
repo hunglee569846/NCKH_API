@@ -11,7 +11,7 @@ using WebSite.Core.Domain.ModelMeta;
 
 namespace WebSite.Core.API.Controllers
 {
-    [Authorize]
+   // [Authorize]
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
@@ -40,9 +40,9 @@ namespace WebSite.Core.API.Controllers
 
         [AcceptVerbs("POST"), Route("InsertListChiTietHoiDong/{idhoidong}")]
         [SwaggerOperation(Summary = "InsertList ChiTietHoiDong", Description = "Requires login verification!", OperationId = "InsertListChiTietHoiDong", Tags = new[] { "ChiTietHoiDong" })]
-        public async Task<IActionResult> InsertListChiTietHoiDongAsync([FromBody] List<ChiTietHoiDongMeta> listchitiethoidong, string idhoidong)
+        public async Task<IActionResult> InsertListChiTietHoiDongAsync([FromBody] List<ChiTietHoiDongMeta> listchitiethoidong, string idhoidong,string idhocky,string idmonhoc)
         {
-            var result = await _ChitietHoiDongService.InserListDeTaiAsync(listchitiethoidong, idhoidong,CurrentUser.MaGiangVien,CurrentUser.FullName);
+            var result = await _ChitietHoiDongService.InserListDeTaiAsync(listchitiethoidong, idhoidong,idhocky,idmonhoc,CurrentUser.MaGiangVien,CurrentUser.FullName);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Search DeTai controller error " + result.Code);
@@ -51,11 +51,11 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [AcceptVerbs("POST"), Route("InsertChiTietHoiDong/{idhoidong}/{idgiangvien}")]
+        [AcceptVerbs("POST"), Route("InsertChiTietHoiDong/{idhoidong}/{idgiangvien}/{idhocky}/{idmonhoc}")]
         [SwaggerOperation(Summary = "InsertChiTietHoiDong", Description = "Requires login verification!", OperationId = "InsertChiTietHoiDong", Tags = new[] { "ChiTietHoiDong" })]
-        public async Task<IActionResult> InsertAsync(string idgiangvien, string idhoidong)
+        public async Task<IActionResult> InsertAsync(string idgiangvien, string idhoidong, string idhocky, string idmonhoc)
         {
-            var result = await _ChitietHoiDongService.InserAsync(idhoidong,idgiangvien, CurrentUser.MaGiangVien, CurrentUser.FullName);
+            var result = await _ChitietHoiDongService.InserAsync(idhoidong,idgiangvien,idhocky,idmonhoc, CurrentUser.MaGiangVien, CurrentUser.FullName);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Search DeTai controller error " + result.Code);
