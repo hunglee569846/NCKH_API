@@ -60,7 +60,7 @@ namespace WebSite.Core.Infrastructure.Services
                 CreatorUserId = creatorUserId?.Trim(),
                 CreatorFullName = creatorFullName?.Trim(),
                 IdMonTienQuyet = getInfo == null ? montienquyet.ToString(): getInfo.IdMonHoc?.Trim(),//getInfo.IdMonHoc?.Trim(),//
-                NameMonTienQuyet = getInfo == null ? montienquyet.ToString(): getInfo.NameMonTienQuyet?.Trim() //getInfo.TenMonHoc?.Trim() //
+                NameMonTienQuyet = getInfo == null ? montienquyet.ToString(): getInfo.TenMonHoc?.Trim() //getInfo.TenMonHoc?.Trim() //
             };
             if (monhoc == null)
                 return new ActionResultResponese<string>(-4, "Dữ liệu rỗng", "Môn học");
@@ -87,7 +87,7 @@ namespace WebSite.Core.Infrastructure.Services
                 IdHocKy = idhocky?.Trim(),
                 TenMonHoc = tenmonhoc?.Trim(),
                 IdMonTienQuyet = getInfo == null ? montienquyet.ToString() : getInfo.IdMonHoc?.Trim(),//getInfo.IdMonHoc?.Trim(),//
-                NameMonTienQuyet = getInfo == null ? montienquyet.ToString() : getInfo.NameMonTienQuyet?.Trim(), //getInfo.TenMonHoc?.Trim() //
+                NameMonTienQuyet = getInfo == null ? montienquyet.ToString() : getInfo.TenMonHoc?.Trim(), //getInfo.TenMonHoc?.Trim() //
                 TypeApprover = typeApprover,
                 LastUpdateUserId = lastUpdateUserId,
                 LastUpdateFullName = lastUpdateFullName,

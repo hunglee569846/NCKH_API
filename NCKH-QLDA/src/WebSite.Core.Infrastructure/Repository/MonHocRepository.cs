@@ -48,7 +48,7 @@ namespace WebSite.Core.Infrastructure.Repository
                 return new SearchResult<MonHocSearchViewModel> { TotalRows = 0, Data = null };
             }
         }
-
+        
         public async Task<int> InsertAsync(MonHoc monhoc)
         {
             try

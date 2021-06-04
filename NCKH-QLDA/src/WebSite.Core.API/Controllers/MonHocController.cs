@@ -12,7 +12,7 @@ using WebSite.Core.Domain.ModelMeta;
 
 namespace WebSite.Core.API.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
@@ -63,7 +63,7 @@ namespace WebSite.Core.API.Controllers
         [AcceptVerbs("PUT"), Route("{mamonhoc}/{tenmonhoc}/{idmonhoc}/{typeApprover}")]
         public async Task<IActionResult> UpdateAsync([FromBody] MonHocMeta monhocmeta, string idmonhoc, string idhocky, TypeDataApprover typeApprover, string mamonhoc, string tenmonhoc)
         {
-            var result = await _imonhocService.UpdateAsync(monhocmeta, idhocky, idmonhoc, typeApprover,CurrentUser.MaGiangVien,CurrentUser.FullName,mamonhoc,tenmonhoc);
+            var result = await _imonhocService.UpdateAsync(monhocmeta, idmonhoc,idhocky,typeApprover,CurrentUser.MaGiangVien,CurrentUser.FullName,mamonhoc,tenmonhoc);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Insert MonHocs controller error " + result.Code);
