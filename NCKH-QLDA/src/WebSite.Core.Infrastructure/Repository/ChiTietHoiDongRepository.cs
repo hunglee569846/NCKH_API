@@ -35,7 +35,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     param.Add("@IdGiangVien", chitiethoidong.IdGiangVien);
                     param.Add("@MaGiangVien", chitiethoidong.MaGiangVien);
                     param.Add("@TenGiangVien", chitiethoidong.TenHoiDong);
-                    param.Add("@NgayTao", chitiethoidong.NgayTao);
+                    param.Add("@CreateTime", chitiethoidong.CreateTime);
                     param.Add("@CreatorUserId", chitiethoidong.CreatorUserId);
                     param.Add("@CreatorFullName", chitiethoidong.CreatorUserFullName);
                     param.Add("@IsDelete", chitiethoidong.IsDelete);

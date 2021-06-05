@@ -83,7 +83,7 @@ namespace WebSite.Core.Infrastructure.Services
             var checExitsDeTai = await _deTaiRepository.CheckExits(iddetai);
             if (!checExitsDeTai)
                 return new ActionResultResponese<string>(-8, "Đề tài không tồn tại.", "Đề tài.");
-            var detaiInfo = await _deTaiRepository.GetInfo(iddetai,idhocky,idmonhoc);
+            var detaiInfo = await _deTaiRepository.GetInfo(iddetai);
             //xử lý thông tin giảng viên ngoài học kỳ
             //var checExitsHK = await _hocKysRepository.CheckExisIsActivetAsync(iddetai);
             //if (!checExitsHK)

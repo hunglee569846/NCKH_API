@@ -39,11 +39,11 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [AcceptVerbs("POST"), Route("{idhocky}/{idmonhoc}/{typegvhd}")]
+        [AcceptVerbs("POST"), Route("{idhocky}/{typegvhd}")]
         [SwaggerOperation(Summary = "Insert GiangVienHuongDanTheoKy", Description = "TypeGVHD: 0 - NgoaiTruong,1 - trongTruong", OperationId = "InsertGiangVienHuongDanTheoKy", Tags = new[] { "GiangVienHuongDan" })]
-        public async Task<IActionResult> InsertAsync([FromBody]GiangVienHDMeta gvhdMeta,string idhocky,string idmonhoc, TypeGVHD typegvhd)
+        public async Task<IActionResult> InsertAsync([FromBody]GiangVienHDMeta gvhdMeta,string idhocky, TypeGVHD typegvhd)
         {
-            var result = await _iGiangVienHuongDanService.InsertAsync(gvhdMeta,idhocky,idmonhoc, typegvhd,CurrentUser.MaGiangVien,CurrentUser.FullName);
+            var result = await _iGiangVienHuongDanService.InsertAsync(gvhdMeta,idhocky, typegvhd,CurrentUser.MaGiangVien,CurrentUser.FullName);
             if (result.Code <= 0)
             {
                 //  _logger.LogError("Insert GiangVienHuongDan controller code: " + result.Code + " .Message: " + result.Message);

@@ -10,7 +10,7 @@ namespace WebSite.Core.Domain.ModelMeta
        // public string IdHoiDong { get; set; }
       //  public string MaHoiDong { get; set; }
        // public string TenHoiDong { get; set; }
-        public string IdGiangVien { get; set; }
+        public string IdGvhdTheoKy { get; set; }
       //  public string TenGiangVien { get; set; }
        // public DateTime? NgayTao { get; set; }
        // public bool? IsActive { get; set; }

@@ -32,14 +32,14 @@ namespace WebSite.Core.Infrastructure.Services
             if (getinfoHoiDong == null)
                 return new ActionResultResponese<string>(-2, "Thông tin hội đồng không tồn tại.", "Hội đồng");
 
-            List<ChiTietHoiDongMeta> listidgiangvien = listChiTietHoiDongmeta.GroupBy(p => p.IdGiangVien).Select(g => g.First()).ToList();
+            List<ChiTietHoiDongMeta> listidgiangvien = listChiTietHoiDongmeta.GroupBy(p => p.IdGvhdTheoKy).Select(g => g.First()).ToList();
            // if(listidgiangvien.Count() != listChiTietHoiDongmeta.Count())
                // return new ActionResultResponese<string>(-3, "Trùng lặp giảng viên trong hội đồng.", "Giảng viên");
             var listChiTietHoiDong = new List<ChiTietHoiDong>();
             var listHoiDong = new List<ChiTietHoiDong>();
             foreach (var idgiangvien in listidgiangvien)
             {
-                var getinfoGVHD = await _giangVienHuongDanRepository.GetInfo(idgiangvien.IdGiangVien,idhocky,idmonhoc);
+                var getinfoGVHD = await _giangVienHuongDanRepository.GetInfo(idgiangvien.IdGvhdTheoKy);
                 if (getinfoGVHD == null)
                     return new ActionResultResponese<string>(-4, "Giảng viên không tồn tại", "Giảng viên");
 
@@ -53,7 +53,7 @@ namespace WebSite.Core.Infrastructure.Services
                     IdGiangVien = getinfoGVHD.IdGVHD?.Trim(),
                     TenGiangVien = getinfoGVHD.TenGVHD?.Trim(),
                     MaGiangVien = getinfoGVHD.MaGVHD?.Trim(),
-                    NgayTao = DateTime.Now,
+                    CreateTime = DateTime.Now,
                     CreatorUserId = creartorUserId?.Trim(),
                     CreatorUserFullName = creartorFullName?.Trim(),
                     IsActive = true,
@@ -74,14 +74,14 @@ namespace WebSite.Core.Infrastructure.Services
 
         }
 
-        public async Task<ActionResultResponese<string>> InserAsync(string idhoidong, string idgvhd,string idhocky,string idmonhoc, string creartorUserId, string creartorFullName)
+        public async Task<ActionResultResponese<string>> InserAsync(string idhoidong, string idGvhdTheoKy,string idhocky,string idmonhoc, string creartorUserId, string creartorFullName)
         {
             //thông tin hội đồng
             var getinfoHoiDong = await _hoidongtotnghiepRepository.GetInfo(idhoidong);
             if (getinfoHoiDong == null)
                 return new ActionResultResponese<string>(-2, "Thông tin hội đồng không tồn tại.", "Hội đồng");
 
-             var getinfoGVHD = await _giangVienHuongDanRepository.GetInfo(idgvhd, idhocky, idmonhoc);
+             var getinfoGVHD = await _giangVienHuongDanRepository.GetInfo(idGvhdTheoKy);
              if (getinfoGVHD == null)
                  return new ActionResultResponese<string>(-4, "Giảng viên không tồn tại", "Giảng viên");
 
@@ -95,7 +95,7 @@ namespace WebSite.Core.Infrastructure.Services
                     IdGiangVien = getinfoGVHD.IdGVHD?.Trim(),
                     TenGiangVien = getinfoGVHD.TenGVHD?.Trim(),
                     MaGiangVien = getinfoGVHD.MaGVHD?.Trim(),
-                    NgayTao = DateTime.Now,
+                    CreateTime = DateTime.Now,
                     CreatorUserId = creartorUserId?.Trim(),
                     CreatorUserFullName = creartorFullName?.Trim(),
                     IsActive = true,

@@ -40,19 +40,16 @@ namespace WebSite.Core.Infrastructure.Services
 			return await _giangVienHuongDanRepository.SelectByIdHocKyAsync(idhocky);
 		}
 
-		public async Task<ActionResultResponese<string>> InsertAsync(GiangVienHDMeta gvhdkyMeta, string idhocky,string idmonhoc,TypeGVHD tygvhd, string CreatorUserId, string creatorFullName)
+		public async Task<ActionResultResponese<string>> InsertAsync(GiangVienHDMeta gvhdkyMeta, string idhocky, TypeGVHD tygvhd, string CreatorUserId, string creatorFullName)
         {
 			var id = Guid.NewGuid().ToString();
 			var checkHocKy = await _hockyRepository.CheckExisIsActivetAsync(idhocky);
 			if (!checkHocKy)
 				return new ActionResultResponese<string>(-3, "Không tồn tại.", "Học Kỳ");
-			var checkmonhoc = await _monhocRepository.CheckExitsIsActvive(idmonhoc);
-			if (!checkmonhoc)
-				return new ActionResultResponese<string>(-6, "Không tồn tại.", "Môn Học");
 			var checkGVHDTheoKy = await _giangVienHuongDanRepository.CheckExits(id);
 			if (checkGVHDTheoKy)
 				return new ActionResultResponese<string>(-4, "Bản ghi đã tồn tại.", "Giang viên hướng dẫn theo kỳ.");
-			var checkExitsGVHDinHocKy = await _giangVienHuongDanRepository.CheckExitsActive(idhocky, gvhdkyMeta.IdGVHD,idmonhoc);
+			var checkExitsGVHDinHocKy = await _giangVienHuongDanRepository.CheckExitsGVHD(gvhdkyMeta.MaGVHD);
 			if (checkExitsGVHDinHocKy)
 				return new ActionResultResponese<string>(-5, "Giang viên đã có trong kỳ.", "Giang vien hướng dẫn theo kỳ.");
 			var gvhdky = new GVHDTheoKy()
@@ -62,7 +59,6 @@ namespace WebSite.Core.Infrastructure.Services
 				MaGVHD = gvhdkyMeta.MaGVHD?.Trim(),
 				TenGVHD = gvhdkyMeta.TenGVHD?.Trim(),
 				IdHocKy = idhocky?.Trim(),
-				IdMonHoc = idmonhoc?.Trim(),
 				DonViCongTac = gvhdkyMeta.DonViCongTac?.Trim(),
 				Email = gvhdkyMeta.Email?.Trim(),
 				DienThoai = gvhdkyMeta.DienThoai?.Trim(),

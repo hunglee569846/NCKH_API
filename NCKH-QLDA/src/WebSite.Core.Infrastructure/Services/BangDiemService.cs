@@ -47,7 +47,7 @@ namespace WebSite.Core.Infrastructure.Services
             if (!CheckDeTai)
                 return new ActionResultResponese<string>(-5, "Đề tài không tồn tại", "Đề tài");
 
-            var detaiInfo = await _detaiRepository.GetInfo(iddetai,idhocky,idmonhoc);
+            var detaiInfo = await _detaiRepository.GetInfo(iddetai);
             
             var checkHoiDong = await _hoidongtotnghiepRepository.CheckExitIsActive(idhoidong);
             if (!checkHoiDong)

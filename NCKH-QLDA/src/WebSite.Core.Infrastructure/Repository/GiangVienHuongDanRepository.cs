@@ -79,7 +79,6 @@ namespace WebSite.Core.Infrastructure.Repository
                     para.Add("@MaGVHD", giangvientheoky.MaGVHD);
                     para.Add("@TenGVHD", giangvientheoky.TenGVHD);
                     para.Add("@IdHocKy", giangvientheoky.IdHocKy);
-                    para.Add("@IdMonHoc", giangvientheoky.IdMonHoc);
                     para.Add("@DonViCongTac", giangvientheoky.DonViCongTac);
                     para.Add("@Email", giangvientheoky.Email);
                     para.Add("@DienThoai", giangvientheoky.DienThoai);
@@ -88,7 +87,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     para.Add("@IsDelete", giangvientheoky.IsDelete);
                     if (giangvientheoky.CreateTime != DateTime.MinValue && giangvientheoky.CreateTime != null)
                     {
-                        para.Add("@NgayTao", giangvientheoky.CreateTime);
+                        para.Add("@CreateTime", giangvientheoky.CreateTime);
                     }
                     para.Add("@CreatorUserId", giangvientheoky.CreatorUserId);
                     para.Add("@CreartorFullName", giangvientheoky.CreatorFullName);
@@ -143,7 +142,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     para.Add("@Type", giangvienhuongdan.Type);
                     if (giangvienhuongdan.CreateTime != DateTime.MinValue && giangvienhuongdan.CreateTime != null)
                     {
-                        para.Add("@NgayTao", giangvienhuongdan.CreateTime);
+                        para.Add("@LastUpdate", giangvienhuongdan.CreateTime);
                     }
                     para.Add("@LastUpdateUserId", giangvienhuongdan.lastUpdateUserId);
                     para.Add("@LastUpdateFullName", giangvienhuongdan.LastUpdateFullName);
@@ -180,7 +179,7 @@ namespace WebSite.Core.Infrastructure.Repository
                 return false;
             }
         }
-        public async Task<bool> CheckExitsGVHD(string idGVHD)
+        public async Task<bool> CheckExitsGVHD(string maGVHD)
         {
             try
             {
@@ -190,9 +189,9 @@ namespace WebSite.Core.Infrastructure.Repository
                         await con.OpenAsync();
 
                     var sql = @"
-					SELECT IIF (EXISTS (SELECT 1 FROM dbo.GVHDTheoKys WHERE IdGVHD = @idGVHD  AND IsActive = 1 AND IsDelete = 0), 1, 0)";
+					SELECT IIF (EXISTS (SELECT 1 FROM dbo.GVHDTheoKys WHERE MaGVHD = @maGVHD  AND IsActive = 1 AND IsDelete = 0), 1, 0)";
 
-                    var result = await con.ExecuteScalarAsync<bool>(sql, new { IdGVHD = idGVHD });
+                    var result = await con.ExecuteScalarAsync<bool>(sql, new { MaGVHD = maGVHD });
                     return result;
                 }
             }
@@ -232,7 +231,7 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
         
-        public async Task<GVHDTheoKy> GetInfo(string idGVHD,string idhocky,string idmonhoc)
+        public async Task<GVHDTheoKy> GetInfo(string idGVHDTheoKy)
         {
             try
             {
@@ -241,9 +240,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     if (conn.State == ConnectionState.Closed)
                         await conn.OpenAsync();
                     DynamicParameters para = new DynamicParameters();
-                    para.Add("@IdGHVD", idGVHD);
-                    para.Add("@IdHocKy", idhocky);
-                    para.Add("@IdMonHoc", idmonhoc);
+                    para.Add("@IdGHVDTheoKy", idGVHDTheoKy);
 
                     return await conn.QuerySingleOrDefaultAsync<GVHDTheoKy>("[dbo].[spGVHDTheoKys_GetInfo]", para, commandType: CommandType.StoredProcedure);
                      

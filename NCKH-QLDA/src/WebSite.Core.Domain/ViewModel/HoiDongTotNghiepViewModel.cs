@@ -13,7 +13,12 @@ namespace WebSite.Core.Domain.ViewModel
         public string TenHocKy { get; set; }
         public string IdMonHoc { get; set; }
         public string TenMonHoc { get; set; }
+        public string CreatorUserId { get; set; }
+        public string CreatorFullName { get; set; }
+        public string LastUpdateUserId { get; set; }
+        public string LastUpdateFullName { get; set; }
         public DateTime? NgayBaoVe { get; set; }
-        public DateTime? NgayTao { get; set; }
+        public DateTime? CreateTime { get; set; }
+        public DateTime? LastUpdate { get; set; }
     }
 }

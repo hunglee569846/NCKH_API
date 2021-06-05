@@ -67,17 +67,17 @@ namespace WebSite.Core.Infrastructure.Repository
                     param.Add("@TenHocKy", hoidong.TenHocKy);
                     param.Add("@IdMonHoc", hoidong.IdMonHoc);
                     param.Add("@TenMonHoc", hoidong.TenMonHoc);
-                    if(hoidong.NgayTao != DateTime.MinValue || hoidong.NgayTao != null)
+                    if(hoidong.CreateTime != DateTime.MinValue || hoidong.CreateTime != null)
                     {
-                        param.Add("@NgayTao", hoidong.NgayTao);
+                        param.Add("@CreateTime", hoidong.CreateTime);
                     }
                     if (hoidong.NgayBaoVe != DateTime.MinValue || hoidong.NgayBaoVe != null)
                     {
                         param.Add("@NgayBaoVe", hoidong.NgayBaoVe);
                     }
-                    if (hoidong.NgaySua != DateTime.MinValue || hoidong.NgaySua != null)
+                    if (hoidong.LastUpdate != DateTime.MinValue || hoidong.LastUpdate != null)
                     {
-                        param.Add("@NgaySua", hoidong.NgaySua);
+                        param.Add("@LastUpdate", hoidong.LastUpdate);
                     }
                     param.Add("@CreatorUserId", hoidong.CreatorUserId);
                     param.Add("@CreatorFullName", hoidong.CreatorFullName);
@@ -108,7 +108,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     param.Add("@MaHoiDong", hoidong.MaHoiDong);
                     param.Add("@TenHoiDong", hoidong.TenHoiDong);
                     param.Add("@NgayBaoVe", hoidong.NgayBaoVe);
-                    param.Add("@NgaySua", hoidong.NgaySua);
+                    param.Add("@LastUpdate", hoidong.LastUpdate);
                     param.Add("@LastUpdateUserId", hoidong.LastUpdateUserId);
                     param.Add("@LastUpdateFullName", hoidong.LastUpdateFullName);
                     rowAffect = await conn.ExecuteAsync("[dbo].[spHoiDongTotNghiep_Update]", param, commandType: CommandType.StoredProcedure);

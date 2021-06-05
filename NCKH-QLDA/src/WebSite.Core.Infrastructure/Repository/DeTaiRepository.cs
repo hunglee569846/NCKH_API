@@ -327,7 +327,7 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
 
-        public async Task<DeTai> GetInfo(string iddetai,string idhocky,string idmonhoc)
+        public async Task<DeTai> GetInfo(string iddetai)
         {
             try
             {
@@ -337,8 +337,6 @@ namespace WebSite.Core.Infrastructure.Repository
                         await conn.OpenAsync();
                     DynamicParameters para = new DynamicParameters();
                     para.Add("@IdDeTai", iddetai);
-                    para.Add("@IdHocKy", idhocky);
-                    para.Add("@IdMonHoc", idmonhoc);
                     return await conn.QuerySingleOrDefaultAsync<DeTai>("[dbo].[spDeTai_GetInfo]", para, commandType: CommandType.StoredProcedure);
                 }
             }

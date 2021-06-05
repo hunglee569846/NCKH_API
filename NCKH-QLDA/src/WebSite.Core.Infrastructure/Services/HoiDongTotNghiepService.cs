@@ -71,9 +71,9 @@ namespace WebSite.Core.Infrastructure.Services
                 TenHocKy = infoHocKy.TenHocKy?.Trim(),
                 IdMonHoc = idmonhoc?.Trim(),
                 TenMonHoc = infoMonHoc.TenMonHoc?.Trim(),
-                NgayTao = DateTime.Now,
+                CreateTime = DateTime.Now,
                 NgayBaoVe = hoidongMeta.NgayBaoVe,
-                NgaySua = DateTime.Now,
+                LastUpdate = DateTime.Now,
                 CreatorUserId = creatorUserId?.Trim(),
                 CreatorFullName = creatorFullName?.Trim()
             };
@@ -98,7 +98,7 @@ namespace WebSite.Core.Infrastructure.Services
                 MaHoiDong = hoidongMeta.MaHoiDong?.Trim(),
                 TenHoiDong = hoidongMeta.TenHoiDong?.Trim(),
                 NgayBaoVe = hoidongMeta.NgayBaoVe,
-                NgaySua = DateTime.Now,
+                LastUpdate = DateTime.Now,
                 LastUpdateUserId = LastUpdateUserId?.Trim(),
                 LastUpdateFullName = LastUpdateFullName?.Trim()
             };
