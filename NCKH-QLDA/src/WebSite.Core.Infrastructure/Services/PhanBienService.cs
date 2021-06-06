@@ -2,6 +2,7 @@
 using NCKH.Infrastruture.Binding.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebSite.Core.Domain.IRepository;
@@ -54,8 +55,6 @@ namespace WebSite.Core.Infrastructure.Services
             {
                 IdPhanBien = id,
                 IdGVPB = idGVPB?.Trim(),
-                TenGVPB = phanbienMeta.TenGVPB?.Trim(),
-                MaGVPB = phanbienMeta.MaGVPB?.Trim(),
                 IdDetai = iddetai?.Trim(),
                 Diem = 0,
                 IdHocKy = idhocky,
@@ -72,6 +71,61 @@ namespace WebSite.Core.Infrastructure.Services
             return new ActionResultResponese<string>(result, "Thêm mới thành công.", "Phản biện.");
 
         }
+
+        public async Task<ActionResultResponese<string>> InsertListPBHk(List<PhanBienlistMeta> phanbienListMeta, string iddetai, string idhocky, string idmonhoc, string creatorUserId, string creatorFullName)
+        {
+            var checExitsHK = await _hocKysRepository.CheckExisIsActivetAsync(idhocky);
+            if (!checExitsHK)
+                return new ActionResultResponese<string>(-32, "Học kỳ không tồn tại.", "Học kỳ.");
+            var checExitsDeTai = await _deTaiRepository.CheckExits(iddetai);
+            if (!checExitsDeTai)
+                return new ActionResultResponese<string>(-33, "Đề tài không tồn tại.", "Đề tài.");
+            List<PhanBienlistMeta> listGiangVien = phanbienListMeta.GroupBy(p => p.MaGVPB).Select(g => g.First()).ToList();
+            if (listGiangVien.Count() != phanbienListMeta.Count())
+                return new ActionResultResponese<string>(-34, "Trùng lặp giảng viên.", "Giảng viên.");
+            
+           
+            foreach (var giangvien in phanbienListMeta)
+            {
+                var checkPhanBien = await _phanbienRepository.CheckExis(giangvien.MaGVPB, idhocky, idmonhoc, iddetai);
+                if (checkPhanBien)
+                    return new ActionResultResponese<string>(-31, "Giảng viên đã phản biện đề tài này.", "Phản biện.");
+                
+            }
+            List<PhanBien> listPhanBien = new List<PhanBien>();
+            
+            foreach (var giangvien in phanbienListMeta)
+            {
+                //var checkExitsGVHDinHocKy = await _giangVienHuongDanRepository.CheckExitsActive(idhocky, giangvien.IdGVHD);
+                //if (checkExitsGVHDinHocKy)
+                //    return new ActionResultResponese<string>(-16, "Giảng viên đã có trong kỳ.", "Giang vien hướng dẫn theo kỳ.");
+                var giangvienInfo = await _giangVienHuongDanRepository.GetInfoByMaGVHD(idhocky, giangvien.MaGVPB);
+                var id = Guid.NewGuid().ToString();
+                listPhanBien.Add(new PhanBien
+                {
+                    IdPhanBien = id?.Trim(),
+                    IdGVPB = giangvienInfo.IdGVHD?.Trim(),
+                    IdDetai = iddetai?.Trim(),
+                    IdHocKy = idhocky?.Trim(),
+                    IdMonHoc = idmonhoc?.Trim(),
+                    Diem = 0,
+                    CreateTime = DateTime.Now,
+                    CreatorUserId = creatorUserId?.Trim(),
+                    CreatorFullName = creatorFullName?.Trim(),
+                    IsActive = true,
+                    IsDelete = false
+                }) ; 
+            }
+            if (listPhanBien.Count() == 0)
+                return new ActionResultResponese<string>(-35, "Vui Chọn giảng viên.", "Giảng viên.");
+            foreach (var giangvien in listPhanBien)
+            {
+                await _phanbienRepository.InsertByHk(giangvien);
+            }
+
+            //  return new ActionResultResponese<string>(result, "Thêm mới chi tiết đề tài không thành công", "Chi tiết đề tài.");
+            return new ActionResultResponese<string>(1, "Thêm mới thành công.", "Phản biện.");
+        }
         public async Task<ActionResultResponese<string>> Update(PhanBienUpdateMeta phanbienUpdateMeta, string idGVPB, string iddetai, string idhocky,string idmonhoc, string idPhanBien,string lastUpdateUserId, string lastUpdateFullName)
         {
             var checExitsPB = await _phanbienRepository.CheckExis(idGVPB, idhocky,idmonhoc,iddetai);
@@ -83,7 +137,7 @@ namespace WebSite.Core.Infrastructure.Services
             var checExitsDeTai = await _deTaiRepository.CheckExits(iddetai);
             if (!checExitsDeTai)
                 return new ActionResultResponese<string>(-8, "Đề tài không tồn tại.", "Đề tài.");
-            var detaiInfo = await _deTaiRepository.GetInfo(iddetai);
+           // var detaiInfo = await _deTaiRepository.GetInfo(iddetai);
             //xử lý thông tin giảng viên ngoài học kỳ
             //var checExitsHK = await _hocKysRepository.CheckExisIsActivetAsync(iddetai);
             //if (!checExitsHK)
@@ -92,8 +146,6 @@ namespace WebSite.Core.Infrastructure.Services
             {
                 IdPhanBien = idPhanBien,
                 IdGVPB = idGVPB?.Trim(),
-                TenGVPB = phanbienUpdateMeta.TenGVPB?.Trim(),
-                MaGVPB = phanbienUpdateMeta.MaGVPB?.Trim(),
                 IdDetai = iddetai?.Trim(),
                 Note = phanbienUpdateMeta.Note?.Trim(),
                 IdHocKy = idhocky,

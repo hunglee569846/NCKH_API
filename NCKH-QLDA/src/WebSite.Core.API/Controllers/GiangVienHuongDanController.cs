@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using NCKH.Infrastruture.Binding;
 using Swashbuckle.AspNetCore.Annotations;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebSite.Core.Domain.Constansts;
 using WebSite.Core.Domain.IServices;
@@ -44,6 +45,19 @@ namespace WebSite.Core.API.Controllers
         public async Task<IActionResult> InsertAsync([FromBody]GiangVienHDMeta gvhdMeta,string idhocky, TypeGVHD typegvhd)
         {
             var result = await _iGiangVienHuongDanService.InsertAsync(gvhdMeta,idhocky, typegvhd,CurrentUser.MaGiangVien,CurrentUser.FullName);
+            if (result.Code <= 0)
+            {
+                //  _logger.LogError("Insert GiangVienHuongDan controller code: " + result.Code + " .Message: " + result.Message);
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+
+        [AcceptVerbs("POST"), Route("{idhocky}")]
+        [SwaggerOperation(Summary = "Insert list GiangVienHuongDanTheoKy", Description = "TypeGVHD: 0 - NgoaiTruong,1 - trongTruong", OperationId = "InsertListGVHDTheoKy", Tags = new[] { "GiangVienHuongDan" })]
+        public async Task<IActionResult> InsertListAsync([FromBody] List<GiangVienListMeta> listgvhdMeta, string idhocky)
+        {
+            var result = await _iGiangVienHuongDanService.InsertListGVHDAsync(listgvhdMeta, idhocky, CurrentUser.MaGiangVien, CurrentUser.FullName);
             if (result.Code <= 0)
             {
                 //  _logger.LogError("Insert GiangVienHuongDan controller code: " + result.Code + " .Message: " + result.Message);

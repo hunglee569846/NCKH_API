@@ -5,6 +5,7 @@ using WebSite.Core.Domain.ModelMeta;
 using Swashbuckle.AspNetCore.Annotations;
 using Microsoft.AspNetCore.Authorization;
 using NCKH.Infrastruture.Binding;
+using System.Collections.Generic;
 
 namespace WebSite.Core.API.Controllers
 {
@@ -36,9 +37,22 @@ namespace WebSite.Core.API.Controllers
 
         [SwaggerOperation(Summary = "InsertPhanBien", Description = "Requires login verification!", OperationId = "InsertPhanBienAsync", Tags = new[] { "PhanBien" })]
         [AcceptVerbs("POST"), Route("{idGVPB}/{iddetai}/{idhocky}/{idmonhoc}")]
-        public async Task<IActionResult> GetAllAsync([FromBody]PhanBienMeta phanbienMeta, string idGVPB, string iddetai, string idhocky,string idmonhoc)
+        public async Task<IActionResult> InsertAsync([FromBody]PhanBienMeta phanbienMeta, string idGVPB, string iddetai, string idhocky,string idmonhoc)
         {
             var result = await _phanbiencService.InsertByHk(phanbienMeta, idGVPB, iddetai, idhocky,idmonhoc,CurrentUser.MaGiangVien,CurrentUser.FullName);
+            if (result.Code <= 0)
+            {
+                //_logger.LogError("Search PhanBien controller error " + result.Code);
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+
+        [SwaggerOperation(Summary = "InsertListPhanBien", Description = "Requires login verification!", OperationId = "InsertListPhanBienAsync", Tags = new[] { "PhanBien" })]
+        [AcceptVerbs("POST"), Route("ListPhanBien/{iddetai}/{idhocky}/{idmonhoc}")]
+        public async Task<IActionResult> InsertListAsync([FromBody] List<PhanBienlistMeta> listphanbienMeta , string iddetai, string idhocky, string idmonhoc)
+        {
+            var result = await _phanbiencService.InsertListPBHk(listphanbienMeta, iddetai, idhocky, idmonhoc, CurrentUser.MaGiangVien, CurrentUser.FullName);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Search PhanBien controller error " + result.Code);

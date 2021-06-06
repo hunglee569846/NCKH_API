@@ -61,8 +61,6 @@ namespace WebSite.Core.Infrastructure.Repository
                     DynamicParameters param = new DynamicParameters();
                     param.Add("@IdPhanBien", phanbien.IdPhanBien);
                     param.Add("@IdGVPB", phanbien.IdGVPB);
-                    param.Add("@MaGVPB", phanbien.MaGVPB);
-                    param.Add("@TenGVPB", phanbien.TenGVPB);
                     param.Add("@IdDetai", phanbien.IdDetai);
                     param.Add("@IdHocKy", phanbien.IdHocKy);
                     param.Add("@IdMonHoc", phanbien.IdMonHoc);
@@ -96,8 +94,6 @@ namespace WebSite.Core.Infrastructure.Repository
                     DynamicParameters param = new DynamicParameters();
                     param.Add("@IdPhanBien", phanbien.IdPhanBien);
                     param.Add("@IdGVPB", phanbien.IdGVPB);
-                    param.Add("@MaGVPB", phanbien.MaGVPB);
-                    param.Add("@TenGVPB", phanbien.TenGVPB);
                     param.Add("@IdDetai", phanbien.IdDetai);
                     param.Add("@Note", phanbien.Note);
                     param.Add("@NgaySua", phanbien.LastUpdate);
@@ -127,6 +123,30 @@ namespace WebSite.Core.Infrastructure.Repository
 					SELECT IIF (EXISTS (SELECT 1 FROM dbo.PhanBiens WHERE IdGVPB = @idGVPB AND IdHocKy = @idhocky AND IdMonHoc = @idmonhoc AND IdDetai = @iddetai AND IsActive = 1 AND IsDelete = 0), 1, 0)";
 
                     var result = await con.ExecuteScalarAsync<bool>(sql, new { IdPhanBien = idGVPB, IdHocKy = idhocky , IdMonHoc = idmonhoc, IdDetai = iddetai });
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                // _logger.LogError(ex, "CheckExistActiveAsync HocKyRepository Error.");
+                return false;
+            }
+        }
+
+        public async Task<bool> CheckExisByMaGV(string MaGV, string idhocky, string idmonhoc, string iddetai)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(_connectionString))
+                {
+                    if (con.State == ConnectionState.Closed)
+                        await con.OpenAsync();
+
+                    var sql = @"
+					SELECT IIF (EXISTS (SELECT 1 FROM dbo.PhanBiens WHERE MaGVPB = @MaGVPB AND IdHocKy = @idhocky AND
+			                    IdMonHoc = @idmonhoc AND IdDetai = @iddetai AND IsActive = 1 AND IsDelete = 0), 1, 0)";
+
+                    var result = await con.ExecuteScalarAsync<bool>(sql, new { MaGVPB = MaGV, IdHocKy = idhocky, IdMonHoc = idmonhoc, IdDetai = iddetai });
                     return result;
                 }
             }

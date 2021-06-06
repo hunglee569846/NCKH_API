@@ -97,6 +97,9 @@ namespace WebSite.Core.Infrastructure.Services
                 return new ActionResultResponese<string>(-11, "Giảng viên không tồn tại.", "Giảng viên.");
 
             List<ChiTietDeTaiListDeTaiMeta> listiddetai = listdetaimeta.GroupBy(p => p.IdDeTai).Select(g => g.First()).ToList();
+            if(listiddetai.Count() != listdetaimeta.Count())
+                return new ActionResultResponese<string>(-23, "Trùng lặp", "Đề tài.");
+
             //if (listiddetai.Count() < listdetaimeta.Count())
             //    return new ActionResultResponese<string>(-9, "Trùng lặp đề tài.","Đề tài");
             var listChiTietDeTai = new List<ChiTietDeTai>();

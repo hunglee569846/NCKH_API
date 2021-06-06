@@ -13,6 +13,7 @@ namespace WebSite.Core.Domain.IServices
     {
         Task<SearchResult<PhanBienSearchViewModel>> GetAllByIdHK(string idhocky);
         Task<ActionResultResponese<string>> InsertByHk(PhanBienMeta phanbienMeta, string idGVPB, string iddetai, string idhocky, string idmonhoc, string creatorUserId, string creatorFullName);
+        Task<ActionResultResponese<string>> InsertListPBHk(List<PhanBienlistMeta> phanbienListMeta, string iddetai, string idhocky, string idmonhoc, string creatorUserId, string creatorFullName);
         Task<ActionResultResponese<string>> Update(PhanBienUpdateMeta phanbienUpdateMeta, string idGVPB, string iddetai, string idhocky, string idmonhoc, string idPhanBien, string lastUpdateUserId, string lastUpdateFullName);
         Task<ActionResultResponese<string>> UpdateDiemAsync(string idphanbien, string idhocKy, string idmonhoc, float Diem, NoteMeta note, string iddetai);
         Task<ActionResultResponese<string>> DeleteAsync(string idphanbien,string idhocky,string idmonhoc);

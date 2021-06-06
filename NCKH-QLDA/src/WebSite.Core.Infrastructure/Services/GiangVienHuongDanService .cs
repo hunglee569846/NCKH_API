@@ -2,6 +2,7 @@
 using NCKH.Infrastruture.Binding.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using WebSite.Core.Domain.Constansts;
 using WebSite.Core.Domain.IRepository;
@@ -51,7 +52,7 @@ namespace WebSite.Core.Infrastructure.Services
 				return new ActionResultResponese<string>(-4, "Bản ghi đã tồn tại.", "Giang viên hướng dẫn theo kỳ.");
 			var checkExitsGVHDinHocKy = await _giangVienHuongDanRepository.CheckExitsGVHD(gvhdkyMeta.MaGVHD);
 			if (checkExitsGVHDinHocKy)
-				return new ActionResultResponese<string>(-5, "Giang viên đã có trong kỳ.", "Giang vien hướng dẫn theo kỳ.");
+				return new ActionResultResponese<string>(-5, "Giảng viên đã có trong kỳ.", "Giảng viên hướng dẫn theo kỳ.");
 			var gvhdky = new GVHDTheoKy()
 			{
 				IdGVHDTheoKy = id.Trim(),
@@ -71,10 +72,67 @@ namespace WebSite.Core.Infrastructure.Services
 				return new ActionResultResponese<string>(-8, "Dữ liệu trống.", "Giang viên hướng dẫn theo kỳ.");
 			var result = await _giangVienHuongDanRepository.InsertAsync(gvhdky);
 			if (result <= 0)
+
 				return new ActionResultResponese<string>(result, "Thêm mới thất bại.", "Giang viên hướng dẫn theo kỳ.");
 			return new ActionResultResponese<string>(result, "Thêm mới thành công.", "Giang viên hướng dẫn theo kỳ.");
 		}
+		public async Task<ActionResultResponese<string>> InsertListGVHDAsync(List<GiangVienListMeta> gvhdlistMeta, string idhocky, string CreatorUserId, string CreatorFullName)
+        {
+		
+			var checkHocKy = await _hockyRepository.CheckExisIsActivetAsync(idhocky);
+			if (!checkHocKy)
+				return new ActionResultResponese<string>(-3, "Không tồn tại.", "Học Kỳ");
+			//var checkGVHDTheoKy = await _giangVienHuongDanRepository.CheckExits(id);
+			//if (checkGVHDTheoKy)
+			//	return new ActionResultResponese<string>(-4, "Bản ghi đã tồn tại.", "Giang viên hướng dẫn theo kỳ.");
 
+			List<GiangVienListMeta> listmagiangvien = gvhdlistMeta.GroupBy(p => p.MaGVHD).Select(g => g.First()).ToList();
+			if (listmagiangvien.Count() != gvhdlistMeta.Count())
+				return new ActionResultResponese<string>(-23, "Trùng lặp", "Giảng viên.");
+
+			foreach (var giangvien in gvhdlistMeta)
+            {
+				var checkExitsGVHDinHocKy = await _giangVienHuongDanRepository.CheckExitsActive(idhocky, giangvien.MaGVHD);
+				if (checkExitsGVHDinHocKy)
+					return new ActionResultResponese<string>(-15, "Giang viên đã có trong kỳ. ", "Giảng viên hướng dẫn theo kỳ.");
+			}
+			var listGVHD = new List<GVHDTheoKy>();
+			foreach (var giangvien in gvhdlistMeta)
+			{
+				var checkExitsGVHDinHocKy = await _giangVienHuongDanRepository.CheckExitsActive(idhocky, giangvien.IdGVHD);
+				if (checkExitsGVHDinHocKy)
+					return new ActionResultResponese<string>(-16, "Giảng viên đã có trong kỳ.", "Giang vien hướng dẫn theo kỳ.");
+
+				var id = Guid.NewGuid().ToString();
+				listGVHD.Add(new GVHDTheoKy
+				{
+					IdGVHDTheoKy = id?.Trim(),
+					IdGVHD = giangvien.IdGVHD?.Trim(),
+					MaGVHD = giangvien.MaGVHD?.Trim(),
+					TenGVHD = giangvien.TenGVHD?.Trim(),
+					IdHocKy = idhocky?.Trim(),
+					DonViCongTac = giangvien.DonViCongTac?.Trim(),
+					Email = giangvien.IdGVHD?.Trim(),
+					DienThoai= giangvien.DienThoai?.Trim(),
+					Type = giangvien.Type,
+					CreateTime = DateTime.Now,
+					CreatorUserId = CreatorUserId?.Trim(),
+					CreatorFullName = CreatorFullName?.Trim(),
+					IsActive = true,
+					IsDelete = false
+				});
+			}
+			if (listGVHD.Count == 0)
+				return new ActionResultResponese<string>(-15, "Vui Chọn giảng viên.", "Giảng viên.");
+			foreach (var gianvienInsert in listGVHD)
+			{
+				await _giangVienHuongDanRepository.InsertAsync(gianvienInsert);
+			}
+
+			//  return new ActionResultResponese<string>(result, "Thêm mới chi tiết đề tài không thành công", "Chi tiết đề tài.");
+			return new ActionResultResponese<string>(1, "Thêm mới danh sách giảng viên thành công.", "Giảng viên.");
+
+		}
 		public async Task<ActionResultResponese<string>> UpdateAsync(GVHDupdateMeta gvhdkyUpdateMeta, string idGVHD, string idGvhdTheoKy, TypeGVHD tygvhd,string CreatorUserId,string creatorFullName)
         {
 			var checkGVHDTheoKy = await _giangVienHuongDanRepository.CheckExits(idGvhdTheoKy);

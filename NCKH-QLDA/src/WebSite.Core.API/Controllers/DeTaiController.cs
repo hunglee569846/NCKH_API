@@ -64,6 +64,20 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
+        // đề tài và chi tiết đề tài trong học kỳ getall
+        [AcceptVerbs("GET"), Route("GetAllCT/{idhocky}/{idmonhoc}")]
+        [SwaggerOperation(Summary = "GetByInHocKyandMonHocAsync Detai", Description = "Requires login verification!", OperationId = "GetByInHocKyandMonHocAsync", Tags = new[] { "DeTai" })]
+        public async Task<IActionResult> GetByInHocKyandMonHocAsync(string idhocky, string idmonhoc)
+        {
+            var result = await _ideTaiService.GetByIdMonHocInHocKyAsync(idhocky, idmonhoc);
+            if (result.Code <= 0)
+            {
+                //_logger.LogError("Search DeTai controller error " + result.Code);
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+
         [AcceptVerbs("POST"), Route("InsertDeTai/{madetai}/{idhocky}/{idmonhoc}/{idsinhvien}/{tensinhvien}/{masinhvien}")]
         [SwaggerOperation(Summary = "InsertAsync Detai", Description = "Requires login verification!", OperationId = "InsertAsync", Tags = new[] { "DeTai" })]
         public async Task<IActionResult> InsertAsync([FromBody] DeTaiInsertMeta detaiInsertMeta, string madetai, string idhocky, string idmonhoc, string idsinhvien, string tensinhvien,string masinhvien)

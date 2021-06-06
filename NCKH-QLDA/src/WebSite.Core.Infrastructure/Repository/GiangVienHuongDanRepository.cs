@@ -157,7 +157,7 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
 
-        public async Task<bool> CheckExitsActive(string idhocky, string idGVHD, string idMonHoc)
+        public async Task<bool> CheckExitsActive(string idhocky, string idGVHD)
         {
             try
             {
@@ -167,9 +167,9 @@ namespace WebSite.Core.Infrastructure.Repository
                         await con.OpenAsync();
 
                     var sql = @"
-					SELECT IIF (EXISTS (SELECT 1 FROM dbo.GVHDTheoKys WHERE IdHocKy = @idhocky  AND IdGVHD = @idGVHD AND IdMonHoc = @idMonHoc  AND IsActive = 1 AND IsDelete = 0), 1, 0)";
+					SELECT IIF (EXISTS (SELECT 1 FROM dbo.GVHDTheoKys WHERE IdHocKy = @idhocky  AND IdGVHD = @idGVHD  AND IsActive = 1 AND IsDelete = 0), 1, 0)";
 
-                    var result = await con.ExecuteScalarAsync<bool>(sql, new { IdHocKy = idhocky, IdGVHD = idGVHD, IdMonHoc = idMonHoc });
+                    var result = await con.ExecuteScalarAsync<bool>(sql, new { IdHocKy = idhocky, IdGVHD = idGVHD });
                     return result;
                 }
             }
@@ -248,7 +248,29 @@ namespace WebSite.Core.Infrastructure.Repository
             }
             catch (Exception)
             {
-                //_logger.LogError(ex, "[dbo].[spGiangVienHuongDan_DeleteAsync] DeleteAsync GiangVienHuongDanRepository Error.");
+                //_logger.LogError(ex, "[dbo].[spGVHDTheoKys_GetInfo] DeleteAsync GiangVienHuongDanRepository Error.");
+                return null;
+            }
+        }
+        public async Task<GVHDTheoKy> GetInfoByMaGVHD(string idhocky, string maGVHD)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    if (conn.State == ConnectionState.Closed)
+                        await conn.OpenAsync();
+                    DynamicParameters para = new DynamicParameters();
+                    para.Add("@IdHocKy", idhocky);
+                    para.Add("@MaGVHD", maGVHD);
+
+                    return await conn.QuerySingleOrDefaultAsync<GVHDTheoKy>("[dbo].[spGiangVienHuongDan_GetInfoByHK]", para, commandType: CommandType.StoredProcedure);
+
+                }
+            }
+            catch (Exception)
+            {
+                //_logger.LogError(ex, "[dbo].[spGiangVienHuongDan_GetInfoByHK] DeleteAsync GiangVienHuongDanRepository Error.");
                 return null;
             }
         }
