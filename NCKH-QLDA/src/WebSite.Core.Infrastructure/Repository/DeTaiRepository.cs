@@ -136,7 +136,6 @@ namespace WebSite.Core.Infrastructure.Repository
                     para.Add("@MaDeTai", detai.MaDeTai);
                     para.Add("@TenDeTai", detai.TenDeTai);
                     para.Add("@IdSinVien", detai.IdSinhVien);
-                    para.Add("@TenSinhVien", detai.TenSinhVien);
                     para.Add("@IdHocKy", detai.IdHocKy);
                     para.Add("@IdMonHoc", detai.IdMonHoc);
                     para.Add("@DiemTrungBinh", detai.DiemTrungBinh);
@@ -144,9 +143,6 @@ namespace WebSite.Core.Infrastructure.Repository
                     para.Add("@IsActive", detai.IsActive);
                     para.Add("@IsDelete", detai.IsDelete);
                     para.Add("@CreateTime", detai.CreateTime);
-                    para.Add("@DonViThucTap", detai.DonViThucTap);
-                    para.Add("@Email", detai.Email);
-                    para.Add("@MaSinhVien", detai.MaSinhVien);
                     para.Add("@CreatorUserId", detai.CreatorUserId);
                     para.Add("@CreatorFullName", detai.CreatorFullName);
 

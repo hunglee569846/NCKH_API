@@ -65,7 +65,7 @@ namespace WebSite.Core.API.Controllers
         }
 
         // đề tài và chi tiết đề tài trong học kỳ getall
-        [AcceptVerbs("GET"), Route("GetAllCT/{idhocky}/{idmonhoc}")]
+        [AcceptVerbs("GET"), Route("GetCT/{idhocky}/{idmonhoc}")]
         [SwaggerOperation(Summary = "GetByInHocKyandMonHocAsync Detai", Description = "Requires login verification!", OperationId = "GetByInHocKyandMonHocAsync", Tags = new[] { "DeTai" })]
         public async Task<IActionResult> GetByInHocKyandMonHocAsync(string idhocky, string idmonhoc)
         {

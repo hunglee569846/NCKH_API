@@ -4,16 +4,17 @@ using System.Text;
 
 namespace WebSite.Core.Domain.Models
 {
-   public class DeTai
+    public class SinhVien
     {
-        public string IdDeTai { get; set; }
-        public string MaDeTai { get; set; }
-        public string TenDeTai { get; set; }
         public string IdSinhVien { get; set; }
+        public string MaSinhVien { get; set; }
+        public string TenSinhVien { get; set; }
+        public string Email { get; set; }
+        public string DienThoai { get; set; }
+        public string DonViThucTap { get; set; }
+        public string MaLopHoc { get; set; }
+        public string LopHoc { get; set; }
         public string IdHocKy { get; set; }
-        public string IdMonHoc { get; set; }
-        public double? DiemTrungBinh { get; set; }
-        public bool? IsDat { get; set; }
         public bool? IsActive { get; set; }
         public bool? IsDelete { get; set; }
         public DateTime? CreateTime { get; set; }
@@ -26,13 +27,11 @@ namespace WebSite.Core.Domain.Models
         public string DeleteFullName { get; set; }
         public string LastUpdateFullName { get; set; }
 
-        public DeTai()
+        public SinhVien()
         {
             CreateTime = DateTime.Now;
             IsDelete = false;
             IsActive = true;
-            IsDat = false;
-            DiemTrungBinh = 0;
         }
     }
 }

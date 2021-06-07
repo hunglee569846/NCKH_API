@@ -96,17 +96,13 @@ namespace WebSite.Core.Infrastructure.Services
                 MaDeTai = madetai?.Trim(),
                 TenDeTai = detaiInsertMeta.TenDeTai?.Trim(),
                 IdSinhVien = idsinhvien?.Trim(),
-                TenSinhVien = tensinhvien?.Trim(),
                 IdHocKy = idhocky?.Trim(),
                 IdMonHoc = idmonhoc?.Trim(),
-                DonViThucTap = detaiInsertMeta.DonViThucTap?.Trim(),
-                Email = detaiInsertMeta.Email?.Trim(),
                 DiemTrungBinh = 0,
                 IsDat = false,
                 CreateTime = DateTime.Now,
                 CreatorUserId = maNguoiTao?.Trim(),
                 CreatorFullName = tenNguoiTao?.Trim(),
-                MaSinhVien = masinhvien?.Trim()
             };
             if (detai == null)
                 return new ActionResultResponese<string>(-8, "Dữ liệu trống", "Đề tài.");

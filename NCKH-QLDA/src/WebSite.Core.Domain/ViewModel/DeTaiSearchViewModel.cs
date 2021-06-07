@@ -10,6 +10,7 @@ namespace WebSite.Core.Domain.ViewModel
         public string MaDeTai { get; set; }
         public string TenDeTai { get; set; }
         public string IdSinhVien { get; set; }
+        public string MaSinhVien { get; set; }
         public string TenSinhVien { get; set; }
         public string IdHocKy { get; set; }
         public string TenHocKy { get; set; }
