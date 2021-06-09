@@ -81,7 +81,7 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
         
-        public async Task<int> UpdateAsync(string idhocky, string mahocky,string tenhocky, DateTime? ngaysua,string userId, string fullName)
+        public async Task<int> UpdateAsync(string idhocky, string mahocky,string tenhocky, DateTime? LastUpdate, string userId, string fullName)
         {
             try
             {
@@ -94,7 +94,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     param.Add("@IdHocKy", idhocky);
                     param.Add("@MaHocKy", mahocky);
                     param.Add("@TenHocKy", tenhocky);
-                    param.Add("@NgaySua", ngaysua);
+                    param.Add("@LastUpdate", LastUpdate);
                     param.Add("@LastUpdateUserId", userId);
                     param.Add("@LastUpdateFullName", fullName);
                     TotalRow = await conn.ExecuteAsync("[dbo].[spHocKy_UpdateAsync]", param, commandType: CommandType.StoredProcedure);

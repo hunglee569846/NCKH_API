@@ -76,7 +76,7 @@ namespace WebSite.Core.API.Controllers
         [AcceptVerbs("DELETE"), Route("{idmonhoc}/{idhocky}")]
         public async Task<IActionResult> DeleteAsync(string idmonhoc, string idhocky)
         {
-            var result = await _imonhocService.DeleteAsync(idhocky, idmonhoc);
+            var result = await _imonhocService.DeleteAsync(idmonhoc,idhocky);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Insert MonHocs controller error " + result.Code);

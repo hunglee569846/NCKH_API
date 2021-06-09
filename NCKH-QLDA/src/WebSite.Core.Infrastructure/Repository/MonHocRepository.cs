@@ -188,11 +188,16 @@ namespace WebSite.Core.Infrastructure.Repository
                     param.Add("@IdHocKy", monhoc.IdHocKy);
                     param.Add("@TenMonHoc", monhoc.TenMonHoc);
                     param.Add("@TypeApprover", monhoc.TypeApprover);
+                    param.Add("@NgaySua", monhoc.NgaySua);
+                    param.Add("@LastUpdateUserId", monhoc.LastUpdateUserId);
+                    param.Add("@LastUpdateFullName", monhoc.LastUpdateFullName);
+                    param.Add("@IdMonTienQuyet", monhoc.IdMonTienQuyet);
+                    param.Add("@NameMonTienQuyet", monhoc.NameMonTienQuyet);
                     rowAffect = await conn.ExecuteAsync("[dbo].[spMonHoc_EditById]", param, commandType: CommandType.StoredProcedure);
                     return rowAffect;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 //_logger.LogError(ex, "[dbo].[spMonHoc_EditById] UpdateAllByIdHocKy MonHocRepository Error.");
                 return -1;

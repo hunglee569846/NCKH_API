@@ -15,7 +15,7 @@ namespace WebSite.Core.Domain.IRepository
         Task<HocKySearchViewModel> SearchInfo(string idhocky);
         Task<int> InsertAsync(HocKy hocky);
         Task<int> DeleteAsync(string idhocky);
-        Task<int> UpdateAsync(string idhocky, string mahocky, string tenhocky, DateTime? ngaysua, string userId, string fullName);
+        Task<int> UpdateAsync(string idhocky, string mahocky, string tenhocky, DateTime? LastUpdate, string userId, string fullName);
         Task<bool> CheckExistAsync(string idHocKy,string maHocky);
         Task<bool> CheckExisIsActivetAsync(string idHocKy);
         Task<bool> CheckLockDataAsync(string idHocKy);
