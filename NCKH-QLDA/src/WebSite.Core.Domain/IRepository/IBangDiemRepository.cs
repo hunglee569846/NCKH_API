@@ -9,5 +9,8 @@ namespace WebSite.Core.Domain.IRepository
     public interface IBangDiemRepository
     {
         Task<int> InsertAsync(BangDiem bangdiem);
+        Task<int> UpdateDiemAsync(BangDiem bangdiem);
+        Task<bool> CheckExit(string iddetai);
+        Task<bool> CheckExitIdBangDiem(string idBangDiem);
     }
 }

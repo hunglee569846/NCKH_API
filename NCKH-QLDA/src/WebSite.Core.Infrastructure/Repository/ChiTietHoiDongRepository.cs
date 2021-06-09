@@ -3,10 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebSite.Core.Domain.IRepository;
 using WebSite.Core.Domain.Models;
+using WebSite.Core.Domain.ViewModel;
 
 namespace WebSite.Core.Infrastructure.Repository
 {
@@ -29,12 +31,8 @@ namespace WebSite.Core.Infrastructure.Repository
                         await conn.OpenAsync();
                     DynamicParameters param = new DynamicParameters();
                     param.Add("@IdChiTietHD", chitiethoidong.IdChiTietHD);
-                    param.Add("@MaHoiDong", chitiethoidong.MaHoiDong);
                     param.Add("@IdHoiDong", chitiethoidong.IdHoiDong);
-                    param.Add("@TenHoiDong", chitiethoidong.TenHoiDong);
                     param.Add("@IdGiangVien", chitiethoidong.IdGiangVien);
-                    param.Add("@MaGiangVien", chitiethoidong.MaGiangVien);
-                    param.Add("@TenGiangVien", chitiethoidong.TenHoiDong);
                     param.Add("@CreateTime", chitiethoidong.CreateTime);
                     param.Add("@CreatorUserId", chitiethoidong.CreatorUserId);
                     param.Add("@CreatorFullName", chitiethoidong.CreatorUserFullName);
@@ -46,7 +44,7 @@ namespace WebSite.Core.Infrastructure.Repository
 
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return -1;
             }
@@ -116,6 +114,49 @@ namespace WebSite.Core.Infrastructure.Repository
             {
                 //_logger.LogError(ex, "CheckMaDeTai DetaiRepository Error.");
                 return false;
+            }
+        }
+
+        public async Task<bool> CheckExitsDuplicate(string idHoiDong, string idGVHD)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(_ConnectionString))
+                {
+                    if (con.State == ConnectionState.Closed)
+                        await con.OpenAsync();
+
+                    var sql = @"
+					SELECT IIF (EXISTS (SELECT 1 FROM dbo.ChiTietHoiDongs WHERE IdHoiDong= @IdHoiDong AND IdGiangVien = @idGVHD AND IsActive = 1 AND IsDelete = 0), 1, 0)";
+
+                    var result = await con.ExecuteScalarAsync<bool>(sql, new { IdHoiDong = idHoiDong, IdGVHD = idGVHD });
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                //_logger.LogError(ex, "CheckDuplicate CTDT DetaiRepository Error.");
+                return false;
+            }
+        }
+
+        public async Task<List<GiangVienGetListViewModel>> GetListThanhVien(string idHoiDong)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_ConnectionString))
+                {
+                    if (conn.State == ConnectionState.Closed)
+                        await conn.OpenAsync();
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@IdHoiDong", idHoiDong);
+                    var result = await conn.QueryAsync<GiangVienGetListViewModel>("[dbo].[spChiTietHoiDong_GetListGV]", param, commandType: CommandType.StoredProcedure);
+                    return result.ToList();
+                }
+            }
+            catch (Exception)
+            {
+                return null;
             }
         }
     }

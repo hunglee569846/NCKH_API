@@ -9,6 +9,7 @@ namespace WebSite.Core.Domain.IRepository
     {
         Task<SearchResult<DeTaiSearchViewModel>> SelectByIdHocKy(string idhocky);
         Task<SearchResult<DeTaiSearchViewModel>> SelectByIdMonHocInHocKy(string idhocky,string idmonhoc);
+        Task<SearchResult<DeTaiSearchViewModel>> SelectChuaPhanHD(string idhocky,string idmonhoc);
         Task<DeTai> GetInfo(string iddetai);
         Task<SearchResult<DeTaivsCTDTViewModel>> SelectByIdCTDTAsync(string idhocky, bool isApprove);
         Task<int> InsertAsync(DeTai detai);

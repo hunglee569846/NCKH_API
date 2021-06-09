@@ -35,6 +35,9 @@ namespace WebSite.Core.Infrastructure.Services
         //Khoi tao mon hoc tien quyet
         public async Task<ActionResultResponese<string>> InsertAsync(MonHocMeta monHocMeta, string idhocky,TypeDataApprover typeApprover, string creatorUserId, string creatorFullName,string mamonhoc,string tenmonhoc)
         {
+            var checkLockDataHK = await _ihocKyscRepository.CheckExisIsActivetAsync(idhocky);
+            if (!checkLockDataHK)
+                return new ActionResultResponese<string>(-99, "Dữ liệu đã khóa.", "Học kỳ");
             var checExits = await _ihocKyscRepository.CheckExisIsActivetAsync(idhocky);
             if (!checExits)
                 return new ActionResultResponese<string>(-5, "Học kỳ không tồn tại.", "Học kỳ");
@@ -73,7 +76,9 @@ namespace WebSite.Core.Infrastructure.Services
 
         public async Task<ActionResultResponese<string>> UpdateAsync(MonHocMeta monhocmeta, string idmonhoc,string idhocky, TypeDataApprover typeApprover, string lastUpdateUserId, string lastUpdateFullName, string mamonhoc, string tenmonhoc)
         {
-            
+            var checkLockDataHK = await _ihocKyscRepository.CheckExisIsActivetAsync(idhocky);
+            if (!checkLockDataHK)
+                return new ActionResultResponese<string>(-99, "Dữ liệu đã khóa.", "Học kỳ");
             var checExits = await _imonhocRepository.CheckExitsIsActvive(idmonhoc);
             if (!checExits)
                 return new ActionResultResponese<string>(-5, "Mã không tồn tại.", "Môn học");

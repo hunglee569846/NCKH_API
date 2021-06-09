@@ -9,8 +9,10 @@ namespace WebSite.Core.Domain.ViewModel
         public string IdHocKy { get; set; }
         public string MaHocKy { get; set; }
         public string TenHocKy { get; set; }
-        public DateTime? NgayTao { get; set; }
-        public DateTime? NgayXoa { get; set; }
+        public DateTime? CreateTime { get; set; }
+        public DateTime? DeleteTime { get; set; }
+        public DateTime? LastUpdate { get; set; }
+        public bool? LockData { get; set; }
         public bool? IsActive { get; set; }
         public bool? IsDelete { get; set; }
     }

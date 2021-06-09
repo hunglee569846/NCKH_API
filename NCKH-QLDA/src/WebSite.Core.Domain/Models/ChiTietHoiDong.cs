@@ -8,11 +8,8 @@ namespace WebSite.Core.Domain.Models
     {
         public string IdChiTietHD { get; set; }
         public string IdHoiDong { get; set; }
-        public string MaHoiDong { get; set; }
         public string TenHoiDong { get; set; }
         public string IdGiangVien { get; set; }
-        public string MaGiangVien { get; set; }
-        public string TenGiangVien { get; set; }
         public string CreatorUserId { get; set; }
         public string CreatorUserFullName { get; set; }
         public string LastUpdateUserId { get; set; }

@@ -39,7 +39,7 @@ namespace WebSite.Core.Infrastructure.Services
                 IdHocKy = idhocky,
                 MaHocKy = mahocky,
                 TenHocKy = tenhocky,
-                NgayTao = DateTime.Now,
+                CreateTime = DateTime.Now,
                 CreatetorId = userId,
                 CreatorFullName = fullName
             };
@@ -54,6 +54,9 @@ namespace WebSite.Core.Infrastructure.Services
         
         public async Task<ActionResultResponese<string>> UpDateAsync(string idhocky, string mahocky, string tenhocky, string userId, string fullName)
         {
+            var checkLockDataHK = await _ihocKyRepository.CheckExisIsActivetAsync(idhocky);
+            if (!checkLockDataHK)
+                return new ActionResultResponese<string>(-99, "Dữ liệu đã khóa.", "Học kỳ");
             var checExist = await _ihocKyRepository.CheckExisIsActivetAsync(idhocky);
             if (!checExist)
                 return new ActionResultResponese<string>(-2, "Mã học kỳ không tồn tại", "Học Kỳ");
@@ -73,12 +76,15 @@ namespace WebSite.Core.Infrastructure.Services
         }
         public async Task<ActionResultResponese<string>> DeleteAsync(string idhocky)
         {
+            var checkLockDataHK = await _ihocKyRepository.CheckExisIsActivetAsync(idhocky);
+            if (!checkLockDataHK)
+                return new ActionResultResponese<string>(-99, "Dữ liệu đã khóa.", "Học kỳ");
             var checkExit = await _ihocKyRepository.CheckExisIsActivetAsync(idhocky);
             if (!checkExit)
                 return new ActionResultResponese<string>(-4, "Thông tin không tồn tại", "Học kỳ");
             var result = await _ihocKyRepository.DeleteAsync(idhocky);
             if (result <= 0)
-                return new ActionResultResponese<string>(result, "Xóa lỗi", "Học kỳ");
+                return new ActionResultResponese<string>(result, "Xóa không thành công", "Học kỳ");
             return new ActionResultResponese<string>(result, "Xóa thành công", "Học kỳ");
 
         } 

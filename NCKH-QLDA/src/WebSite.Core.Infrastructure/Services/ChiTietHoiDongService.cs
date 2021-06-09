@@ -33,8 +33,8 @@ namespace WebSite.Core.Infrastructure.Services
                 return new ActionResultResponese<string>(-2, "Thông tin hội đồng không tồn tại.", "Hội đồng");
 
             List<ChiTietHoiDongMeta> listidgiangvien = listChiTietHoiDongmeta.GroupBy(p => p.IdGvhdTheoKy).Select(g => g.First()).ToList();
-           // if(listidgiangvien.Count() != listChiTietHoiDongmeta.Count())
-               // return new ActionResultResponese<string>(-3, "Trùng lặp giảng viên trong hội đồng.", "Giảng viên");
+            if(listidgiangvien.Count() != listChiTietHoiDongmeta.Count())
+               return new ActionResultResponese<string>(-3, "Trùng lặp giảng viên trong hội đồng.", "Giảng viên");
             var listChiTietHoiDong = new List<ChiTietHoiDong>();
             var listHoiDong = new List<ChiTietHoiDong>();
             foreach (var idgiangvien in listidgiangvien)
@@ -43,16 +43,17 @@ namespace WebSite.Core.Infrastructure.Services
                 if (getinfoGVHD == null)
                     return new ActionResultResponese<string>(-4, "Giảng viên không tồn tại", "Giảng viên");
 
+                var checkGVinHD = await _chitiethoidongRepository.CheckExitsDuplicate(idhoidong, getinfoGVHD.IdGVHD);
+                if (checkGVinHD)
+                    return new ActionResultResponese<string>(-13, "Giảng viên đã có trong hội đồng.", "Giảng viên");
+
                 var id = Guid.NewGuid().ToString();
                 listChiTietHoiDong.Add(new ChiTietHoiDong
                 {
                     IdChiTietHD = id,
                     IdHoiDong = getinfoHoiDong.IdHoiDong?.Trim(),
-                    MaHoiDong = getinfoHoiDong.MaHoiDong?.Trim(),
                     TenHoiDong = getinfoHoiDong.TenHoiDong?.Trim(),
                     IdGiangVien = getinfoGVHD.IdGVHD?.Trim(),
-                    TenGiangVien = getinfoGVHD.TenGVHD?.Trim(),
-                    MaGiangVien = getinfoGVHD.MaGVHD?.Trim(),
                     CreateTime = DateTime.Now,
                     CreatorUserId = creartorUserId?.Trim(),
                     CreatorUserFullName = creartorFullName?.Trim(),
@@ -63,7 +64,7 @@ namespace WebSite.Core.Infrastructure.Services
 
             if (listChiTietHoiDong.Count == 0)
             {
-                return new ActionResultResponese<string>(-4,"Vui lòng chọn giảng viên","Giảng viên");
+                return new ActionResultResponese<string>(-5,"Vui lòng chọn giảng viên.","Giảng viên");
             }
             foreach (var chitietHD in listChiTietHoiDong)
             {
@@ -79,22 +80,22 @@ namespace WebSite.Core.Infrastructure.Services
             //thông tin hội đồng
             var getinfoHoiDong = await _hoidongtotnghiepRepository.GetInfo(idhoidong);
             if (getinfoHoiDong == null)
-                return new ActionResultResponese<string>(-2, "Thông tin hội đồng không tồn tại.", "Hội đồng");
+                return new ActionResultResponese<string>(-6, "Thông tin hội đồng không tồn tại.", "Hội đồng");
 
              var getinfoGVHD = await _giangVienHuongDanRepository.GetInfo(idGvhdTheoKy);
              if (getinfoGVHD == null)
-                 return new ActionResultResponese<string>(-4, "Giảng viên không tồn tại", "Giảng viên");
+                 return new ActionResultResponese<string>(-7, "Giảng viên không tồn tại", "Giảng viên");
+            var checkGVinHD = await _chitiethoidongRepository.CheckExitsDuplicate(idhoidong, getinfoGVHD.IdGVHD);
+            if (checkGVinHD)
+                return new ActionResultResponese<string>(-8, "Giảng viên đã có trong hội đồng.", "Giảng viên");
 
-                var id = Guid.NewGuid().ToString();
+            var id = Guid.NewGuid().ToString();
                 var chitietHD = new ChiTietHoiDong()
                 {
                     IdChiTietHD = id,
                     IdHoiDong = getinfoHoiDong.IdHoiDong?.Trim(),
-                    MaHoiDong = getinfoHoiDong.MaHoiDong?.Trim(),
                     TenHoiDong = getinfoHoiDong.TenHoiDong?.Trim(),
                     IdGiangVien = getinfoGVHD.IdGVHD?.Trim(),
-                    TenGiangVien = getinfoGVHD.TenGVHD?.Trim(),
-                    MaGiangVien = getinfoGVHD.MaGVHD?.Trim(),
                     CreateTime = DateTime.Now,
                     CreatorUserId = creartorUserId?.Trim(),
                     CreatorUserFullName = creartorFullName?.Trim(),
@@ -103,7 +104,7 @@ namespace WebSite.Core.Infrastructure.Services
                 };
             var result = await _chitiethoidongRepository.InserAsync(chitietHD);
             if(result <= 0)
-                return new ActionResultResponese<string>(1, "Thêm mới chi tiết hội đồng tốt nghiệp không thành công", "Chi tiết hội đồng tốt nghiệp");
+                return new ActionResultResponese<string>(-1, "Thêm mới chi tiết hội đồng tốt nghiệp không thành công", "Chi tiết hội đồng tốt nghiệp");
             return new ActionResultResponese<string>(1, "Thêm mới chi tiết hội đồng tốt nghiệp thành công", "Chi tiết hội đồng tốt nghiệp");
         }
 
@@ -111,10 +112,10 @@ namespace WebSite.Core.Infrastructure.Services
         {
             var checkchitietHD = await _chitiethoidongRepository.CheckExits(idchitietHD);
             if (!checkchitietHD)
-                return new ActionResultResponese<string>(-5, "Chi tiết hội đồng không tồn tại", "Chi tiết hội đồng");
+                return new ActionResultResponese<string>(-10, "Chi tiết hội đồng không tồn tại", "Chi tiết hội đồng");
             var result = await _chitiethoidongRepository.DeleteByIdAsync(idchitietHD);
             if (result <= 0)
-                return new ActionResultResponese<string>(-1, "Xóa chi tiết hội đồng không thành công", "Chi tiết hội đông");
+                return new ActionResultResponese<string>(-11, "Xóa chi tiết hội đồng không thành công", "Chi tiết hội đông");
             return new ActionResultResponese<string>(1, "Xóa chi tiết hội đồng thành công", "Chi tiết hội đông");
         }
     }

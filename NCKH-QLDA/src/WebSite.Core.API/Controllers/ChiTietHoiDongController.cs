@@ -38,7 +38,7 @@ namespace WebSite.Core.API.Controllers
         //    return Ok(result);
         //}
 
-        [AcceptVerbs("POST"), Route("InsertListChiTietHoiDong/{idhoidong}")]
+        [AcceptVerbs("POST"), Route("InsertListChiTietHoiDong/{idhoidong}/{idhocky}/{idmonhoc}")]
         [SwaggerOperation(Summary = "InsertList ChiTietHoiDong", Description = "Requires login verification!", OperationId = "InsertListChiTietHoiDong", Tags = new[] { "ChiTietHoiDong" })]
         public async Task<IActionResult> InsertListChiTietHoiDongAsync([FromBody] List<ChiTietHoiDongMeta> listchitiethoidong, string idhoidong,string idhocky,string idmonhoc)
         {

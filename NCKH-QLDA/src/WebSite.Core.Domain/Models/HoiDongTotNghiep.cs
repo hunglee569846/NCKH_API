@@ -10,9 +10,7 @@ namespace WebSite.Core.Domain.Models
         public string MaHoiDong { get; set; }
         public string TenHoiDong { get; set; }
         public string IdHocKy { get; set; }
-        public string TenHocKy { get; set; }
         public string IdMonHoc { get; set; }
-        public string TenMonHoc { get; set; }
         public DateTime? CreateTime { get; set; }
         public DateTime? LastUpdate { get; set; }
         public string CreatorUserId { get; set; }

@@ -15,6 +15,7 @@ namespace WebSite.Core.Domain.IRepository
         Task<int> UpdateAsync(HoiDongTotNghiep hoidong);
         Task<int> DeleteAsync(string idhoidong);
         Task<bool> CheckExit(string idhoidong, string idhocky);
+        Task<bool> CheckExitMaHD(string maHoiDong, string idhocky);
         Task<bool> CheckExitIsActive(string idhoidong);
         Task<HoiDongTotNghiep> GetInfo(string idhoidongtotnghiep);
     }

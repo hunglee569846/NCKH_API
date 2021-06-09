@@ -8,7 +8,7 @@ namespace WebSite.Core.Domain.ModelMeta
     {
         // public string IdPhanBien { get; set; }
         // public string IdGVPB { get; set; }
-        public string MaGVPB { get; set; }
+        public string idGVPB { get; set; }
        // public string TenGVPB { get; set; }
         // public string IdDetai { get; set; }
         //  public string MaDeTai { get; set; }

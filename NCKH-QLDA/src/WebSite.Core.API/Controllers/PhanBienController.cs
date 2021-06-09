@@ -62,7 +62,7 @@ namespace WebSite.Core.API.Controllers
         }
 
         [SwaggerOperation(Summary = "UpdateAsyncPhanBien", Description = "Requires login verification!", OperationId = "UpdateAsync", Tags = new[] { "PhanBien" })]
-        [AcceptVerbs("PUT"), Route("{idGVPB}/{iddetai}/{idhocky}/{idmonhoc}/{idPhanBien}")]
+        [AcceptVerbs("PUT"), Route("UpdateAsyncPhanBien/{idGVPB}/{iddetai}/{idhocky}/{idmonhoc}/{idPhanBien}")]
         public async Task<IActionResult> UpdateAsync([FromBody] PhanBienUpdateMeta phanbienupdateMeta, string idGVPB, string iddetai, string idhocky,string idmonhoc, string idPhanBien)
         {
             var result = await _phanbiencService.Update(phanbienupdateMeta, idGVPB, iddetai, idhocky,idmonhoc, idPhanBien,CurrentUser.MaGiangVien,CurrentUser.FullName);
@@ -75,10 +75,10 @@ namespace WebSite.Core.API.Controllers
         }
 
         [SwaggerOperation(Summary = "UpdateDiemPhanBien", Description = "Requires login verification!", OperationId = "UpdateDiemAsync", Tags = new[] { "PhanBien" })]
-        [AcceptVerbs("PUT"), Route("{idPhanBien}/{idhocky}/{idmonhoc}/{Diem}/{iddetai}")]
-        public async Task<IActionResult> UpdateDiemAsync([FromBody] NoteMeta note, float Diem, string idhocky, string idmonhoc, string idPhanBien,string iddetai)
+        [AcceptVerbs("PUT"), Route("UpdateDiemPhanBien/{idPhanBien}/{Diem}")]
+        public async Task<IActionResult> UpdateDiemAsync([FromBody] NoteMeta note, float Diem, string idPhanBien)
         {
-            var result = await _phanbiencService.UpdateDiemAsync(idPhanBien, idhocky,idmonhoc, Diem, note,iddetai);
+            var result = await _phanbiencService.UpdateDiemAsync(idPhanBien, Diem, note);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Search PhanBien controller error " + result.Code);

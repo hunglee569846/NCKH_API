@@ -39,7 +39,7 @@ namespace WebSite.Core.Infrastructure.Services
         }
        public async Task<ActionResultResponese<string>> InsertByHk(PhanBienMeta phanbienMeta, string idGVPB, string iddetai, string idhocky,string idmonhoc,string creatorUserId,string creatorFullName)
         {
-            var checkPhanBien = await _phanbienRepository.CheckExis(idGVPB, idhocky, idmonhoc, iddetai);
+            var checkPhanBien = await _phanbienRepository.CheckExisPhanBien(idGVPB, iddetai, idhocky, idmonhoc );
             if (checkPhanBien)
                 return new ActionResultResponese<string>(-21, "Giảng viên đã phản biện đề tài này.", "Phản biện.");
             var checExitsHK = await _hocKysRepository.CheckExisIsActivetAsync(idhocky);
@@ -80,14 +80,14 @@ namespace WebSite.Core.Infrastructure.Services
             var checExitsDeTai = await _deTaiRepository.CheckExits(iddetai);
             if (!checExitsDeTai)
                 return new ActionResultResponese<string>(-33, "Đề tài không tồn tại.", "Đề tài.");
-            List<PhanBienlistMeta> listGiangVien = phanbienListMeta.GroupBy(p => p.MaGVPB).Select(g => g.First()).ToList();
+            List<PhanBienlistMeta> listGiangVien = phanbienListMeta.GroupBy(p => p.idGVPB).Select(g => g.First()).ToList();
             if (listGiangVien.Count() != phanbienListMeta.Count())
                 return new ActionResultResponese<string>(-34, "Trùng lặp giảng viên.", "Giảng viên.");
             
            
             foreach (var giangvien in phanbienListMeta)
             {
-                var checkPhanBien = await _phanbienRepository.CheckExis(giangvien.MaGVPB, idhocky, idmonhoc, iddetai);
+                var checkPhanBien = await _phanbienRepository.CheckExisPhanBien(giangvien.idGVPB, iddetai, idhocky, idmonhoc); ;
                 if (checkPhanBien)
                     return new ActionResultResponese<string>(-31, "Giảng viên đã phản biện đề tài này.", "Phản biện.");
                 
@@ -99,7 +99,7 @@ namespace WebSite.Core.Infrastructure.Services
                 //var checkExitsGVHDinHocKy = await _giangVienHuongDanRepository.CheckExitsActive(idhocky, giangvien.IdGVHD);
                 //if (checkExitsGVHDinHocKy)
                 //    return new ActionResultResponese<string>(-16, "Giảng viên đã có trong kỳ.", "Giang vien hướng dẫn theo kỳ.");
-                var giangvienInfo = await _giangVienHuongDanRepository.GetInfoByMaGVHD(idhocky, giangvien.MaGVPB);
+                var giangvienInfo = await _giangVienHuongDanRepository.GetInfoByMaGVHD(idhocky, giangvien.idGVPB);
                 var id = Guid.NewGuid().ToString();
                 listPhanBien.Add(new PhanBien
                 {
@@ -128,7 +128,7 @@ namespace WebSite.Core.Infrastructure.Services
         }
         public async Task<ActionResultResponese<string>> Update(PhanBienUpdateMeta phanbienUpdateMeta, string idGVPB, string iddetai, string idhocky,string idmonhoc, string idPhanBien,string lastUpdateUserId, string lastUpdateFullName)
         {
-            var checExitsPB = await _phanbienRepository.CheckExis(idGVPB, idhocky,idmonhoc,iddetai);
+            var checExitsPB = await _phanbienRepository.CheckExisPhanBien(idGVPB, idhocky,idmonhoc,iddetai);
             if (!checExitsPB)
                 return new ActionResultResponese<string>(-6, "Phản biện không có trong kỳ.", "Học kỳ.");
             var checExitsHK = await _hocKysRepository.CheckExisIsActivetAsync(idhocky);
@@ -161,9 +161,9 @@ namespace WebSite.Core.Infrastructure.Services
             return new ActionResultResponese<string>(result, "Sửa thành công.", "Phản biện.");
         }
 
-        public async Task<ActionResultResponese<string>> UpdateDiemAsync(string idphanbien,string idhocKy,string idmonhoc, float Diem, NoteMeta note,string iddetai)
+        public async Task<ActionResultResponese<string>> UpdateDiemAsync(string idphanbien, float Diem, NoteMeta note)
         {
-            var checExitsPB = await _phanbienRepository.CheckExis(idphanbien,idhocKy,idmonhoc,iddetai);
+            var checExitsPB = await _phanbienRepository.CheckExis(idphanbien);
             if (!checExitsPB)
                 return new ActionResultResponese<string>(-11, "Phản biện không có trong kỳ.", "Học kỳ.");
             if(10< Diem || Diem < 0)

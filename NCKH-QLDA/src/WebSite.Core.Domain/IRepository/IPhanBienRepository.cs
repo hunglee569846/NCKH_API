@@ -12,7 +12,8 @@ namespace WebSite.Core.Domain.IRepository
         Task<int> InsertByHk(PhanBien phanbien);
         Task<int> Update(PhanBien phanbien);
         Task<int> UpdateDiem(NoteMeta note,float diem,string idPhanBien);
-        Task<bool> CheckExis(string idGVPB,string idhocky,string idmonhoc,string iddetai);
+        Task<bool> CheckExis(string idPhanBien);
+        Task<bool> CheckExisPhanBien(string idGVPB, string iddetai, string idhocky, string idmonhoc);
         Task<bool> CheckExisByMaGV(string MaGV,string idhocky,string idmonhoc,string iddetai); //check bằng mã giảng viên
         Task<bool> CheckExisActive(string idphanbien);
         Task<int> DeleteAsync(string idphanbien);

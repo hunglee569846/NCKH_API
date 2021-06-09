@@ -203,7 +203,7 @@ namespace WebSite.Core.Infrastructure.Repository
 
         }
 
-        public async Task<int> DeleteByIdAsync(string idgvhdTheoky,string deleteUserId,string deleteFullName,DateTime? ngayxoa)
+        public async Task<int> DeleteByIdAsync(string idgvhdTheoky,string deleteUserId,string deleteFullName,DateTime? DeleteTime)
         {
             try
             {
@@ -216,9 +216,9 @@ namespace WebSite.Core.Infrastructure.Repository
                     para.Add("@IdGVHDTheoKy", idgvhdTheoky);
                     para.Add("@DeleteUserId", deleteUserId);
                     para.Add("@DeleteFullName", deleteFullName);
-                    if(ngayxoa != DateTime.MinValue && ngayxoa != null)
+                    if(DeleteTime != DateTime.MinValue && DeleteTime != null)
                     {
-                        para.Add("@NgayXoa", ngayxoa);
+                        para.Add("@DeleteTime", DeleteTime);
                     }
                     rowAffect = await conn.ExecuteAsync("[dbo].[spGiangVienHuongDan_DeleteAsync]", para, commandType: CommandType.StoredProcedure);
                     return rowAffect;
@@ -262,7 +262,7 @@ namespace WebSite.Core.Infrastructure.Repository
                         await conn.OpenAsync();
                     DynamicParameters para = new DynamicParameters();
                     para.Add("@IdHocKy", idhocky);
-                    para.Add("@MaGVHD", maGVHD);
+                    para.Add("@IdGVHD", maGVHD);
 
                     return await conn.QuerySingleOrDefaultAsync<GVHDTheoKy>("[dbo].[spGiangVienHuongDan_GetInfoByHK]", para, commandType: CommandType.StoredProcedure);
 

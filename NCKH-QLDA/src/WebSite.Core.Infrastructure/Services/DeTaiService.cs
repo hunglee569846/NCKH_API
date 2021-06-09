@@ -58,7 +58,36 @@ namespace WebSite.Core.Infrastructure.Services
                     Message = "Môn học không có trong kỳ này.",
                     Data = null
                 };
-            return await _deTaiRepository.SelectByIdHocKy(idhocky);
+            return await _deTaiRepository.SelectByIdMonHocInHocKy(idhocky,idmonhoc);
+        }
+
+        public async Task<SearchResult<DeTaiSearchViewModel>> GetChuaPhanHDAsync(string idhocky, string idmonhoc)
+        {
+            var checkIdKy = await _deTaiRepository.CheckExitsKyHoc(idhocky);
+            if (!checkIdKy)
+                return new SearchResult<DeTaiSearchViewModel>()
+                {
+                    Code = -21,
+                    Message = "Kỳ học không tồn tại.",
+                    Data = null
+                };
+            var CheckExist = await _deTaiRepository.CheckExitsActive(idhocky, idmonhoc);
+            if (!CheckExist)
+                return new SearchResult<DeTaiSearchViewModel>()
+                {
+                    Code = -22,
+                    Message = "Môn học không có trong kỳ này.",
+                    Data = null
+                };
+            var getInfoMonHoc = await _monhocRepository.SearchInfo(idmonhoc);
+            if (getInfoMonHoc.TypeApprover.GetHashCode() == 0)
+                return new SearchResult<DeTaiSearchViewModel>()
+                {
+                    Code = -23,
+                    Message = "Môn học không có hội đồng.",
+                    Data = null
+                };
+            return await _deTaiRepository.SelectChuaPhanHD(idhocky,idmonhoc);
         }
         public async Task<ActionResultResponese<string>> InsertAsync(DeTaiInsertMeta detaiInsertMeta, string madetai, string idhocky, string idmonhoc, string idsinhvien, string tensinhvien,string masinhvien, string maNguoiTao,string tenNguoiTao)
         {

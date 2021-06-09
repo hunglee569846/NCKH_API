@@ -6,7 +6,7 @@ namespace WebSite.Core.Domain.Models
 {
     public class BangDiem
     {
-        public string IdBangDien { get; set; }
+        public string IdBangDiem { get; set; }
         public string IdDeTai { get; set; }
         public string IdSinhVien { get; set; }
         public string IdHocKy { get; set; }
@@ -14,8 +14,10 @@ namespace WebSite.Core.Domain.Models
         public string IdHoiDong { get; set; }
         public string IdGiangVien { get; set; }
         public string NhanXetGV { get; set; }
-        public float DiemSo { get; set; }
+        public float? DiemSo { get; set; }
         public DateTime? NgayVaoDiem { get; set; }
+        public string CreatorPointUserId { get; set; }
+        public string CreatorPointFullName { get; set; }
         public DateTime? CreateTime { get; set; }
         public DateTime? DeteteTime { get; set; }
         public DateTime? LastUpdate { get; set; }

@@ -77,6 +77,40 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
 
+        public async Task<SearchResult<DeTaiSearchViewModel>> SelectChuaPhanHD(string idhocky, string idmonhoc)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    if (conn.State == ConnectionState.Closed)
+                        await conn.OpenAsync();
+                    DynamicParameters para = new DynamicParameters();
+                    para.Add("@idHocKy", idhocky);
+                    para.Add("@idMonHoc", idmonhoc);
+                    using (var multi = await conn.QueryMultipleAsync("[dbo].[spDetai_SearchChuaPhanHD]", para, commandType: CommandType.StoredProcedure))
+                    {
+                        var totalRows = (await multi.ReadAsync<int>()).SingleOrDefault();
+                        var data = (await multi.ReadAsync<DeTaiSearchViewModel>()).ToList();
+                        if (totalRows == 0 || data == null)
+                        {
+                            return new SearchResult<DeTaiSearchViewModel>() { Code = 1, Data = null, Message = "Không có đề tài chưa phân hội đồng." };
+                        }
+                        return new SearchResult<DeTaiSearchViewModel>()
+                        {
+                            Data = data,
+                            TotalRows = totalRows
+                        };
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                //_logger.LogError(ex, "[dbo].[spDetai_SearchChuaPhanHD] SearchAsync GiangVienHuongDanRepository Error.");
+                return new SearchResult<DeTaiSearchViewModel> { TotalRows = 0, Data = null ,Code = -1};
+            }
+        }
+
         public async Task<bool> CheckExitsActive(string idhocky, string idmonhoc)
         {
             try
@@ -368,7 +402,7 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
 
-        public async Task<bool> CheckIsDat(string idmonhoc, string maSinhVien)
+        public async Task<bool> CheckIsDat(string idmonhoc, string idsinhvien)
         {
             try
             {
@@ -378,9 +412,9 @@ namespace WebSite.Core.Infrastructure.Repository
                         await con.OpenAsync();
 
                     var sql = @"
-					SELECT IIF (EXISTS (SELECT 1 FROM dbo.DeTais WHERE MaSinhVien = @maSinhVien AND IdMonHoc = @idmonhoc AND IsActive = 1 AND IsDelete = 0 AND IsDat = 1), 1, 0)";
+					SELECT IIF (EXISTS (SELECT 1 FROM dbo.DeTais WHERE IdSinhVien = @idsinhvien AND IdMonHoc = @idmonhoc AND IsActive = 1 AND IsDelete = 0 AND IsDat = 1), 1, 0)";
 
-                    var result = await con.ExecuteScalarAsync<bool>(sql, new { MaSinhVien = maSinhVien, IdMonHoc = idmonhoc });
+                    var result = await con.ExecuteScalarAsync<bool>(sql, new { IdSinhVien = idsinhvien, IdMonHoc = idmonhoc });
                     return result;
                 }
             }

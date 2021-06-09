@@ -61,6 +61,10 @@ namespace WebSite.Core.Infrastructure.Services
             if (infoHocKy == null)
                 return new ActionResultResponese<string>(-4, "Học kỳ không tồn tại.", "Học kỳ.");
 
+            var checkmaHD = await _hoiDongTotNghiepRepository.CheckExitMaHD(hoidongMeta.MaHoiDong, idhocky);
+            if (checkmaHD)
+                return new ActionResultResponese<string>(-21, "Hội đồng đã tồn tại.", "Hội đồng.");
+
 
             var hoidong = new HoiDongTotNghiep()
             {
@@ -68,9 +72,7 @@ namespace WebSite.Core.Infrastructure.Services
                 MaHoiDong = hoidongMeta.MaHoiDong?.Trim(),
                 TenHoiDong = hoidongMeta.TenHoiDong?.Trim(),
                 IdHocKy = idhocky?.Trim(),
-                TenHocKy = infoHocKy.TenHocKy?.Trim(),
                 IdMonHoc = idmonhoc?.Trim(),
-                TenMonHoc = infoMonHoc.TenMonHoc?.Trim(),
                 CreateTime = DateTime.Now,
                 NgayBaoVe = hoidongMeta.NgayBaoVe,
                 LastUpdate = DateTime.Now,

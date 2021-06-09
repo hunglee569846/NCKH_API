@@ -78,6 +78,19 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
+        [AcceptVerbs("GET"), Route("GetPhanHoiDong/{idhocky}/{idmonhoc}")]
+        [SwaggerOperation(Summary = "GetPhanHoiDong Detai", Description = "Requires login verification!", OperationId = "GetPhanHoiDongAsync", Tags = new[] { "DeTai" })]
+        public async Task<IActionResult> GetByChuaPhanHopiDongAsync(string idhocky, string idmonhoc)
+        {
+            var result = await _ideTaiService.GetChuaPhanHDAsync(idhocky, idmonhoc);
+            if (result.Code <= 0)
+            {
+                //_logger.LogError("Search DeTai controller error " + result.Code);
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+
         [AcceptVerbs("POST"), Route("InsertDeTai/{madetai}/{idhocky}/{idmonhoc}/{idsinhvien}/{tensinhvien}/{masinhvien}")]
         [SwaggerOperation(Summary = "InsertAsync Detai", Description = "Requires login verification!", OperationId = "InsertAsync", Tags = new[] { "DeTai" })]
         public async Task<IActionResult> InsertAsync([FromBody] DeTaiInsertMeta detaiInsertMeta, string madetai, string idhocky, string idmonhoc, string idsinhvien, string tensinhvien,string masinhvien)

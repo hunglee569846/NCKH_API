@@ -61,12 +61,13 @@ namespace WebSite.Core.Infrastructure.Repository
                     param.Add("@IdHocKy", hocky.IdHocKy);
                     param.Add("@MaHocKy", hocky.MaHocKy);
                     param.Add("@TenHocKy", hocky.TenHocKy);
-                    if (hocky.NgayTao != null && hocky.NgayTao != DateTime.MinValue)
+                    if (hocky.CreateTime != null && hocky.CreateTime != DateTime.MinValue)
                     {
-                        param.Add("@NgayTao", hocky.NgayTao);
+                        param.Add("@CreateTime", hocky.CreateTime);
                     }
                     param.Add("@IsActive", hocky.IsActive);
                     param.Add("@IsDelete", hocky.IsDelete);
+                    param.Add("@LockData", hocky.LockData);
                     param.Add("@CreatetorId", hocky.CreatetorId);
                     param.Add("@CreatorFullName", hocky.CreatorFullName);
                     TotalRow = await conn.ExecuteAsync("[dbo].[spHocKy_Insert]", param, commandType: CommandType.StoredProcedure);
@@ -198,7 +199,28 @@ namespace WebSite.Core.Infrastructure.Repository
                 return -1;
             }
         }
+        public async Task<bool> CheckLockDataAsync(string idHocKy)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(_connectionString))
+                {
+                    if (con.State == ConnectionState.Closed)
+                        await con.OpenAsync();
 
+                    var sql = @"
+					SELECT IIF (EXISTS (SELECT 1 FROM dbo.HocKys WHERE IdHocKy = @idHocKy AND IsLockData = 1 AND IsActive = 1 AND IsDelete = 0), 1, 0)";
+
+                    var result = await con.ExecuteScalarAsync<bool>(sql, new { IdHocKy = idHocKy });
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                // _logger.LogError(ex, "CheckExistActiveAsync HocKyRepository Error.");
+                return false;
+            }
+        }
         public async Task<HocKySearchViewModel> SearchInfo(string idhocky)
         {
             try

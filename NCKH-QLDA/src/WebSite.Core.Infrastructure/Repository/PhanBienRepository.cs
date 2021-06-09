@@ -110,7 +110,29 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
 
-        public async Task<bool> CheckExis(string idGVPB, string idhocky,string idmonhoc,string iddetai)
+        public async Task<bool> CheckExis(string idPhanBien)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(_connectionString))
+                {
+                    if (con.State == ConnectionState.Closed)
+                        await con.OpenAsync();
+
+                    var sql = @"
+					SELECT IIF (EXISTS (SELECT 1 FROM dbo.PhanBiens WHERE IdPhanBien = @idPhanBien AND IsActive = 1 AND IsDelete = 0), 1, 0)";
+
+                    var result = await con.ExecuteScalarAsync<bool>(sql, new { IdPhanBien = idPhanBien });
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                // _logger.LogError(ex, "CheckExistActiveAsync HocKyRepository Error.");
+                return false;
+            }
+        }
+        public async Task<bool> CheckExisPhanBien(string idGVPB, string iddetai, string idhocky, string idmonhoc)
         {
             try
             {
@@ -122,7 +144,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     var sql = @"
 					SELECT IIF (EXISTS (SELECT 1 FROM dbo.PhanBiens WHERE IdGVPB = @idGVPB AND IdHocKy = @idhocky AND IdMonHoc = @idmonhoc AND IdDetai = @iddetai AND IsActive = 1 AND IsDelete = 0), 1, 0)";
 
-                    var result = await con.ExecuteScalarAsync<bool>(sql, new { IdPhanBien = idGVPB, IdHocKy = idhocky , IdMonHoc = idmonhoc, IdDetai = iddetai });
+                    var result = await con.ExecuteScalarAsync<bool>(sql, new { IdGVPB = idGVPB, IdHocKy = idhocky, IdMonHoc = idmonhoc, IdDetai = iddetai, });
                     return result;
                 }
             }

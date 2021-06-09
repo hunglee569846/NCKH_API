@@ -64,9 +64,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     param.Add("@MaHoiDong", hoidong.MaHoiDong);
                     param.Add("@TenHoiDong", hoidong.TenHoiDong);
                     param.Add("@IdHocKy", hoidong.IdHocKy);
-                    param.Add("@TenHocKy", hoidong.TenHocKy);
                     param.Add("@IdMonHoc", hoidong.IdMonHoc);
-                    param.Add("@TenMonHoc", hoidong.TenMonHoc);
                     if(hoidong.CreateTime != DateTime.MinValue || hoidong.CreateTime != null)
                     {
                         param.Add("@CreateTime", hoidong.CreateTime);
@@ -135,6 +133,28 @@ namespace WebSite.Core.Infrastructure.Repository
 					SELECT IIF(EXISTS(SELECT 1 FROM dbo.HoiDongTotNghieps WHERE IdHoiDong = @idhoidong AND IdHocKy = @idhocky AND IsActive = 1 AND IsDelete = 0 ),1,0)";
 
                     var result = await con.ExecuteScalarAsync<bool>(sql, new { IdHoiDong = idhoidong , IdHocKy  = idhocky});
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                // _logger.LogError(ex, "CheckExistActiveAsync HocKyRepository Error.");
+                return false;
+            }
+        }
+        public async Task<bool> CheckExitMaHD(string MaHoiDong, string idhocky)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(_ConnectionString))
+                {
+                    if (con.State == ConnectionState.Closed)
+                        await con.OpenAsync();
+
+                    var sql = @"
+					SELECT IIF(EXISTS(SELECT 1 FROM dbo.HoiDongTotNghieps WHERE MaHoiDong = @maHoiDong AND IdHocKy = @idhocky AND IsActive = 1 AND IsDelete = 0 ),1,0)";
+
+                    var result = await con.ExecuteScalarAsync<bool>(sql, new { MaHoiDong = MaHoiDong, IdHocKy = idhocky });
                     return result;
                 }
             }
