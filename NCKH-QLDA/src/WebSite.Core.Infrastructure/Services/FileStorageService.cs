@@ -1,19 +1,19 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using NCKH.QLDA.FileManagenment.API.Domain.IServices;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
+using WebSite.Core.Domain.IServices;
 
-namespace NCKH.QLDA.FileManagenment.API.Infrastructure.Services
+namespace WebSite.Core.Infrastructure.Services
 {
-    public class FileStorageService :  IFileStorageServices
+    public class FileStorageService : IFileStorageServices
     {
         private readonly string _userContentFolder;
-        private const string USER_CONTENT_FOLDER_NAME = "uploadsAPIQLDA";
+        private const string USER_CONTENT_FOLDER_NAME = "uploads";
 
         public FileStorageService(IWebHostEnvironment hostingEnvironment)
         {

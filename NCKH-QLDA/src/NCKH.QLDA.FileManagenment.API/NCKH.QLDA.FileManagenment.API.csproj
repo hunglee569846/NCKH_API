@@ -7,13 +7,13 @@
 
   <ItemGroup>
     <Compile Remove="Domain\Resources\**" />
+    <Compile Remove="uploads\**" />
     <Content Remove="Domain\Resources\**" />
+    <Content Remove="uploads\**" />
     <EmbeddedResource Remove="Domain\Resources\**" />
+    <EmbeddedResource Remove="uploads\**" />
     <None Remove="Domain\Resources\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="uploads\" />
+    <None Remove="uploads\**" />
   </ItemGroup>
 
   <ItemGroup>

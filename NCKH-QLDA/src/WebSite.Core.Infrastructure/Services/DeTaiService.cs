@@ -94,6 +94,11 @@ namespace WebSite.Core.Infrastructure.Services
             var checkDeTai = await _deTaiRepository.CheckMaDeTai(madetai);
             if (checkDeTai)
                 return new ActionResultResponese<string>(-31, "Mã đề tài đã tồn tại.", "Đề tài.");
+
+            var checkSinhVien = await _deTaiRepository.CheckExitsSinhVien(idhocky,idmonhoc,idsinhvien);
+            if (checkSinhVien)
+                return new ActionResultResponese<string>(-37, "Sinh viên đã có đề tài.", "Sinh viên.");
+
             var checExitHocKy = await _hockyRepository.CheckExisIsActivetAsync(idhocky);
             if (!checExitHocKy)
                 return new ActionResultResponese<string>(-4, "Học kỳ không tồn tại.", "Học kỳ.");

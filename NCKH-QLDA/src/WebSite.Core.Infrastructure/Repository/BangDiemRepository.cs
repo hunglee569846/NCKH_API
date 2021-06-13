@@ -1,12 +1,15 @@
 ﻿using Dapper;
+using NCKH.Infrastruture.Binding.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebSite.Core.Domain.IRepository;
 using WebSite.Core.Domain.Models;
+using WebSite.Core.Domain.ViewModel;
 
 namespace WebSite.Core.Infrastructure.Repository
 {
@@ -17,6 +20,7 @@ namespace WebSite.Core.Infrastructure.Repository
         {
             _ConnectionString = ConnectionString;
         }
+        // phan công đề tài.
         public async Task<int> InsertAsync(BangDiem bangdiem)
         {
             try
@@ -35,6 +39,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     param.Add("@IdHoiDong", bangdiem.IdHoiDong);
                     param.Add("@IdGiangVien", bangdiem.IdGiangVien);
                     param.Add("@DiemSo", bangdiem.DiemSo);
+                    param.Add("@CreateTime", bangdiem.CreateTime);
                     param.Add("@CreatorUserId", bangdiem.CreatorUserId);
                     param.Add("@CreatorFullName", bangdiem.CreatorFullName);
                     param.Add("@IsDelete", bangdiem.IsDelete);
@@ -123,6 +128,61 @@ namespace WebSite.Core.Infrastructure.Repository
             catch (Exception ex)
             {
                 return -1;
+            }
+        }
+
+        //Xuat Diem
+        public async Task<SearchResult<XuatDiemPhanBienViewModel>> XuatDiemPhanBien(string idhocky, string idmonhoc)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_ConnectionString))
+                {
+                    if (conn.State == ConnectionState.Closed)
+                        await conn.OpenAsync();
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@idhocky", idhocky);
+                    param.Add("@idmonhoc", idmonhoc);
+                    using (var multi = await conn.QueryMultipleAsync("[dbo].[spNhapDiemPhanBien_SelectAll]", param, commandType: CommandType.StoredProcedure))
+                    {
+                        return new SearchResult<XuatDiemPhanBienViewModel>()
+                        {
+                            TotalRows = (await multi.ReadAsync<int>()).SingleOrDefault(),
+                            Data = (await multi.ReadAsync<XuatDiemPhanBienViewModel>()).ToList()
+                        };
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return new SearchResult<XuatDiemPhanBienViewModel> { Data = null, Code = 1 };
+            }
+        }
+        // xuat diem hoi dong
+        public async Task<SearchResult<XuatDiemHoiDongViewModel>> XuatDiemHoiDong(string idhocky, string idmonhoc)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_ConnectionString))
+                {
+                    if (conn.State == ConnectionState.Closed)
+                        await conn.OpenAsync();
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@idhocky", idhocky);
+                    param.Add("@idmonhoc", idmonhoc);
+                    using (var multi = await conn.QueryMultipleAsync("[dbo].[spXuatDiemHoiDong_SelectAll]", param, commandType: CommandType.StoredProcedure))
+                    {
+                        return new SearchResult<XuatDiemHoiDongViewModel>()
+                        {
+                            TotalRows = (await multi.ReadAsync<int>()).SingleOrDefault(),
+                            Data = (await multi.ReadAsync<XuatDiemHoiDongViewModel>()).ToList()
+                        };
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return new SearchResult<XuatDiemHoiDongViewModel> { Data = null, Code = 1 };
             }
         }
     }

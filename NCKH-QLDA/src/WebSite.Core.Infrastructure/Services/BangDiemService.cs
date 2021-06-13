@@ -1,4 +1,5 @@
 ﻿using NCKH.Infrastruture.Binding.Models;
+using NCKH.Infrastruture.Binding.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using WebSite.Core.Domain.IRepository;
 using WebSite.Core.Domain.IServices;
 using WebSite.Core.Domain.ModelMeta;
 using WebSite.Core.Domain.Models;
+using WebSite.Core.Domain.ViewModel;
 using WebSite.Core.Infrastructure.Repository;
 
 namespace WebSite.Core.Infrastructure.Services
@@ -195,6 +197,38 @@ namespace WebSite.Core.Infrastructure.Services
             if (result <= 0)
                 return new ActionResultResponese<string>(result, "Nhập điểm không thành công", "Bảng điểm");
             return new ActionResultResponese<string>(result, "Nhập điểm thành công.", "Bảng điểm");
+        }
+
+        // Xuat diem phan bien
+        public async Task<SearchResult<XuatDiemPhanBienViewModel>> XuatDiemPhanBien(string idhocky, string idmonhoc)
+        {
+            var checkHocKy = await _hockyRepository.CheckExisIsActivetAsync(idhocky);
+            if (!checkHocKy)
+                return new SearchResult<XuatDiemPhanBienViewModel> { Code = -43, Data = null, Message ="Học kỳ không tồn tại."};
+
+            var checkMonHoc = await _monhocRepository.CheckMonHocInHocKyExits(idmonhoc, idhocky);
+            if (!checkMonHoc)
+                return new SearchResult<XuatDiemPhanBienViewModel> { Code = -44, Data = null, Message = "Môn học không tồn tại." };
+            var getInfoMonHoc = await _monhocRepository.SearchInfo(idmonhoc);
+            if(getInfoMonHoc.TypeApprover.GetHashCode() == 0)
+                return new SearchResult<XuatDiemPhanBienViewModel> { Code = -45, Data = null, Message = "Môn học không có đánh giá phản biện." };
+            return await _bangdiemRepository.XuatDiemPhanBien(idhocky, idmonhoc);
+        }
+
+        //Xuat diem hoi dong
+        public async Task<SearchResult<XuatDiemHoiDongViewModel>> XuatDiemHoiDong(string idhocky, string idmonhoc)
+        {
+            var checkHocKy = await _hockyRepository.CheckExisIsActivetAsync(idhocky);
+            if (!checkHocKy)
+                return new SearchResult<XuatDiemHoiDongViewModel> { Code = -53, Data = null, Message = "Học kỳ không tồn tại." };
+
+            var checkMonHoc = await _monhocRepository.CheckMonHocInHocKyExits(idmonhoc, idhocky);
+            if (!checkMonHoc)
+                return new SearchResult<XuatDiemHoiDongViewModel> { Code = -54, Data = null, Message = "Môn học không tồn tại." };
+            var getInfoMonHoc = await _monhocRepository.SearchInfo(idmonhoc);
+            if (getInfoMonHoc.TypeApprover.GetHashCode() == 2)
+                return new SearchResult<XuatDiemHoiDongViewModel> { Code = -55, Data = null, Message = "Môn học không có đánh giá phản biện." };
+            return await _bangdiemRepository.XuatDiemHoiDong(idhocky, idmonhoc);
         }
     }
 }

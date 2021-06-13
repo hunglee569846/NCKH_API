@@ -70,7 +70,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 //_logger.LogError(ex, "[dbo].[spHocKy_SelectAll] SearchAsync GiangVienHuongDanRepository Error.");
                 return new SearchResult<DeTaiSearchViewModel> { TotalRows = 0, Data = null };
@@ -415,6 +415,29 @@ namespace WebSite.Core.Infrastructure.Repository
 					SELECT IIF (EXISTS (SELECT 1 FROM dbo.DeTais WHERE IdSinhVien = @idsinhvien AND IdMonHoc = @idmonhoc AND IsActive = 1 AND IsDelete = 0 AND IsDat = 1), 1, 0)";
 
                     var result = await con.ExecuteScalarAsync<bool>(sql, new { IdSinhVien = idsinhvien, IdMonHoc = idmonhoc });
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                // _logger.LogError(ex, "CheckMaDeTai DetaiRepository Error.");
+                return false;
+            }
+        }
+
+        public async Task<bool> CheckExitsSinhVien(string idhocky, string idmonhoc, string idsinhvien)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(_connectionString))
+                {
+                    if (con.State == ConnectionState.Closed)
+                        await con.OpenAsync();
+
+                    var sql = @"
+					SELECT IIF (EXISTS (SELECT 1 FROM dbo.DeTais WHERE IdSinhVien = @idsinhvien AND IdMonHoc = @idmonhoc AND IdHocKy = @idhocky AND IsActive = 1 AND IsDelete = 0), 1, 0)";
+
+                    var result = await con.ExecuteScalarAsync<bool>(sql, new { IdSinhVien = idsinhvien, IdMonHoc = idmonhoc, IdHocKy= idhocky });
                     return result;
                 }
             }

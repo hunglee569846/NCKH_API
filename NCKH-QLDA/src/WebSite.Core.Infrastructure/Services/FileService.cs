@@ -3,19 +3,18 @@ using Microsoft.AspNetCore.Http;
 using NCKH.Infrastruture.Binding.Extensions;
 using NCKH.Infrastruture.Binding.Models;
 using NCKH.Infrastruture.Binding.ViewModel;
-using NCKH.QLDA.FileManagenment.API.Domain;
-using NCKH.QLDA.FileManagenment.API.Domain.IRepository;
-using NCKH.QLDA.FileManagenment.API.Domain.IServices;
-using NCKH.QLDA.FileManagenment.API.Domain.Models;
-using NCKH.QLDA.FileManagenment.API.Domain.ViewModels;
-using NCKH.QLDA.FileManagenment.API.Infrastructure.Repository;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using WebSite.Core.Domain;
+using WebSite.Core.Domain.IRepository;
+using WebSite.Core.Domain.IServices;
+using WebSite.Core.Domain.Models;
+using WebSite.Core.Domain.ViewModel;
 
-namespace NCKH.QLDA.FileManagenment.API.Infrastructure.Services
+namespace WebSite.Core.Infrastructure.Services
 {
     public class FileService : IFileService
     {
@@ -28,16 +27,16 @@ namespace NCKH.QLDA.FileManagenment.API.Infrastructure.Services
             _folderRepository = folderRepository;
             _webHostEnvironment = WebHostEnvironment;
         }
-        public async Task<SearchResult<FileViewModel>> SearchAsync(string IdFile, string FileName, int FolderId)
+        public async Task<SearchResult<FileViewModel>> SearchAsync(string IdFile)
         {
-            return await _fileRepository.SearchAsync(IdFile, FileName, FolderId);
+            return await _fileRepository.SearchAsync(IdFile);
         }
         public async Task<List<FileViewModel>> GetsAll(string FileName, int FolderId)
         {
-           return await _fileRepository.SelectAllAsync(FileName, FolderId);
+            return await _fileRepository.SelectAllAsync(FileName, FolderId);
         }
-
-        public async Task<ActionResultResponese<List<FileViewModel>>> UploadFiles(string FileCode,string FileName, string creatorId, string FolderName, int? folderId, IFormFileCollection formFileCollection)
+        
+        public async Task<ActionResultResponese<List<FileViewModel>>> UploadFiles(string fileCode, string creatorUserId, string CreatorFullName, string FolderName, int? folderId, IFormFileCollection formFileCollection)
         {
             List<Files> listFiles = new List<Files>();
             string uploadUrl = string.Format("/uploadsAPIQLDA/" + FolderName + "/{0:yyyy/MM/dd}/", DateTime.Now);
@@ -46,10 +45,10 @@ namespace NCKH.QLDA.FileManagenment.API.Infrastructure.Services
             {
                 folderInfo = await _folderRepository.GetInfoAsync(folderId.Value);
                 if (folderInfo == null)
-                    return new ActionResultResponese<List<FileViewModel>>(-1, "Folder does not exists. You can not update file to this folder.");
+                    return new ActionResultResponese<List<FileViewModel>>(-1, "Folder không tồn tại. Bạn cần cập nhật thông tin folder.");
                 //_ghmFileResource.GetString("Folder does not exists. You can not update file to this folder."));
             }
-          
+
 
             foreach (IFormFile formFile in formFileCollection)
             {
@@ -60,7 +59,7 @@ namespace NCKH.QLDA.FileManagenment.API.Infrastructure.Services
                 var type = formFile.GetTypeFile();
                 var isImage = type.Contains("image/");
 
-                var isNameExit = await _fileRepository.CheckExistsByFolderIdName(id, folderId,formFile.FileName?.Trim());
+                var isNameExit = await _fileRepository.CheckExistsByFolderIdName(id, folderId, formFile.FileName?.Trim());
                 if (isNameExit)
                     continue;
 
@@ -72,12 +71,13 @@ namespace NCKH.QLDA.FileManagenment.API.Infrastructure.Services
                 var file = new Files
                 {
                     Id = id,
-                    FileCode = FileCode,
+                    FileCode = fileCode,
                     FileName = formFile.FileName?.Trim().StripVietnameseChars().ToUpper(),
                     Type = formFile.GetTypeFile(),
                     Size = formFile.GetFileSize(),
                     Url = urlOutPut,
-                    CreatorId = creatorId,
+                    CreatorUserId = creatorUserId?.Trim(),
+                    CreatorFullName = CreatorFullName?.Trim(),
                     Folderld = folderInfo.FolderId,
                     CreateDate = DateTime.Now,
                     DeleteTime = null,
@@ -105,7 +105,7 @@ namespace NCKH.QLDA.FileManagenment.API.Infrastructure.Services
                     Type = x.Type,
                     Url = x.Url,
                     CreateDate = x.CreateDate,
-                    CreatorId = x.CreatorId,
+                    CreatorUserId = x.CreatorUserId,
                 }).ToList()
             };
 
@@ -137,6 +137,19 @@ namespace NCKH.QLDA.FileManagenment.API.Infrastructure.Services
                 }
                 return 1;
             }
+        }
+
+        public async Task<ActionResultResponese<string>> DownloadAsync(string id)
+        {
+            var info = await _fileRepository.GetInfo(id);
+            if (info == null)
+                return new ActionResultResponese<string>(-2, "File không tồn tại.", "File");
+
+            var mapPath = _webHostEnvironment.ContentRootPath + info.Url;
+            if (!System.IO.File.Exists(mapPath))
+                return new ActionResultResponese<string>(-5, "Tải thất bại","file.");
+
+            return new ActionResultResponese<string>(1, "Tải xuống thành công.", info.Id, mapPath);
         }
     }
 }

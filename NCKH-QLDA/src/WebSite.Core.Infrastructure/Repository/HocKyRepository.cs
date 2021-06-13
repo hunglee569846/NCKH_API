@@ -155,7 +155,7 @@ namespace WebSite.Core.Infrastructure.Repository
         }
 
 
-        public async Task<bool> CheckExisIsActivetAsync(string idHocKy)
+        public async Task<bool> CheckExisIsActivetAsync(string idhocky)
         {
             try
             {
@@ -165,13 +165,13 @@ namespace WebSite.Core.Infrastructure.Repository
                         await con.OpenAsync();
 
                     var sql = @"
-					SELECT IIF (EXISTS (SELECT 1 FROM dbo.HocKys WHERE IdHocKy = @idHocKy AND IsActive = 1 AND IsDelete = 0), 1, 0)";
+					SELECT IIF (EXISTS (SELECT 1 FROM dbo.HocKys WHERE IdHocKy = @idhocky AND IsActive = 1 AND IsDelete = 0), 1, 0)";
 
-                    var result = await con.ExecuteScalarAsync<bool>(sql, new { IdHocKy = idHocKy});
+                    var result = await con.ExecuteScalarAsync<bool>(sql, new { IdHocKy = idhocky });
                     return result;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 // _logger.LogError(ex, "CheckExistActiveAsync HocKyRepository Error.");
                 return false;

@@ -38,7 +38,7 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [AcceptVerbs("GET"), Route("GetAllByMonHocInHocKy/{idhocky}/{idmonhoc}")]
+        [AcceptVerbs("GET"), Route("GetAllByMonHocInHocKy/{idhocky}")]
         [SwaggerOperation(Summary = "SearchByMonHocInHocKy Detai", Description = "Requires login verification!", OperationId = "SearchByMonHocInHocKy", Tags = new[] { "DeTai" })]
         public async Task<IActionResult> GetByMonHocInHocKyAsync(string idhocky, string idmonhoc)
         {

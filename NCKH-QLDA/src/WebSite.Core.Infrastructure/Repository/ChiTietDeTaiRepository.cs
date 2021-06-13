@@ -43,8 +43,7 @@ namespace WebSite.Core.Infrastructure.Repository
             }
             catch (Exception)
             {
-
-                throw;
+                return new SearchResult<ChiTietDeTaiViewModel> { Data = null, Code = 1 };
             }
             
         }
