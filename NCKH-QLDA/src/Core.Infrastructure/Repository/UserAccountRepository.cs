@@ -60,7 +60,7 @@ namespace Core.Infrastructure.Repository
                 }
                 return rowAffected;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                // _logger.LogError(ex, "[dbo].[spUserAccount_Insert] Insert UserAccountRepository Error.");
                 return -1;
@@ -81,7 +81,7 @@ namespace Core.Infrastructure.Repository
                     return await con.QuerySingleOrDefaultAsync<UserAccount>("[dbo].[spUserAccount_SelectByID]", param, commandType: CommandType.StoredProcedure);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
               //  _logger.LogError(ex, "[dbo].[spUserAccount_SelectByID] GetInfo UserAccountRepository Error.");
                 return null;
@@ -104,7 +104,7 @@ namespace Core.Infrastructure.Repository
                     return await con.QuerySingleOrDefaultAsync<UserAccount>("[dbo].[spUserAccount_SelectByIDTenantId]", param, commandType: CommandType.StoredProcedure);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
               //  _logger.LogError(ex, "[dbo].[spUserAccount_SelectByIDTenantId] GetInfo UserAccountRepository Error.");
                 return null;
@@ -127,7 +127,7 @@ namespace Core.Infrastructure.Repository
                     return result;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
               //  _logger.LogError(ex, "CheckIsAdminAsync UserAccountRepository Error.");
                 return false;
@@ -149,7 +149,7 @@ namespace Core.Infrastructure.Repository
                     return await con.QuerySingleOrDefaultAsync<UserAccount>("[dbo].[spUserAccount_GetInfoByUserName]", param, commandType: CommandType.StoredProcedure);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                // _logger.LogError(ex, "[dbo].[spUserAccount_GetInfoByUserName] GetInfo UserAccountRepository Error.");
                 return null;
@@ -180,7 +180,7 @@ namespace Core.Infrastructure.Repository
                 }
                 return rowAffected;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //_logger.LogError(ex, "[dbo].[spUserAccount_Update_LockAndReset] Update UserAccountRepository Error.");
                 return -1;
@@ -202,7 +202,7 @@ namespace Core.Infrastructure.Repository
                     return result;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //_logger.LogError(ex, "GetidKhoaByDomainAsync TenantRepository Error.");
                 return string.Empty;

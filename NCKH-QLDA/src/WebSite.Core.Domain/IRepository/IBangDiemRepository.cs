@@ -16,6 +16,11 @@ namespace WebSite.Core.Domain.IRepository
         Task<bool> CheckExitIdBangDiem(string idBangDiem);
         //xuất file mẫu điểm phản biện
         Task<SearchResult<XuatDiemPhanBienViewModel>> XuatDiemPhanBien(string idhocky, string idmonhoc);
+        //xuất file mẫu điểm phản biện Excel
+        Task<List<XuatDiemPhanBienViewModel>> XuatDiemPhanBienExcel(string idhocky, string idmonhoc);
+
+        //xuất file mẫu điểm hoi dong Excel
+        Task<List<XuatDiemHoiDongViewModel>> XuatDiemHoiDongExcel(string idhocky, string idmonhoc);
         //xuất file mẫu điểm hoi dong
         Task<SearchResult<XuatDiemHoiDongViewModel>> XuatDiemHoiDong(string idhocky, string idmonhoc);
     }
