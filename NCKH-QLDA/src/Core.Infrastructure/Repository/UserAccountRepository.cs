@@ -41,8 +41,8 @@ namespace Core.Infrastructure.Repository
                     param.Add("@PasswordHash", userAccount.PasswordHash);
                     param.Add("@PasswordSalt", userAccount.PasswordSalt);
                     param.Add("@PhoneNumber", userAccount.PhoneNumber);
-                    param.Add("@IdKhoa", userAccount.IdKhoa);
-                    param.Add("@NameKhoa", userAccount.NameKhoa);
+                    param.Add("@IdBoMon", userAccount.IdBoMon);
+                    param.Add("@NameBoMon", userAccount.NameBoMon);
                     param.Add("@LockoutEnd", userAccount.LockoutEnd);
                     param.Add("@LockoutEnabled", userAccount.LockoutEnabled);
                     param.Add("@AccessFailedCount", userAccount.AccessFailedCount);

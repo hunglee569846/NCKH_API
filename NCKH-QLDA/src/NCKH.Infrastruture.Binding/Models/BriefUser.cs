@@ -14,9 +14,14 @@ namespace NCKH.Infrastruture.Binding.Models
         public string MaGiangVien { get; set; }
 
         /// <summary>
-        /// Mã khoa đăng nhập
+        /// Mã Bộ môn đăng nhập
         /// </summary>
-        public string IdKhoa { get; set; }
+        public string IdBoMon { get; set; }
+
+        /// <summary>
+        /// Mã Bộ môn đăng nhập
+        /// </summary>
+        public string NameBoMon { get; set; }
 
         /// <summary>
         /// Tên đăng nhập.

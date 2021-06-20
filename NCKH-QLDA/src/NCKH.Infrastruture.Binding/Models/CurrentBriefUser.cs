@@ -20,7 +20,7 @@ namespace NCKH.Infrastruture.Binding.Models
                     MaGiangVien = string.Empty,
                     FullName = string.Empty,
                     Email = string.Empty,
-                    IdKhoa = string.Empty,
+                    IdBoMon = string.Empty,
                     PhoneNumber = string.Empty,
                     UserName = string.Empty,
                     Type = 0,

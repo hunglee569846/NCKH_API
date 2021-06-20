@@ -60,6 +60,7 @@ namespace Core.Infrastructure.Services
                 IdAcount = userInfo.IdAccount,
                 MaGiangVien = userInfo.MaGiangVien,
                 FullName = userInfo.UserFullName,
+                IdBoMon = userInfo.IdBoMon,
                 Email = userInfo.Email,
                 PhoneNumber = userInfo.PhoneNumber,
                 UserName = userInfo.UserName,

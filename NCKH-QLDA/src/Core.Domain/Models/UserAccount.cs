@@ -12,8 +12,8 @@ namespace Core.Domain.Models
         public string UserFullName { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }
-        public string IdKhoa { get; set; }
-        public string NameKhoa { get; set; }
+        public string IdBoMon { get; set; }
+        public string NameBoMon { get; set; }
         public string PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public string PhoneNumber { get; set; }

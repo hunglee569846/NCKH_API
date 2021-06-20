@@ -89,7 +89,7 @@ namespace Au.Authentication.Validators
 
             if (userInfo.LockoutEnabled && userInfo.LockoutEnd.HasValue && DateTime.Compare(userInfo.LockoutEnd.Value.DateTime, DateTime.Now) < 0 && userInfo.AccessFailedCount >= 5)
             {
-                Task.Run(() => _userAccountService.ResetLockoutAsync(userInfo.IdKhoa, userInfo.LastUpdateUserId, userInfo.LastUpdateFullName, string.Empty, userInfo.UserName, userInfo.Type));
+                Task.Run(() => _userAccountService.ResetLockoutAsync(userInfo.IdBoMon, userInfo.LastUpdateUserId, userInfo.LastUpdateFullName, string.Empty, userInfo.UserName, userInfo.Type));
             }
 
             if (userInfo.LockoutEnabled && userInfo.LockoutEnd.HasValue)
@@ -97,7 +97,7 @@ namespace Au.Authentication.Validators
                 if (DateTime.Compare(userInfo.LockoutEnd.Value.DateTime, DateTime.Now) < 0)
                 {
                     // Reset access fail count.
-                    Task.Run(() => _userAccountService.ResetLockoutAsync(userInfo.IdKhoa, userInfo.LastUpdateUserId, userInfo.LastUpdateFullName, string.Empty, userInfo.UserName, userInfo.Type));
+                    Task.Run(() => _userAccountService.ResetLockoutAsync(userInfo.IdBoMon, userInfo.LastUpdateUserId, userInfo.LastUpdateFullName, string.Empty, userInfo.UserName, userInfo.Type));
 
                     // Validate password.
                     var validateResult = ValidatePassword(userInfo, context.UserName, context.Password, out totalFailCount);
