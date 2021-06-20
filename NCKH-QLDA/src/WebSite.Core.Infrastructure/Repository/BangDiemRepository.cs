@@ -50,7 +50,7 @@ namespace WebSite.Core.Infrastructure.Repository
 
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return -1;
             }
@@ -156,6 +156,49 @@ namespace WebSite.Core.Infrastructure.Repository
             catch (Exception ex)
             {
                 return new SearchResult<XuatDiemPhanBienViewModel> { Data = null, Code = 1 };
+            }
+        }
+
+        public async Task<List<XuatDiemPhanBienViewModel>> XuatDiemPhanBienExcel(string idhocky, string idmonhoc)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_ConnectionString))
+                {
+                    if (conn.State == ConnectionState.Closed)
+                        await conn.OpenAsync();
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@idhocky", idhocky);
+                    param.Add("@idmonhoc", idmonhoc);
+                    var result = await conn.QueryAsync<XuatDiemPhanBienViewModel>("[dbo].[spXuatExcel_DiemPhanVien]", param, commandType: CommandType.StoredProcedure);
+                    return result.ToList();
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        //Diem hoi dong xuat Excel
+        public async Task<List<XuatDiemHoiDongViewModel>> XuatDiemHoiDongExcel(string idhocky, string idmonhoc)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_ConnectionString))
+                {
+                    if (conn.State == ConnectionState.Closed)
+                        await conn.OpenAsync();
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@idhocky", idhocky);
+                    param.Add("@idmonhoc", idmonhoc);
+                    var result = await conn.QueryAsync<XuatDiemHoiDongViewModel>("[dbo].[spXuatExcel_DiemHoiDong]", param, commandType: CommandType.StoredProcedure);
+                    return result.ToList();
+                }
+            }
+            catch (Exception)
+            {
+                return null;
             }
         }
         // xuat diem hoi dong

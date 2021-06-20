@@ -46,6 +46,13 @@ namespace WebSite.Core.Infrastructure.Services
             if (checkExitsInMonHoc)
                 return new ActionResultResponese<string>(-3, "Môn học đã tồn tại.", "Môn học");
 
+            if (monHocMeta.IdMonTienQuyet != "0")
+            {
+                var checkExitsMonHoc = await _imonhocRepository.CheckMonHocInHocKyExits(monHocMeta.IdMonTienQuyet, mamonhoc);
+                if (!checkExitsMonHoc)
+                    return new ActionResultResponese<string>(-11, "Môn học không tồn tại.", "Môn tiên quyết.");
+            }
+
             var checkExitsMaMonHoc = await _imonhocRepository.CheckExitsMaMonHoc(mamonhoc);
             if (checkExitsMaMonHoc)
                 return new ActionResultResponese<string>(-9, "Mã đã tồn tại.", "Môn học");
@@ -82,6 +89,13 @@ namespace WebSite.Core.Infrastructure.Services
             var checExits = await _imonhocRepository.CheckExitsIsActvive(idmonhoc);
             if (!checExits)
                 return new ActionResultResponese<string>(-5, "Mã không tồn tại.", "Môn học");
+
+            if (monhocmeta.IdMonTienQuyet != "0")
+            {
+                var checkExitsMonHoc = await _imonhocRepository.CheckMonHocInHocKyExits(monhocmeta.IdMonTienQuyet, mamonhoc);
+                if (!checkExitsMonHoc)
+                    return new ActionResultResponese<string>(-11, "Môn học không tồn tại.", "Môn tiên quyết.");
+            }
 
             var getInfo = await _imonhocRepository.SearchInfo(monhocmeta.IdMonTienQuyet);
             string montienquyet = "0";

@@ -1,7 +1,10 @@
-﻿using NCKH.Infrastruture.Binding.Models;
+﻿using Microsoft.AspNetCore.Hosting;
+using NCKH.Infrastruture.Binding.Extensions;
+using NCKH.Infrastruture.Binding.Models;
 using NCKH.Infrastruture.Binding.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,13 +26,15 @@ namespace WebSite.Core.Infrastructure.Services
         private readonly IDeTaiRepository _detaiRepository;
         private readonly IHoiDongTotNghiepRepository _hoidongtotnghiepRepository;
         private readonly IChiTietHoiDongRepository _chitiethoidongRepository;
+        private readonly IWebHostEnvironment _webHostEnvironment;
         public BangDiemService(IBangDiemRepository bangdiemRepository,
                                IHocKysRepository hockyRepository,
                                IGiangVienHuongDanRepository GiangVienHuongDanRepository,
                                IMonHocRepository monhocRepository,
                                IDeTaiRepository detaiRepository,
                                IHoiDongTotNghiepRepository hoidongtotnghiepRepository,
-                               IChiTietHoiDongRepository chitiethoidongRepository)
+                               IChiTietHoiDongRepository chitiethoidongRepository,
+                               IWebHostEnvironment webHostEnvironment)
         {
             _bangdiemRepository = bangdiemRepository;
             _hockyRepository = hockyRepository;
@@ -38,6 +43,7 @@ namespace WebSite.Core.Infrastructure.Services
             _detaiRepository = detaiRepository;
             _hoidongtotnghiepRepository = hoidongtotnghiepRepository;
             _chitiethoidongRepository = chitiethoidongRepository;
+            _webHostEnvironment = webHostEnvironment;
         }
 
        public async  Task<ActionResultResponese<string>> InsertAsync (string iddetai,string idGVHD,string idhoidong,string idhocky,string idmonhoc, string creatorUserId, string creatorFullName)
@@ -215,6 +221,33 @@ namespace WebSite.Core.Infrastructure.Services
             return await _bangdiemRepository.XuatDiemPhanBien(idhocky, idmonhoc);
         }
 
+        // Xuat diem phan bien dowload Excel
+        public async Task<Stream> XuatBangDiemExcel(string idhocky, string idmonhoc)
+        {
+            
+            //if (getInfoMonHoc.TypeApprover.GetHashCode() == 0)
+            //    return new ActionResultResponese<string>(-46, "Nhập điểm không thành công", "Bảng điểm");
+
+            List<XuatDiemPhanBienViewModel> diemphanbien = await _bangdiemRepository.XuatDiemPhanBienExcel(idhocky, idmonhoc);
+
+            var createEx = new CreateExcelExtensions();
+            var stream = createEx.CreateExcel(diemphanbien,"Điểm phản biện.");
+            // return new ActionResultResponese<string>(1, "Nhập điểm không thành công", "Bảng điểm", stream.ToString());
+            return stream;
+        }
+        // Xuat diem phan bien dowload Excel
+        public async Task<Stream> XuatHoiDongExcel(string idhocky, string idmonhoc)
+        {
+            //if (getInfoMonHoc.TypeApprover.GetHashCode() == 0)
+            //    return new ActionResultResponese<string>(-46, "Nhập điểm không thành công", "Bảng điểm");
+
+            List<XuatDiemHoiDongViewModel> diemHoiDong = await _bangdiemRepository.XuatDiemHoiDongExcel(idhocky, idmonhoc);
+
+            var createEx = new CreateExcelExtensions();
+            var stream = createEx.CreateExcel(diemHoiDong,"Điểm hội đồng.");
+            // return new ActionResultResponese<string>(1, "Nhập điểm không thành công", "Bảng điểm", stream.ToString());
+            return stream;
+        }
         //Xuat diem hoi dong
         public async Task<SearchResult<XuatDiemHoiDongViewModel>> XuatDiemHoiDong(string idhocky, string idmonhoc)
         {

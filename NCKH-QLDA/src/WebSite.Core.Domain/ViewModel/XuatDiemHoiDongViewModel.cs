@@ -12,9 +12,6 @@ namespace WebSite.Core.Domain.ViewModel
         public string IdHoiDong { get; set; }
         public string MaHoiDong { get; set; }
         public string TenHoiDong { get; set; }
-        public DateTime? CreateTime { get; set; }
-        public string CreatorUserId { get; set; }
-        public string CreatorFullName { get; set; }
         public string IdGVHD { get; set; }
         public string MaGVHD { get; set; }
         public string TenGVHD { get; set; }
@@ -24,5 +21,6 @@ namespace WebSite.Core.Domain.ViewModel
         public string IdSinhVien { get; set; }
         public string MaSinhVien { get; set; }
         public string TenSinhVien { get; set; }
+        public string GhiChu { get; set; }
     }
 }

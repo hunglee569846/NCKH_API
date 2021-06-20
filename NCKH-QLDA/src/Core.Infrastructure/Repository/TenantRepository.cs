@@ -35,7 +35,7 @@ namespace Core.Infrastructure.Repository
                     return result;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //_logger.LogError(ex, "GetTenantIdByDomain TenantRepository Error.");
                 return string.Empty;
@@ -58,7 +58,7 @@ namespace Core.Infrastructure.Repository
                 }
                 return rowAffected;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //_logger.LogError(ex, "[dbo].[spTenant_Update_IsActive] UpdateIsActive TenantRepository Error.");
                 return -1;

@@ -19,10 +19,13 @@ namespace WebSite.Core.API.Controllers
     public class FileController : CoreApiControllerBase
     {
         private readonly IFileService _fileService;
+        private readonly IBangDiemService _bangdiemService;
         //private readonly IFileService _fileService;
-        public FileController(IFileService fileservice)
+        public FileController(IFileService fileservice,
+                              IBangDiemService bangdiemService)
         {
             _fileService = fileservice;
+            _bangdiemService = bangdiemService;
         }
         [Route("SearchID/IdPath/FolderName/FolderId"), AcceptVerbs("GET")]
         [SwaggerOperation(Summary = "SearchAll information File.", Description = "Requires login verification!", OperationId = "SearchById", Tags = new[] { "File" })]
@@ -92,5 +95,30 @@ namespace WebSite.Core.API.Controllers
             };
         }
 
+        [SwaggerOperation(Summary = "downloadsDiemPhanBien file information file.", Description = "Requires login verification!", OperationId = "downloadsDiemPhanBien", Tags = new[] { "File" })]
+        [Route("downloadsDiemPhanBien/{idhocky}/{idmonhoc}"), AcceptVerbs("GET")]
+        public async Task<IActionResult> DownloadDiemPhanBienAsync(string idhocky, string idmonhoc)
+        {
+            var stream = await _bangdiemService.XuatBangDiemExcel(idhocky, idmonhoc);
+
+            var buffer = stream as MemoryStream;
+
+            buffer.Position = 0;
+            return File(buffer, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "ExcelDiemPhanBien.xlsx");
+
+        }
+
+        [SwaggerOperation(Summary = "downloadsDiemHoiDong file information file.", Description = "Requires login verification!", OperationId = "downloadsDiemHoiDong", Tags = new[] { "File" })]
+        [Route("downloadsDiemHoiDong/{idhocky}/{idmonhoc}"), AcceptVerbs("GET")]
+        public async Task<IActionResult> DownloadDiemHoiDongAsync(string idhocky, string idmonhoc)
+        {
+            var stream = await _bangdiemService.XuatHoiDongExcel(idhocky, idmonhoc);
+
+            var buffer = stream as MemoryStream;
+
+            buffer.Position = 0;
+            return File(buffer, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "ExcelDiemHoiDong.xlsx");
+
+        }
     }
 }

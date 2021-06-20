@@ -42,7 +42,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //_logger.LogError(ex, "[dbo].[spHocKy_SelectAll] SearchAsync GiangVienHuongDanRepository Error.");
                 return new SearchResult<DeTaiSearchViewModel> { TotalRows = 0, Data = null, Code = -1 };
@@ -70,7 +70,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //_logger.LogError(ex, "[dbo].[spHocKy_SelectAll] SearchAsync GiangVienHuongDanRepository Error.");
                 return new SearchResult<DeTaiSearchViewModel> { TotalRows = 0, Data = null };
@@ -184,7 +184,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     return rowAffect;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //_logger.LogError(ex, "[dbo].[spDeTai_InsertAsync] InsertAsync DeTaiRepository Error.");
                 return -1;
