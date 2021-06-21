@@ -19,7 +19,7 @@ namespace WebSite.Core.Domain.IServices
         //Task<ActionResultReponese<string>> UpdateAsync(string tenantId, string lastUpdateUserId, string lastUpdateFullName, string lastUpdateAvatar, string id, FileMeta fileMeta);
         //Task<ActionResultReponese> DeleteAsync(string tenantId, string deleteUserId, string deleteFullName, string deleteAvatar, string id);
         //Task<ActionResultReponese<FileDetailViewModel>> GetDetailAsync(string tenantId, string userId, string id);
-        Task<List<FileViewModel>> GetsAll(string FileName, int FolderId);
+        Task<List<FileViewModel>> GetsAll(string IdBoMon, int FolderId);
         Task<ActionResultResponese<string>> DownloadAsync(string id);
     }
 }

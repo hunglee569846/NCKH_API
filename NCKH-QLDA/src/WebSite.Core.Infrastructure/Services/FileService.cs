@@ -31,9 +31,9 @@ namespace WebSite.Core.Infrastructure.Services
         {
             return await _fileRepository.SearchAsync(IdFile);
         }
-        public async Task<List<FileViewModel>> GetsAll(string FileName, int FolderId)
+        public async Task<List<FileViewModel>> GetsAll(string IdBoMon, int FolderId)
         {
-            return await _fileRepository.SelectAllAsync(FileName, FolderId);
+            return await _fileRepository.SelectAllAsync(IdBoMon, FolderId);
         }
         
         public async Task<ActionResultResponese<List<FileViewModel>>> UploadFiles(string fileCode, string creatorUserId, string CreatorFullName, string FolderName, int? folderId, IFormFileCollection formFileCollection)
@@ -78,7 +78,7 @@ namespace WebSite.Core.Infrastructure.Services
                     Url = urlOutPut,
                     CreatorUserId = creatorUserId?.Trim(),
                     CreatorFullName = CreatorFullName?.Trim(),
-                    Folderld = folderInfo.FolderId,
+                    Folderld = folderInfo.Id,
                     CreateDate = DateTime.Now,
                     DeleteTime = null,
                     LastUpdate = null,

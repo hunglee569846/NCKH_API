@@ -14,7 +14,7 @@ namespace WebSite.Core.Domain.ViewModel
         public string MaDeTai { get; set; }
         public string TenDeTai  { get; set; }
         public string IdSinhVien { get; set; }
-        public string TenSinhVen { get; set; }
+        public string TenSinhVien { get; set; }
         public string MaSinhVien { get; set; }
         public float Diem { get; set; }
         public string Note { get; set; }

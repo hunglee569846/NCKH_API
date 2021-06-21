@@ -19,34 +19,35 @@ namespace WebSite.Core.Infrastructure.Services
             _iFolderRepository = iFolderRepository;
         }
 
-        public async Task<ActionResultResponese<string>> InsertAsync(string FolderName, int folderId, FolderMeta folderMeta)
+        public async Task<ActionResultResponese<string>> InsertAsync(string idBoMon,string FolderName, FolderMeta folderMeta)
         {
-            var isFolderID = await _iFolderRepository.CheckExitsFolder(folderId);
-            if (isFolderID)
-                return new ActionResultResponese<string>(-21, "FolderId already exists", "Folder", null);
+            //var isFolderID = await _iFolderRepository.CheckExitsFolder(folderId);
+            //if (isFolderID)
+            //    return new ActionResultResponese<string>(-21, "FolderId already exists", "Folder", null);
             var folder = new Folder()
             {
-                FolderId = folderId,
+                //FolderId = folderId,
                 FolderName = FolderName,
-                NamePath = folderMeta.NamePath?.Trim(),
-                Level = folderMeta.Level,
-                ChildCount = folderMeta.ChildCount,
-                Description = folderMeta.Description?.Trim(),
+                IdBoMon = idBoMon?.Trim(),
+               // NamePath = folderMeta.NamePath?.Trim(),
+               // Level = folderMeta.Level,
+               // ChildCount = folderMeta.ChildCount,
+              //  Description = folderMeta.Description?.Trim(),
                 CreateTime = DateTime.Now,
                 DeleteTime = null,
                 LastUpdate = null,
                 IsActive = true,
                 IsDelete = false,
             };
-            var result = await _iFolderRepository.InsertAsync(FolderName, folderId, folder);
+            var result = await _iFolderRepository.InsertAsync(FolderName, folder);
             if (result <= 0)
                 return new ActionResultResponese<string>(-1, "Thêm mới thất bại", "Folder", null);
             return new ActionResultResponese<string>(result, "Thêm mới thành công", "Folder", null);
         }
 
-        public async Task<List<Folder>> GetsAll()
+        public async Task<List<Folder>> GetsAll(string idBoMon)
         {
-            return await _iFolderRepository.SelectAllAsync();
+            return await _iFolderRepository.SelectAllAsync(idBoMon);
         }
     }
 }

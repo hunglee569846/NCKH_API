@@ -47,14 +47,14 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
         //Search All 
-        public async Task<List<FileViewModel>> SelectAllAsync(string FileName, int FolderId)
+        public async Task<List<FileViewModel>> SelectAllAsync(string idBoMon, int FolderId)
         {
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
                 if (con.State == ConnectionState.Closed)
                     await con.OpenAsync();
                 DynamicParameters para = new DynamicParameters();
-                para.Add("@FileName", FileName);
+                para.Add("@IdBoMon", idBoMon);
                 para.Add("@FolderId", FolderId);
                 var code = await con.QueryAsync<FileViewModel>("[dbo].[SpFile_SelectAll]", para, commandType: CommandType.StoredProcedure);
                 return code.ToList();

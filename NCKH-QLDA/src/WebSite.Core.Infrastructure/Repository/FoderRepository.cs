@@ -18,7 +18,7 @@ namespace WebSite.Core.Infrastructure.Repository
         {
             _ConnectionString = ConnectionString;
         }
-        public async Task<int> InsertAsync(string FolderName, int FolderId, Folder folder)
+        public async Task<int> InsertAsync(string FolderName, Folder folder)
         {
             int rowaffaceted = 0;
             using (SqlConnection con = new SqlConnection(_ConnectionString))
@@ -27,11 +27,11 @@ namespace WebSite.Core.Infrastructure.Repository
                     await con.OpenAsync();
                 DynamicParameters para = new DynamicParameters();
                 para.Add("@FolderName", FolderName);
-                para.Add("@NamePath", folder.NamePath);
-                para.Add("@FolderId", FolderId);
-                para.Add("@Level", folder.Level);
-                para.Add("@ChildCount", folder.ChildCount);
-                para.Add("@Description", folder.Description);
+               // para.Add("@NamePath", folder.NamePath);
+                //para.Add("@FolderId", FolderId);
+               // para.Add("@Level", folder.Level);
+               // para.Add("@ChildCount", folder.ChildCount);
+                //para.Add("@Description", folder.Description);
                 if (folder.CreateTime != null && folder.CreateTime != DateTime.MinValue)
                 {
                     para.Add("@createTime", folder.CreateTime);
@@ -74,7 +74,7 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
 
-        public async Task<List<Folder>> SelectAllAsync()
+        public async Task<List<Folder>> SelectAllAsync(string idBoMon)
         {
             try
             {
@@ -82,8 +82,9 @@ namespace WebSite.Core.Infrastructure.Repository
                 {
                     if (con.State == ConnectionState.Closed)
                         await con.OpenAsync();
-
-                    var results = await con.QueryAsync<Folder>("[dbo].[spFolder_SelectAll]", commandType: CommandType.StoredProcedure);
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@IdBoMon", idBoMon);
+                    var results = await con.QueryAsync<Folder>("[dbo].[spFolder_SelectAll]",param, commandType: CommandType.StoredProcedure);
                     return results.ToList();
                 }
             }

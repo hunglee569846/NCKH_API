@@ -27,18 +27,18 @@ namespace WebSite.Core.API.Controllers
             _fileService = fileservice;
             _bangdiemService = bangdiemService;
         }
-        [Route("SearchID/IdPath/FolderName/FolderId"), AcceptVerbs("GET")]
+        [Route("SearchID/IdPath/FolderName/{IdFile}"), AcceptVerbs("GET")]
         [SwaggerOperation(Summary = "SearchAll information File.", Description = "Requires login verification!", OperationId = "SearchById", Tags = new[] { "File" })]
         public async Task<IActionResult> SearchAsync(string IdFile)
         {
             var result = await _fileService.SearchAsync(IdFile);
             return Ok(result);
         }
-        [Route("SearchAll/FolderName/FolderId"), AcceptVerbs("GET")]
+        [Route("SearchAll/FolderName/{FolderId}"), AcceptVerbs("GET")]
         [SwaggerOperation(Summary = "SearchAll information File.", Description = "Requires login verification!", OperationId = "SearchAll", Tags = new[] { "File" })]
-        public async Task<IActionResult> GetsAllAsync(string FileName, int FolderId)
+        public async Task<IActionResult> GetsAllAsync(int FolderId)
         {
-            var result = await _fileService.GetsAll(FileName, FolderId);
+            var result = await _fileService.GetsAll(CurrentUser.IdBoMon, FolderId);
             return Ok(result);
         }
 

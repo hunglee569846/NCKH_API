@@ -12,7 +12,7 @@ namespace WebSite.Core.Domain.IRepository
     public interface IFileRepository
     {
         Task<SearchResult<FileViewModel>> SearchAsync(string IdFile);
-        Task<List<FileViewModel>> SelectAllAsync(string FileName, int FolderId);
+        Task<List<FileViewModel>> SelectAllAsync(string IdBoMon, int FolderId);
         Task<Files> GetInfo(string id);
         Task<int> InsertAsync(Files file);
         Task<bool> CheckExistsByFolderIdName(string IdFile, int? folderId, string FileName);
