@@ -87,7 +87,7 @@ namespace WebSite.Core.Infrastructure.Services
            
             foreach (var giangvien in phanbienListMeta)
             {
-                var checkPhanBien = await _phanbienRepository.CheckExisPhanBien(giangvien.idGVPB, iddetai, idhocky, idmonhoc); ;
+                var checkPhanBien = await _phanbienRepository.CheckExisPhanBien(giangvien.idGVPB, iddetai, idhocky, idmonhoc);
                 if (checkPhanBien)
                     return new ActionResultResponese<string>(-31, "Giảng viên đã phản biện đề tài này.", "Phản biện.");
                 
@@ -184,6 +184,66 @@ namespace WebSite.Core.Infrastructure.Services
             if (result <= 0)
                 return new ActionResultResponese<string>(-1, "Xóa thất bại.", "Phản biện.");
             return new ActionResultResponese<string>(1, "Xóa thành công.", "Phản biện.");
+        }
+
+        public async Task<ActionResultResponese<string>> InsertListDeTaiInPhanBien(List<DeTaiListMeta> lisDeTai, string idGiangVien, string idhocky, string idmonhoc, string creatorUserId, string creatorFullName, string idBoMon)
+        {
+            var checExitsHK = await _hocKysRepository.CheckExisIsActivetAsync(idhocky);
+            if (!checExitsHK)
+                return new ActionResultResponese<string>(-41, "Học kỳ không tồn tại.", "Học kỳ.");
+            
+            List<DeTaiListMeta> listDeTai = lisDeTai.GroupBy(p => p.IdDeTai).Select(g => g.First()).ToList();
+            if (lisDeTai.Count() != listDeTai.Count())
+                return new ActionResultResponese<string>(-42, "Trùng lặp đề tài trong danh sách.", "Giảng viên.");
+
+            var checkGV = await _giangVienHuongDanRepository.CheckExitsActive(idGiangVien,idhocky);
+            if (checkGV)
+                return new ActionResultResponese<string>(-43, "Giảng viên đã phản biện đề tài này.", "Phản biện.");
+
+            foreach (var idDeTai in listDeTai)
+            {
+                var checExitsDeTai = await _deTaiRepository.CheckExits(idDeTai.IdDeTai);
+                if (!checExitsDeTai)
+                    return new ActionResultResponese<string>(-44, "Đề tài không tồn tại.", "Đề tài.");
+
+            }
+            List<PhanBien> listPhanBien = new List<PhanBien>();
+
+            foreach (var idDeTai in listDeTai)
+            {
+                //var checkExitsGVHDinHocKy = await _giangVienHuongDanRepository.CheckExitsActive(idhocky, giangvien.IdGVHD);
+                //if (checkExitsGVHDinHocKy)
+                //    return new ActionResultResponese<string>(-16, "Giảng viên đã có trong kỳ.", "Giang vien hướng dẫn theo kỳ.");
+                //var checkDeTai = await _deTaiRepository.CheckExits(iddetai);
+                //if (!checkDeTai)
+                //    return new ActionResultResponese<string>(-31, "Đề tài không tồn tại.", "Đề tài.");
+                //var giangvienInfo = await _giangVienHuongDanRepository.GetInfoByMaGVHD(idhocky, giangvien.idGVPB);
+                var id = Guid.NewGuid().ToString();
+                listPhanBien.Add(new PhanBien
+                {
+                    IdPhanBien = id?.Trim(),
+                    IdGVPB = idGiangVien?.Trim(),
+                    IdBoMon = idBoMon?.Trim(),
+                    IdDetai = idDeTai.IdDeTai?.Trim(),
+                    IdHocKy = idhocky?.Trim(),
+                    IdMonHoc = idmonhoc?.Trim(),
+                    Diem = 0,
+                    CreateTime = DateTime.Now,
+                    CreatorUserId = creatorUserId?.Trim(),
+                    CreatorFullName = creatorFullName?.Trim(),
+                    IsActive = true,
+                    IsDelete = false
+                });
+            }
+            if (listPhanBien.Count() == 0)
+                return new ActionResultResponese<string>(-45, "Xảy ra lỗi vui lòng liên hệ quản trị viênn.");
+            foreach (var giangvien in listPhanBien)
+            {
+                await _phanbienRepository.InsertByHk(giangvien);
+            }
+
+            //  return new ActionResultResponese<string>(result, "Thêm mới chi tiết đề tài không thành công", "Chi tiết đề tài.");
+            return new ActionResultResponese<string>(1, "Thêm mới thành công.", "Phản biện.");
         }
     }
      

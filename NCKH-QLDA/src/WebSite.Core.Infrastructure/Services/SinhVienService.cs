@@ -41,7 +41,7 @@ namespace WebSite.Core.Infrastructure.Services
             var id = Guid.NewGuid().ToString();
             var checkIdSinhvien = await _sinhVienRepository.CheckExitsIdSinhVien(id);
             if (checkIdSinhvien)
-                return new ActionResultResponese<string>(-4, "Bản ghi lỗi.", "Sinh viên.");
+                return new ActionResultResponese<string>(-4, "Sinh viên đã tồn tại.", "Sinh viên.");
            
             var sinhvien = new SinhVien()
             {
@@ -87,7 +87,7 @@ namespace WebSite.Core.Infrastructure.Services
                 var id = Guid.NewGuid().ToString();
                 var checkIdSinhvien = await _sinhVienRepository.CheckExitsIdSinhVien(id);
                 if (checkIdSinhvien)
-                    return new ActionResultResponese<string>(-9, "Bản ghi lỗi.", "Sinh viên.");
+                    return new ActionResultResponese<string>(-9, "Sinh viên đã tồn tại.", "Sinh viên.");
 
                 listSinhVien.Add(new SinhVien()
                 {

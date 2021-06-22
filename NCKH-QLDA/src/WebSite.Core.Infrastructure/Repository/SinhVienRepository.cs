@@ -171,9 +171,9 @@ namespace WebSite.Core.Infrastructure.Repository
                         await con.OpenAsync();
 
                     var sql = @"
-					SELECT IIF (EXISTS (SELECT 1 FROM dbo.SinhViens WHERE IdSinhVien = @idSinhVien AND IdHocKy = @idhocky AND IsActive = 1 AND IsDelete = 0), 1, 0)";
+					SELECT IIF (EXISTS (SELECT 1 FROM dbo.SinhViens WHERE IdSinhVien = @idSinhVien AND IsActive = 1 AND IsDelete = 0), 1, 0)";
 
-                    var result = await con.ExecuteScalarAsync<bool>(sql, new { MaSinhVien = @idSinhVien });
+                    var result = await con.ExecuteScalarAsync<bool>(sql, new { IdSinhVien = @idSinhVien });
                     return result;
                 }
             }

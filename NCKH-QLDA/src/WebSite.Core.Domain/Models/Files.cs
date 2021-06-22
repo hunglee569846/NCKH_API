@@ -7,6 +7,7 @@ namespace WebSite.Core.Domain.Models
     public class Files
     {
         public string Id { get; set; }
+        public string IdBoMon { get; set; }
         public string FileCode { get; set; }
         public string FileName { get; set; }
         public long Size { get; set; }

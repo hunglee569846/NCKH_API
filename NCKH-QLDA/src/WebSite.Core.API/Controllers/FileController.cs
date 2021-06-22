@@ -44,10 +44,10 @@ namespace WebSite.Core.API.Controllers
 
         [SwaggerOperation(Summary = "Upload file.", Description = "Requires login verification!", OperationId = "UploadFile", Tags = new[] { "File" })]
         [HttpPost, DisableRequestSizeLimit]
-        [Route("uploads"), AcceptVerbs("POST")]
-        public async Task<IActionResult> UploadFileAsync(string FileCode, string FolderName, int folderId, IFormFileCollection formFileCollection)
+        [Route("uploads/{folderId}"), AcceptVerbs("POST")]
+        public async Task<IActionResult> UploadFileAsync(int? folderId, IFormFileCollection formFileCollection)
         {
-            var result = await _fileService.UploadFiles(FileCode,CurrentUser.MaGiangVien,CurrentUser.FullName, FolderName, folderId, formFileCollection);
+            var result = await _fileService.UploadFiles(CurrentUser.IdBoMon,CurrentUser.MaGiangVien,CurrentUser.FullName, folderId, formFileCollection);
             return Ok(result);
         }
 

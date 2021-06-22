@@ -36,10 +36,9 @@ namespace WebSite.Core.Infrastructure.Services
             return await _fileRepository.SelectAllAsync(IdBoMon, FolderId);
         }
         
-        public async Task<ActionResultResponese<List<FileViewModel>>> UploadFiles(string fileCode, string creatorUserId, string CreatorFullName, string FolderName, int? folderId, IFormFileCollection formFileCollection)
+        public async Task<ActionResultResponese<List<FileViewModel>>> UploadFiles(string idBoMon, string creatorUserId, string CreatorFullName , int? folderId, IFormFileCollection formFileCollection)
         {
-            List<Files> listFiles = new List<Files>();
-            string uploadUrl = string.Format("/uploadsAPIQLDA/" + FolderName + "/{0:yyyy/MM/dd}/", DateTime.Now);
+            
             Folder folderInfo = null;
             if (folderId.HasValue)
             {
@@ -49,7 +48,8 @@ namespace WebSite.Core.Infrastructure.Services
                 //_ghmFileResource.GetString("Folder does not exists. You can not update file to this folder."));
             }
 
-
+            List<Files> listFiles = new List<Files>();
+            string uploadUrl = string.Format("/uploadsAPIQLDA/" + folderInfo.FolderName?.Trim() + "/{0:yyyy/MM/dd}/", DateTime.Now);
             foreach (IFormFile formFile in formFileCollection)
             {
                 var id = Guid.NewGuid().ToString("n");
@@ -71,8 +71,9 @@ namespace WebSite.Core.Infrastructure.Services
                 var file = new Files
                 {
                     Id = id,
-                    FileCode = fileCode,
-                    FileName = formFile.FileName?.Trim().StripVietnameseChars().ToUpper(),
+                   // FileCode = fileCode,
+                    IdBoMon = idBoMon?.Trim(),
+                    FileName = formFile.FileName?.Trim(),
                     Type = formFile.GetTypeFile(),
                     Size = formFile.GetFileSize(),
                     Url = urlOutPut,

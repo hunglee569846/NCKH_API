@@ -60,6 +60,7 @@ namespace WebSite.Core.Infrastructure.Repository
                         await conn.OpenAsync();
                     DynamicParameters param = new DynamicParameters();
                     param.Add("@IdPhanBien", phanbien.IdPhanBien);
+                    param.Add("@IdBoMon", phanbien.IdBoMon);
                     param.Add("@IdGVPB", phanbien.IdGVPB);
                     param.Add("@IdDetai", phanbien.IdDetai);
                     param.Add("@IdHocKy", phanbien.IdHocKy);
@@ -74,7 +75,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     return rowAffect;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 //_logger.LogError(ex, "[dbo].[spPhanBien_InsertAsync] PhanBienRepository Error.");
                 return -1;

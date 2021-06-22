@@ -61,6 +61,19 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
+        [SwaggerOperation(Summary = "Phân list đề tài", Description = "Requires login verification!", OperationId = "InsertDTtoGVAsync", Tags = new[] { "PhanBien" })]
+        [AcceptVerbs("POST"), Route("DeTaitoPhanBien/{idGiangVien}/{idhocky}/{idmonhoc}")]
+        public async Task<IActionResult> InsertListDeTaiInPhanBienAsync([FromBody] List<DeTaiListMeta> listDeTaiMeta, string idGiangVien, string idhocky, string idmonhoc)
+        {
+            var result = await _phanbiencService.InsertListDeTaiInPhanBien(listDeTaiMeta, idGiangVien, idhocky, idmonhoc, CurrentUser.MaGiangVien, CurrentUser.FullName,CurrentUser.IdBoMon);
+            if (result.Code <= 0)
+            {
+                //_logger.LogError("Search PhanBien controller error " + result.Code);
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+
         [SwaggerOperation(Summary = "UpdateAsyncPhanBien", Description = "Requires login verification!", OperationId = "UpdateAsync", Tags = new[] { "PhanBien" })]
         [AcceptVerbs("PUT"), Route("UpdateAsyncPhanBien/{idGVPB}/{iddetai}/{idhocky}/{idmonhoc}/{idPhanBien}")]
         public async Task<IActionResult> UpdateAsync([FromBody] PhanBienUpdateMeta phanbienupdateMeta, string idGVPB, string iddetai, string idhocky,string idmonhoc, string idPhanBien)

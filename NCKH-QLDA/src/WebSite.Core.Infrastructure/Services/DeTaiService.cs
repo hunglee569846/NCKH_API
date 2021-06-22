@@ -16,15 +16,18 @@ namespace WebSite.Core.Infrastructure.Services
         private readonly IDeTaiRepository _deTaiRepository;
         private readonly IMonHocRepository _monhocRepository;
         private readonly IHocKysRepository _hockyRepository;
+        private readonly ISinhVienRepository _sinhVienRepository;
         private readonly IChiTietDeTaiRepository _chiTietDeTaiRepository;
         public DeTaiService(IDeTaiRepository deTaiRepository,
                             IMonHocRepository monhocRepository,
                             IHocKysRepository hockyRepository,
+                            ISinhVienRepository sinhVienRepository,
                             IChiTietDeTaiRepository chiTietDeTaiRepository) 
         {
             _deTaiRepository = deTaiRepository;
             _monhocRepository = monhocRepository;
             _hockyRepository = hockyRepository;
+            _sinhVienRepository = sinhVienRepository;
             _chiTietDeTaiRepository = chiTietDeTaiRepository;
         }
 
@@ -91,6 +94,9 @@ namespace WebSite.Core.Infrastructure.Services
         }
         public async Task<ActionResultResponese<string>> InsertAsync(DeTaiInsertMeta detaiInsertMeta, string madetai, string idhocky, string idmonhoc, string idsinhvien, string tensinhvien,string masinhvien, string maNguoiTao,string tenNguoiTao)
         {
+            var checkExitSV = await _sinhVienRepository.CheckExitsIdSinhVien(idsinhvien);
+            if (!checkExitSV)
+                return new ActionResultResponese<string>(-35, "Sinh viên không tồn tại.", "Sinh viên.");
             var checkDeTai = await _deTaiRepository.CheckMaDeTai(madetai);
             if (checkDeTai)
                 return new ActionResultResponese<string>(-31, "Mã đề tài đã tồn tại.", "Đề tài.");

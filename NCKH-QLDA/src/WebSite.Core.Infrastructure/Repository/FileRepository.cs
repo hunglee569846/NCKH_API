@@ -69,7 +69,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     await con.OpenAsync();
                 DynamicParameters para = new DynamicParameters();
                 para.Add("@Id", file.Id);
-                para.Add("@FileCode", file.FileCode);
+                para.Add("@IdBoMon", file.IdBoMon);
                 para.Add("@FileName", file.FileName);
                 para.Add("@Type", file.Type);
                 para.Add("@Size", file.Size);
@@ -122,7 +122,7 @@ namespace WebSite.Core.Infrastructure.Repository
                         await con.OpenAsync();
 
                     DynamicParameters param = new DynamicParameters();
-                    param.Add("@Id", id);
+                    param.Add("@IdFile", id);
                     return await con.QuerySingleOrDefaultAsync<Files>("[dbo].[spFile_SelectByID]", param, commandType: CommandType.StoredProcedure);
                 }
             }

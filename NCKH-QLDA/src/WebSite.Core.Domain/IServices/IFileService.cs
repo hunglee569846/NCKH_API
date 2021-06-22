@@ -13,8 +13,7 @@ namespace WebSite.Core.Domain.IServices
     {
         
         //string FileCode, string creatorUserId,string CreatorFullName, string FolderName, int? folderId, IFormFileCollection formFileCollection
-        Task<ActionResultResponese<List<FileViewModel>>> UploadFiles(string fileCode,string creatorUserId, string CreatorFullName, string FolderName,
-           int? folderId, IFormFileCollection formFileCollection);
+        Task<ActionResultResponese<List<FileViewModel>>> UploadFiles(string idBoMon,string creatorUserId, string CreatorFullName, int? folderId, IFormFileCollection formFileCollection);
         Task<SearchResult<FileViewModel>> SearchAsync(string IdFile);
         //Task<ActionResultReponese<string>> UpdateAsync(string tenantId, string lastUpdateUserId, string lastUpdateFullName, string lastUpdateAvatar, string id, FileMeta fileMeta);
         //Task<ActionResultReponese> DeleteAsync(string tenantId, string deleteUserId, string deleteFullName, string deleteAvatar, string id);

@@ -25,7 +25,7 @@ namespace WebSite.Core.API.Controllers
             _bangdiemService = bangdiemService;
         }
 
-        [SwaggerOperation(Summary = "PhanCongHoiDong", Description = "Requires login verification!", OperationId = "PhanCongHoiDongInsertDeTai", Tags = new[] { "PhanCongHoiDong" })]
+        [SwaggerOperation(Summary = "Phân công một đề tài", Description = "Requires login verification!", OperationId = "PhanCongHoiDongInsertDeTai", Tags = new[] { "PhanCongHoiDong" })]
         [AcceptVerbs("POST"), Route("PhanCongHoiDong/{iddetai}/{idGVHD}/{idhoidong}/{idhocky}/{idmonhoc}")]
         public async Task<IActionResult> InsertAsync(string iddetai, string idGVHD, string idhoidong, string idhocky, string idmonhoc)
         {
@@ -37,7 +37,7 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [SwaggerOperation(Summary = "PhanCongHoiDong", Description = "Requires login verification!", OperationId = "PhanCongHoiDongInsertListDeTai", Tags = new[] { "PhanCongHoiDong" })]
+        [SwaggerOperation(Summary = "Phân công list đề tài ", Description = "Requires login verification!", OperationId = "PhanCongHoiDongInsertListDeTai", Tags = new[] { "PhanCongHoiDong" })]
         [AcceptVerbs("POST"), Route("PhanCongHoiDongListDetai/{idhoidong}/{idhocky}/{idmonhoc}")]
         public async Task<IActionResult> InserListDeTaitAsync([FromBody]List<BangDiemlistMeta> listdetai, string idhoidong, string idhocky, string idmonhoc)
         {

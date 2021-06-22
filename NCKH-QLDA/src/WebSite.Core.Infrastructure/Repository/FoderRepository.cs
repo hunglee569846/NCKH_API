@@ -27,7 +27,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     await con.OpenAsync();
                 DynamicParameters para = new DynamicParameters();
                 para.Add("@FolderName", FolderName);
-               // para.Add("@NamePath", folder.NamePath);
+                para.Add("@IdBoMon", folder.IdBoMon);
                 //para.Add("@FolderId", FolderId);
                // para.Add("@Level", folder.Level);
                // para.Add("@ChildCount", folder.ChildCount);

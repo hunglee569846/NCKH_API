@@ -13,7 +13,7 @@ namespace WebSite.Core.Infrastructure.Services
     public class FileStorageService : IFileStorageServices
     {
         private readonly string _userContentFolder;
-        private const string USER_CONTENT_FOLDER_NAME = "uploads";
+        private const string USER_CONTENT_FOLDER_NAME = "uploadsAPIQLDA";
 
         public FileStorageService(IWebHostEnvironment hostingEnvironment)
         {
