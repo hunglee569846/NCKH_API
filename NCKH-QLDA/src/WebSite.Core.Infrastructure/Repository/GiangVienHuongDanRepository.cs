@@ -64,42 +64,58 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
 
-        public async Task<int> InsertAsync(GVHDTheoKy giangvientheoky)
+        public async Task<int> InsertAsync(GVHDTheoKy gVHDTheoKy)
         {
             try
             {
-                int rowAffect = 0;
-                using (SqlConnection conn = new SqlConnection(_connectionString))
+                int rowAffected = 0;
+                using (SqlConnection con = new SqlConnection(_connectionString))
                 {
-                    if (conn.State == ConnectionState.Closed)
-                        await conn.OpenAsync();
-                    DynamicParameters para = new DynamicParameters();
-                    para.Add("@IdGVHDTheoKy", giangvientheoky.IdGVHDTheoKy);
-                    para.Add("@IdGVHD", giangvientheoky.IdGVHD);
-                    para.Add("@MaGVHD", giangvientheoky.MaGVHD);
-                    para.Add("@TenGVHD", giangvientheoky.TenGVHD);
-                    para.Add("@IdHocKy", giangvientheoky.IdHocKy);
-                    para.Add("@DonViCongTac", giangvientheoky.DonViCongTac);
-                    para.Add("@Email", giangvientheoky.Email);
-                    para.Add("@DienThoai", giangvientheoky.DienThoai);
-                    para.Add("@Type", giangvientheoky.Type);
-                    para.Add("@IsActive", giangvientheoky.IsActive);
-                    para.Add("@IsDelete", giangvientheoky.IsDelete);
-                    if (giangvientheoky.CreateTime != DateTime.MinValue && giangvientheoky.CreateTime != null)
+                    if (con.State == ConnectionState.Closed)
+                        await con.OpenAsync();
+
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@IdGVHDTheoKy", gVHDTheoKy.IdGVHDTheoKy);
+                    param.Add("@IdBoMon", gVHDTheoKy.IdBoMon);
+                    param.Add("@IdGVHD", gVHDTheoKy.IdGVHD);
+                    param.Add("@MaGVHD", gVHDTheoKy.MaGVHD);
+                    param.Add("@TenGVHD", gVHDTheoKy.TenGVHD);
+                    param.Add("@IdHocKy", gVHDTheoKy.IdHocKy);
+                    param.Add("@IdMonHoc", gVHDTheoKy.IdMonHoc);
+                    param.Add("@DonViCongTac", gVHDTheoKy.DonViCongTac);
+                    param.Add("@Email", gVHDTheoKy.Email);
+                    param.Add("@DienThoai", gVHDTheoKy.DienThoai);
+                    param.Add("@Type", gVHDTheoKy.Type);
+                    param.Add("@IsActive", gVHDTheoKy.IsActive);
+                    param.Add("@IsDelete", gVHDTheoKy.IsDelete);
+                    if (gVHDTheoKy.CreateTime != null && gVHDTheoKy.CreateTime != DateTime.MinValue)
                     {
-                        para.Add("@CreateTime", giangvientheoky.CreateTime);
+                        param.Add("@CreateTime", gVHDTheoKy.CreateTime);
                     }
-                    para.Add("@CreatorUserId", giangvientheoky.CreatorUserId);
-                    para.Add("@CreartorFullName", giangvientheoky.CreatorFullName);
-                    rowAffect = await conn.ExecuteAsync("[dbo].[spGVHD_InsertByIdHocKy]", para, commandType: CommandType.StoredProcedure);
-                    return rowAffect;
+                    param.Add("@DeleteUserId", gVHDTheoKy.DeleteUserId);
+                    param.Add("@DeleteUserFullName", gVHDTheoKy.DeleteFullName);
+                    if (gVHDTheoKy.LastUpdate != null && gVHDTheoKy.LastUpdate != DateTime.MinValue)
+                    {
+                        param.Add("@LastUpdate", gVHDTheoKy.LastUpdate);
+                    }
+                    if (gVHDTheoKy.DeteteTime != null && gVHDTheoKy.DeteteTime != DateTime.MinValue)
+                    {
+                        param.Add("@DeleteTime", gVHDTheoKy.DeteteTime);
+                    }
+                    param.Add("@CreatorUserId", gVHDTheoKy.CreatorUserId);
+                    param.Add("@CreartorFullName", gVHDTheoKy.CreatorFullName);
+                    param.Add("@LastUpdateUserId", gVHDTheoKy.lastUpdateUserId);
+                    param.Add("@LastUpdateFullName", gVHDTheoKy.LastUpdateFullName);
+                    rowAffected = await con.ExecuteAsync("[dbo].[spGVHD_InsertByIdHocKy]", param, commandType: CommandType.StoredProcedure);
                 }
+                return rowAffected;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //_logger.LogError(ex, "[dbo].[spGVHD_InsertByIdHocKy] InsertchAsync GiangVienHuongDanRepository Error.");
+               // _logger.LogError(ex, "[dbo].[spGVHDTheoKy_Insert] InsertAsync GVHDTheoKyRepository Error.");
                 return -1;
             }
+
 
         }
         public async Task<bool> CheckExits(string idGVHDTheoKy)

@@ -19,11 +19,11 @@ namespace WebSite.Core.Infrastructure.Services
             _ihocKyRepository= ihocKyRepository;
         }
 
-        public async Task<SearchResult<HocKySearchViewModel>> GetAll() 
+        public async Task<SearchResult<HocKySearchViewModel>> GetAll(string IdBoMon) 
         {
-            return await _ihocKyRepository.SelectAll();
+            return await _ihocKyRepository.SelectAll(IdBoMon);
         }
-        public async Task<ActionResultResponese<string>> InsertAsync(string mahocky, string tenhocky, string userId, string fullName)
+        public async Task<ActionResultResponese<string>> InsertAsync(string mahocky, string tenhocky, string userId, string fullName,string idBoMon)
         {
             var idhocky = Guid.NewGuid().ToString();
             var checExist = await _ihocKyRepository.CheckExistAsync(idhocky, mahocky);
@@ -37,6 +37,7 @@ namespace WebSite.Core.Infrastructure.Services
             var hockynew = new HocKy()
             {
                 IdHocKy = idhocky,
+                IdBoMon = idBoMon?.Trim(),
                 MaHocKy = mahocky,
                 TenHocKy = tenhocky,
                 CreateTime = DateTime.Now,
@@ -52,26 +53,27 @@ namespace WebSite.Core.Infrastructure.Services
 
         }
         
-        public async Task<ActionResultResponese<string>> UpDateAsync(string idhocky, string mahocky, string tenhocky, string userId, string fullName)
+        public async Task<ActionResultResponese<string>> UpDateAsync(string idhocky, string mahocky, string tenhocky, string userId, string fullName,string idbomon)
         {
             var checkLockDataHK = await _ihocKyRepository.CheckExisIsActivetAsync(idhocky);
             if (!checkLockDataHK)
                 return new ActionResultResponese<string>(-99, "Dữ liệu đã khóa.", "Học kỳ");
-            var checExist = await _ihocKyRepository.CheckExisIsActivetAsync(idhocky);
-            if (!checExist)
-                return new ActionResultResponese<string>(-2, "Mã học kỳ không tồn tại", "Học Kỳ");
-            //var hockynew = new HocKyMeta()
-            //{
-            //    MaHocKy = mahocky,
-            //    TenHocKy = tenhocky
-            //};
-            //if (hockynew == null)
-            //    return new ActionResultResponese<string>(-3, "Dữ liệu rỗng", "Học Kỳ");
-            var ngaysua = DateTime.Now;
-            var result = await _ihocKyRepository.UpdateAsync(idhocky, mahocky, tenhocky, ngaysua, userId, fullName);
+            var checkMaHK = await _ihocKyRepository.CheckExisMaHocKy(mahocky);
+            if (checkMaHK)
+                return new ActionResultResponese<string>(-98, "Mã học kỳ đã tồn tại.", "Học kỳ");
+            var info = await _ihocKyRepository.SearchInfo(idhocky);
+            if (info.IdBoMon != idbomon)
+                return new ActionResultResponese<string>(-95, "Đã có lỗi vui lòng liên hệ quản trị viên.", "Học kỳ");
+            info.IdHocKy = idhocky?.Trim();
+            info.MaHocKy = mahocky?.Trim();
+            info.TenHocKy = tenhocky?.Trim();
+            info.LastUpdate = DateTime.Now; ;
+            info.LastUpdateUserId = userId?.Trim();
+            info.LastUpdateFullName = fullName?.Trim();
+            var result = await _ihocKyRepository.UpdateAsync(info);
             if (result <= 0)
-                return new ActionResultResponese<string>(result, "Sửa chữa thất bại.", "Học kỳ");
-            return new ActionResultResponese<string>(result, "Sửa chữa thành công.", "Học kỳ");
+                return new ActionResultResponese<string>(result, "Sửa thất bại.", "Học kỳ");
+            return new ActionResultResponese<string>(result, "Sửa thành công.", "Học kỳ");
 
         }
         public async Task<ActionResultResponese<string>> DeleteAsync(string idhocky)

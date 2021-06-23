@@ -28,7 +28,7 @@ namespace WebSite.Core.API.Controllers
         [SwaggerOperation(Summary = "GetAllHocKy", Description = "Requires login verification!", OperationId = "GetAllHocKyAsync", Tags = new[] { "Hocky" })]
         public async Task<IActionResult> GetAllAsync()
         {
-            var result = await _ihockyService.GetAll();
+            var result = await _ihockyService.GetAll(CurrentUser.IdBoMon);
             return Ok(result);
         }
 
@@ -36,7 +36,7 @@ namespace WebSite.Core.API.Controllers
         [SwaggerOperation(Summary = "InsertAsyncHocKy", Description = "Requires login verification!", OperationId = "InsertAsyncHocKy", Tags = new[] { "Hocky" })]
         public async Task<IActionResult> InsertAsync(string mahocky, string tenhocky)
         {
-            var result = await _ihockyService.InsertAsync(mahocky, tenhocky, CurrentUser.IdBoMon,CurrentUser.FullName);
+            var result = await _ihockyService.InsertAsync(mahocky, tenhocky, CurrentUser.IdBoMon,CurrentUser.FullName,CurrentUser.IdBoMon);
             if (result.Code <= 0)
             {
                 // _logger.LogError("Insert Hockys controller code: " + result.Code + " .Message: " + result.Message);
@@ -62,7 +62,7 @@ namespace WebSite.Core.API.Controllers
         [SwaggerOperation(Summary = "UpdateAsyncHocKy", Description = "Requires login verification!", OperationId = "UpdateAsyncHocKy", Tags = new[] { "Hocky" })]
         public async Task<IActionResult> UpdateAsync(string idHocKy,string mahocky,string tenhocky) //[FromBody]HocKyMeta hockymeta
         {
-            var result = await _ihockyService.UpDateAsync(idHocKy,mahocky, tenhocky,CurrentUser.MaGiangVien,CurrentUser.FullName);
+            var result = await _ihockyService.UpDateAsync(idHocKy,mahocky, tenhocky,CurrentUser.MaGiangVien,CurrentUser.FullName,CurrentUser.IdBoMon);
             if (result.Code <= 0)
             {
                 // _logger.LogError("Insert Hockys controller code: " + result.Code + " .Message: " + result.Message);

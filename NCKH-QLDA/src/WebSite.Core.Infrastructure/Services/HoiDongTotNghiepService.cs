@@ -46,7 +46,7 @@ namespace WebSite.Core.Infrastructure.Services
             if (checkhoidong)
                 return new ActionResultResponese<string>(-21, "Hội đồng đã tồn tại.", "Hội đồng.");
 
-            var infoMonHoc = await _monhocRepository.SearchInfo(idmonhoc);
+            var infoMonHoc = await _monhocRepository.GetInfoAsync(idmonhoc);
             if (infoMonHoc == null)
                 return new ActionResultResponese<string>(-5, "Môn học không tồn tại.", "Môn học.");
 

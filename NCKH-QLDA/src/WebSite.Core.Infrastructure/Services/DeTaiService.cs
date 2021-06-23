@@ -82,7 +82,7 @@ namespace WebSite.Core.Infrastructure.Services
                     Message = "Môn học không có trong kỳ này.",
                     Data = null
                 };
-            var getInfoMonHoc = await _monhocRepository.SearchInfo(idmonhoc);
+            var getInfoMonHoc = await _monhocRepository.GetInfoAsync(idmonhoc);
             if (getInfoMonHoc.TypeApprover.GetHashCode() == 0)
                 return new SearchResult<DeTaiSearchViewModel>()
                 {
@@ -113,7 +113,7 @@ namespace WebSite.Core.Infrastructure.Services
             if (!checExistMonHoc)
                 return new ActionResultResponese<string>(-5, "Môn học không tồn tại.", "Môn học.");
            
-            var monhocInfo = await _monhocRepository.SearchInfo(idmonhoc);
+            var monhocInfo = await _monhocRepository.GetInfoAsync(idmonhoc);
             var idTienQuyet = "0";
             if (monhocInfo.IdMonTienQuyet != idTienQuyet)
             {

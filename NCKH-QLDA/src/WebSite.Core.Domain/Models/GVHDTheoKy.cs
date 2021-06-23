@@ -7,6 +7,7 @@ namespace WebSite.Core.Domain.Models
     {
         public string IdGVHDTheoKy { get; set; }
         public string IdGVHD { get; set; }
+        public string IdBoMon { get; set; }
         public string MaGVHD { get; set; }
         public string TenGVHD { get; set; }
         public string IdHocKy { get; set; }

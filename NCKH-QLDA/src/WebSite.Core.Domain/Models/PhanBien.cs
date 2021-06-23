@@ -15,7 +15,7 @@ namespace WebSite.Core.Domain.Models
         public string IdHocKy { get; set; }
         public string IdMonHoc { get; set; }
         public DateTime? CreateTime { get; set; }
-        public DateTime? DeteteTime { get; set; }
+        public DateTime? DeleteTime { get; set; }
         public DateTime? LastUpdate { get; set; }
         public string CreatorUserId { get; set; }
         public string lastUpdateUserId { get; set; }

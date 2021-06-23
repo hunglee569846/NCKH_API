@@ -83,32 +83,55 @@ namespace WebSite.Core.Infrastructure.Repository
 
         }
 
-        public async Task<int> Update(PhanBien phanbien)
+        public async Task<int> Update(PhanBien phanBien)
         {
             try
             {
-                int rowAffect = 0;
-                using (SqlConnection conn = new SqlConnection(_connectionString))
+                int rowAffected = 0;
+                using (SqlConnection con = new SqlConnection(_connectionString))
                 {
-                    if (conn.State == ConnectionState.Closed)
-                        await conn.OpenAsync();
+                    if (con.State == ConnectionState.Closed)
+                        await con.OpenAsync();
+
                     DynamicParameters param = new DynamicParameters();
-                    param.Add("@IdPhanBien", phanbien.IdPhanBien);
-                    param.Add("@IdGVPB", phanbien.IdGVPB);
-                    param.Add("@IdDetai", phanbien.IdDetai);
-                    param.Add("@Note", phanbien.Note);
-                    param.Add("@NgaySua", phanbien.LastUpdate);
-                    param.Add("@LastUpdateUserId", phanbien.lastUpdateUserId);
-                    param.Add("@LastUpdateFullName", phanbien.LastUpdateFullName);
-                    rowAffect = await conn.ExecuteAsync("[dbo].[spPhanBien_UpdateAsync]", param, commandType: CommandType.StoredProcedure);
-                    return rowAffect;
+                    param.Add("@IdPhanBien", phanBien.IdPhanBien);
+                    param.Add("@IdBoMon", phanBien.IdBoMon);
+                    param.Add("@IdGVPB", phanBien.IdGVPB);
+                    param.Add("@IdDetai", phanBien.IdDetai);
+                    param.Add("@Diem", phanBien.Diem);
+                    param.Add("@Note", phanBien.Note);
+                    param.Add("@IdHocKy", phanBien.IdHocKy);
+                    param.Add("@IdMonHoc", phanBien.IdMonHoc);
+                    if (phanBien.CreateTime != null && phanBien.CreateTime != DateTime.MinValue)
+                    {
+                        param.Add("@CreateTime", phanBien.CreateTime);
+                    }
+                    param.Add("@CreatorUserId", phanBien.CreatorUserId);
+                    param.Add("@CreatorFullName", phanBien.CreatorFullName);
+                    if (phanBien.LastUpdate != null && phanBien.LastUpdate != DateTime.MinValue)
+                    {
+                        param.Add("@LastUpdate", phanBien.LastUpdate);
+                    }
+                    param.Add("@LastUpdateUserId", phanBien.lastUpdateUserId);
+                    param.Add("@LastUpdateFullName", phanBien.LastUpdateFullName);
+                    if (phanBien.DeleteTime != null && phanBien.DeleteTime != DateTime.MinValue)
+                    {
+                        param.Add("@DeleteTime", phanBien.DeleteTime);
+                    }
+                    param.Add("@DeleteUserId", phanBien.DeleteUserId);
+                    param.Add("@DeleteFullName", phanBien.DeleteFullName);
+                    param.Add("@IsActive", phanBien.IsActive);
+                    param.Add("@IsDelete", phanBien.IsDelete);
+                    rowAffected = await con.ExecuteAsync("[dbo].[spPhanBien_UpdateAsync]", param, commandType: CommandType.StoredProcedure);
                 }
+                return rowAffected;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //_logger.LogError(ex, "[dbo].[spPhanBien_UpdateAsync] PhanBienRepository Error.");
+                //_logger.LogError(ex, "[dbo].[spPhanBien_Update] UpdateAsync PhanBienRepository Error.");
                 return -1;
             }
+
         }
 
         public async Task<bool> CheckExis(string idPhanBien)
@@ -245,6 +268,28 @@ namespace WebSite.Core.Infrastructure.Repository
                 //_logger.LogError(ex, "[dbo].[spPhanBien_DeleteAsync] PhanBienRepository Error.");
                 return -1;
             }
+        }
+
+        public async Task<PhanBien> GetInfoAsync(string idPhanBien)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(_connectionString))
+                {
+                    if (con.State == ConnectionState.Closed)
+                        await con.OpenAsync();
+
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@IdPhanBien", idPhanBien);
+                    return await con.QuerySingleOrDefaultAsync<PhanBien>("[dbo].[spPhanBien_SelectByID]", param, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception ex)
+            {
+                //_logger.LogError(ex, "[dbo].[spPhanBien_SelectByID] GetInfoAsync PhanBienRepository Error.");
+                return null;
+            }
+
         }
     }
 }

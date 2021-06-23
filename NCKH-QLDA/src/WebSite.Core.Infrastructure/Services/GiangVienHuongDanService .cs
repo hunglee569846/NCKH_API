@@ -140,7 +140,7 @@ namespace WebSite.Core.Infrastructure.Services
 				return new ActionResultResponese<string>(-6, "Bản ghi không tồn tại.", "Giang viên hướng dẫn theo kỳ.");
 			var checkExitsGVHD = await _giangVienHuongDanRepository.CheckExitsGVHD(idGVHD);
 			if (!checkExitsGVHD)
-				return new ActionResultResponese<string>(-10, "Giang viên không tồn tại.", "Giang vien hướng dẫn theo kỳ.");
+				return new ActionResultResponese<string>(-10, "Giảng viên không tồn tại.", "Giang vien hướng dẫn theo kỳ.");
 			var gvhdky = new GVHDTheoKy()
 			{
 				IdGVHDTheoKy = idGvhdTheoKy?.Trim(),
@@ -153,11 +153,11 @@ namespace WebSite.Core.Infrastructure.Services
 				LastUpdateFullName = creatorFullName?.Trim()
 			};
 			if (gvhdky == null)
-				return new ActionResultResponese<string>(-12, "Dữ liệu trống.", "Giang viên hướng dẫn theo kỳ.");
+				return new ActionResultResponese<string>(-12, "Dữ liệu trống.", "Giảng viên hướng dẫn theo kỳ.");
 			var result = await _giangVienHuongDanRepository.UpdatetAsync(gvhdky);
 			if (result <= 0)
-				return new ActionResultResponese<string>(result, "Sửa thất bại.", "Giang viên hướng dẫn theo kỳ.");
-			return new ActionResultResponese<string>(result, "Sửa thành công.", "Giang viên hướng dẫn theo kỳ.");
+				return new ActionResultResponese<string>(result, "Sửa thất bại.", "Giảng viên hướng dẫn theo kỳ.");
+			return new ActionResultResponese<string>(result, "Sửa thành công.", "Giảng viên hướng dẫn theo kỳ.");
 		}
 
 		public async Task<ActionResultResponese<string>> DeleteAsync(string idgvhdTheoky, string deleteUserId, string deleteFullName)

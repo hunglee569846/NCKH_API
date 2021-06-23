@@ -17,5 +17,6 @@ namespace WebSite.Core.Domain.IRepository
         Task<bool> CheckExisByMaGV(string MaGV,string idhocky,string idmonhoc,string iddetai); //check bằng mã giảng viên
         Task<bool> CheckExisActive(string idphanbien);
         Task<int> DeleteAsync(string idphanbien);
+        Task<PhanBien> GetInfoAsync(string idPhanBien);
     }
 }

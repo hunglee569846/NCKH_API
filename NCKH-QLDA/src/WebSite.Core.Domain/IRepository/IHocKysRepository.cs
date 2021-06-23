@@ -11,11 +11,12 @@ namespace WebSite.Core.Domain.IRepository
 {
     public interface IHocKysRepository
     {
-        Task<SearchResult<HocKySearchViewModel>> SelectAll();
-        Task<HocKySearchViewModel> SearchInfo(string idhocky);
+        Task<SearchResult<HocKySearchViewModel>> SelectAll(string idbomon);
+        Task<HocKy> SearchInfo(string idhocky);
         Task<int> InsertAsync(HocKy hocky);
         Task<int> DeleteAsync(string idhocky);
-        Task<int> UpdateAsync(string idhocky, string mahocky, string tenhocky, DateTime? LastUpdate, string userId, string fullName);
+        Task<int> UpdateAsync(HocKy hocKy);
+        //Task<int> UpdateAsync(string idhocky, string mahocky, string tenhocky, DateTime? LastUpdate, string userId, string fullName);
         Task<bool> CheckExistAsync(string idHocKy,string maHocky);
         Task<bool> CheckExisIsActivetAsync(string idHocKy);
         Task<bool> CheckLockDataAsync(string idHocKy);

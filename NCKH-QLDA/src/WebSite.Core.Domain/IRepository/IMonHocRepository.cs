@@ -11,14 +11,14 @@ namespace WebSite.Core.Domain.IRepository
 {
     public interface IMonHocRepository
     {
-        Task<SearchResult<MonHocSearchViewModel>> SelectAllByIdHocKy(string idhocky);
+        Task<SearchResult<MonHocSearchViewModel>> SelectAllByIdHocKy(string idhocky,string idbomon);
         Task<int> InsertAsync(MonHoc monhoc);
         Task<int> UpdateAsync(MonHoc monhoc);
-        Task<int> DeleteAsync(string idMonHoc,string idHocKy);
+        Task<int> DeleteAsync(MonHoc monhoc);
         Task<bool> CheckExits(string idmonhoc, string mamonhoc);
         Task<bool> CheckMonHocInHocKyExits(string idmonhoc, string idhocky);
         Task<bool> CheckExitsIsActvive(string idmonhoc);
         Task<bool> CheckExitsMaMonHoc(string mamonhoc);
-        Task<MonHocSearchViewModel> SearchInfo(string idmonhoc);
+        Task<MonHoc> GetInfoAsync(string idmonhoc);
     }
 }

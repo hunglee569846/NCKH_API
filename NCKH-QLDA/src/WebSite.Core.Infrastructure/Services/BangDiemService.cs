@@ -111,7 +111,7 @@ namespace WebSite.Core.Infrastructure.Services
             if (!checkMonHoc)
                 return new ActionResultResponese<string>(-8, "Môn học không có trong học kỳ.", "Môn học");
 
-            var infoMonHoc = await _monhocRepository.SearchInfo(idmonhoc);
+            var infoMonHoc = await _monhocRepository.GetInfoAsync(idmonhoc);
             if (infoMonHoc == null)
                 return new ActionResultResponese<string>(-15, "Môn học không có trong học kỳ.", "Môn học");
             if (infoMonHoc.TypeApprover.GetHashCode() == 1 || infoMonHoc.TypeApprover.GetHashCode() == 2)
@@ -215,7 +215,7 @@ namespace WebSite.Core.Infrastructure.Services
             var checkMonHoc = await _monhocRepository.CheckMonHocInHocKyExits(idmonhoc, idhocky);
             if (!checkMonHoc)
                 return new SearchResult<XuatDiemPhanBienViewModel> { Code = -44, Data = null, Message = "Môn học không tồn tại." };
-            var getInfoMonHoc = await _monhocRepository.SearchInfo(idmonhoc);
+            var getInfoMonHoc = await _monhocRepository.GetInfoAsync(idmonhoc);
             if(getInfoMonHoc.TypeApprover.GetHashCode() == 0)
                 return new SearchResult<XuatDiemPhanBienViewModel> { Code = -45, Data = null, Message = "Môn học không có đánh giá phản biện." };
             return await _bangdiemRepository.XuatDiemPhanBien(idhocky, idmonhoc);
@@ -258,7 +258,7 @@ namespace WebSite.Core.Infrastructure.Services
             var checkMonHoc = await _monhocRepository.CheckMonHocInHocKyExits(idmonhoc, idhocky);
             if (!checkMonHoc)
                 return new SearchResult<XuatDiemHoiDongViewModel> { Code = -54, Data = null, Message = "Môn học không tồn tại." };
-            var getInfoMonHoc = await _monhocRepository.SearchInfo(idmonhoc);
+            var getInfoMonHoc = await _monhocRepository.GetInfoAsync(idmonhoc);
             if (getInfoMonHoc.TypeApprover.GetHashCode() == 2)
                 return new SearchResult<XuatDiemHoiDongViewModel> { Code = -55, Data = null, Message = "Môn học không có đánh giá phản biện." };
             return await _bangdiemRepository.XuatDiemHoiDong(idhocky, idmonhoc);

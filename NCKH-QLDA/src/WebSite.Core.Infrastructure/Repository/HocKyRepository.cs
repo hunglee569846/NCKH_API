@@ -22,7 +22,7 @@ namespace WebSite.Core.Infrastructure.Repository
             _connectionString = connectionString;
         }
 
-        public async Task<SearchResult<HocKySearchViewModel>> SelectAll()
+        public async Task<SearchResult<HocKySearchViewModel>> SelectAll(string idbomon)
         {
             try
             {
@@ -30,8 +30,9 @@ namespace WebSite.Core.Infrastructure.Repository
                 {
                     if (conn.State == ConnectionState.Closed)
                         await conn.OpenAsync();
-
-                    using (var multi = await conn.QueryMultipleAsync("[dbo].[spHocKy_SelectAll]", commandType: CommandType.StoredProcedure))
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@IdBoMon", idbomon);
+                    using (var multi = await conn.QueryMultipleAsync("[dbo].[spHocKy_SelectAll]",param, commandType: CommandType.StoredProcedure))
                     {
                         return new SearchResult<HocKySearchViewModel>()
                         {
@@ -59,6 +60,7 @@ namespace WebSite.Core.Infrastructure.Repository
                         await conn.OpenAsync();
                     DynamicParameters param = new DynamicParameters();
                     param.Add("@IdHocKy", hocky.IdHocKy);
+                    param.Add("@IdBoMon", hocky.IdBoMon);
                     param.Add("@MaHocKy", hocky.MaHocKy);
                     param.Add("@TenHocKy", hocky.TenHocKy);
                     if (hocky.CreateTime != null && hocky.CreateTime != DateTime.MinValue)
@@ -67,7 +69,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     }
                     param.Add("@IsActive", hocky.IsActive);
                     param.Add("@IsDelete", hocky.IsDelete);
-                    param.Add("@LockData", hocky.LockData);
+                    param.Add("@LockData", hocky.IsLockData);
                     param.Add("@CreatetorId", hocky.CreatetorId);
                     param.Add("@CreatorFullName", hocky.CreatorFullName);
                     TotalRow = await conn.ExecuteAsync("[dbo].[spHocKy_Insert]", param, commandType: CommandType.StoredProcedure);
@@ -221,7 +223,7 @@ namespace WebSite.Core.Infrastructure.Repository
                 return false;
             }
         }
-        public async Task<HocKySearchViewModel> SearchInfo(string idhocky)
+        public async Task<HocKy> SearchInfo(string idhocky)
         {
             try
             {
@@ -231,7 +233,7 @@ namespace WebSite.Core.Infrastructure.Repository
                         await con.OpenAsync();
                     DynamicParameters param = new DynamicParameters();
                     param.Add("@IdHocKy", idhocky);
-                    return  await con.QuerySingleOrDefaultAsync<HocKySearchViewModel>("[dbo].[spHocKy_GetInfo]", param, commandType: CommandType.StoredProcedure);
+                    return  await con.QuerySingleOrDefaultAsync<HocKy>("[dbo].[spHocKy_GetInfo]", param, commandType: CommandType.StoredProcedure);
                     
                 }
             }
@@ -239,6 +241,53 @@ namespace WebSite.Core.Infrastructure.Repository
             {
                 // _logger.LogError(ex, "GetInfoAsync HocKyRepository Error.");
                 return null;
+            }
+        }
+
+        public async Task<int> UpdateAsync(HocKy hocKy)
+        {
+            try
+            {
+                int rowAffected = 0;
+                using (SqlConnection con = new SqlConnection(_connectionString))
+                {
+                    if (con.State == ConnectionState.Closed)
+                        await con.OpenAsync();
+
+
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@IdHocKy", hocKy.IdHocKy);
+                    param.Add("@IdBoMon", hocKy.IdBoMon);
+                    param.Add("@MaHocKy", hocKy.MaHocKy);
+                    param.Add("@TenHocKy", hocKy.TenHocKy);
+                    if (hocKy.CreateTime != null && hocKy.CreateTime != DateTime.MinValue)
+                    {
+                        param.Add("@CreateTime", hocKy.CreateTime);
+                    }
+                    if (hocKy.LastUpdate != null && hocKy.LastUpdate != DateTime.MinValue)
+                    {
+                        param.Add("@LastUpdate", hocKy.LastUpdate);
+                    }
+                    if (hocKy.DeleteTime != null && hocKy.DeleteTime != DateTime.MinValue)
+                    {
+                        param.Add("@DeleteTime", hocKy.DeleteTime);
+                    }
+                    param.Add("@IsActive", hocKy.IsActive);
+                    param.Add("@IsDelete", hocKy.IsDelete);
+                    param.Add("@IsLockData", hocKy.IsLockData);
+                    param.Add("@CreatetorId", hocKy.CreatetorId);
+                    param.Add("@CreatorFullName", hocKy.CreatorFullName);
+                    param.Add("@LastUpdateUserId", hocKy.LastUpdateUserId);
+                    param.Add("@LastUpdateFullName", hocKy.LastUpdateFullName);
+                    rowAffected = await con.ExecuteAsync("[dbo].[spHocKy_UpdateAsync]", param, commandType: CommandType.StoredProcedure);
+                    
+                }
+                return rowAffected;
+            }
+            catch (Exception ex)
+            {
+                //_logger.LogError(ex, "[dbo].[spHocKy_Update] UpdateAsync HocKyRepository Error.");
+                return -1;
             }
         }
     }

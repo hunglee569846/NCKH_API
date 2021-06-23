@@ -37,7 +37,7 @@ namespace WebSite.Core.API.Controllers
         [AcceptVerbs("GET"), Route("{idhocky}")]
         public async Task<IActionResult> GetAllAsync(string idhocky)
         {
-            var result = await _imonhocService.GetAllAsyncByIdHocKy(idhocky);
+            var result = await _imonhocService.GetAllAsyncByIdHocKy(idhocky,CurrentUser.IdBoMon);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Search MonHoc controller error " + result.Code);
@@ -50,7 +50,7 @@ namespace WebSite.Core.API.Controllers
         [AcceptVerbs("POST"), Route("{mamonhoc}/{tenmonhoc}/{idhocky}/{typeApprover}")]
         public async Task<IActionResult> InsertAsync([FromBody]MonHocMeta monHocMeta, string idhocky, TypeDataApprover typeApprover ,string mamonhoc,string tenmonhoc)
         {
-            var result = await _imonhocService.InsertAsync(monHocMeta,idhocky, typeApprover,CurrentUser.MaGiangVien,CurrentUser.FullName, mamonhoc, tenmonhoc);
+            var result = await _imonhocService.InsertAsync(monHocMeta,idhocky, typeApprover,CurrentUser.MaGiangVien,CurrentUser.FullName, mamonhoc, tenmonhoc,CurrentUser.IdBoMon);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Insert MonHocs controller error " + result.Code);
@@ -60,10 +60,10 @@ namespace WebSite.Core.API.Controllers
         }
 
         [SwaggerOperation(Summary = "UpdateAsyncMonHoc", Description = "TypeApprover: 0 - GangVien,1 - HoiDong,2 - PhanBienvsPhanBien", OperationId = "UpdateAsyncMonHoc", Tags = new[] { "MonHoc" })]
-        [AcceptVerbs("PUT"), Route("{mamonhoc}/{tenmonhoc}/{idmonhoc}/{typeApprover}")]
+        [AcceptVerbs("PUT"), Route("{mamonhoc}/{idhocky}/{tenmonhoc}/{idmonhoc}/{typeApprover}")]
         public async Task<IActionResult> UpdateAsync([FromBody] MonHocMeta monhocmeta, string idmonhoc, string idhocky, TypeDataApprover typeApprover, string mamonhoc, string tenmonhoc)
         {
-            var result = await _imonhocService.UpdateAsync(monhocmeta, idmonhoc,idhocky,typeApprover,CurrentUser.MaGiangVien,CurrentUser.FullName,mamonhoc,tenmonhoc);
+            var result = await _imonhocService.UpdateAsync(monhocmeta, idmonhoc,idhocky,typeApprover,CurrentUser.MaGiangVien,CurrentUser.FullName,mamonhoc,tenmonhoc,CurrentUser.IdBoMon);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Insert MonHocs controller error " + result.Code);
@@ -73,10 +73,10 @@ namespace WebSite.Core.API.Controllers
         }
 
         [SwaggerOperation(Summary = "DeleteAsync", Description = "Requires login verification!", OperationId = "DeleteAsync", Tags = new[] { "MonHoc" })]
-        [AcceptVerbs("DELETE"), Route("{idmonhoc}/{idhocky}")]
-        public async Task<IActionResult> DeleteAsync(string idmonhoc, string idhocky)
+        [AcceptVerbs("DELETE"), Route("{idMonHoc}")]
+        public async Task<IActionResult> DeleteAsync(string idMonHoc)
         {
-            var result = await _imonhocService.DeleteAsync(idmonhoc,idhocky);
+            var result = await _imonhocService.DeleteAsync(CurrentUser.MaGiangVien,CurrentUser.FullName, idMonHoc);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Insert MonHocs controller error " + result.Code);

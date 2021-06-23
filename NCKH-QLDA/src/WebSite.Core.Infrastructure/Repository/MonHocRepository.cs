@@ -22,7 +22,7 @@ namespace WebSite.Core.Infrastructure.Repository
             _connectionString = connectionString;
         }
 
-        public async Task<SearchResult<MonHocSearchViewModel>> SelectAllByIdHocKy(string idhocky)
+        public async Task<SearchResult<MonHocSearchViewModel>> SelectAllByIdHocKy(string idhocky,string idbomon)
         {
             try
             {
@@ -32,6 +32,7 @@ namespace WebSite.Core.Infrastructure.Repository
                         await conn.OpenAsync();
                     DynamicParameters param = new DynamicParameters();
                     param.Add("@IdHocKy", idhocky);
+                    param.Add("@IdBoMon", idbomon);
                     using (var multi = await conn.QueryMultipleAsync("[dbo].[spMonHoc_SelectAllByHocky]",param, commandType: CommandType.StoredProcedure))
                     {
                         return new SearchResult<MonHocSearchViewModel>()
@@ -49,33 +50,49 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
         
-        public async Task<int> InsertAsync(MonHoc monhoc)
+        public async Task<int> InsertAsync(MonHoc monHoc)
         {
             try
             {
-                var rowAffect = 0; 
+                var rowAffected = 0; 
                 using (SqlConnection conn = new SqlConnection(_connectionString))
                 {
                     if (conn.State == ConnectionState.Closed)
                         await conn.OpenAsync();
                     DynamicParameters param = new DynamicParameters();
-                    param.Add("@IdMonHoc", monhoc.IdMonHoc);
-                    param.Add("@MaMonHoc", monhoc.MaMonHoc);
-                    param.Add("@IdHocKy", monhoc.IdHocKy);
-                    param.Add("@TenMonHoc", monhoc.TenMonHoc);
-                    param.Add("@NgayTao", monhoc.NgayTao);
-                    param.Add("@IsActive", monhoc.IsActive);
-                    param.Add("@IsDelete", monhoc.IsDelete);
-                    param.Add("@TypeApprove", monhoc.TypeApprover);
-                    param.Add("@CreatorUserId", monhoc.CreatorUserId);
-                    param.Add("@CreatorFullName", monhoc.CreatorFullName);
-                    param.Add("@IdMonTienQuyet", monhoc.IdMonTienQuyet);
-                    param.Add("@NameMonTienQuyet", monhoc.NameMonTienQuyet);
-                    rowAffect = await conn.ExecuteAsync("[dbo].[spMonHoc_InsertAsync]", param, commandType: CommandType.StoredProcedure);
-                    return rowAffect;
+                    param.Add("@IdMonHoc", monHoc.IdMonHoc);
+                    param.Add("@IdBoMon", monHoc.IdBoMon);
+                    param.Add("@MaMonHoc", monHoc.MaMonHoc);
+                    param.Add("@IdHocKy", monHoc.IdHocKy);
+                    param.Add("@TenMonHoc", monHoc.TenMonHoc);
+                    param.Add("@TypeApprover", monHoc.TypeApprover);
+                    param.Add("@IdMonTienQuyet", monHoc.IdMonTienQuyet);
+                    param.Add("@NameMonTienQuyet", monHoc.NameMonTienQuyet);
+                    if (monHoc.LastUpdate != null && monHoc.LastUpdate != DateTime.MinValue)
+                    {
+                        param.Add("@LastUpdate", monHoc.LastUpdate);
+                    }
+                    if (monHoc.CreateTime != null && monHoc.CreateTime != DateTime.MinValue)
+                    {
+                        param.Add("@CreateTime", monHoc.CreateTime);
+                    }
+                    param.Add("@CreatorUserId", monHoc.CreatorUserId);
+                    param.Add("@CreatorFullName", monHoc.CreatorFullName);
+                    param.Add("@LastUpdateUserId", monHoc.LastUpdateUserId);
+                    param.Add("@LastUpdateFullName", monHoc.LastUpdateFullName);
+                    if (monHoc.DeleteTime != null && monHoc.DeleteTime != DateTime.MinValue)
+                    {
+                        param.Add("@DeleteTime", monHoc.DeleteTime);
+                    }
+                    param.Add("@DeleteTimeUserId", monHoc.DeleteTimeUserId);
+                    param.Add("@DeleteTimeFullName", monHoc.DeleteTimeFullName);
+                    param.Add("@IsActive", monHoc.IsActive);
+                    param.Add("@IsDelete", monHoc.IsDelete);
+                    rowAffected = await conn.ExecuteAsync("[dbo].[spMonHoc_InsertAsync]", param, commandType: CommandType.StoredProcedure);
+                    return rowAffected;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 //_logger.LogError(ex, "[dbo].[spMonHoc_SelectAllByHocky] SelectAllByIdHocKy MonHocRepository Error.");
                 return -1;
@@ -173,40 +190,59 @@ namespace WebSite.Core.Infrastructure.Repository
                 return false;
             }
         }
-        public async Task<int> UpdateAsync(MonHoc monhoc)
+        public async Task<int> UpdateAsync(MonHoc monHoc)
         {
             try
             {
-                var rowAffect = 0;
-                using (SqlConnection conn = new SqlConnection(_connectionString))
+                int rowAffected = 0;
+                using (SqlConnection con = new SqlConnection(_connectionString))
                 {
-                    if (conn.State == ConnectionState.Closed)
-                        await conn.OpenAsync();
+                    if (con.State == ConnectionState.Closed)
+                        await con.OpenAsync();
+
                     DynamicParameters param = new DynamicParameters();
-                    param.Add("@IdMonHoc", monhoc.IdMonHoc);
-                    param.Add("@MaMonHoc", monhoc.MaMonHoc);
-                    param.Add("@IdHocKy", monhoc.IdHocKy);
-                    param.Add("@TenMonHoc", monhoc.TenMonHoc);
-                    param.Add("@TypeApprover", monhoc.TypeApprover);
-                    param.Add("@NgaySua", monhoc.NgaySua);
-                    param.Add("@LastUpdateUserId", monhoc.LastUpdateUserId);
-                    param.Add("@LastUpdateFullName", monhoc.LastUpdateFullName);
-                    param.Add("@IdMonTienQuyet", monhoc.IdMonTienQuyet);
-                    param.Add("@NameMonTienQuyet", monhoc.NameMonTienQuyet);
-                    rowAffect = await conn.ExecuteAsync("[dbo].[spMonHoc_EditById]", param, commandType: CommandType.StoredProcedure);
-                    return rowAffect;
+                    param.Add("@IdMonHoc", monHoc.IdMonHoc);
+                    param.Add("@IdBoMon", monHoc.IdBoMon);
+                    param.Add("@MaMonHoc", monHoc.MaMonHoc);
+                    param.Add("@IdHocKy", monHoc.IdHocKy);
+                    param.Add("@TenMonHoc", monHoc.TenMonHoc);
+                    param.Add("@TypeApprover", monHoc.TypeApprover);
+                    param.Add("@IdMonTienQuyet", monHoc.IdMonTienQuyet);
+                    param.Add("@NameMonTienQuyet", monHoc.NameMonTienQuyet);
+                    if (monHoc.LastUpdate != null && monHoc.LastUpdate != DateTime.MinValue)
+                    {
+                        param.Add("@LastUpdate", monHoc.LastUpdate);
+                    }
+                    if (monHoc.CreateTime != null && monHoc.CreateTime != DateTime.MinValue)
+                    {
+                        param.Add("@CreateTime", monHoc.CreateTime);
+                    }
+                    param.Add("@CreatorUserId", monHoc.CreatorUserId);
+                    param.Add("@CreatorFullName", monHoc.CreatorFullName);
+                    param.Add("@LastUpdateUserId", monHoc.LastUpdateUserId);
+                    param.Add("@LastUpdateFullName", monHoc.LastUpdateFullName);
+                    if (monHoc.DeleteTime != null && monHoc.DeleteTime != DateTime.MinValue)
+                    {
+                        param.Add("@DeleteTime", monHoc.DeleteTime);
+                    }
+                    param.Add("@DeleteTimeUserId", monHoc.DeleteTimeUserId);
+                    param.Add("@DeleteTimeFullName", monHoc.DeleteTimeFullName);
+                    param.Add("@IsActive", monHoc.IsActive);
+                    param.Add("@IsDelete", monHoc.IsDelete);
+                    rowAffected = await con.ExecuteAsync("[dbo].[spMonHoc_EditById]", param, commandType: CommandType.StoredProcedure);
                 }
+                return rowAffected;
             }
             catch (Exception ex)
             {
-                //_logger.LogError(ex, "[dbo].[spMonHoc_EditById] UpdateAllByIdHocKy MonHocRepository Error.");
+                //_logger.LogError(ex, "[dbo].[spMonHoc_Update] UpdateAsync MonHocRepository Error.");
                 return -1;
             }
-
         }
 
 
-        public async Task<int> DeleteAsync(string idMonHoc, string idHocKy)
+
+        public async Task<int> DeleteAsync(MonHoc monHoc)
         {
             try
             {
@@ -216,8 +252,9 @@ namespace WebSite.Core.Infrastructure.Repository
                     if (conn.State == ConnectionState.Closed)
                         await conn.OpenAsync();
                     DynamicParameters param = new DynamicParameters();
-                    param.Add("@IdMonHoc", idMonHoc);
-                    param.Add("@IdHocKy", idHocKy);
+                    param.Add("@IdMonHoc", monHoc.IdMonHoc);
+                    param.Add("@DeleteUserId", monHoc.DeleteTimeUserId);
+                    param.Add("@DeleteFullName", monHoc.DeleteTimeFullName);
                     rowAffect = await conn.ExecuteAsync("[dbo].[spMonHoc_DeleteAsync]", param, commandType: CommandType.StoredProcedure);
                     return rowAffect;
                 }
@@ -228,7 +265,7 @@ namespace WebSite.Core.Infrastructure.Repository
                 return -1;
             }
         }
-        public async Task<MonHocSearchViewModel> SearchInfo(string idmonhoc)
+        public async Task<MonHoc> GetInfoAsync(string idMonHoc)
         {
             try
             {
@@ -236,15 +273,15 @@ namespace WebSite.Core.Infrastructure.Repository
                 {
                     if (con.State == ConnectionState.Closed)
                         await con.OpenAsync();
-                    DynamicParameters param = new DynamicParameters();
-                    param.Add("@IdMonHoc", idmonhoc);
-                    return await con.QuerySingleOrDefaultAsync<MonHocSearchViewModel>("[dbo].[spMonHoc_GetInfo]", param, commandType: CommandType.StoredProcedure);
 
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@IdMonHoc", idMonHoc);
+                    return await con.QuerySingleOrDefaultAsync<MonHoc>("[dbo].[spMonHoc_GetInfo]", param, commandType: CommandType.StoredProcedure);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // _logger.LogError(ex, "GetInfoAsync MonHocRepository Error.");
+               // _logger.LogError(ex, "[dbo].[spMonHoc_SelectByID] GetInfoAsync MonHocRepository Error.");
                 return null;
             }
         }
