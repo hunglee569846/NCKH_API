@@ -64,7 +64,7 @@ namespace WebSite.Core.Infrastructure.Services
             return await _deTaiRepository.SelectByIdMonHocInHocKy(idhocky,idmonhoc);
         }
 
-        public async Task<SearchResult<DeTaiSearchViewModel>> GetChuaPhanHDAsync(string idhocky, string idmonhoc)
+        public async Task<SearchResult<DeTaiSearchViewModel>> GetChuaPhanHDAsync(string idhocky, string idmonhoc,string idBoMon)
         {
             var checkIdKy = await _deTaiRepository.CheckExitsKyHoc(idhocky);
             if (!checkIdKy)
@@ -90,7 +90,7 @@ namespace WebSite.Core.Infrastructure.Services
                     Message = "Môn học không có hội đồng.",
                     Data = null
                 };
-            return await _deTaiRepository.SelectChuaPhanHD(idhocky,idmonhoc);
+            return await _deTaiRepository.SelectChuaPhanHD(idhocky,idmonhoc,idBoMon);
         }
         public async Task<ActionResultResponese<string>> InsertAsync(DeTaiInsertMeta detaiInsertMeta, string madetai, string idhocky, string idmonhoc, string idsinhvien, string tensinhvien,string masinhvien, string maNguoiTao,string tenNguoiTao)
         {

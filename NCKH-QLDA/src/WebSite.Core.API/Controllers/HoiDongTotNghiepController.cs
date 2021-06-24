@@ -36,15 +36,15 @@ namespace WebSite.Core.API.Controllers
         [AcceptVerbs("POST"), Route("InsertHoiDong/{idhocky}/{idmonhoc}")]
         public async Task<IActionResult> InsertAsync([FromBody]HoiDongTotNghiepMeta hoidongMeta, string idhocky, string idmonhoc)
         {
-            var result = await _hoiDongTotNghiepService.InsertAsync(hoidongMeta, idhocky, idmonhoc,CurrentUser.MaGiangVien,CurrentUser.FullName);
+            var result = await _hoiDongTotNghiepService.InsertAsync(hoidongMeta, idhocky, idmonhoc,CurrentUser.MaGiangVien,CurrentUser.FullName,CurrentUser.IdBoMon);
             return Ok(result);
         }
 
         [SwaggerOperation(Summary = "UpdateHoiDong", Description = "Requires login verification!", OperationId = "UpdateHoiDong", Tags = new[] { "HoiDongTotNghiep" })]
-        [AcceptVerbs("PUT"), Route("UpdateHoiDong/{idhoidong}/{idhocky}")]
-        public async Task<IActionResult> UpdateAsync([FromBody] HoiDongTotNghiepMeta hoidongMeta, string idhoidong, string idhocky)
+        [AcceptVerbs("PUT"), Route("UpdateHoiDong/{idhoidong}/{idhocky}/{idMonHoc}")]
+        public async Task<IActionResult> UpdateAsync([FromBody] HoiDongTotNghiepMeta hoidongMeta, string idhoidong, string idhocky, string idMonHoc)
         {
-            var result = await _hoiDongTotNghiepService.UpdateAsync(hoidongMeta, idhoidong, idhocky,CurrentUser.MaGiangVien,CurrentUser.FullName);
+            var result = await _hoiDongTotNghiepService.UpdateAsync(hoidongMeta, idhoidong, idhocky, idMonHoc, CurrentUser.MaGiangVien,CurrentUser.FullName,CurrentUser.IdBoMon);
             return Ok(result);
         }
         

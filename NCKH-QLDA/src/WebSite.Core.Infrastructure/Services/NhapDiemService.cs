@@ -7,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebSite.Core.Domain.IRepository;
+using WebSite.Core.Domain.IServices;
 using WebSite.Core.Domain.Models;
 using WebSite.Core.Domain.ViewModel;
 using WebSite.Core.Infrastructure.Repository;
 
 namespace WebSite.Core.Infrastructure.Services
 {
-    public class NhapDiemService
+    public class NhapDiemService //: INhapDiemService
     {
 
         private readonly IPhanBienRepository _phanBienRepository;
@@ -31,7 +32,7 @@ namespace WebSite.Core.Infrastructure.Services
         /// </summary>
         /// <param name="NhapDiemService"></param>
         /// <returns></returns>
-        //public async Task<ActionResultResponese<string>> InsertListExcelAsync(string idhocky,string idmonhoc, string urlFile)
+        //public async Task<ActionResultResponese<string>> InsertListExcelAsync(string idhocky, string idmonhoc, string urlFile,string idBoMon)
         //{
         //    var info = await _phanBienRepository.GetInfoAsync(urlFile);
         //    if (info == null)
@@ -93,10 +94,10 @@ namespace WebSite.Core.Infrastructure.Services
         //        //return new ActionResultResponese<string>(-5, "them that bai", "Department", null);
         //        #endregion
         //    }
-            
-        //    List<XuatDiemPhanBienViewModel> dbdiemphanbien = await _bangdiemRepository.XuatDiemPhanBienExcel(idhocky, idmonhoc);
+
+        //    List<XuatDiemPhanBienViewModel> dbdiemphanbien = await _bangdiemRepository.XuatDiemPhanBienExcel(idhocky, idmonhoc, idBoMon);
         //    var result = phanbien.Except(dbdiemphanbien);
-        //    if (result)
+        //    if (result == null)
 
         //}
     }

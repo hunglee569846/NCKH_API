@@ -50,7 +50,7 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
 
-        public async Task<int> InsertAsync(HoiDongTotNghiep hoidong)
+        public async Task<int> InsertAsync(HoiDongTotNghiep hoiDongTotNghiep)
         {
             try
             {
@@ -60,27 +60,31 @@ namespace WebSite.Core.Infrastructure.Repository
                     if (conn.State == ConnectionState.Closed)
                         await conn.OpenAsync();
                     DynamicParameters param = new DynamicParameters();
-                    param.Add("@IdHoiDong", hoidong.IdHoiDong);
-                    param.Add("@MaHoiDong", hoidong.MaHoiDong);
-                    param.Add("@TenHoiDong", hoidong.TenHoiDong);
-                    param.Add("@IdHocKy", hoidong.IdHocKy);
-                    param.Add("@IdMonHoc", hoidong.IdMonHoc);
-                    if(hoidong.CreateTime != DateTime.MinValue || hoidong.CreateTime != null)
+                    param.Add("@IdHoiDong", hoiDongTotNghiep.IdHoiDong);
+                    param.Add("@IdBoMon", hoiDongTotNghiep.IdBoMon);
+                    param.Add("@MaHoiDong", hoiDongTotNghiep.MaHoiDong);
+                    param.Add("@TenHoiDong", hoiDongTotNghiep.TenHoiDong);
+                    param.Add("@IdHocKy", hoiDongTotNghiep.IdHocKy);
+                    param.Add("@IdMonHoc", hoiDongTotNghiep.IdMonHoc);
+                    if (hoiDongTotNghiep.NgayBaoVe != null && hoiDongTotNghiep.NgayBaoVe != DateTime.MinValue)
                     {
-                        param.Add("@CreateTime", hoidong.CreateTime);
+                        param.Add("@NgayBaoVe", hoiDongTotNghiep.NgayBaoVe);
                     }
-                    if (hoidong.NgayBaoVe != DateTime.MinValue || hoidong.NgayBaoVe != null)
+                    if (hoiDongTotNghiep.LastUpdate != null && hoiDongTotNghiep.LastUpdate != DateTime.MinValue)
                     {
-                        param.Add("@NgayBaoVe", hoidong.NgayBaoVe);
+                        param.Add("@LastUpdate", hoiDongTotNghiep.LastUpdate);
                     }
-                    if (hoidong.LastUpdate != DateTime.MinValue || hoidong.LastUpdate != null)
+                    if (hoiDongTotNghiep.CreateTime != null && hoiDongTotNghiep.CreateTime != DateTime.MinValue)
                     {
-                        param.Add("@LastUpdate", hoidong.LastUpdate);
+                        param.Add("@CreateTime", hoiDongTotNghiep.CreateTime);
                     }
-                    param.Add("@CreatorUserId", hoidong.CreatorUserId);
-                    param.Add("@CreatorFullName", hoidong.CreatorFullName);
-                    param.Add("@IsActive", hoidong.IsActive);
-                    param.Add("@IsDelete", hoidong.IsDelete);
+                    param.Add("@CreatorUserId", hoiDongTotNghiep.CreatorUserId);
+                    param.Add("@CreatorFullName", hoiDongTotNghiep.CreatorFullName);
+                    param.Add("@LastUpdateUserId", hoiDongTotNghiep.LastUpdateUserId);
+                    param.Add("@LastUpdateFullName", hoiDongTotNghiep.LastUpdateFullName);
+                    param.Add("@IsActive", hoiDongTotNghiep.IsActive);
+                    param.Add("@IsDelete", hoiDongTotNghiep.IsDelete);
+
                     rowAffect = await conn.ExecuteAsync("[dbo].[spHoiDongTotNghiep_Insert]", param, commandType: CommandType.StoredProcedure);
                     return rowAffect;
                 }
@@ -92,7 +96,7 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
 
-        public async Task<int> UpdateAsync(HoiDongTotNghiep hoidong)
+        public async Task<int> UpdateAsync(HoiDongTotNghiep hoiDongTotNghiep)
         {
             try
             {
@@ -102,13 +106,31 @@ namespace WebSite.Core.Infrastructure.Repository
                     if (conn.State == ConnectionState.Closed)
                         await conn.OpenAsync();
                     DynamicParameters param = new DynamicParameters();
-                    param.Add("@IdHoiDong", hoidong.IdHoiDong);
-                    param.Add("@MaHoiDong", hoidong.MaHoiDong);
-                    param.Add("@TenHoiDong", hoidong.TenHoiDong);
-                    param.Add("@NgayBaoVe", hoidong.NgayBaoVe);
-                    param.Add("@LastUpdate", hoidong.LastUpdate);
-                    param.Add("@LastUpdateUserId", hoidong.LastUpdateUserId);
-                    param.Add("@LastUpdateFullName", hoidong.LastUpdateFullName);
+                    param.Add("@IdHoiDong", hoiDongTotNghiep.IdHoiDong);
+                    param.Add("@IdBoMon", hoiDongTotNghiep.IdBoMon);
+                    param.Add("@MaHoiDong", hoiDongTotNghiep.MaHoiDong);
+                    param.Add("@TenHoiDong", hoiDongTotNghiep.TenHoiDong);
+                    param.Add("@IdHocKy", hoiDongTotNghiep.IdHocKy);
+                    param.Add("@IdMonHoc", hoiDongTotNghiep.IdMonHoc);
+                    if (hoiDongTotNghiep.NgayBaoVe != null && hoiDongTotNghiep.NgayBaoVe != DateTime.MinValue)
+                    {
+                        param.Add("@NgayBaoVe", hoiDongTotNghiep.NgayBaoVe);
+                    }
+                    if (hoiDongTotNghiep.LastUpdate != null && hoiDongTotNghiep.LastUpdate != DateTime.MinValue)
+                    {
+                        param.Add("@LastUpdate", hoiDongTotNghiep.LastUpdate);
+                    }
+                    if (hoiDongTotNghiep.CreateTime != null && hoiDongTotNghiep.CreateTime != DateTime.MinValue)
+                    {
+                        param.Add("@CreateTime", hoiDongTotNghiep.CreateTime);
+                    }
+                    param.Add("@CreatorUserId", hoiDongTotNghiep.CreatorUserId);
+                    param.Add("@CreatorFullName", hoiDongTotNghiep.CreatorFullName);
+                    param.Add("@LastUpdateUserId", hoiDongTotNghiep.LastUpdateUserId);
+                    param.Add("@LastUpdateFullName", hoiDongTotNghiep.LastUpdateFullName);
+                    param.Add("@IsActive", hoiDongTotNghiep.IsActive);
+                    param.Add("@IsDelete", hoiDongTotNghiep.IsDelete);
+
                     rowAffect = await conn.ExecuteAsync("[dbo].[spHoiDongTotNghiep_Update]", param, commandType: CommandType.StoredProcedure);
                     return rowAffect;
                 }
@@ -169,21 +191,22 @@ namespace WebSite.Core.Infrastructure.Repository
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection(_ConnectionString))
+                using (SqlConnection con = new SqlConnection(_ConnectionString))
                 {
-                    if (conn.State == ConnectionState.Closed)
-                        await conn.OpenAsync();
+                    if (con.State == ConnectionState.Closed)
+                        await con.OpenAsync();
+
                     DynamicParameters param = new DynamicParameters();
-                    param.Add("@IdHoiDongTotNghiep", idhoidongtotnghiep);
-                    return await conn.QuerySingleOrDefaultAsync<HoiDongTotNghiep>("[dbo].[spHoiDongTotNghiep_GetInfo]", param, commandType: CommandType.StoredProcedure);
-                    
+                    param.Add("@IdHoiDong", idhoidongtotnghiep);
+                    return await con.QuerySingleOrDefaultAsync<HoiDongTotNghiep>("[dbo].[spHoiDongTotNghiep_GetInfo]", param, commandType: CommandType.StoredProcedure);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //_logger.LogError(ex, "[dbo].[spHoiDongTotNghiep_Update] UpdateAllByIdHocKy HoiDongTotNghiepService Error.");
+               // _logger.LogError(ex, "[dbo].[spHoiDongTotNghiep_SelectByID] GetInfoAsync HoiDongTotNghiepRepository Error.");
                 return null;
             }
+
         }
 
         public async Task<int> DeleteAsync(string idhoidong)

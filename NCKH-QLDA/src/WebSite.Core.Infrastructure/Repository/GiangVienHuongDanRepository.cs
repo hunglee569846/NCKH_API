@@ -19,12 +19,14 @@ namespace WebSite.Core.Infrastructure.Repository
         {
             _connectionString = connectionString;
         }
-        public async Task<SearchResult<GiangVienHuongDanViewModel>> SelectAllAsync()
+        public async Task<SearchResult<GiangVienHuongDanViewModel>> SelectAllAsync(string idbomon)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 if (conn.State == ConnectionState.Closed)
                     await conn.OpenAsync();
+                DynamicParameters para = new DynamicParameters();
+                para.Add("@IdBoMon", idbomon);
                 using (var multi = await conn.QueryMultipleAsync("[dbo].[spGiangVienHuongDan_SelectAll]", commandType: CommandType.StoredProcedure))
                 {
                     return new SearchResult<GiangVienHuongDanViewModel>()
@@ -37,7 +39,7 @@ namespace WebSite.Core.Infrastructure.Repository
 
         }
 
-        public async Task<SearchResult<GiangVienHuongDanViewModel>> SelectByIdHocKyAsync(string idhocky)
+        public async Task<SearchResult<GiangVienHuongDanViewModel>> SelectByIdHocKyAsync(string idhocky,string idBoMon)
         {
             try
             {
@@ -47,6 +49,7 @@ namespace WebSite.Core.Infrastructure.Repository
                         await conn.OpenAsync();
                     DynamicParameters para = new DynamicParameters();
                     para.Add("@IdHocKy", idhocky);
+                    para.Add("@IdBoMon", idBoMon);
                     using (var multi = await conn.QueryMultipleAsync("[dbo].[spGiangVienHuongDan_SelectByIdHocKy]", para, commandType: CommandType.StoredProcedure))
                     {
                         return new SearchResult<GiangVienHuongDanViewModel>()

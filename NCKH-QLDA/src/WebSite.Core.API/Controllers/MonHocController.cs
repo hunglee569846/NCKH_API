@@ -33,7 +33,7 @@ namespace WebSite.Core.API.Controllers
         /// </summary>
         /// <param name="idhocky"></param>
         /// <returns></returns>
-        [SwaggerOperation(Summary = "GetAllMonHoc", Description = "TypeApprover: 0 - GangVien,1 - HoiDong,2 - PhanBienvsPhanBien", OperationId = "GetAllMonHocAsync", Tags = new[] { "MonHoc" })]
+        [SwaggerOperation(Summary = "Danh sách môn học theo kỳ", Description = "TypeApprover: 0 - GangVien,1 - HoiDong,2 - PhanBienvsPhanBien", OperationId = "GetAllMonHocAsync", Tags = new[] { "MonHoc" })]
         [AcceptVerbs("GET"), Route("{idhocky}")]
         public async Task<IActionResult> GetAllAsync(string idhocky)
         {
@@ -46,7 +46,7 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [SwaggerOperation(Summary = "InsertAsyncMonHoc", Description = "TypeApprover: 0 - GangVien,1 - HoiDong,2 - PhanBienvsPhanBien" , OperationId = "InsertAsyncMonHoc", Tags = new[] { "MonHoc" })]
+        [SwaggerOperation(Summary = "Thêm mới môn học.", Description = "TypeApprover: 0 - GangVien,1 - HoiDong,2 - PhanBienvsPhanBien" , OperationId = "InsertAsyncMonHoc", Tags = new[] { "MonHoc" })]
         [AcceptVerbs("POST"), Route("{mamonhoc}/{tenmonhoc}/{idhocky}/{typeApprover}")]
         public async Task<IActionResult> InsertAsync([FromBody]MonHocMeta monHocMeta, string idhocky, TypeDataApprover typeApprover ,string mamonhoc,string tenmonhoc)
         {
@@ -59,7 +59,7 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [SwaggerOperation(Summary = "UpdateAsyncMonHoc", Description = "TypeApprover: 0 - GangVien,1 - HoiDong,2 - PhanBienvsPhanBien", OperationId = "UpdateAsyncMonHoc", Tags = new[] { "MonHoc" })]
+        [SwaggerOperation(Summary = "Sửa thông tin.", Description = "TypeApprover: 0 - GangVien,1 - HoiDong,2 - PhanBienvsPhanBien", OperationId = "UpdateAsyncMonHoc", Tags = new[] { "MonHoc" })]
         [AcceptVerbs("PUT"), Route("{mamonhoc}/{idhocky}/{tenmonhoc}/{idmonhoc}/{typeApprover}")]
         public async Task<IActionResult> UpdateAsync([FromBody] MonHocMeta monhocmeta, string idmonhoc, string idhocky, TypeDataApprover typeApprover, string mamonhoc, string tenmonhoc)
         {
@@ -72,7 +72,7 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [SwaggerOperation(Summary = "DeleteAsync", Description = "Requires login verification!", OperationId = "DeleteAsync", Tags = new[] { "MonHoc" })]
+        [SwaggerOperation(Summary = "Xóa môn học", Description = "Requires login verification!", OperationId = "DeleteAsync", Tags = new[] { "MonHoc" })]
         [AcceptVerbs("DELETE"), Route("{idMonHoc}")]
         public async Task<IActionResult> DeleteAsync(string idMonHoc)
         {

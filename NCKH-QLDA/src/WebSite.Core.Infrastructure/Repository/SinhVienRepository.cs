@@ -103,7 +103,7 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
 
-        public async Task<int> InsertAsync(SinhVien sinhvien)
+        public async Task<int> InsertAsync(SinhVien sinhVien)
         {
             try
             {
@@ -113,20 +113,37 @@ namespace WebSite.Core.Infrastructure.Repository
                     if (conn.State == ConnectionState.Closed)
                         await conn.OpenAsync();
                     DynamicParameters param = new DynamicParameters();
-                    param.Add("@IdSinhVien", sinhvien.IdSinhVien);
-                    param.Add("@MaSinhVien", sinhvien.MaSinhVien);
-                    param.Add("@TenSinhVien", sinhvien.TenSinhVien);
-                    param.Add("@Email", sinhvien.Email);
-                    param.Add("@DienThoai", sinhvien.DienThoai);
-                    param.Add("@DonViThucTap", sinhvien.DonViThucTap);
-                    param.Add("@MaLopHoc", sinhvien.MaLopHoc);
-                    param.Add("@LopHoc", sinhvien.LopHoc);
-                    param.Add("@IdHocKy", sinhvien.IdHocKy);
-                    param.Add("@CreateTime", sinhvien.CreateTime);
-                    param.Add("@CreatorUserId", sinhvien.CreatorUserId);
-                    param.Add("@CreatorFullName", sinhvien.CreatorFullName);
-                    param.Add("@IsActive", sinhvien.IsActive);
-                    param.Add("@IsDelete", sinhvien.IsDelete);
+                    param.Add("@IdSinhVien", sinhVien.IdSinhVien);
+                    param.Add("@IdBoMon", sinhVien.IdBoMon);
+                    param.Add("@MaSinhVien", sinhVien.MaSinhVien);
+                    param.Add("@TenSinhVien", sinhVien.TenSinhVien);
+                    param.Add("@Email", sinhVien.Email);
+                    param.Add("@DienThoai", sinhVien.DienThoai);
+                    param.Add("@DonViThucTap", sinhVien.DonViThucTap);
+                    param.Add("@MaLopHoc", sinhVien.MaLopHoc);
+                    param.Add("@LopHoc", sinhVien.LopHoc);
+                    param.Add("@IdHocKy", sinhVien.IdHocKy);
+                    if (sinhVien.CreateTime != null && sinhVien.CreateTime != DateTime.MinValue)
+                    {
+                        param.Add("@CreateTime", sinhVien.CreateTime);
+                    }
+                    param.Add("@CreatorUserId", sinhVien.CreatorUserId);
+                    param.Add("@CreatorFullName", sinhVien.CreatorFullName);
+                    if (sinhVien.LastUpdate != null && sinhVien.LastUpdate != DateTime.MinValue)
+                    {
+                        param.Add("@LastUpdate", sinhVien.LastUpdate);
+                    }
+                    param.Add("@LastUpdateUserId", sinhVien.LastUpdateUserId);
+                    param.Add("@LastUpdateFullName", sinhVien.LastUpdateFullName);
+                    if (sinhVien.DeleteTime != null && sinhVien.DeleteTime != DateTime.MinValue)
+                    {
+                        param.Add("@DeleteTime", sinhVien.DeleteTime);
+                    }
+                    param.Add("@DeleteUserId", sinhVien.DeleteUserId);
+                    param.Add("@DeleteFullName", sinhVien.DeleteFullName);
+                    param.Add("@IsActive", sinhVien.IsActive);
+                    param.Add("@IsDelete", sinhVien.IsDelete);
+
                     rowAffect = await conn.ExecuteAsync("[dbo].[spSinhVien_InsertInHocKy]", param, commandType: CommandType.StoredProcedure);
                     return rowAffect;
                 }

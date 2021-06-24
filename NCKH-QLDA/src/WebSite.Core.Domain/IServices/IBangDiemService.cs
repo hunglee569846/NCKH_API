@@ -12,17 +12,17 @@ namespace WebSite.Core.Domain.IServices
 {
     public interface IBangDiemService
     {
-        Task<ActionResultResponese<string>> InsertAsync(string iddetai, string idGVHD, string idhoidong, string idhocky, string idmonhoc, string creatorUserId, string creatorFullName);
-        Task<ActionResultResponese<string>> InsertListDetaiAsync(List<BangDiemlistMeta> listdetai,string idhoidong, string idhocky, string idmonhoc,string creatorUserId, string creatorFullName);
-        Task<ActionResultResponese<string>> UpdateDiemAsync(string idBangDiem, float? diemmso, string nhanxetGV,string creatorUserId, string creatorFullName);
+        Task<ActionResultResponese<string>> InsertAsync(string iddetai, string idGVHD, string idhoidong, string idhocky, string idmonhoc, string creatorUserId, string creatorFullName, string idBoMon);
+        Task<ActionResultResponese<string>> InsertListDetaiAsync(List<BangDiemlistMeta> listdetai,string idhoidong, string idhocky, string idmonhoc,string creatorUserId, string creatorFullName, string idBoMon);
+        Task<ActionResultResponese<string>> UpdateDiemAsync(string idBangDiem, float? diemmso, string nhanxetGV,string creatorUserId, string creatorFullName, string idBoMon);
         //Xuat diem phan bien
-        Task<SearchResult<XuatDiemPhanBienViewModel>> XuatDiemPhanBien(string idhocky, string idmonhoc);
+        Task<SearchResult<XuatDiemPhanBienViewModel>> XuatDiemPhanBien(string idhocky, string idmonhoc,string idBoMon);
 
         //Xuat diem phan bien dowload Excel
-        Task<Stream> XuatBangDiemExcel(string idhocky, string idmonhoc);
+        Task<Stream> XuatBangDiemExcel(string idhocky, string idmonhoc,string idBoMon);
         //Xuat diem Hoi Dong dowload Excel
-        Task<Stream> XuatHoiDongExcel(string idhocky, string idmonhoc);
+        Task<Stream> XuatHoiDongExcel(string idhocky, string idmonho, string idBoMonc);
         //Xuat diem hoi dong
-        Task<SearchResult<XuatDiemHoiDongViewModel>> XuatDiemHoiDong(string idhocky, string idmonhoc);
+        Task<SearchResult<XuatDiemHoiDongViewModel>> XuatDiemHoiDong(string idhocky, string idmonhoc, string idBoMon);
     }
 }

@@ -56,7 +56,7 @@ namespace WebSite.Core.Infrastructure.Services
                     IdGiangVien = getinfoGVHD.IdGVHD?.Trim(),
                     CreateTime = DateTime.Now,
                     CreatorUserId = creartorUserId?.Trim(),
-                    CreatorUserFullName = creartorFullName?.Trim(),
+                    CreatorFullName = creartorFullName?.Trim(),
                     IsActive = true,
                     IsDelete = false
                 });
@@ -75,7 +75,7 @@ namespace WebSite.Core.Infrastructure.Services
 
         }
 
-        public async Task<ActionResultResponese<string>> InserAsync(string idhoidong, string idGvhdTheoKy,string idhocky,string idmonhoc, string creartorUserId, string creartorFullName)
+        public async Task<ActionResultResponese<string>> InserAsync(string idhoidong, string idGvhdTheoKy,string idhocky,string idmonhoc, string creartorUserId, string creartorFullName,string idBoMon)
         {
             //thông tin hội đồng
             var getinfoHoiDong = await _hoidongtotnghiepRepository.GetInfo(idhoidong);
@@ -93,12 +93,13 @@ namespace WebSite.Core.Infrastructure.Services
                 var chitietHD = new ChiTietHoiDong()
                 {
                     IdChiTietHD = id,
+                    IdBoMon = idBoMon?.Trim(),
                     IdHoiDong = getinfoHoiDong.IdHoiDong?.Trim(),
                     TenHoiDong = getinfoHoiDong.TenHoiDong?.Trim(),
                     IdGiangVien = getinfoGVHD.IdGVHD?.Trim(),
                     CreateTime = DateTime.Now,
                     CreatorUserId = creartorUserId?.Trim(),
-                    CreatorUserFullName = creartorFullName?.Trim(),
+                    CreatorFullName = creartorFullName?.Trim(),
                     IsActive = true,
                     IsDelete = false
                 };

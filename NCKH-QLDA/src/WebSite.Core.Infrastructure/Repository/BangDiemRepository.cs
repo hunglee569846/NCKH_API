@@ -25,35 +25,59 @@ namespace WebSite.Core.Infrastructure.Repository
         {
             try
             {
-                int rowAffect = 0;
-                using (SqlConnection conn = new SqlConnection(_ConnectionString))
+                int rowAffected = 0;
+                using (SqlConnection con = new SqlConnection(_ConnectionString))
                 {
-                    if (conn.State == ConnectionState.Closed)
-                        await conn.OpenAsync();
+                    if (con.State == ConnectionState.Closed)
+                        await con.OpenAsync();
+
                     DynamicParameters param = new DynamicParameters();
                     param.Add("@IdBangDiem", bangdiem.IdBangDiem);
+                    param.Add("@IdBoMon", bangdiem.IdBoMon);
                     param.Add("@IdDeTai", bangdiem.IdDeTai);
                     param.Add("@IdSinhVien", bangdiem.IdSinhVien);
                     param.Add("@IdHocKy", bangdiem.IdHocKy);
                     param.Add("@IdMonHoc", bangdiem.IdMonHoc);
                     param.Add("@IdHoiDong", bangdiem.IdHoiDong);
                     param.Add("@IdGiangVien", bangdiem.IdGiangVien);
+                    param.Add("@NhanXetGV", bangdiem.NhanXetGV);
                     param.Add("@DiemSo", bangdiem.DiemSo);
-                    param.Add("@CreateTime", bangdiem.CreateTime);
+                    if (bangdiem.NgayVaoDiem != null && bangdiem.NgayVaoDiem != DateTime.MinValue)
+                    {
+                        param.Add("@NgayVaoDiem", bangdiem.NgayVaoDiem);
+                    }
+                    param.Add("@CreatorPointUserId", bangdiem.CreatorPointUserId);
+                    param.Add("@CreatorPointFullName", bangdiem.CreatorPointFullName);
+                    if (bangdiem.CreateTime != null && bangdiem.CreateTime != DateTime.MinValue)
+                    {
+                        param.Add("@CreateTime", bangdiem.CreateTime);
+                    }
                     param.Add("@CreatorUserId", bangdiem.CreatorUserId);
                     param.Add("@CreatorFullName", bangdiem.CreatorFullName);
-                    param.Add("@IsDelete", bangdiem.IsDelete);
+                    if (bangdiem.LastUpdate != null && bangdiem.LastUpdate != DateTime.MinValue)
+                    {
+                        param.Add("@LastUpdate", bangdiem.LastUpdate);
+                    }
+                    param.Add("@LastUpdateUserId", bangdiem.LastUpdateUserId);
+                    param.Add("@LastUpdateFullName", bangdiem.LastUpdateFullName);
+                    if (bangdiem.DeleteTime != null && bangdiem.DeleteTime != DateTime.MinValue)
+                    {
+                        param.Add("@DeleteTime", bangdiem.DeleteTime);
+                    }
+                    param.Add("@DeleteUserId", bangdiem.DeleteUserId);
+                    param.Add("@DeleteFullName", bangdiem.DeleteFullName);
                     param.Add("@IsActive", bangdiem.IsActive);
-
-                    rowAffect = await conn.ExecuteAsync("[dbo].[spBangDiem_InsertAsync]", param, commandType: CommandType.StoredProcedure);
-                    return rowAffect;
-
+                    param.Add("@IsDelete", bangdiem.IsDelete);
+                    rowAffected = await con.ExecuteAsync("[dbo].[spBangDiem_InsertAsync]", param, commandType: CommandType.StoredProcedure);
                 }
+                return rowAffected;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                //_logger.LogError(ex, "[dbo].[spBangDie_Insert] InsertAsync BangDieRepository Error.");
                 return -1;
             }
+
         }
         public async Task<bool> CheckExit(string iddetai)
         {
@@ -104,35 +128,63 @@ namespace WebSite.Core.Infrastructure.Repository
         {
             try
             {
-                int rowAffect = 0;
-                using (SqlConnection conn = new SqlConnection(_ConnectionString))
+                int rowAffected = 0;
+                using (SqlConnection con = new SqlConnection(_ConnectionString))
                 {
-                    if (conn.State == ConnectionState.Closed)
-                        await conn.OpenAsync();
+                    if (con.State == ConnectionState.Closed)
+                        await con.OpenAsync();
+
                     DynamicParameters param = new DynamicParameters();
                     param.Add("@IdBangDiem", bangdiem.IdBangDiem);
-                    param.Add("@DiemSo", bangdiem.DiemSo);
+                    param.Add("@IdBoMon", bangdiem.IdBoMon);
+                    param.Add("@IdDeTai", bangdiem.IdDeTai);
+                    param.Add("@IdSinhVien", bangdiem.IdSinhVien);
+                    param.Add("@IdHocKy", bangdiem.IdHocKy);
+                    param.Add("@IdMonHoc", bangdiem.IdMonHoc);
+                    param.Add("@IdHoiDong", bangdiem.IdHoiDong);
+                    param.Add("@IdGiangVien", bangdiem.IdGiangVien);
                     param.Add("@NhanXetGV", bangdiem.NhanXetGV);
-                    if (bangdiem.NgayVaoDiem != DateTime.MinValue && bangdiem.NgayVaoDiem != null)
+                    param.Add("@DiemSo", bangdiem.DiemSo);
+                    if (bangdiem.NgayVaoDiem != null && bangdiem.NgayVaoDiem != DateTime.MinValue)
                     {
                         param.Add("@NgayVaoDiem", bangdiem.NgayVaoDiem);
                     }
                     param.Add("@CreatorPointUserId", bangdiem.CreatorPointUserId);
                     param.Add("@CreatorPointFullName", bangdiem.CreatorPointFullName);
-
-                    rowAffect = await conn.ExecuteAsync("[dbo].[spBanDiem_UpdateDiemHD]", param, commandType: CommandType.StoredProcedure);
-                    return rowAffect;
-
+                    if (bangdiem.CreateTime != null && bangdiem.CreateTime != DateTime.MinValue)
+                    {
+                        param.Add("@CreateTime", bangdiem.CreateTime);
+                    }
+                    param.Add("@CreatorUserId", bangdiem.CreatorUserId);
+                    param.Add("@CreatorFullName", bangdiem.CreatorFullName);
+                    if (bangdiem.LastUpdate != null && bangdiem.LastUpdate != DateTime.MinValue)
+                    {
+                        param.Add("@LastUpdate", bangdiem.LastUpdate);
+                    }
+                    param.Add("@LastUpdateUserId", bangdiem.LastUpdateUserId);
+                    param.Add("@LastUpdateFullName", bangdiem.LastUpdateFullName);
+                    if (bangdiem.DeleteTime != null && bangdiem.DeleteTime != DateTime.MinValue)
+                    {
+                        param.Add("@DeleteTime", bangdiem.DeleteTime);
+                    }
+                    param.Add("@DeleteUserId", bangdiem.DeleteUserId);
+                    param.Add("@DeleteFullName", bangdiem.DeleteFullName);
+                    param.Add("@IsActive", bangdiem.IsActive);
+                    param.Add("@IsDelete", bangdiem.IsDelete);
+                    rowAffected = await con.ExecuteAsync("[dbo].[spBanDiem_UpdateDiemHD]", param, commandType: CommandType.StoredProcedure);
                 }
+                return rowAffected;
             }
             catch (Exception ex)
             {
+                //_logger.LogError(ex, "[dbo].[spBangDie_Update] UpdateAsync BangDieRepository Error.");
                 return -1;
             }
+
         }
 
         //Xuat Diem
-        public async Task<SearchResult<XuatDiemPhanBienViewModel>> XuatDiemPhanBien(string idhocky, string idmonhoc)
+        public async Task<SearchResult<XuatDiemPhanBienViewModel>> XuatDiemPhanBien(string idhocky, string idmonhoc,string idBoMon)
         {
             try
             {
@@ -143,6 +195,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     DynamicParameters param = new DynamicParameters();
                     param.Add("@idhocky", idhocky);
                     param.Add("@idmonhoc", idmonhoc);
+                    param.Add("@idBoMon", idmonhoc);
                     using (var multi = await conn.QueryMultipleAsync("[dbo].[spNhapDiemPhanBien_SelectAll]", param, commandType: CommandType.StoredProcedure))
                     {
                         return new SearchResult<XuatDiemPhanBienViewModel>()
@@ -159,7 +212,7 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
 
-        public async Task<List<XuatDiemPhanBienViewModel>> XuatDiemPhanBienExcel(string idhocky, string idmonhoc)
+        public async Task<List<XuatDiemPhanBienViewModel>> XuatDiemPhanBienExcel(string idhocky, string idmonhoc, string idbomon)
         {
             try
             {
@@ -170,18 +223,19 @@ namespace WebSite.Core.Infrastructure.Repository
                     DynamicParameters param = new DynamicParameters();
                     param.Add("@idhocky", idhocky);
                     param.Add("@idmonhoc", idmonhoc);
+                    param.Add("@idBoMon", idbomon);
                     var result = await conn.QueryAsync<XuatDiemPhanBienViewModel>("[dbo].[spXuatExcel_DiemPhanVien]", param, commandType: CommandType.StoredProcedure);
                     return result.ToList();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return null;
             }
         }
 
         //Diem hoi dong xuat Excel
-        public async Task<List<XuatDiemHoiDongViewModel>> XuatDiemHoiDongExcel(string idhocky, string idmonhoc)
+        public async Task<List<XuatDiemHoiDongViewModel>> XuatDiemHoiDongExcel(string idhocky, string idmonhoc,string idbomon)
         {
             try
             {
@@ -192,6 +246,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     DynamicParameters param = new DynamicParameters();
                     param.Add("@idhocky", idhocky);
                     param.Add("@idmonhoc", idmonhoc);
+                    param.Add("@idBoMon", idbomon);
                     var result = await conn.QueryAsync<XuatDiemHoiDongViewModel>("[dbo].[spXuatExcel_DiemHoiDong]", param, commandType: CommandType.StoredProcedure);
                     return result.ToList();
                 }
@@ -202,7 +257,7 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
         // xuat diem hoi dong
-        public async Task<SearchResult<XuatDiemHoiDongViewModel>> XuatDiemHoiDong(string idhocky, string idmonhoc)
+        public async Task<SearchResult<XuatDiemHoiDongViewModel>> XuatDiemHoiDong(string idhocky, string idmonhoc,string idbomon)
         {
             try
             {
@@ -213,6 +268,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     DynamicParameters param = new DynamicParameters();
                     param.Add("@idhocky", idhocky);
                     param.Add("@idmonhoc", idmonhoc);
+                    param.Add("@IdBoMon", idbomon);
                     using (var multi = await conn.QueryMultipleAsync("[dbo].[spXuatDiemHoiDong_SelectAll]", param, commandType: CommandType.StoredProcedure))
                     {
                         return new SearchResult<XuatDiemHoiDongViewModel>()

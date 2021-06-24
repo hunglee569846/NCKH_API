@@ -28,7 +28,7 @@ namespace WebSite.Core.API.Controllers
         [AcceptVerbs("POST"), Route("SinhVien/{idhocky}")]
         public async Task<IActionResult> InsertAsync([FromBody] SinhVienMeta sinhvienMeta, string idhocky)
         {
-            var result = await _SinhViencService.InsertAsync(sinhvienMeta, idhocky,CurrentUser.MaGiangVien,CurrentUser.FullName);
+            var result = await _SinhViencService.InsertAsync(sinhvienMeta, idhocky,CurrentUser.MaGiangVien,CurrentUser.FullName, CurrentUser.IdBoMon);
             if (result.Code <= 0)
             {
                 //_logger.LogError("InsertAsync SinhVien controller error " + result.Code);
@@ -41,7 +41,7 @@ namespace WebSite.Core.API.Controllers
         [AcceptVerbs("POST"), Route("SinhVienList/{idhocky}")]
         public async Task<IActionResult> InsertListAsync([FromBody] List<SinhVienMeta> listsinhvienMeta, string idhocky)
         {
-            var result = await _SinhViencService.InsertListAsync(listsinhvienMeta, idhocky, CurrentUser.MaGiangVien, CurrentUser.FullName);
+            var result = await _SinhViencService.InsertListAsync(listsinhvienMeta, idhocky, CurrentUser.MaGiangVien, CurrentUser.FullName,CurrentUser.IdBoMon);
             if (result.Code <= 0)
             {
                 //_logger.LogError("InsertListAsync SinhVien controller error " + result.Code);

@@ -55,7 +55,7 @@ namespace WebSite.Core.API.Controllers
         [SwaggerOperation(Summary = "InsertChiTietHoiDong", Description = "Requires login verification!", OperationId = "InsertChiTietHoiDong", Tags = new[] { "ChiTietHoiDong" })]
         public async Task<IActionResult> InsertAsync(string idgiangvien, string idhoidong, string idhocky, string idmonhoc)
         {
-            var result = await _ChitietHoiDongService.InserAsync(idhoidong,idgiangvien,idhocky,idmonhoc, CurrentUser.MaGiangVien, CurrentUser.FullName);
+            var result = await _ChitietHoiDongService.InserAsync(idhoidong,idgiangvien,idhocky,idmonhoc, CurrentUser.MaGiangVien, CurrentUser.FullName,CurrentUser.IdBoMon);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Search DeTai controller error " + result.Code);

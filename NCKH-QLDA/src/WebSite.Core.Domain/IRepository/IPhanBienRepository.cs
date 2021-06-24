@@ -8,7 +8,7 @@ namespace WebSite.Core.Domain.IRepository
 {
     public interface IPhanBienRepository
     {
-        Task<SearchResult<PhanBienSearchViewModel>> SelectAllByHk(string idhocky);
+        Task<SearchResult<PhanBienSearchViewModel>> SelectAllByHk(string idhocky,string idBoMon);
         Task<int> InsertByHk(PhanBien phanbien);
         Task<int> Update(PhanBien phanbien);
         Task<int> UpdateDiem(NoteMeta note,float diem,string idPhanBien);

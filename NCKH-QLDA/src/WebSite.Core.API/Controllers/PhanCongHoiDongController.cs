@@ -29,7 +29,7 @@ namespace WebSite.Core.API.Controllers
         [AcceptVerbs("POST"), Route("PhanCongHoiDong/{iddetai}/{idGVHD}/{idhoidong}/{idhocky}/{idmonhoc}")]
         public async Task<IActionResult> InsertAsync(string iddetai, string idGVHD, string idhoidong, string idhocky, string idmonhoc)
         {
-            var result = await _bangdiemService.InsertAsync(iddetai,idGVHD,idhoidong,idhocky,idmonhoc,CurrentUser.MaGiangVien,CurrentUser.FullName);
+            var result = await _bangdiemService.InsertAsync(iddetai,idGVHD,idhoidong,idhocky,idmonhoc,CurrentUser.MaGiangVien,CurrentUser.FullName,CurrentUser.IdBoMon);
             if (result.Code <= 0)
             {
                 return BadRequest(result);
@@ -41,7 +41,7 @@ namespace WebSite.Core.API.Controllers
         [AcceptVerbs("POST"), Route("PhanCongHoiDongListDetai/{idhoidong}/{idhocky}/{idmonhoc}")]
         public async Task<IActionResult> InserListDeTaitAsync([FromBody]List<BangDiemlistMeta> listdetai, string idhoidong, string idhocky, string idmonhoc)
         {
-            var result = await _bangdiemService.InsertListDetaiAsync(listdetai, idhoidong, idhocky, idmonhoc, CurrentUser.MaGiangVien, CurrentUser.FullName);
+            var result = await _bangdiemService.InsertListDetaiAsync(listdetai, idhoidong, idhocky, idmonhoc, CurrentUser.MaGiangVien, CurrentUser.FullName, CurrentUser.IdBoMon);
             if (result.Code <= 0)
             {
                 return BadRequest(result);
@@ -53,7 +53,7 @@ namespace WebSite.Core.API.Controllers
         [AcceptVerbs("PUT"), Route("UpdateDiem/{idBangDiem}/{diemmso}")]
         public async Task<IActionResult> UpdateDiemAsync(string idBangDiem, float? diemmso, string nhanxetGV)
         {
-            var result = await _bangdiemService.UpdateDiemAsync(idBangDiem, diemmso, nhanxetGV, CurrentUser.MaGiangVien, CurrentUser.FullName);
+            var result = await _bangdiemService.UpdateDiemAsync(idBangDiem, diemmso, nhanxetGV, CurrentUser.MaGiangVien, CurrentUser.FullName, CurrentUser.IdBoMon);
             if (result.Code <= 0)
             {
                 return BadRequest(result);

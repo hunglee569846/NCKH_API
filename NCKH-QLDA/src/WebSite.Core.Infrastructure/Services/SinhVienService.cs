@@ -30,7 +30,7 @@ namespace WebSite.Core.Infrastructure.Services
         {
             return await _sinhVienRepository.SearchById(idsinhvien);
         }
-        public async Task<ActionResultResponese<string>> InsertAsync(SinhVienMeta sinhvienMeta,string idhocky,string creatorUserId,string creatorFullName)
+        public async Task<ActionResultResponese<string>> InsertAsync(SinhVienMeta sinhvienMeta,string idhocky,string creatorUserId,string creatorFullName, string idBoMon)
         {
             var checkHocKy = await _HocKysRepository.CheckExisIsActivetAsync(idhocky);
             if (!checkHocKy)
@@ -46,6 +46,7 @@ namespace WebSite.Core.Infrastructure.Services
             var sinhvien = new SinhVien()
             {
                 IdSinhVien = id?.Trim(),
+                IdBoMon = idBoMon?.Trim(),
                 MaSinhVien = sinhvienMeta.MaSinhVien?.Trim(),
                 TenSinhVien = sinhvienMeta.TenSinhVien?.Trim(),
                 Email = sinhvienMeta.Email?.Trim(),
@@ -68,7 +69,7 @@ namespace WebSite.Core.Infrastructure.Services
             return new ActionResultResponese<string>(result, "Thêm mới thành công.", "Sinh viên.");
         }
 
-        public async Task<ActionResultResponese<string>> InsertListAsync(List<SinhVienMeta> sinhvienMeta, string idhocky, string creatorUserId, string creatorFullName)
+        public async Task<ActionResultResponese<string>> InsertListAsync(List<SinhVienMeta> sinhvienMeta, string idhocky, string creatorUserId, string creatorFullName, string idBoMon)
         {
             var checkHocKy = await _HocKysRepository.CheckExisIsActivetAsync(idhocky);
             if (!checkHocKy)
@@ -92,6 +93,7 @@ namespace WebSite.Core.Infrastructure.Services
                 listSinhVien.Add(new SinhVien()
                 {
                     IdSinhVien = id?.Trim(),
+                    IdBoMon = idBoMon?.Trim(),
                     MaSinhVien = sinhvienInsert.MaSinhVien?.Trim(),
                     TenSinhVien = sinhvienInsert.TenSinhVien?.Trim(),
                     Email = sinhvienInsert.Email?.Trim(),

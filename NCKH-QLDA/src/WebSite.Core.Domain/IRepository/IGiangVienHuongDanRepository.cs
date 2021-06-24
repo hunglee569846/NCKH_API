@@ -11,8 +11,8 @@ namespace WebSite.Core.Domain.IRepository
 {
     public interface IGiangVienHuongDanRepository
     {
-        Task<SearchResult<GiangVienHuongDanViewModel>> SelectAllAsync();
-        Task<SearchResult<GiangVienHuongDanViewModel>> SelectByIdHocKyAsync(string idhocky);
+        Task<SearchResult<GiangVienHuongDanViewModel>> SelectAllAsync(string idbomon);
+        Task<SearchResult<GiangVienHuongDanViewModel>> SelectByIdHocKyAsync(string idhocky, string idBoMon);
         Task<GVHDTheoKy> GetInfo(string idGVHDTheoKy);
         Task<GVHDTheoKy> GetInfoByMaGVHD(string idhocky,string maGVHD);
         Task<int> InsertAsync(GVHDTheoKy gvhdky);

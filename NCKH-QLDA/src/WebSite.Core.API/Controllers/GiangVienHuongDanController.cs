@@ -28,7 +28,7 @@ namespace WebSite.Core.API.Controllers
         [SwaggerOperation(Summary = "SelectAll GiangVienHuongDan", Description = "TypeGVHD: 0 - NgoaiTruong,1 - trongTruong", OperationId = "GetAllGiangVienHuongDan", Tags = new[] { "GiangVienHuongDan" })]
         public async Task<IActionResult> SelectAllAsync()
         {
-            var result = await _iGiangVienHuongDanService.SelectAllAsync();
+            var result = await _iGiangVienHuongDanService.SelectAllAsync(CurrentUser.IdBoMon);
             return Ok(result);
         }
 
@@ -36,7 +36,7 @@ namespace WebSite.Core.API.Controllers
         [SwaggerOperation(Summary = "SelectAll GiangVienHuongDan", Description = "TypeGVHD: 0 - NgoaiTruong,1 - trongTruong", OperationId = "GetAllGiangVienHuongDanByHK", Tags = new[] { "GiangVienHuongDan" })]    
         public async Task<IActionResult> GetByIdAsync(string idhocky)
         {
-            var result = await _iGiangVienHuongDanService.GetByIdHocKyAsync(idhocky);
+            var result = await _iGiangVienHuongDanService.GetByIdHocKyAsync(idhocky, CurrentUser.IdBoMon);
             return Ok(result);
         }
 
@@ -44,7 +44,7 @@ namespace WebSite.Core.API.Controllers
         [SwaggerOperation(Summary = "Insert GiangVienHuongDanTheoKy", Description = "TypeGVHD: 0 - NgoaiTruong,1 - trongTruong", OperationId = "InsertGiangVienHuongDanTheoKy", Tags = new[] { "GiangVienHuongDan" })]
         public async Task<IActionResult> InsertAsync([FromBody]GiangVienHDMeta gvhdMeta,string idhocky, TypeGVHD typegvhd)
         {
-            var result = await _iGiangVienHuongDanService.InsertAsync(gvhdMeta,idhocky, typegvhd,CurrentUser.MaGiangVien,CurrentUser.FullName);
+            var result = await _iGiangVienHuongDanService.InsertAsync(gvhdMeta,idhocky, typegvhd,CurrentUser.MaGiangVien,CurrentUser.FullName,CurrentUser.IdBoMon);
             if (result.Code <= 0)
             {
                 //  _logger.LogError("Insert GiangVienHuongDan controller code: " + result.Code + " .Message: " + result.Message);
@@ -57,7 +57,7 @@ namespace WebSite.Core.API.Controllers
         [SwaggerOperation(Summary = "Insert list GiangVienHuongDanTheoKy", Description = "TypeGVHD: 0 - NgoaiTruong,1 - trongTruong", OperationId = "InsertListGVHDTheoKy", Tags = new[] { "GiangVienHuongDan" })]
         public async Task<IActionResult> InsertListAsync([FromBody] List<GiangVienListMeta> listgvhdMeta, string idhocky)
         {
-            var result = await _iGiangVienHuongDanService.InsertListGVHDAsync(listgvhdMeta, idhocky, CurrentUser.MaGiangVien, CurrentUser.FullName);
+            var result = await _iGiangVienHuongDanService.InsertListGVHDAsync(listgvhdMeta, idhocky, CurrentUser.MaGiangVien, CurrentUser.FullName, CurrentUser.IdBoMon);
             if (result.Code <= 0)
             {
                 //  _logger.LogError("Insert GiangVienHuongDan controller code: " + result.Code + " .Message: " + result.Message);
@@ -70,7 +70,7 @@ namespace WebSite.Core.API.Controllers
         [SwaggerOperation(Summary = "Update GiangVienHuongDanTheoKy", Description = "Requires login verification!", OperationId = "UpdateGiangVienHuongDanTheoKy", Tags = new[] { "GiangVienHuongDan" })]
         public async Task<IActionResult> UpdateAsync([FromBody] GVHDupdateMeta gvhdkyUpdateMeta, string idGVHD, string idGvhdTheoKy, TypeGVHD tygvhd)
         {
-            var result = await _iGiangVienHuongDanService.UpdateAsync(gvhdkyUpdateMeta, idGVHD, idGvhdTheoKy, tygvhd,CurrentUser.MaGiangVien,CurrentUser.FullName);
+            var result = await _iGiangVienHuongDanService.UpdateAsync(gvhdkyUpdateMeta, idGVHD, idGvhdTheoKy, tygvhd,CurrentUser.MaGiangVien,CurrentUser.FullName, CurrentUser.IdBoMon);
             if (result.Code <= 0)
             {
                 //  _logger.LogError("Update GiangVienHuongDan controller code: " + result.Code + " .Message: " + result.Message);

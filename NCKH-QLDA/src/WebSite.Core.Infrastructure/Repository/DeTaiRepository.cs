@@ -77,7 +77,7 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
 
-        public async Task<SearchResult<DeTaiSearchViewModel>> SelectChuaPhanHD(string idhocky, string idmonhoc)
+        public async Task<SearchResult<DeTaiSearchViewModel>> SelectChuaPhanHD(string idhocky, string idmonhoc,string idBoMon)
         {
             try
             {
@@ -88,6 +88,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     DynamicParameters para = new DynamicParameters();
                     para.Add("@idHocKy", idhocky);
                     para.Add("@idMonHoc", idmonhoc);
+                    para.Add("@IdBoMon", idBoMon);
                     using (var multi = await conn.QueryMultipleAsync("[dbo].[spDetai_SearchChuaPhanHD]", para, commandType: CommandType.StoredProcedure))
                     {
                         var totalRows = (await multi.ReadAsync<int>()).SingleOrDefault();

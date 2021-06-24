@@ -25,7 +25,7 @@ namespace WebSite.Core.API.Controllers
         }
 
         [AcceptVerbs("GET"), Route("GetAllHocKy")]
-        [SwaggerOperation(Summary = "GetAllHocKy", Description = "Requires login verification!", OperationId = "GetAllHocKyAsync", Tags = new[] { "Hocky" })]
+        [SwaggerOperation(Summary = "Danh sách học kỳ", Description = "Requires login verification!", OperationId = "GetAllHocKyAsync", Tags = new[] { "Hocky" })]
         public async Task<IActionResult> GetAllAsync()
         {
             var result = await _ihockyService.GetAll(CurrentUser.IdBoMon);
@@ -33,7 +33,7 @@ namespace WebSite.Core.API.Controllers
         }
 
         [AcceptVerbs("POST"), Route("InsertAsyncHocKy/{mahocky}/{tenhocky}")]
-        [SwaggerOperation(Summary = "InsertAsyncHocKy", Description = "Requires login verification!", OperationId = "InsertAsyncHocKy", Tags = new[] { "Hocky" })]
+        [SwaggerOperation(Summary = "Thêm mới học kỳ", Description = "Requires login verification!", OperationId = "InsertAsyncHocKy", Tags = new[] { "Hocky" })]
         public async Task<IActionResult> InsertAsync(string mahocky, string tenhocky)
         {
             var result = await _ihockyService.InsertAsync(mahocky, tenhocky, CurrentUser.IdBoMon,CurrentUser.FullName,CurrentUser.IdBoMon);
@@ -45,7 +45,7 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [SwaggerOperation(Summary = "Delete information Hocky.", Description = "Requires login verification!", OperationId = "DeleteAsyncHocKy", Tags = new[] { "Hocky" })]
+        [SwaggerOperation(Summary = "Xóa học kỳ.", Description = "Requires login verification!", OperationId = "DeleteAsyncHocKy", Tags = new[] { "Hocky" })]
         [Route("{idHocKy}"), AcceptVerbs("DELETE")]
         public async Task<IActionResult> UpdateAsync(string idHocKy)
         {
@@ -59,7 +59,7 @@ namespace WebSite.Core.API.Controllers
         }
 
         [AcceptVerbs("PUT"), Route("{idHocKy}/{mahocky}/{tenhocky}")]
-        [SwaggerOperation(Summary = "UpdateAsyncHocKy", Description = "Requires login verification!", OperationId = "UpdateAsyncHocKy", Tags = new[] { "Hocky" })]
+        [SwaggerOperation(Summary = "Sửa thông tin", Description = "Requires login verification!", OperationId = "UpdateAsyncHocKy", Tags = new[] { "Hocky" })]
         public async Task<IActionResult> UpdateAsync(string idHocKy,string mahocky,string tenhocky) //[FromBody]HocKyMeta hockymeta
         {
             var result = await _ihockyService.UpDateAsync(idHocKy,mahocky, tenhocky,CurrentUser.MaGiangVien,CurrentUser.FullName,CurrentUser.IdBoMon);

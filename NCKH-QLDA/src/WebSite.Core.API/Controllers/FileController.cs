@@ -99,7 +99,7 @@ namespace WebSite.Core.API.Controllers
         [Route("downloadsDiemPhanBien/{idhocky}/{idmonhoc}"), AcceptVerbs("GET")]
         public async Task<IActionResult> DownloadDiemPhanBienAsync(string idhocky, string idmonhoc)
         {
-            var stream = await _bangdiemService.XuatBangDiemExcel(idhocky, idmonhoc);
+            var stream = await _bangdiemService.XuatBangDiemExcel(idhocky, idmonhoc,CurrentUser.IdBoMon);
 
             var buffer = stream as MemoryStream;
 
@@ -112,7 +112,7 @@ namespace WebSite.Core.API.Controllers
         [Route("downloadsDiemHoiDong/{idhocky}/{idmonhoc}"), AcceptVerbs("GET")]
         public async Task<IActionResult> DownloadDiemHoiDongAsync(string idhocky, string idmonhoc)
         {
-            var stream = await _bangdiemService.XuatHoiDongExcel(idhocky, idmonhoc);
+            var stream = await _bangdiemService.XuatHoiDongExcel(idhocky, idmonhoc,CurrentUser.IdBoMon);
 
             var buffer = stream as MemoryStream;
 
