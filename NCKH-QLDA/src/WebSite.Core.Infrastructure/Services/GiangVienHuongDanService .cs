@@ -114,7 +114,7 @@ namespace WebSite.Core.Infrastructure.Services
 					TenGVHD = giangvien.TenGVHD?.Trim(),
 					IdHocKy = idhocky?.Trim(),
 					DonViCongTac = giangvien.DonViCongTac?.Trim(),
-					Email = giangvien.IdGVHD?.Trim(),
+					Email = giangvien.Email?.Trim(),
 					DienThoai= giangvien.DienThoai?.Trim(),
 					Type = giangvien.Type,
 					CreateTime = DateTime.Now,
