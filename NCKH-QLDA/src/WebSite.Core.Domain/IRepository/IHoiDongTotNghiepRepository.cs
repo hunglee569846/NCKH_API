@@ -10,7 +10,7 @@ namespace WebSite.Core.Domain.IRepository
 {
     public interface IHoiDongTotNghiepRepository
     {
-        Task<SearchResult<HoiDongTotNghiepViewModel>> SelectAll(string idhocky);
+        Task<SearchResult<HoiDongTotNghiepViewModel>> SelectAll(string idhocky,string idbomon);
         Task<int> InsertAsync(HoiDongTotNghiep hoidong);
         Task<int> UpdateAsync(HoiDongTotNghiep hoidong);
         Task<int> DeleteAsync(string idhoidong);

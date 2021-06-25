@@ -22,7 +22,7 @@ namespace WebSite.Core.API.Controllers
             _phanbiencService = phanbiencService;
         }
         
-        [SwaggerOperation(Summary = "GetAllPhanBien", Description = "Requires login verification!", OperationId = "GetAllPhanBienAsync", Tags = new[] { "PhanBien" })]
+        [SwaggerOperation(Summary = "Danh sách phản biện.", Description = "Requires login verification!", OperationId = "GetAllPhanBienAsync", Tags = new[] { "PhanBien" })]
         [AcceptVerbs("GET"), Route("{idhocky}")]
         public async Task<IActionResult> GetAllAsync(string idhocky)
         {
@@ -35,7 +35,7 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [SwaggerOperation(Summary = "InsertPhanBien", Description = "Requires login verification!", OperationId = "InsertPhanBienAsync", Tags = new[] { "PhanBien" })]
+        [SwaggerOperation(Summary = "Thêm mới phản biện", Description = "Requires login verification!", OperationId = "InsertPhanBienAsync", Tags = new[] { "PhanBien" })]
         [AcceptVerbs("POST"), Route("{idGVPB}/{iddetai}/{idhocky}/{idmonhoc}")]
         public async Task<IActionResult> InsertAsync([FromBody]PhanBienMeta phanbienMeta, string idGVPB, string iddetai, string idhocky,string idmonhoc)
         {
@@ -48,7 +48,7 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [SwaggerOperation(Summary = "InsertListPhanBien", Description = "Requires login verification!", OperationId = "InsertListPhanBienAsync", Tags = new[] { "PhanBien" })]
+        [SwaggerOperation(Summary = "Thêm mới nhiều phản biện cho đề tài", Description = "Requires login verification!", OperationId = "InsertListPhanBienAsync", Tags = new[] { "PhanBien" })]
         [AcceptVerbs("POST"), Route("ListPhanBien/{iddetai}/{idhocky}/{idmonhoc}")]
         public async Task<IActionResult> InsertListAsync([FromBody] List<PhanBienlistMeta> listphanbienMeta , string iddetai, string idhocky, string idmonhoc)
         {
@@ -61,7 +61,7 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [SwaggerOperation(Summary = "Phân list đề tài", Description = "Requires login verification!", OperationId = "InsertDTtoGVAsync", Tags = new[] { "PhanBien" })]
+        [SwaggerOperation(Summary = "Thêm mới nhiều đề tài cho một phản biện.", Description = "Requires login verification!", OperationId = "InsertDTtoGVAsync", Tags = new[] { "PhanBien" })]
         [AcceptVerbs("POST"), Route("DeTaitoPhanBien/{idGiangVien}/{idhocky}/{idmonhoc}")]
         public async Task<IActionResult> InsertListDeTaiInPhanBienAsync([FromBody] List<DeTaiListMeta> listDeTaiMeta, string idGiangVien, string idhocky, string idmonhoc)
         {
@@ -74,7 +74,7 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [SwaggerOperation(Summary = "UpdateAsyncPhanBien", Description = "Requires login verification!", OperationId = "UpdateAsync", Tags = new[] { "PhanBien" })]
+        [SwaggerOperation(Summary = "Cập nhật thông tin phản biện.", Description = "Requires login verification!", OperationId = "UpdateAsync", Tags = new[] { "PhanBien" })]
         [AcceptVerbs("PUT"), Route("UpdateAsyncPhanBien/{idGVPB}/{iddetai}/{idhocky}/{idmonhoc}/{idPhanBien}")]
         public async Task<IActionResult> UpdateAsync([FromBody] PhanBienUpdateMeta phanbienupdateMeta, string idGVPB, string iddetai, string idhocky,string idmonhoc, string idPhanBien)
         {
@@ -87,7 +87,7 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [SwaggerOperation(Summary = "UpdateDiemPhanBien", Description = "Requires login verification!", OperationId = "UpdateDiemAsync", Tags = new[] { "PhanBien" })]
+        [SwaggerOperation(Summary = "Vào điểm phản biện", Description = "Requires login verification!", OperationId = "UpdateDiemAsync", Tags = new[] { "PhanBien" })]
         [AcceptVerbs("PUT"), Route("UpdateDiemPhanBien/{idPhanBien}/{Diem}")]
         public async Task<IActionResult> UpdateDiemAsync([FromBody] NoteMeta note, float Diem, string idPhanBien)
         {
@@ -100,7 +100,7 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [SwaggerOperation(Summary = "DeletePhanBien", Description = "Requires login verification!", OperationId = "DeletePhanBienAsync", Tags = new[] { "PhanBien" })]
+        [SwaggerOperation(Summary = "Xóa phản biện của đề tài.", Description = "Requires login verification!", OperationId = "DeletePhanBienAsync", Tags = new[] { "PhanBien" })]
         [AcceptVerbs("DELETE"), Route("{idPhanBien}/{idhocky}/{idmonhoc}")]
         public async Task<IActionResult> DeleteAsync(string idPhanBien, string idhocky,string idmonhoc)
         {

@@ -24,15 +24,15 @@ namespace WebSite.Core.API.Controllers
             _hoiDongTotNghiepService = hoiDongTotNghiepService;
         }
 
-        [SwaggerOperation(Summary = "GetAllHoiDong", Description = "Requires login verification!", OperationId = "GetHoiDongTotNghiepAsync", Tags = new[] { "HoiDongTotNghiep" })]
+        [SwaggerOperation(Summary = "Danh sach hội đồng theo hoc kỳ.", Description = "Requires login verification!", OperationId = "GetHoiDongTotNghiepAsync", Tags = new[] { "HoiDongTotNghiep" })]
         [AcceptVerbs("GET"), Route("GetAllHoiDong/{idhocky}")]
         public async Task<IActionResult> GetAllAsync(string idhocky)
         {
-            var result = await _hoiDongTotNghiepService.GetByIdHocKy(idhocky);
+            var result = await _hoiDongTotNghiepService.GetByIdHocKy(idhocky,CurrentUser.IdBoMon);
             return Ok(result);
         }
 
-        [SwaggerOperation(Summary = "InsertHoiDong", Description = "Requires login verification!", OperationId = "InsertHoiDong", Tags = new[] { "HoiDongTotNghiep" })]
+        [SwaggerOperation(Summary = "Thêm mới một hội đồng.", Description = "Requires login verification!", OperationId = "InsertHoiDong", Tags = new[] { "HoiDongTotNghiep" })]
         [AcceptVerbs("POST"), Route("InsertHoiDong/{idhocky}/{idmonhoc}")]
         public async Task<IActionResult> InsertAsync([FromBody]HoiDongTotNghiepMeta hoidongMeta, string idhocky, string idmonhoc)
         {
@@ -40,7 +40,7 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [SwaggerOperation(Summary = "UpdateHoiDong", Description = "Requires login verification!", OperationId = "UpdateHoiDong", Tags = new[] { "HoiDongTotNghiep" })]
+        [SwaggerOperation(Summary = "Cập nhật thông tin hội đồng.", Description = "Requires login verification!", OperationId = "UpdateHoiDong", Tags = new[] { "HoiDongTotNghiep" })]
         [AcceptVerbs("PUT"), Route("UpdateHoiDong/{idhoidong}/{idhocky}/{idMonHoc}")]
         public async Task<IActionResult> UpdateAsync([FromBody] HoiDongTotNghiepMeta hoidongMeta, string idhoidong, string idhocky, string idMonHoc)
         {
@@ -48,7 +48,7 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
         
-        [SwaggerOperation(Summary = "DeleteHoiDong", Description = "Requires login verification!", OperationId = "DeleteHoiDong", Tags = new[] { "HoiDongTotNghiep" })]
+        [SwaggerOperation(Summary = "Xóa hội đồng.", Description = "Requires login verification!", OperationId = "DeleteHoiDong", Tags = new[] { "HoiDongTotNghiep" })]
         [AcceptVerbs("DELETE"), Route("DeleteHoiDongAsync/{idhoidong}")]
         public async Task<IActionResult> DeleteAsync(string idhoidong)
         {

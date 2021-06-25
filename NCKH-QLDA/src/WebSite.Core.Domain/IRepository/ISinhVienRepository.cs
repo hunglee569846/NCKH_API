@@ -11,7 +11,7 @@ namespace WebSite.Core.Domain.IRepository
     public interface ISinhVienRepository
     {
         Task<int> InsertAsync(SinhVien sinhvien);
-        Task<SearchResult<SinhVienSearchViewModel>> SelectAllByHocKyAsync(string idhocky);
+        Task<SearchResult<SinhVienSearchViewModel>> SelectAllByHocKyAsync(string idhocky,string idbomon);
         //Task<SearchResult<GiangVienHuongDanViewModel>> SelectByIdHocKyAsync(string idhocky);
         Task<SinhVienSearchViewModel> GetInfo(string idsinhvien);
         Task<SearchResult<SinhVienSearchViewModel>> SearchById(string idsinhvien);

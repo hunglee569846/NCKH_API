@@ -46,12 +46,12 @@ namespace WebSite.Core.Infrastructure.Services
         }
 
 
-        public async Task<SearchResult<HoiDongTotNghiepViewModel>> GetByIdHocKy(string idhocky)
+        public async Task<SearchResult<HoiDongTotNghiepViewModel>> GetByIdHocKy(string idhocky,string idbomon)
         {
             var checkExit = await _hocKysRepository.CheckExisIsActivetAsync(idhocky);
             if (checkExit == false)
                 return new SearchResult<HoiDongTotNghiepViewModel>() { Code = -1, Data = null, Message = "Học kỳ không tồn tại." };
-            return await _hoiDongTotNghiepRepository.SelectAll(idhocky);
+            return await _hoiDongTotNghiepRepository.SelectAll(idhocky, idbomon);
         }
 
        public async Task<ActionResultResponese<string>> InsertAsync(HoiDongTotNghiepMeta hoidongMeta, string idhocky, string idmonhoc,string creatorUserId, string creatorFullName,string idBoMon)

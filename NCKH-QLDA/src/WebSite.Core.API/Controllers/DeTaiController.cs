@@ -92,7 +92,7 @@ namespace WebSite.Core.API.Controllers
         }
 
         [AcceptVerbs("POST"), Route("InsertDeTai/{madetai}/{idhocky}/{idmonhoc}/{idsinhvien}/{tensinhvien}/{masinhvien}")]
-        [SwaggerOperation(Summary = "InsertAsync Detai", Description = "Requires login verification!", OperationId = "InsertAsync", Tags = new[] { "DeTai" })]
+        [SwaggerOperation(Summary = "Thêm mới đề tài.", Description = "Requires login verification!", OperationId = "InsertAsync", Tags = new[] { "DeTai" })]
         public async Task<IActionResult> InsertAsync([FromBody] DeTaiInsertMeta detaiInsertMeta, string madetai, string idhocky, string idmonhoc, string idsinhvien, string tensinhvien,string masinhvien)
         {
             var result = await _ideTaiService.InsertAsync(detaiInsertMeta, madetai, idhocky, idmonhoc, idsinhvien, tensinhvien,masinhvien,CurrentUser.MaGiangVien,CurrentUser.FullName);
@@ -105,7 +105,7 @@ namespace WebSite.Core.API.Controllers
         }
 
         [AcceptVerbs("PUT"), Route("Update/{iddetai}")]
-        [SwaggerOperation(Summary = "UpdateAsync Detai", Description = "Requires login verification!", OperationId = "UpdateAsync", Tags = new[] { "DeTai" })]
+        [SwaggerOperation(Summary = "Cập nhật thông tin đề tài.", Description = "Requires login verification!", OperationId = "UpdateAsync", Tags = new[] { "DeTai" })]
         public async Task<IActionResult> InsertAsync([FromBody] DeTaiUpdateMeta detaiUpdateMeta, string iddetai)
         {
             var result = await _ideTaiService.UpdateAsync(detaiUpdateMeta, iddetai,CurrentUser.MaGiangVien,CurrentUser.FullName);
@@ -131,7 +131,7 @@ namespace WebSite.Core.API.Controllers
         //}
 
         [AcceptVerbs("DELETE"), Route("Delete/{iddetai}")]
-        [SwaggerOperation(Summary = "DeleteAsync Detai", Description = "Requires login verification!", OperationId = "DeleteAsync", Tags = new[] { "DeTai" })]
+        [SwaggerOperation(Summary = "Xóa đề tài.", Description = "Requires login verification!", OperationId = "DeleteAsync", Tags = new[] { "DeTai" })]
         public async Task<IActionResult> DeleteAsync(string iddetai)
         {
             var result = await _ideTaiService.DeleteAsync(iddetai);

@@ -13,7 +13,7 @@ namespace WebSite.Core.Domain.IServices
     {
         Task<ActionResultResponese<string>> InsertAsync(SinhVienMeta sinhvienMeta,string idhocky, string creatorUserId, string creatorFullName, string idBoMon);
         Task<ActionResultResponese<string>> InsertListAsync(List<SinhVienMeta> sinhvienMeta,string idhocky, string creatorUserId, string creatorFullName,string idBoMon);
-        Task<SearchResult<SinhVienSearchViewModel>> SelectAllAsync(string idhocky);
+        Task<SearchResult<SinhVienSearchViewModel>> SelectAllAsync(string idhocky, string idBoMon);
         Task<SearchResult<SinhVienSearchViewModel>> GetByIdAsync(string idsinhvien);
         //Task<ActionResultResponese<string>> InsertAsync(GiangVienHDMeta gvhdkyMeta, string idhocky, TypeGVHD tygvhd, string CreatorUserId, string CreatorFullName);
         //Task<ActionResultResponese<string>> InsertListGVHDAsync(List<GiangVienListMeta> gvhdlistMeta, string idhocky, string CreatorUserId, string CreatorFullName);

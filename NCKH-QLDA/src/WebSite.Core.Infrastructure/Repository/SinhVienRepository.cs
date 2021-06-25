@@ -21,7 +21,7 @@ namespace WebSite.Core.Infrastructure.Repository
             _connectionString = ConnectionString;
         }
 
-        public async Task<SearchResult<SinhVienSearchViewModel>> SelectAllByHocKyAsync(string idhocky)
+        public async Task<SearchResult<SinhVienSearchViewModel>> SelectAllByHocKyAsync(string idhocky,string idbomon)
         {
             try
             {
@@ -31,6 +31,7 @@ namespace WebSite.Core.Infrastructure.Repository
                         await conn.OpenAsync();
                     DynamicParameters param = new DynamicParameters();
                     param.Add("@IdHocKy", idhocky);
+                    param.Add("@IdBoMon", idbomon);
                     using (var multi = await conn.QueryMultipleAsync("[dbo].[spSinhVien_SelectAllByHocKy]", param, commandType: CommandType.StoredProcedure))
                     {
                         return new SearchResult<SinhVienSearchViewModel>()

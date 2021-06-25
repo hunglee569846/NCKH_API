@@ -118,9 +118,9 @@ namespace WebSite.Core.Infrastructure.Services
             }
             return new ActionResultResponese<string>(1, "Thêm mới thành công.", "Sinh viên.");
         }
-        public async Task<SearchResult<SinhVienSearchViewModel>> SelectAllAsync(string idhocky)
+        public async Task<SearchResult<SinhVienSearchViewModel>> SelectAllAsync(string idhocky,string idbomon)
         {
-            return await _sinhVienRepository.SelectAllByHocKyAsync(idhocky);
+            return await _sinhVienRepository.SelectAllByHocKyAsync(idhocky,idbomon);
         }
     }
 }

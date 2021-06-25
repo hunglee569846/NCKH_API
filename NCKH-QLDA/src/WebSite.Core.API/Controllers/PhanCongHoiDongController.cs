@@ -49,7 +49,7 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [SwaggerOperation(Summary = "UpdateDiemHoiDong", Description = "Requires login verification!", OperationId = "UpdateDiemAsync", Tags = new[] { "PhanCongHoiDong" })]
+        [SwaggerOperation(Summary = "Cập nhật điểm thành phần.", Description = "Requires login verification!", OperationId = "UpdateDiemAsync", Tags = new[] { "PhanCongHoiDong" })]
         [AcceptVerbs("PUT"), Route("UpdateDiem/{idBangDiem}/{diemmso}")]
         public async Task<IActionResult> UpdateDiemAsync(string idBangDiem, float? diemmso, string nhanxetGV)
         {

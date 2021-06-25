@@ -12,7 +12,7 @@ namespace WebSite.Core.Domain.IServices
 {
    public interface IGiangVienHuongDanService
     {
-        Task<SearchResult<GiangVienHuongDanViewModel>> SelectAllAsync();
+        Task<SearchResult<GiangVienHuongDanViewModel>> SelectAllAsync(string idbomon);
         Task<SearchResult<GiangVienHuongDanViewModel>> GetByIdHocKyAsync(string idhocky,string idbomon);
         Task<ActionResultResponese<string>> InsertAsync(GiangVienHDMeta gvhdkyMeta,string idhocky , TypeGVHD tygvhd,string CreatorUserId, string CreatorFullName,string idbomon);
         Task<ActionResultResponese<string>> InsertListGVHDAsync(List<GiangVienListMeta> gvhdlistMeta,string idhocky, string CreatorUserId, string CreatorFullName, string idbomon);

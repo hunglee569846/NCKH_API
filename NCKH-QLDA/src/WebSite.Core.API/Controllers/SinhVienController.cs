@@ -24,7 +24,7 @@ namespace WebSite.Core.API.Controllers
             _SinhViencService = sinhvienService;
         }
 
-        [SwaggerOperation(Summary = "InsertSinhVien", Description = "Requires login verification!", OperationId = "InsertSinhVienAsync", Tags = new[] { "SinhVien" })]
+        [SwaggerOperation(Summary = "Thêm mới một sinh viên", Description = "Requires login verification!", OperationId = "InsertSinhVienAsync", Tags = new[] { "SinhVien" })]
         [AcceptVerbs("POST"), Route("SinhVien/{idhocky}")]
         public async Task<IActionResult> InsertAsync([FromBody] SinhVienMeta sinhvienMeta, string idhocky)
         {
@@ -37,7 +37,7 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [SwaggerOperation(Summary = "InsertListSinhVien", Description = "Requires login verification!", OperationId = "InsertListSinhVienAsync", Tags = new[] { "SinhVien" })]
+        [SwaggerOperation(Summary = "Thêm mới danh sách sinh viên.", Description = "Requires login verification!", OperationId = "InsertListSinhVienAsync", Tags = new[] { "SinhVien" })]
         [AcceptVerbs("POST"), Route("SinhVienList/{idhocky}")]
         public async Task<IActionResult> InsertListAsync([FromBody] List<SinhVienMeta> listsinhvienMeta, string idhocky)
         {
@@ -50,11 +50,11 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [SwaggerOperation(Summary = "GetAllSinhVien", Description = "Requires login verification!", OperationId = "GetAllSinhVienAsync", Tags = new[] { "SinhVien" })]
+        [SwaggerOperation(Summary = "Danh sách sinh viên theo kỳ.", Description = "Requires login verification!", OperationId = "GetAllSinhVienAsync", Tags = new[] { "SinhVien" })]
         [AcceptVerbs("GET"), Route("SinhVienGetAll/{idhocky}")]
         public async Task<IActionResult> GetllByHocKyAsync(string idhocky)
         {
-            var result = await _SinhViencService.SelectAllAsync(idhocky);
+            var result = await _SinhViencService.SelectAllAsync(idhocky,CurrentUser.IdBoMon);
             if (result.Code <= 0)
             {
                 //_logger.LogError("InsertListAsync SinhVien controller error " + result.Code);
@@ -63,7 +63,7 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [SwaggerOperation(Summary = "GetDetailSinhVien", Description = "Requires login verification!", OperationId = "GetDetailSinhVienAsync", Tags = new[] { "SinhVien" })]
+        [SwaggerOperation(Summary = "Thông tin sinh viên.", Description = "Requires login verification!", OperationId = "GetDetailSinhVienAsync", Tags = new[] { "SinhVien" })]
         [AcceptVerbs("GET"), Route("GetDetailSinhVien/{idsinhvien}")]
         public async Task<IActionResult> GetDetail(string idsinhvien)
         {

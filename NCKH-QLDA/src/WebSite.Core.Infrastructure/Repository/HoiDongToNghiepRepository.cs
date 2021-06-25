@@ -21,7 +21,7 @@ namespace WebSite.Core.Infrastructure.Repository
             _ConnectionString = connectionString;
         }
 
-        public async Task<SearchResult<HoiDongTotNghiepViewModel>> SelectAll(string idhocky)
+        public async Task<SearchResult<HoiDongTotNghiepViewModel>> SelectAll(string idhocky,string idbomon)
         {
             try
             {
@@ -31,8 +31,8 @@ namespace WebSite.Core.Infrastructure.Repository
                         await conn.OpenAsync();
                     DynamicParameters param = new DynamicParameters();
                     param.Add("@IdHocKy", idhocky);
+                    param.Add("@IdBoMon", idbomon);
 
-                    
                     using (var multi = await conn.QueryMultipleAsync("[dbo].[spHoiDongToNghiep_searchByHK]", param, commandType: CommandType.StoredProcedure))
                     {
                         return new SearchResult<HoiDongTotNghiepViewModel>

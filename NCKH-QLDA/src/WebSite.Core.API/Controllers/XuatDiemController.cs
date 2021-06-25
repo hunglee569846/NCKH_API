@@ -23,7 +23,7 @@ namespace WebSite.Core.API.Controllers
             _bangdiemService = bangdiemService;
         }
 
-        [SwaggerOperation(Summary = "SearchDiemPhanBien", Description = "Requires login verification!", OperationId = "SerchDiemPhanBien", Tags = new[] { "XuatDiem" })]
+        [SwaggerOperation(Summary = "Danh sách điểm phản biện", Description = "Requires login verification!", OperationId = "SerchDiemPhanBien", Tags = new[] { "XuatDiem" })]
         [AcceptVerbs("GET"), Route("DiemPhanBien/{idhocky}/{idmonhoc}")]
         public async Task<IActionResult> XuatDiemPhanBien(string idhocky,string idmonhoc)
         {
@@ -35,7 +35,7 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [SwaggerOperation(Summary = "SearchDiemHoiDong", Description = "Requires login verification!", OperationId = "SearchDiemHoiDong", Tags = new[] { "XuatDiem" })]
+        [SwaggerOperation(Summary = "Danh sách điểm hội đồng", Description = "Requires login verification!", OperationId = "SearchDiemHoiDong", Tags = new[] { "XuatDiem" })]
         [AcceptVerbs("GET"), Route("DiemHoiDong/{idhocky}/{idmonhoc}")]
         public async Task<IActionResult> XuatDiemHoiDong(string idhocky, string idmonhoc)
         {
