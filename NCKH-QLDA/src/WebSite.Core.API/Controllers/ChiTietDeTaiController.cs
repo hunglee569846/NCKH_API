@@ -22,7 +22,7 @@ namespace WebSite.Core.API.Controllers
             _chitietdetaiService = chitietdetaiService;
         }
         
-        [SwaggerOperation(Summary = "InsertAsyncChiTietDeTai", Description = "Requires login verification!", OperationId = "InsertAsyncChiTietDeTai", Tags = new[] { "ChiTietDeTai" })]
+        [SwaggerOperation(Summary = "Thêm mới một hướng dẫn đề tài.", Description = "Requires login verification!", OperationId = "InsertAsyncChiTietDeTai", Tags = new[] { "ChiTietDeTai" })]
         [AcceptVerbs("POST"), Route("ChiTietDeTai/{iddetai}/{idGVHD}/{idhocky}/{idmonhoc}")]
         public async Task<IActionResult> InsertAsync(ChiTietDeTaiMeta chitietdetai,string iddetai,string idGVHD,string idhocky,string idmonhoc)
         {
@@ -34,7 +34,7 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [SwaggerOperation(Summary = "InsertAsyncListChiTietDeTai", Description = "Requires login verification!", OperationId = "InsertAsyncListChiTietDeTai", Tags = new[] { "ChiTietDeTai" })]
+        [SwaggerOperation(Summary = "Phân hướng dân theo list đề tài.", Description = "Requires login verification!", OperationId = "InsertAsyncListChiTietDeTai", Tags = new[] { "ChiTietDeTai" })]
         [AcceptVerbs("POST"), Route("ListChiTietDeTai/{idGVHD}/{idhocky}/{idmonhoc}")]
         public async Task<IActionResult> InsertListChitietDTAsync([FromBody]List<ChiTietDeTaiListDeTaiMeta> listchitietdetai,string idGVHD, string idhocky, string idmonhoc)
         {
@@ -47,7 +47,7 @@ namespace WebSite.Core.API.Controllers
         }
 
 
-        [SwaggerOperation(Summary = "SerchByIdDeTai", Description = "Requires login verification!", OperationId = "SerchByIdDeTai", Tags = new[] { "ChiTietDeTai" })]
+        [SwaggerOperation(Summary = "chi tiết theo id đề tài.", Description = "Requires login verification!", OperationId = "SerchByIdDeTai", Tags = new[] { "ChiTietDeTai" })]
         [AcceptVerbs("GET"), Route("SerchByIdDeTai/{iddetai}")]
         public async Task<IActionResult> SearchAsync(string iddetai)
         {
@@ -60,7 +60,7 @@ namespace WebSite.Core.API.Controllers
         }
 
         
-        [SwaggerOperation(Summary = "DeleteIdDeTai", Description = "Requires login verification!", OperationId = "DeleteIdDeTai", Tags = new[] { "ChiTietDeTai" })]
+        [SwaggerOperation(Summary = "xóa chi tiết đề tài", Description = "Requires login verification!", OperationId = "DeleteIdDeTai", Tags = new[] { "ChiTietDeTai" })]
         [AcceptVerbs("DELETE"), Route("Delete/{idChiTietDeTai}")]
         public async Task<IActionResult> DeleteAsync(string idChiTietDeTai)
         {

@@ -12,7 +12,7 @@ namespace WebSite.Core.Domain.IServices
 	public interface IFolderServices
 	{
 		//Task<FolderSearchViewModel> SearchAsync(string tenantId, string userId, string keyword, int page, int pageSize);
-		Task<ActionResultResponese<string>> InsertAsync(string idBoMon,string FolderName, FolderMeta folderMeta);
+		Task<ActionResultResponese<string>> InsertAsync(string idBoMon,string FolderName);
 		//Task<ActionResultReponese<string>> UpdateAsync(string tenantId, string lastUpdateUserId, string lastUpdateFullName, string lastUpdateAvatar, int id, FolderMeta folderMeta);
 		//Task<ActionResultReponese> DeleteAsync(string tenantId, string deleteUserId, string deleteFullName, string deleteAvatar, int id);
 		//Task<ActionResultReponese<FolderDetailViewModel>> GetDetailAsync(string tenantId, string userId, int id);

@@ -13,10 +13,10 @@ namespace WebSite.Core.Domain.IServices
    public interface IGiangVienHuongDanService
     {
         Task<SearchResult<GiangVienHuongDanViewModel>> SelectAllAsync();
-        Task<SearchResult<GiangVienHuongDanViewModel>> GetByIdHocKyAsync(string idhocky);
-        Task<ActionResultResponese<string>> InsertAsync(GiangVienHDMeta gvhdkyMeta,string idhocky , TypeGVHD tygvhd,string CreatorUserId, string CreatorFullName);
-        Task<ActionResultResponese<string>> InsertListGVHDAsync(List<GiangVienListMeta> gvhdlistMeta,string idhocky, string CreatorUserId, string CreatorFullName);
-        Task<ActionResultResponese<string>> UpdateAsync(GVHDupdateMeta gvhdkyUpdateMeta,string idGVHD,string idGvhdTheoKy, TypeGVHD tygvhd, string LastUpdateUserId, string LastUpdateFullName);
+        Task<SearchResult<GiangVienHuongDanViewModel>> GetByIdHocKyAsync(string idhocky,string idbomon);
+        Task<ActionResultResponese<string>> InsertAsync(GiangVienHDMeta gvhdkyMeta,string idhocky , TypeGVHD tygvhd,string CreatorUserId, string CreatorFullName,string idbomon);
+        Task<ActionResultResponese<string>> InsertListGVHDAsync(List<GiangVienListMeta> gvhdlistMeta,string idhocky, string CreatorUserId, string CreatorFullName, string idbomon);
+        Task<ActionResultResponese<string>> UpdateAsync(GVHDupdateMeta gvhdkyUpdateMeta,string idGVHD,string idGvhdTheoKy, TypeGVHD tygvhd, string LastUpdateUserId, string LastUpdateFullName, string idbomon);
         Task<ActionResultResponese<string>> DeleteAsync(string idgvhdTheoky, string deleteUserId, string deleteFullName);
     }
 }

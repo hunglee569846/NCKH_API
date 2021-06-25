@@ -33,15 +33,15 @@ namespace WebSite.Core.Infrastructure.Services
 			return await _giangVienHuongDanRepository.SelectAllAsync();
 		}
 
-		public async Task<SearchResult<GiangVienHuongDanViewModel>> GetByIdHocKyAsync(string idhocky)
+		public async Task<SearchResult<GiangVienHuongDanViewModel>> GetByIdHocKyAsync(string idhocky ,string idbomon)
 		{
 			var checkExit = await _hockyRepository.CheckExisIsActivetAsync(idhocky);
 			if (checkExit == false)
 				return new SearchResult<GiangVienHuongDanViewModel>() { Code = -1, Data = null, Message = "Học kỳ không tồn tại." };
-			return await _giangVienHuongDanRepository.SelectByIdHocKyAsync(idhocky);
+			return await _giangVienHuongDanRepository.SelectByIdHocKyAsync(idhocky,idbomon);
 		}
 
-		public async Task<ActionResultResponese<string>> InsertAsync(GiangVienHDMeta gvhdkyMeta, string idhocky, TypeGVHD tygvhd, string CreatorUserId, string creatorFullName)
+		public async Task<ActionResultResponese<string>> InsertAsync(GiangVienHDMeta gvhdkyMeta, string idhocky, TypeGVHD tygvhd, string CreatorUserId, string creatorFullName,string idbomon)
         {
 			var id = Guid.NewGuid().ToString();
 			var checkHocKy = await _hockyRepository.CheckExisIsActivetAsync(idhocky);
@@ -56,6 +56,7 @@ namespace WebSite.Core.Infrastructure.Services
 			var gvhdky = new GVHDTheoKy()
 			{
 				IdGVHDTheoKy = id.Trim(),
+				IdBoMon = idbomon?.Trim(),
 				IdGVHD = gvhdkyMeta.IdGVHD?.Trim(),
 				MaGVHD = gvhdkyMeta.MaGVHD?.Trim(),
 				TenGVHD = gvhdkyMeta.TenGVHD?.Trim(),
@@ -76,7 +77,7 @@ namespace WebSite.Core.Infrastructure.Services
 				return new ActionResultResponese<string>(result, "Thêm mới thất bại.", "Giang viên hướng dẫn theo kỳ.");
 			return new ActionResultResponese<string>(result, "Thêm mới thành công.", "Giang viên hướng dẫn theo kỳ.");
 		}
-		public async Task<ActionResultResponese<string>> InsertListGVHDAsync(List<GiangVienListMeta> gvhdlistMeta, string idhocky, string CreatorUserId, string CreatorFullName)
+		public async Task<ActionResultResponese<string>> InsertListGVHDAsync(List<GiangVienListMeta> gvhdlistMeta, string idhocky, string CreatorUserId, string CreatorFullName, string idbomon)
         {
 		
 			var checkHocKy = await _hockyRepository.CheckExisIsActivetAsync(idhocky);
@@ -107,6 +108,7 @@ namespace WebSite.Core.Infrastructure.Services
 				listGVHD.Add(new GVHDTheoKy
 				{
 					IdGVHDTheoKy = id?.Trim(),
+					IdBoMon = idbomon?.Trim(),
 					IdGVHD = giangvien.IdGVHD?.Trim(),
 					MaGVHD = giangvien.MaGVHD?.Trim(),
 					TenGVHD = giangvien.TenGVHD?.Trim(),
@@ -133,7 +135,7 @@ namespace WebSite.Core.Infrastructure.Services
 			return new ActionResultResponese<string>(1, "Thêm mới danh sách giảng viên thành công.", "Giảng viên.");
 
 		}
-		public async Task<ActionResultResponese<string>> UpdateAsync(GVHDupdateMeta gvhdkyUpdateMeta, string idGVHD, string idGvhdTheoKy, TypeGVHD tygvhd,string CreatorUserId,string creatorFullName)
+		public async Task<ActionResultResponese<string>> UpdateAsync(GVHDupdateMeta gvhdkyUpdateMeta, string idGVHD, string idGvhdTheoKy, TypeGVHD tygvhd,string CreatorUserId,string creatorFullName, string idbomon)
         {
 			var checkGVHDTheoKy = await _giangVienHuongDanRepository.CheckExits(idGvhdTheoKy);
 			if (!checkGVHDTheoKy)
@@ -144,6 +146,7 @@ namespace WebSite.Core.Infrastructure.Services
 			var gvhdky = new GVHDTheoKy()
 			{
 				IdGVHDTheoKy = idGvhdTheoKy?.Trim(),
+				IdBoMon = idbomon?.Trim(),
 				IdGVHD = idGVHD?.Trim(),
 				DonViCongTac = gvhdkyUpdateMeta.DonViCongTac?.Trim(),
 				Email = gvhdkyUpdateMeta.Email?.Trim(),

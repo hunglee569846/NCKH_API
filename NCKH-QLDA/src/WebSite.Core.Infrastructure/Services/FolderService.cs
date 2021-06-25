@@ -19,7 +19,7 @@ namespace WebSite.Core.Infrastructure.Services
             _iFolderRepository = iFolderRepository;
         }
 
-        public async Task<ActionResultResponese<string>> InsertAsync(string idBoMon,string FolderName, FolderMeta folderMeta)
+        public async Task<ActionResultResponese<string>> InsertAsync(string idBoMon,string FolderName)
         {
             //var isFolderID = await _iFolderRepository.CheckExitsFolder(folderId);
             //if (isFolderID)
@@ -39,7 +39,7 @@ namespace WebSite.Core.Infrastructure.Services
                 IsActive = true,
                 IsDelete = false,
             };
-            var result = await _iFolderRepository.InsertAsync(FolderName, folder);
+            var result = await _iFolderRepository.InsertAsync(folder);
             if (result <= 0)
                 return new ActionResultResponese<string>(-1, "Thêm mới thất bại", "Folder", null);
             return new ActionResultResponese<string>(result, "Thêm mới thành công", "Folder", null);

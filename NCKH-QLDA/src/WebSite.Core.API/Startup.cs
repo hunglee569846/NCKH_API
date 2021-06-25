@@ -15,6 +15,8 @@ using NCKH.Infrastruture.Binding.CustomAttributes;
 using NCKH.Infrastruture.Binding.Middleware;
 using NCKH.Infrastruture.Binding.ModelBinders;
 using NCKH.Infrastruture.Binding.OperationFilter;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using System;
@@ -86,8 +88,14 @@ namespace WebSite.Core.API
                  });
              });
 
+            //services.AddControllers()
+            //    .AddNewtonsoftJson();
             services.AddControllers()
-                .AddNewtonsoftJson();
+                .AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.Converters.Add(new StringEnumConverter());
+                    options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                });
 
             //services.AddSwaggerGenNewtonsoftSupport();
 

@@ -12,7 +12,7 @@ namespace WebSite.Core.Domain.IRepository
     public interface IGiangVienHuongDanRepository
     {
         Task<SearchResult<GiangVienHuongDanViewModel>> SelectAllAsync();
-        Task<SearchResult<GiangVienHuongDanViewModel>> SelectByIdHocKyAsync(string idhocky);
+        Task<SearchResult<GiangVienHuongDanViewModel>> SelectByIdHocKyAsync(string idhocky,string idbomon);
         Task<GVHDTheoKy> GetInfo(string idGVHDTheoKy);
         Task<GVHDTheoKy> GetInfoByMaGVHD(string idhocky,string maGVHD);
         Task<int> InsertAsync(GVHDTheoKy gvhdky);

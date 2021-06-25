@@ -39,7 +39,7 @@ namespace WebSite.Core.API.Controllers
         //}
 
         [AcceptVerbs("POST"), Route("InsertListChiTietHoiDong/{idhoidong}/{idhocky}/{idmonhoc}")]
-        [SwaggerOperation(Summary = "InsertList ChiTietHoiDong", Description = "Requires login verification!", OperationId = "InsertListChiTietHoiDong", Tags = new[] { "ChiTietHoiDong" })]
+        [SwaggerOperation(Summary = "Thêm mới danh sách thanh viên một hội đồng.", Description = "Requires login verification!", OperationId = "InsertListChiTietHoiDong", Tags = new[] { "ChiTietHoiDong" })]
         public async Task<IActionResult> InsertListChiTietHoiDongAsync([FromBody] List<ChiTietHoiDongMeta> listchitiethoidong, string idhoidong,string idhocky,string idmonhoc)
         {
             var result = await _ChitietHoiDongService.InserListDeTaiAsync(listchitiethoidong, idhoidong,idhocky,idmonhoc,CurrentUser.MaGiangVien,CurrentUser.FullName);
@@ -52,7 +52,7 @@ namespace WebSite.Core.API.Controllers
         }
 
         [AcceptVerbs("POST"), Route("InsertChiTietHoiDong/{idhoidong}/{idgiangvien}/{idhocky}/{idmonhoc}")]
-        [SwaggerOperation(Summary = "InsertChiTietHoiDong", Description = "Requires login verification!", OperationId = "InsertChiTietHoiDong", Tags = new[] { "ChiTietHoiDong" })]
+        [SwaggerOperation(Summary = "thêm mới một thành viên hội đồng.", Description = "Requires login verification!", OperationId = "InsertChiTietHoiDong", Tags = new[] { "ChiTietHoiDong" })]
         public async Task<IActionResult> InsertAsync(string idgiangvien, string idhoidong, string idhocky, string idmonhoc)
         {
             var result = await _ChitietHoiDongService.InserAsync(idhoidong,idgiangvien,idhocky,idmonhoc, CurrentUser.MaGiangVien, CurrentUser.FullName);
@@ -65,7 +65,7 @@ namespace WebSite.Core.API.Controllers
         }
 
         [AcceptVerbs("DELETE"), Route("DeleteChiTietHoiDong/{idhoidong}")]
-        [SwaggerOperation(Summary = "DeleteChiTietHoiDong", Description = "Requires login verification!", OperationId = "DeleteChiTietHoiDong", Tags = new[] { "ChiTietHoiDong" })]
+        [SwaggerOperation(Summary = "xóa thành viên hội đồng.", Description = "Requires login verification!", OperationId = "DeleteChiTietHoiDong", Tags = new[] { "ChiTietHoiDong" })]
         public async Task<IActionResult> DeleteChiTietHoiDongAsync(string idhoidong)
         {
             var result = await _ChitietHoiDongService.DeleteAsync(idhoidong);

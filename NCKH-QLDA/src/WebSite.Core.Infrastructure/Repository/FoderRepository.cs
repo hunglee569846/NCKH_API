@@ -18,7 +18,7 @@ namespace WebSite.Core.Infrastructure.Repository
         {
             _ConnectionString = ConnectionString;
         }
-        public async Task<int> InsertAsync(string FolderName, Folder folder)
+        public async Task<int> InsertAsync(Folder folder)
         {
             int rowaffaceted = 0;
             using (SqlConnection con = new SqlConnection(_ConnectionString))
@@ -26,7 +26,7 @@ namespace WebSite.Core.Infrastructure.Repository
                 if (con.State == ConnectionState.Closed)
                     await con.OpenAsync();
                 DynamicParameters para = new DynamicParameters();
-                para.Add("@FolderName", FolderName);
+                para.Add("@FolderName", folder.FolderName);
                 para.Add("@IdBoMon", folder.IdBoMon);
                 //para.Add("@FolderId", FolderId);
                // para.Add("@Level", folder.Level);

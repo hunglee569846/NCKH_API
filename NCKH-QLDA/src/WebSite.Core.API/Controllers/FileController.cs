@@ -28,21 +28,21 @@ namespace WebSite.Core.API.Controllers
             _bangdiemService = bangdiemService;
         }
         [Route("SearchID/IdPath/FolderName/{IdFile}"), AcceptVerbs("GET")]
-        [SwaggerOperation(Summary = "SearchAll information File.", Description = "Requires login verification!", OperationId = "SearchById", Tags = new[] { "File" })]
+        [SwaggerOperation(Summary = "Xem thông tin file.", Description = "Requires login verification!", OperationId = "SearchById", Tags = new[] { "File" })]
         public async Task<IActionResult> SearchAsync(string IdFile)
         {
             var result = await _fileService.SearchAsync(IdFile);
             return Ok(result);
         }
         [Route("SearchAll/FolderName/{FolderId}"), AcceptVerbs("GET")]
-        [SwaggerOperation(Summary = "SearchAll information File.", Description = "Requires login verification!", OperationId = "SearchAll", Tags = new[] { "File" })]
+        [SwaggerOperation(Summary = "Danh sách file theo folderId.", Description = "Requires login verification!", OperationId = "SearchAll", Tags = new[] { "File" })]
         public async Task<IActionResult> GetsAllAsync(int FolderId)
         {
             var result = await _fileService.GetsAll(CurrentUser.IdBoMon, FolderId);
             return Ok(result);
         }
 
-        [SwaggerOperation(Summary = "Upload file.", Description = "Requires login verification!", OperationId = "UploadFile", Tags = new[] { "File" })]
+        [SwaggerOperation(Summary = "Upload file theo folderId.", Description = "Requires login verification!", OperationId = "UploadFile", Tags = new[] { "File" })]
         [HttpPost, DisableRequestSizeLimit]
         [Route("uploads/{folderId}"), AcceptVerbs("POST")]
         public async Task<IActionResult> UploadFileAsync(int? folderId, IFormFileCollection formFileCollection)
@@ -51,7 +51,7 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [SwaggerOperation(Summary = "Download file information file.", Description = "Requires login verification!", OperationId = "DownloadFile", Tags = new[] { "File" })]
+        [SwaggerOperation(Summary = "Download file theo fileId.", Description = "Requires login verification!", OperationId = "DownloadFile", Tags = new[] { "File" })]
         [Route("downloads/{id}"), AcceptVerbs("GET")]
         public async Task<IActionResult> DownloadAsync(string id)
         {
@@ -95,7 +95,7 @@ namespace WebSite.Core.API.Controllers
             };
         }
 
-        [SwaggerOperation(Summary = "downloadsDiemPhanBien file information file.", Description = "Requires login verification!", OperationId = "downloadsDiemPhanBien", Tags = new[] { "File" })]
+        [SwaggerOperation(Summary = "download điểm phản biện theo học kỳ và môn học.", Description = "Requires login verification!", OperationId = "downloadsDiemPhanBien", Tags = new[] { "File" })]
         [Route("downloadsDiemPhanBien/{idhocky}/{idmonhoc}"), AcceptVerbs("GET")]
         public async Task<IActionResult> DownloadDiemPhanBienAsync(string idhocky, string idmonhoc)
         {
@@ -108,7 +108,7 @@ namespace WebSite.Core.API.Controllers
 
         }
 
-        [SwaggerOperation(Summary = "downloadsDiemHoiDong file information file.", Description = "Requires login verification!", OperationId = "downloadsDiemHoiDong", Tags = new[] { "File" })]
+        [SwaggerOperation(Summary = "download điểm hội đồng theo học kỳ và môn học.", Description = "Requires login verification!", OperationId = "downloadsDiemHoiDong", Tags = new[] { "File" })]
         [Route("downloadsDiemHoiDong/{idhocky}/{idmonhoc}"), AcceptVerbs("GET")]
         public async Task<IActionResult> DownloadDiemHoiDongAsync(string idhocky, string idmonhoc)
         {

@@ -38,7 +38,8 @@ namespace WebSite.Core.Infrastructure.Services
         
         public async Task<ActionResultResponese<List<FileViewModel>>> UploadFiles(string idBoMon, string creatorUserId, string CreatorFullName , int? folderId, IFormFileCollection formFileCollection)
         {
-            
+            if(formFileCollection.Count() == 0)
+                return new ActionResultResponese<List<FileViewModel>>(-3, "Vui lòng chọn file.");
             Folder folderInfo = null;
             if (folderId.HasValue)
             {

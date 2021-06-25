@@ -24,18 +24,18 @@ namespace WebSite.Core.API.Controllers
             _folderService = folderservice;
         }
 
-        [Route("Insert/{FolderName}/{FolderId}"), AcceptVerbs("POST")]
-        [SwaggerOperation(Summary = "Insert information folder.", Description = "Requires login verification!", OperationId = "InsertFolder", Tags = new[] { "Folder" })]
-        public async Task<IActionResult> InsertAsync([FromBody] FolderMeta folderMeta, string FolderName)
+        [Route("Insert/{FolderName}"), AcceptVerbs("POST")]
+        [SwaggerOperation(Summary = "Tạo mới folder.", Description = "Requires login verification!", OperationId = "InsertFolder", Tags = new[] { "Folder" })]
+        public async Task<IActionResult> InsertAsync(string FolderName)
         {
-            var result = await _folderService.InsertAsync(CurrentUser.IdBoMon,FolderName, folderMeta);
+            var result = await _folderService.InsertAsync(CurrentUser.IdBoMon,FolderName);
             if (result.Code <= 0)
                 return BadRequest(result);
             return Ok(result);
         }
 
         [Route("SelectAll"), AcceptVerbs("GET")]
-        [SwaggerOperation(Summary = "SelectAll information folder.", Description = "Requires login verification!", OperationId = "SelectAllFolder", Tags = new[] { "Folder" })]
+        [SwaggerOperation(Summary = "Danh sach folder.", Description = "Requires login verification!", OperationId = "SelectAllFolder", Tags = new[] { "Folder" })]
         public async Task<IActionResult> GetAlltAsync()
         {
             var result = await _folderService.GetsAll(CurrentUser.IdBoMon);

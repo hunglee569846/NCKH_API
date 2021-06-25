@@ -26,7 +26,7 @@ namespace WebSite.Core.API.Controllers
 
         }
         [AcceptVerbs("GET"), Route("GetAllByHocKy/{idhocky}")]
-        [SwaggerOperation(Summary = "SearchByHocKy Detai", Description = "Requires login verification!", OperationId = "SearchByHocKy", Tags = new[] { "DeTai" })]
+        [SwaggerOperation(Summary = "báo cáo danh sách đề tài của học kỳ.", Description = "Requires login verification!", OperationId = "SearchByHocKy", Tags = new[] { "DeTai" })]
         public async Task<IActionResult> GetAllByHocKyAsync(string idhocky)
         {
             var result = await _ideTaiService.GetByIdHocKyAsync(idhocky);
@@ -38,8 +38,8 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [AcceptVerbs("GET"), Route("GetAllByMonHocInHocKy/{idhocky}")]
-        [SwaggerOperation(Summary = "SearchByMonHocInHocKy Detai", Description = "Requires login verification!", OperationId = "SearchByMonHocInHocKy", Tags = new[] { "DeTai" })]
+        [AcceptVerbs("GET"), Route("GetAllByMonHocInHocKy/{idhocky}/{idmonhoc}")]
+        [SwaggerOperation(Summary = "Danh sách đề tài theo môn học", Description = "Requires login verification!", OperationId = "SearchByMonHocInHocKy", Tags = new[] { "DeTai" })]
         public async Task<IActionResult> GetByMonHocInHocKyAsync(string idhocky, string idmonhoc)
         {
             var result = await _ideTaiService.GetByIdMonHocInHocKyAsync(idhocky, idmonhoc);
