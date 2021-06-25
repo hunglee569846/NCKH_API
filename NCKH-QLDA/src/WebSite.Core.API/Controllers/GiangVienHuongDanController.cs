@@ -28,7 +28,7 @@ namespace WebSite.Core.API.Controllers
         [SwaggerOperation(Summary = "Danh sách giảng viên all", Description = "TypeGVHD: 0 - NgoaiTruong,1 - trongTruong", OperationId = "GetAllGiangVienHuongDan", Tags = new[] { "GiangVienHuongDan" })]
         public async Task<IActionResult> SelectAllAsync()
         {
-            var result = await _iGiangVienHuongDanService.SelectAllAsync();
+            var result = await _iGiangVienHuongDanService.SelectAllAsync(CurrentUser.IdBoMon);
             return Ok(result);
         }
 

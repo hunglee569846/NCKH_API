@@ -26,7 +26,7 @@ namespace WebSite.Core.Infrastructure.Services
             _detaiRepository = detaiRepository;
             _giangVienHuongDanRepository = giangVienHuongDanRepository;
         }
-       public async Task<ActionResultResponese<string>> InserAsync(ChiTietDeTaiMeta chitietdetaimeta,string iddetai,string idGVHDTheoKy,string idhocky,string idmonhoc,string maNguoiTao,string tenNguoiTao)
+       public async Task<ActionResultResponese<string>> InserAsync(ChiTietDeTaiMeta chitietdetaimeta,string iddetai,string idGVHDTheoKy,string idhocky,string idmonhoc,string CreatorUserId,string CreatorFullName, string idBoMon)
         {
             //check ton tai ban ghi
             var checkExit = await _detaiRepository.CheckExits(iddetai);
@@ -49,14 +49,15 @@ namespace WebSite.Core.Infrastructure.Services
             var id = Guid.NewGuid().ToString();
             var chittietdetai = new ChiTietDeTai()
             {
-                IdChiTietDeTai = id,
+                IdChiTietDeTai = id?.Trim(),
+                IdBoMon = idBoMon?.Trim(),
                 IdDeTai = iddetai?.Trim(),
                 MaDeTai = getinfoDeTai.MaDeTai?.Trim(),
                 IdGVHD = getinfoGVHD.IdGVHD?.Trim(),
                 MaGVHD = getinfoGVHD.MaGVHD?.Trim(),
                 CreateTime = DateTime.Now,
-                CreatorUserId = maNguoiTao?.Trim(),
-                CreatorFullName =tenNguoiTao?.Trim(),
+                CreatorUserId = CreatorUserId?.Trim(),
+                CreatorFullName =CreatorFullName?.Trim(),
                 IsActive = true,
                 IsDelete = false
             };
@@ -87,12 +88,12 @@ namespace WebSite.Core.Infrastructure.Services
             return new ActionResultResponese<string>(result, "Xóa chi tiết đề tài thành công.", "Chi tiết đề tài.");
         }
 
-        public async Task<ActionResultResponese<string>> InserListDeTaiAsync(List<ChiTietDeTaiListDeTaiMeta> listdetaimeta, string idGVHDTheoKy, string idhocky,string idmonhoc, string maNguoiTao, string tenNguoiTao)
+        public async Task<ActionResultResponese<string>> InserListDeTaiAsync(List<ChiTietDeTaiListDeTaiMeta> listdetaimeta, string idgvhd, string idhocky, string idmonhoc, string CreatorId, string CreatorFullName, string idBoMon)
         {
 
             
             //thông tin giảng viên
-            var getinfoGVHD = await _giangVienHuongDanRepository.GetInfo(idGVHDTheoKy);
+            var getinfoGVHD = await _giangVienHuongDanRepository.GetInfo(idgvhd);
             if (getinfoGVHD == null)
                 return new ActionResultResponese<string>(-11, "Giảng viên không tồn tại.", "Giảng viên.");
 
@@ -119,12 +120,13 @@ namespace WebSite.Core.Infrastructure.Services
                 listChiTietDeTai.Add(new ChiTietDeTai
                 {
                     IdChiTietDeTai = id,
+                    IdBoMon = idBoMon?.Trim(),
                     IdDeTai = iddetai.IdDeTai?.Trim(),
                     MaDeTai = getinfoDeTai.MaDeTai?.Trim(),
                     IdGVHD = getinfoGVHD.IdGVHD?.Trim(),
                     CreateTime = DateTime.Now,
-                    CreatorUserId = maNguoiTao?.Trim(),
-                    CreatorFullName = tenNguoiTao?.Trim(),
+                    CreatorUserId = CreatorId?.Trim(),
+                    CreatorFullName = CreatorFullName?.Trim(),
                     IsActive = true,
                     IsDelete = false
                 });

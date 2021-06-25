@@ -28,9 +28,9 @@ namespace WebSite.Core.Infrastructure.Services
 		}
 
 
-		public async Task<SearchResult<GiangVienHuongDanViewModel>> SelectAllAsync()
+		public async Task<SearchResult<GiangVienHuongDanViewModel>> SelectAllAsync(string idbomon)
 		{
-			return await _giangVienHuongDanRepository.SelectAllAsync();
+			return await _giangVienHuongDanRepository.SelectAllAsync(idbomon);
 		}
 
 		public async Task<SearchResult<GiangVienHuongDanViewModel>> GetByIdHocKyAsync(string idhocky ,string idbomon)

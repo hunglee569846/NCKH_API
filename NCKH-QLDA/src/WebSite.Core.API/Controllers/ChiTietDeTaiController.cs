@@ -26,7 +26,7 @@ namespace WebSite.Core.API.Controllers
         [AcceptVerbs("POST"), Route("ChiTietDeTai/{iddetai}/{idGVHD}/{idhocky}/{idmonhoc}")]
         public async Task<IActionResult> InsertAsync(ChiTietDeTaiMeta chitietdetai,string iddetai,string idGVHD,string idhocky,string idmonhoc)
         {
-            var result = await _chitietdetaiService.InserAsync(chitietdetai, iddetai, idGVHD,idhocky,idmonhoc,CurrentUser.MaGiangVien,CurrentUser.FullName);
+            var result = await _chitietdetaiService.InserAsync(chitietdetai, iddetai, idGVHD,idhocky,idmonhoc,CurrentUser.MaGiangVien,CurrentUser.FullName,CurrentUser.IdBoMon);
             if(result.Code <= 0)
             {
                return BadRequest(result);
@@ -38,7 +38,7 @@ namespace WebSite.Core.API.Controllers
         [AcceptVerbs("POST"), Route("ListChiTietDeTai/{idGVHD}/{idhocky}/{idmonhoc}")]
         public async Task<IActionResult> InsertListChitietDTAsync([FromBody]List<ChiTietDeTaiListDeTaiMeta> listchitietdetai,string idGVHD, string idhocky, string idmonhoc)
         {
-            var result = await _chitietdetaiService.InserListDeTaiAsync(listchitietdetai, idGVHD,idhocky,idmonhoc, CurrentUser.MaGiangVien, CurrentUser.FullName);
+            var result = await _chitietdetaiService.InserListDeTaiAsync(listchitietdetai, idGVHD,idhocky,idmonhoc, CurrentUser.MaGiangVien, CurrentUser.FullName,CurrentUser.IdBoMon);
             if (result.Code <= 0)
             {
                 return BadRequest(result);

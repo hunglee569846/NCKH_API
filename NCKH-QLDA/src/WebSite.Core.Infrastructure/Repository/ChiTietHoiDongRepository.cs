@@ -20,7 +20,7 @@ namespace WebSite.Core.Infrastructure.Repository
             _ConnectionString = connectionString;
         }
 
-        public async Task<int> InserAsync(ChiTietHoiDong chitiethoidong)
+        public async Task<int> InserAsync(ChiTietHoiDong chiTietHoiDong)
         {
             try
             {
@@ -30,14 +30,25 @@ namespace WebSite.Core.Infrastructure.Repository
                     if (conn.State == ConnectionState.Closed)
                         await conn.OpenAsync();
                     DynamicParameters param = new DynamicParameters();
-                    param.Add("@IdChiTietHD", chitiethoidong.IdChiTietHD);
-                    param.Add("@IdHoiDong", chitiethoidong.IdHoiDong);
-                    param.Add("@IdGiangVien", chitiethoidong.IdGiangVien);
-                    param.Add("@CreateTime", chitiethoidong.CreateTime);
-                    param.Add("@CreatorUserId", chitiethoidong.CreatorUserId);
-                    param.Add("@CreatorFullName", chitiethoidong.CreatorUserFullName);
-                    param.Add("@IsDelete", chitiethoidong.IsDelete);
-                    param.Add("@IsActive", chitiethoidong.IsActive);
+                    param.Add("@IdChiTietHD", chiTietHoiDong.IdChiTietHD);
+                    param.Add("@IdBoMon", chiTietHoiDong.IdBoMon);
+                    param.Add("@IdHoiDong", chiTietHoiDong.IdHoiDong);
+                    param.Add("@IdGiangVien", chiTietHoiDong.IdGiangVien);
+                    if (chiTietHoiDong.CreateTime != null && chiTietHoiDong.CreateTime != DateTime.MinValue)
+                    {
+                        param.Add("@CreateTime", chiTietHoiDong.CreateTime);
+                    }
+                    if (chiTietHoiDong.LastUpdate != null && chiTietHoiDong.LastUpdate != DateTime.MinValue)
+                    {
+                        param.Add("@LastUpdate", chiTietHoiDong.LastUpdate);
+                    }
+                    param.Add("@IsActive", chiTietHoiDong.IsActive);
+                    param.Add("@IsDelete", chiTietHoiDong.IsDelete);
+                    param.Add("@CreatorUserId", chiTietHoiDong.CreatorUserId);
+                    param.Add("@CreatorFullName", chiTietHoiDong.CreatorFullName);
+                    param.Add("@LastUpdateUserId", chiTietHoiDong.LastUpdateUserId);
+                    param.Add("@LastUpdateFullName", chiTietHoiDong.LastUpdateFullName);
+
 
                     rowAffect = await conn.ExecuteAsync("[dbo].[spChiTietHoiDong_Insert]", param, commandType: CommandType.StoredProcedure);
                     return rowAffect;

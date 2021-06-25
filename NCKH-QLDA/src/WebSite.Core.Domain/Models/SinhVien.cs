@@ -7,6 +7,7 @@ namespace WebSite.Core.Domain.Models
     public class SinhVien
     {
         public string IdSinhVien { get; set; }
+        public string IdBoMon { get; set; }
         public string MaSinhVien { get; set; }
         public string TenSinhVien { get; set; }
         public string Email { get; set; }
@@ -18,10 +19,10 @@ namespace WebSite.Core.Domain.Models
         public bool? IsActive { get; set; }
         public bool? IsDelete { get; set; }
         public DateTime? CreateTime { get; set; }
-        public DateTime? DeteteTime { get; set; }
+        public DateTime? DeleteTime { get; set; }
         public DateTime? LastUpdate { get; set; }
         public string CreatorUserId { get; set; }
-        public string lastUpdateUserId { get; set; }
+        public string LastUpdateUserId { get; set; }
         public string DeleteUserId { get; set; }
         public string CreatorFullName { get; set; }
         public string DeleteFullName { get; set; }

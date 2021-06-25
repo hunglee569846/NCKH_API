@@ -12,8 +12,8 @@ namespace WebSite.Core.Domain.IServices
     public interface IHoiDongTotNghiepService
     {
         Task<SearchResult<HoiDongTotNghiepViewModel>> GetByIdHocKy(string idhocky); 
-        Task<ActionResultResponese<string>> InsertAsync(HoiDongTotNghiepMeta hoidongMeta, string idhocky, string idmonhoc, string creatorUserId, string creatorFullName); 
-        Task<ActionResultResponese<string>> UpdateAsync(HoiDongTotNghiepMeta hoidongMeta, string idhoidong,string idhocky, string LastUpdateUserId, string LastUpdateFullName); 
+        Task<ActionResultResponese<string>> InsertAsync(HoiDongTotNghiepMeta hoidongMeta, string idhocky, string idmonhoc, string creatorUserId, string creatorFullName,string idBoMon); 
+        Task<ActionResultResponese<string>> UpdateAsync(HoiDongTotNghiepMeta hoidongMeta, string idhoidong,string idhocky, string idMonHoc, string LastUpdateUserId, string LastUpdateFullName, string idBoMon); 
         Task<ActionResultResponese<string>> DeleteAsync(string idhoidong); 
     }
 }

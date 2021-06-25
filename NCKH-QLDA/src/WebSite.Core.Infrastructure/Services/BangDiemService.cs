@@ -46,7 +46,7 @@ namespace WebSite.Core.Infrastructure.Services
             _webHostEnvironment = webHostEnvironment;
         }
 
-       public async  Task<ActionResultResponese<string>> InsertAsync (string iddetai,string idGVHD,string idhoidong,string idhocky,string idmonhoc, string creatorUserId, string creatorFullName)
+       public async  Task<ActionResultResponese<string>> InsertAsync (string iddetai,string idGVHD,string idhoidong,string idhocky,string idmonhoc, string creatorUserId, string creatorFullName, string idBoMon)
         {
             var checkHocKy = await _hockyRepository.CheckExisIsActivetAsync(idhocky);
             if (!checkHocKy)
@@ -74,6 +74,7 @@ namespace WebSite.Core.Infrastructure.Services
             var bangdiem = new BangDiem()
             {
                 IdBangDiem = id?.Trim(),
+                IdBoMon = idBoMon?.Trim(),
                 IdDeTai = iddetai?.Trim(),
                 IdHocKy = idhocky?.Trim(),
                 IdMonHoc = idmonhoc?.Trim(),
@@ -96,7 +97,7 @@ namespace WebSite.Core.Infrastructure.Services
 
         }
 
-        public async Task<ActionResultResponese<string>> InsertListDetaiAsync(List<BangDiemlistMeta> listDetaiMeta,string idhoidong, string idhocky, string idmonhoc, string creatorUserId, string creatorFullName)
+        public async Task<ActionResultResponese<string>> InsertListDetaiAsync(List<BangDiemlistMeta> listDetaiMeta,string idhoidong, string idhocky, string idmonhoc, string creatorUserId, string creatorFullName, string idBoMon)
         {
 
             var listdetai = listDetaiMeta.GroupBy(p => p.IdDeTai).Select(g => g.First()).ToList();
@@ -151,6 +152,7 @@ namespace WebSite.Core.Infrastructure.Services
                         listbangdiem.Add(new BangDiem()
                         {
                              IdBangDiem = id?.Trim(),
+                             IdBoMon = idBoMon?.Trim(),
                              IdDeTai = itemdetai.IdDeTai?.Trim(),
                              IdHocKy = idhocky?.Trim(),
                              IdMonHoc = idmonhoc?.Trim(),
@@ -180,7 +182,7 @@ namespace WebSite.Core.Infrastructure.Services
                 return new ActionResultResponese<string>(-16, "Môn học không được phân hội đồng đánh giá.", "Môn học.");
                
         }
-        public async Task<ActionResultResponese<string>> UpdateDiemAsync(string idBangDiem, float? diemmso, string nhanxetGV, string creatorUserId, string creatorFullName)
+        public async Task<ActionResultResponese<string>> UpdateDiemAsync(string idBangDiem, float? diemmso, string nhanxetGV, string creatorUserId, string creatorFullName, string idBoMon)
         {
             var checkBanDiem = await _bangdiemRepository.CheckExitIdBangDiem(idBangDiem);
             if(!checkBanDiem)
@@ -190,6 +192,7 @@ namespace WebSite.Core.Infrastructure.Services
             var bangdiem = new BangDiem()
             {
                 IdBangDiem = idBangDiem?.Trim(),
+                IdBoMon = idBoMon?.Trim(),
                 DiemSo = diemmso,
                 NhanXetGV = nhanxetGV?.Trim(),
                 NgayVaoDiem = DateTime.Now,
@@ -206,7 +209,7 @@ namespace WebSite.Core.Infrastructure.Services
         }
 
         // Xuat diem phan bien
-        public async Task<SearchResult<XuatDiemPhanBienViewModel>> XuatDiemPhanBien(string idhocky, string idmonhoc)
+        public async Task<SearchResult<XuatDiemPhanBienViewModel>> XuatDiemPhanBien(string idhocky, string idmonhoc, string idBoMon)
         {
             var checkHocKy = await _hockyRepository.CheckExisIsActivetAsync(idhocky);
             if (!checkHocKy)
@@ -218,17 +221,17 @@ namespace WebSite.Core.Infrastructure.Services
             var getInfoMonHoc = await _monhocRepository.GetInfoAsync(idmonhoc);
             if(getInfoMonHoc.TypeApprover.GetHashCode() == 0)
                 return new SearchResult<XuatDiemPhanBienViewModel> { Code = -45, Data = null, Message = "Môn học không có đánh giá phản biện." };
-            return await _bangdiemRepository.XuatDiemPhanBien(idhocky, idmonhoc);
+            return await _bangdiemRepository.XuatDiemPhanBien(idhocky, idmonhoc, idBoMon);
         }
 
         // Xuat diem phan bien dowload Excel
-        public async Task<Stream> XuatBangDiemExcel(string idhocky, string idmonhoc)
+        public async Task<Stream> XuatBangDiemExcel(string idhocky, string idmonhoc, string idBoMon)
         {
             
             //if (getInfoMonHoc.TypeApprover.GetHashCode() == 0)
             //    return new ActionResultResponese<string>(-46, "Nhập điểm không thành công", "Bảng điểm");
 
-            List<XuatDiemPhanBienViewModel> diemphanbien = await _bangdiemRepository.XuatDiemPhanBienExcel(idhocky, idmonhoc);
+            List<XuatDiemPhanBienViewModel> diemphanbien = await _bangdiemRepository.XuatDiemPhanBienExcel(idhocky, idmonhoc,idBoMon);
 
             var createEx = new CreateExcelExtensions();
             var stream = createEx.CreateExcel(diemphanbien,"Điểm phản biện.");
@@ -236,12 +239,12 @@ namespace WebSite.Core.Infrastructure.Services
             return stream;
         }
         // Xuat diem phan bien dowload Excel
-        public async Task<Stream> XuatHoiDongExcel(string idhocky, string idmonhoc)
+        public async Task<Stream> XuatHoiDongExcel(string idhocky, string idmonhoc, string idBoMon)
         {
             //if (getInfoMonHoc.TypeApprover.GetHashCode() == 0)
             //    return new ActionResultResponese<string>(-46, "Nhập điểm không thành công", "Bảng điểm");
 
-            List<XuatDiemHoiDongViewModel> diemHoiDong = await _bangdiemRepository.XuatDiemHoiDongExcel(idhocky, idmonhoc);
+            List<XuatDiemHoiDongViewModel> diemHoiDong = await _bangdiemRepository.XuatDiemHoiDongExcel(idhocky, idmonhoc,idBoMon);
 
             var createEx = new CreateExcelExtensions();
             var stream = createEx.CreateExcel(diemHoiDong,"Điểm hội đồng.");
@@ -249,7 +252,7 @@ namespace WebSite.Core.Infrastructure.Services
             return stream;
         }
         //Xuat diem hoi dong
-        public async Task<SearchResult<XuatDiemHoiDongViewModel>> XuatDiemHoiDong(string idhocky, string idmonhoc)
+        public async Task<SearchResult<XuatDiemHoiDongViewModel>> XuatDiemHoiDong(string idhocky, string idmonhoc, string idBoMon)
         {
             var checkHocKy = await _hockyRepository.CheckExisIsActivetAsync(idhocky);
             if (!checkHocKy)
@@ -261,7 +264,7 @@ namespace WebSite.Core.Infrastructure.Services
             var getInfoMonHoc = await _monhocRepository.GetInfoAsync(idmonhoc);
             if (getInfoMonHoc.TypeApprover.GetHashCode() == 2)
                 return new SearchResult<XuatDiemHoiDongViewModel> { Code = -55, Data = null, Message = "Môn học không có đánh giá phản biện." };
-            return await _bangdiemRepository.XuatDiemHoiDong(idhocky, idmonhoc);
+            return await _bangdiemRepository.XuatDiemHoiDong(idhocky, idmonhoc, idBoMon);
         }
     }
 }

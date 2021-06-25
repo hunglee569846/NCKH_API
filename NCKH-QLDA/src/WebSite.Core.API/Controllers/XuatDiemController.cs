@@ -27,7 +27,7 @@ namespace WebSite.Core.API.Controllers
         [AcceptVerbs("GET"), Route("DiemPhanBien/{idhocky}/{idmonhoc}")]
         public async Task<IActionResult> XuatDiemPhanBien(string idhocky,string idmonhoc)
         {
-            var result = await _bangdiemService.XuatDiemPhanBien(idhocky,idmonhoc);
+            var result = await _bangdiemService.XuatDiemPhanBien(idhocky,idmonhoc,CurrentUser.IdBoMon);
             if (result.Code <= 0)
             {
                 return BadRequest(result);
@@ -39,7 +39,7 @@ namespace WebSite.Core.API.Controllers
         [AcceptVerbs("GET"), Route("DiemHoiDong/{idhocky}/{idmonhoc}")]
         public async Task<IActionResult> XuatDiemHoiDong(string idhocky, string idmonhoc)
         {
-            var result = await _bangdiemService.XuatDiemHoiDong(idhocky, idmonhoc);
+            var result = await _bangdiemService.XuatDiemHoiDong(idhocky, idmonhoc,CurrentUser.IdBoMon);
             if (result.Code <= 0)
             {
                 return BadRequest(result);

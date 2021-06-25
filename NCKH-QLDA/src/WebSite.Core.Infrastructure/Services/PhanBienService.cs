@@ -30,12 +30,12 @@ namespace WebSite.Core.Infrastructure.Services
             _giangVienHuongDanRepository = giangVienHuongDanRepository;
             _deTaiRepository = deTaiRepository;
         }
-        public async Task<SearchResult<PhanBienSearchViewModel>> GetAllByIdHK(string idhocky)
+        public async Task<SearchResult<PhanBienSearchViewModel>> GetAllByIdHK(string idhocky,string idBoMon)
         {
             var checkExit = await _hocKysRepository.CheckExisIsActivetAsync(idhocky);
             if (checkExit == false)
                 return new SearchResult<PhanBienSearchViewModel>() { Code = -1, Data = null, Message = "Học kỳ không tồn tại." };
-            return await _phanbienRepository.SelectAllByHk(idhocky);
+            return await _phanbienRepository.SelectAllByHk(idhocky,idBoMon);
         }
        public async Task<ActionResultResponese<string>> InsertByHk(PhanBienMeta phanbienMeta, string idGVPB, string iddetai, string idhocky,string idmonhoc,string creatorUserId,string creatorFullName)
         {

@@ -26,7 +26,7 @@ namespace WebSite.Core.API.Controllers
         [AcceptVerbs("GET"), Route("{idhocky}")]
         public async Task<IActionResult> GetAllAsync(string idhocky)
         {
-            var result = await _phanbiencService.GetAllByIdHK(idhocky);
+            var result = await _phanbiencService.GetAllByIdHK(idhocky,CurrentUser.IdBoMon);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Search PhanBien controller error " + result.Code);

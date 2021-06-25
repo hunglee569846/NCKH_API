@@ -7,6 +7,7 @@ namespace WebSite.Core.Domain.Models
     public class HoiDongTotNghiep
     {
         public string IdHoiDong { get; set; }
+        public string IdBoMon { get; set; }
         public string MaHoiDong { get; set; }
         public string TenHoiDong { get; set; }
         public string IdHocKy { get; set; }

@@ -7,6 +7,7 @@ namespace WebSite.Core.Domain.Models
     public class ChiTietDeTai
     {
         public string IdChiTietDeTai { get; set; }
+        public string IdBoMon { get; set; }
         public string IdDeTai { get; set; }
         public string MaDeTai { get; set; }
         public string IdGVHD { get; set; }
