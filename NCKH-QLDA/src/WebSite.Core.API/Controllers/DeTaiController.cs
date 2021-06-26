@@ -91,11 +91,11 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [AcceptVerbs("POST"), Route("InsertDeTai/{madetai}/{idhocky}/{idmonhoc}/{idsinhvien}/{tensinhvien}/{masinhvien}")]
+        [AcceptVerbs("POST"), Route("InsertDeTai/{madetai}/{idhocky}/{idmonhoc}/{idsinhvien}")]
         [SwaggerOperation(Summary = "Thêm mới đề tài.", Description = "Requires login verification!", OperationId = "InsertAsync", Tags = new[] { "DeTai" })]
-        public async Task<IActionResult> InsertAsync([FromBody] DeTaiInsertMeta detaiInsertMeta, string madetai, string idhocky, string idmonhoc, string idsinhvien, string tensinhvien,string masinhvien)
+        public async Task<IActionResult> InsertAsync([FromBody] DeTaiInsertMeta detaiInsertMeta, string madetai, string idhocky, string idmonhoc, string idsinhvien)
         {
-            var result = await _ideTaiService.InsertAsync(detaiInsertMeta, madetai, idhocky, idmonhoc, idsinhvien, tensinhvien,masinhvien,CurrentUser.MaGiangVien,CurrentUser.FullName);
+            var result = await _ideTaiService.InsertAsync(detaiInsertMeta, madetai, idhocky, idmonhoc, idsinhvien,CurrentUser.MaGiangVien,CurrentUser.FullName,CurrentUser.IdBoMon);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Search DeTai controller error " + result.Code);
@@ -108,7 +108,7 @@ namespace WebSite.Core.API.Controllers
         [SwaggerOperation(Summary = "Cập nhật thông tin đề tài.", Description = "Requires login verification!", OperationId = "UpdateAsync", Tags = new[] { "DeTai" })]
         public async Task<IActionResult> InsertAsync([FromBody] DeTaiUpdateMeta detaiUpdateMeta, string iddetai)
         {
-            var result = await _ideTaiService.UpdateAsync(detaiUpdateMeta, iddetai,CurrentUser.MaGiangVien,CurrentUser.FullName);
+            var result = await _ideTaiService.UpdateAsync(detaiUpdateMeta, iddetai,CurrentUser.MaGiangVien,CurrentUser.FullName, CurrentUser.IdBoMon);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Search DeTai controller error " + result.Code);

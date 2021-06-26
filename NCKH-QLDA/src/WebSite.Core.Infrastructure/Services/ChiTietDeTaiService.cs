@@ -54,7 +54,6 @@ namespace WebSite.Core.Infrastructure.Services
                 IdDeTai = iddetai?.Trim(),
                 MaDeTai = getinfoDeTai.MaDeTai?.Trim(),
                 IdGVHD = getinfoGVHD.IdGVHD?.Trim(),
-                MaGVHD = getinfoGVHD.MaGVHD?.Trim(),
                 CreateTime = DateTime.Now,
                 CreatorUserId = CreatorUserId?.Trim(),
                 CreatorFullName =CreatorFullName?.Trim(),

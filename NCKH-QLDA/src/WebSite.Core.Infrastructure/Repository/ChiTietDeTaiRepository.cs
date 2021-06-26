@@ -48,7 +48,7 @@ namespace WebSite.Core.Infrastructure.Repository
             
         }
 
-        public async Task<int> InserAsync(ChiTietDeTai chitietdetai)
+        public async Task<int> InserAsync(ChiTietDeTai chiTietDeTa)
         {
             try
             {
@@ -58,23 +58,41 @@ namespace WebSite.Core.Infrastructure.Repository
                     if (conn.State == ConnectionState.Closed)
                         await conn.OpenAsync();
                     DynamicParameters param = new DynamicParameters();
-                    param.Add("@IdChiTietDeTai", chitietdetai.IdChiTietDeTai);
-                    param.Add("@IdDeTai", chitietdetai.IdDeTai);
-                    param.Add("@MaDeTai", chitietdetai.MaDeTai);
-                    param.Add("@IdGVHD", chitietdetai.IdGVHD);
-                    param.Add("@MaGVHD", chitietdetai.MaGVHD);
-                    param.Add("@CreateTime", chitietdetai.CreateTime);
-                    param.Add("@CreatorUserId", chitietdetai.CreatorUserId);
-                    param.Add("@CreatorFullName", chitietdetai.CreatorFullName);
-                    param.Add("@IsDelete", chitietdetai.IsDelete);
-                    param.Add("@IsActive", chitietdetai.IsActive);
+                    param.Add("@IdChiTietDeTai", chiTietDeTa.IdChiTietDeTai);
+                    param.Add("@IdBoMon", chiTietDeTa.IdBoMon);
+                    param.Add("@IdDeTai", chiTietDeTa.IdDeTai);
+                    param.Add("@MaDeTai", chiTietDeTa.MaDeTai);
+                    param.Add("@IdGVHD", chiTietDeTa.IdGVHD);
+                    param.Add("@DiemSo", chiTietDeTa.DiemSo);
+                    param.Add("@NhanXet", chiTietDeTa.NhanXet);
+                    if (chiTietDeTa.CreateTime != null && chiTietDeTa.CreateTime != DateTime.MinValue)
+                    {
+                        param.Add("@CreateTime", chiTietDeTa.CreateTime);
+                    }
+                    if (chiTietDeTa.LastUpdate != null && chiTietDeTa.LastUpdate != DateTime.MinValue)
+                    {
+                        param.Add("@LastUpdate", chiTietDeTa.LastUpdate);
+                    }
+                    if (chiTietDeTa.DeleteTime != null && chiTietDeTa.DeleteTime != DateTime.MinValue)
+                    {
+                        param.Add("@DeleteTime", chiTietDeTa.DeleteTime);
+                    }
+                    param.Add("@CreatorUserId", chiTietDeTa.CreatorUserId);
+                    param.Add("@CreatorFullName", chiTietDeTa.CreatorFullName);
+                    param.Add("@LastUpdateUserId", chiTietDeTa.LastUpdateUserId);
+                    param.Add("@LastUpdateFullName", chiTietDeTa.LastUpdateFullName);
+                    param.Add("@DeleteUserId", chiTietDeTa.DeleteUserId);
+                    param.Add("@DeleteFullName", chiTietDeTa.DeleteFullName);
+                    param.Add("@IsDelete", chiTietDeTa.IsDelete);
+                    param.Add("@IsActive", chiTietDeTa.IsActive);
+
 
                     rowAffect = await conn.ExecuteAsync("[dbo].[spChiTietDeTai_Insert]", param, commandType: CommandType.StoredProcedure);
                     return rowAffect;
                     
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return -1;
             }

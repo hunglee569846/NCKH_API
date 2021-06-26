@@ -157,7 +157,7 @@ namespace WebSite.Core.Infrastructure.Repository
                 return false;
             }
         }
-        public async Task<int> InsertAsync(DeTai detai)
+        public async Task<int> InsertAsync(DeTai deTai)
         {
             try
             {
@@ -166,22 +166,40 @@ namespace WebSite.Core.Infrastructure.Repository
                 {
                     if (conn.State == ConnectionState.Closed)
                         await conn.OpenAsync();
-                    DynamicParameters para = new DynamicParameters();
-                    para.Add("@IdDeTai", detai.IdDeTai);
-                    para.Add("@MaDeTai", detai.MaDeTai);
-                    para.Add("@TenDeTai", detai.TenDeTai);
-                    para.Add("@IdSinVien", detai.IdSinhVien);
-                    para.Add("@IdHocKy", detai.IdHocKy);
-                    para.Add("@IdMonHoc", detai.IdMonHoc);
-                    para.Add("@DiemTrungBinh", detai.DiemTrungBinh);
-                    para.Add("@IsDat", detai.IsDat);
-                    para.Add("@IsActive", detai.IsActive);
-                    para.Add("@IsDelete", detai.IsDelete);
-                    para.Add("@CreateTime", detai.CreateTime);
-                    para.Add("@CreatorUserId", detai.CreatorUserId);
-                    para.Add("@CreatorFullName", detai.CreatorFullName);
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@IdDeTai", deTai.IdDeTai);
+                    param.Add("@IdBoMon", deTai.IdBoMon);
+                    param.Add("@MaDeTai", deTai.MaDeTai);
+                    param.Add("@TenDeTai", deTai.TenDeTai);
+                    param.Add("@IdSinhVien", deTai.IdSinhVien);
+                    param.Add("@IdHocKy", deTai.IdHocKy);
+                    param.Add("@IdMonHoc", deTai.IdMonHoc);
+                    param.Add("@DiemTrungBinh", deTai.DiemTrungBinh);
+                    param.Add("@IsDat", deTai.IsDat);
+                    param.Add("@IsApprove", deTai.IsApprove);
+                    param.Add("@IsActive", deTai.IsActive);
+                    param.Add("@IsDelete", deTai.IsDelete);
+                    if (deTai.CreateTime != null && deTai.CreateTime != DateTime.MinValue)
+                    {
+                        param.Add("@CreateTime", deTai.CreateTime);
+                    }
+                    if (deTai.DeleteTime != null && deTai.DeleteTime != DateTime.MinValue)
+                    {
+                        param.Add("@DeteteTime", deTai.DeleteTime);
+                    }
+                    if (deTai.LastUpdate != null && deTai.LastUpdate != DateTime.MinValue)
+                    {
+                        param.Add("@LastUpdate", deTai.LastUpdate);
+                    }
+                    param.Add("@lastUpdateUserId", deTai.lastUpdateUserId);
+                    param.Add("@DeleteUserId", deTai.DeleteUserId);
+                    param.Add("@CreatorUserId", deTai.CreatorUserId);
+                    param.Add("@CreatorFullName", deTai.CreatorFullName);
+                    param.Add("@LastUpdateFullName", deTai.LastUpdateFullName);
+                    param.Add("@DeleteFullName", deTai.DeleteFullName);
 
-                    rowAffect = await conn.ExecuteAsync("[dbo].[spDeTai_InsertAsync]", para, commandType: CommandType.StoredProcedure);
+
+                    rowAffect = await conn.ExecuteAsync("[dbo].[spDeTai_InsertAsync]", param, commandType: CommandType.StoredProcedure);
                     return rowAffect;
                 }
             }
@@ -192,7 +210,7 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
 
-        public async Task<int> UpdateAsync(DeTai detai)
+        public async Task<int> UpdateAsync(DeTai deTai)
         {
             try
             {
@@ -202,11 +220,38 @@ namespace WebSite.Core.Infrastructure.Repository
                     if (conn.State == ConnectionState.Closed)
                         await conn.OpenAsync();
                     DynamicParameters para = new DynamicParameters();
-                    para.Add("@IdDeTai", detai.IdDeTai);
-                    para.Add("@TenDeTai", detai.TenDeTai);
-                    para.Add("@LastUpdate", detai.LastUpdate);
-                    para.Add("@lastUpdateUserId", detai.lastUpdateUserId);
-                    para.Add("@LastUpdateFullName", detai.LastUpdateFullName);
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@IdDeTai", deTai.IdDeTai);
+                    param.Add("@IdBoMon", deTai.IdBoMon);
+                    param.Add("@MaDeTai", deTai.MaDeTai);
+                    param.Add("@TenDeTai", deTai.TenDeTai);
+                    param.Add("@IdSinhVien", deTai.IdSinhVien);
+                    param.Add("@IdHocKy", deTai.IdHocKy);
+                    param.Add("@IdMonHoc", deTai.IdMonHoc);
+                    param.Add("@DiemTrungBinh", deTai.DiemTrungBinh);
+                    param.Add("@IsDat", deTai.IsDat);
+                    param.Add("@IsApprove", deTai.IsApprove);
+                    param.Add("@IsActive", deTai.IsActive);
+                    param.Add("@IsDelete", deTai.IsDelete);
+                    if (deTai.CreateTime != null && deTai.CreateTime != DateTime.MinValue)
+                    {
+                        param.Add("@CreateTime", deTai.CreateTime);
+                    }
+                    if (deTai.DeleteTime != null && deTai.DeleteTime != DateTime.MinValue)
+                    {
+                        param.Add("@DeteteTime", deTai.DeleteTime);
+                    }
+                    if (deTai.LastUpdate != null && deTai.LastUpdate != DateTime.MinValue)
+                    {
+                        param.Add("@LastUpdate", deTai.LastUpdate);
+                    }
+                    param.Add("@lastUpdateUserId", deTai.lastUpdateUserId);
+                    param.Add("@DeleteUserId", deTai.DeleteUserId);
+                    param.Add("@CreatorUserId", deTai.CreatorUserId);
+                    param.Add("@CreatorFullName", deTai.CreatorFullName);
+                    param.Add("@LastUpdateFullName", deTai.LastUpdateFullName);
+                    param.Add("@DeleteFullName", deTai.DeleteFullName);
+
 
                     rowAffect = await conn.ExecuteAsync("[dbo].[spDeTai_UpdateAsync]", para, commandType: CommandType.StoredProcedure);
                     return rowAffect;

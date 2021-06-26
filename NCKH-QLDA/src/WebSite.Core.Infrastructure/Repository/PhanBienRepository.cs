@@ -32,7 +32,7 @@ namespace WebSite.Core.Infrastructure.Repository
                         await conn.OpenAsync();
                     DynamicParameters param = new DynamicParameters();
                     param.Add("@IdHocKy", idhocky);
-                    param.Add("@IdBoMon", idhocky);
+                    param.Add("@IdBoMon", idBoMon);
                     using (var multi = await conn.QueryMultipleAsync("[dbo].[spPhanBien_SelectAllByHK]", param, commandType: CommandType.StoredProcedure))
                     {
                         return new SearchResult<PhanBienSearchViewModel>()

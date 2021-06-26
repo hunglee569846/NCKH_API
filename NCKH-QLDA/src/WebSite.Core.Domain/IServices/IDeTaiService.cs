@@ -12,8 +12,8 @@ namespace WebSite.Core.Domain.IServices
         Task<SearchResult<DeTaiSearchViewModel>> GetByIdHocKyAsync(string idhocky);
         Task<SearchResult<DeTaiSearchViewModel>> GetByIdMonHocInHocKyAsync(string idhocky,string idmonhoc);
         Task<SearchResult<DeTaiSearchViewModel>> GetChuaPhanHDAsync(string idhocky,string idmonhoc,string idBoMon);
-        Task<ActionResultResponese<string>> InsertAsync(DeTaiInsertMeta detaiInsertMeta, string madetai, string idhocky, string idmonhoc, string idsinhvien, string tensinhvien, string masinhvien, string maNguoiTao, string tenNguoiTao);
-        Task<ActionResultResponese<string>> UpdateAsync(DeTaiUpdateMeta detaiUpdateMeta, string iddetai, string maNguoiSua, string tenNguoisua);
+        Task<ActionResultResponese<string>> InsertAsync(DeTaiInsertMeta detaiInsertMeta, string madetai, string idhocky, string idmonhoc, string idsinhvien, string creatorUserId, string creatorFullName, string idBoMon);
+        Task<ActionResultResponese<string>> UpdateAsync(DeTaiUpdateMeta detaiUpdateMeta, string iddetai, string creatorUserId, string creatorFullName, string idBoMon);
         // hien thi nhung de tai duoc phe duyet hoac chua phe duyet
         Task<SearchResult<DeTaivsCTDTViewModel>> SelectByIdCTDTAsync(string idhocky, bool isApprove);
         Task<ActionResultResponese<string>> DeleteAsync(string iddetai);

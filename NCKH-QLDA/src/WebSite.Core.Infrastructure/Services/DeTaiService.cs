@@ -92,7 +92,7 @@ namespace WebSite.Core.Infrastructure.Services
                 };
             return await _deTaiRepository.SelectChuaPhanHD(idhocky,idmonhoc,idBoMon);
         }
-        public async Task<ActionResultResponese<string>> InsertAsync(DeTaiInsertMeta detaiInsertMeta, string madetai, string idhocky, string idmonhoc, string idsinhvien, string tensinhvien,string masinhvien, string maNguoiTao,string tenNguoiTao)
+        public async Task<ActionResultResponese<string>> InsertAsync(DeTaiInsertMeta detaiInsertMeta, string madetai, string idhocky, string idmonhoc, string idsinhvien, string creatorUserId,string creatorFullName,string idbomon)
         {
             var checkExitSV = await _sinhVienRepository.CheckExitsIdSinhVien(idsinhvien);
             if (!checkExitSV)
@@ -133,6 +133,7 @@ namespace WebSite.Core.Infrastructure.Services
             var detai = new DeTai()
             {
                 IdDeTai = id?.Trim(),
+                IdBoMon = idbomon?.Trim(),
                 MaDeTai = madetai?.Trim(),
                 TenDeTai = detaiInsertMeta.TenDeTai?.Trim(),
                 IdSinhVien = idsinhvien?.Trim(),
@@ -141,8 +142,8 @@ namespace WebSite.Core.Infrastructure.Services
                 DiemTrungBinh = 0,
                 IsDat = false,
                 CreateTime = DateTime.Now,
-                CreatorUserId = maNguoiTao?.Trim(),
-                CreatorFullName = tenNguoiTao?.Trim(),
+                CreatorUserId = creatorUserId?.Trim(),
+                CreatorFullName = creatorFullName?.Trim(),
             };
             if (detai == null)
                 return new ActionResultResponese<string>(-8, "Dữ liệu trống", "Đề tài.");
@@ -152,27 +153,28 @@ namespace WebSite.Core.Infrastructure.Services
             return new ActionResultResponese<string>(result, "Thêm mới thành công.", "Đề tài.");
 
         }
-        public async Task<ActionResultResponese<string>> UpdateAsync(DeTaiUpdateMeta detaiUpdateMeta, string iddetai,string maNguoiSua,string tenNguoisua)
+        public async Task<ActionResultResponese<string>> UpdateAsync(DeTaiUpdateMeta detaiUpdateMeta, string iddetai, string LastUpdateUserId, string LastUpdateFullName, string idBoMon)
         {
             
-            var checkExits = await _deTaiRepository.CheckExits(iddetai);
-            if (!checkExits)
-                return new ActionResultResponese<string>(-12, "Đề tài không tồn tại.", "Đề tài.");
-          
-            var detai = new DeTai()
-            {
-                IdDeTai = iddetai?.Trim(),
-                TenDeTai = detaiUpdateMeta.TenDeTai?.Trim(),
-                LastUpdate = DateTime.Now,
-                lastUpdateUserId = maNguoiSua?.Trim(),
-                LastUpdateFullName = tenNguoisua?.Trim()
-            };
-            if (detai == null)
-                return new ActionResultResponese<string>(-13, "Dữ liệu trống", "Đề tài.");
-            var result = await _deTaiRepository.UpdateAsync(detai);
+            var info = await _deTaiRepository.GetInfo(iddetai);
+            if (info == null)
+                return new ActionResultResponese<string>(-1, "Đề tài không tồn tại.", "Đề tài.");
+
+            //var isNameExit = await _deTaiRepository.CheckMaDeTai(detaiUpdateMeta.TenDeTai?.Trim());
+            //if (isNameExit)
+            //    return new ActionResultResponese<string>(-4, "Mã đề tài đã tồn tại.", "Đề tài.");
+
+            info.IdDeTai = iddetai?.Trim();
+            info.TenDeTai = detaiUpdateMeta.TenDeTai?.Trim();
+            info.LastUpdate = DateTime.Now;
+            info.lastUpdateUserId = LastUpdateUserId?.Trim();
+            info.LastUpdateFullName = LastUpdateFullName?.Trim();
+
+            var result = await _deTaiRepository.UpdateAsync(info);
             if (result <= 0)
                 return new ActionResultResponese<string>(result, "Sửa thất bại.", "Đề tài.");
             return new ActionResultResponese<string>(result, "Sửa thành công.", "Đề tài.");
+
         }
         public async Task<SearchResult<DeTaivsCTDTViewModel>> SelectByIdCTDTAsync(string idhocky,bool isApprove)
         {
