@@ -8,6 +8,6 @@ namespace WebSite.Core.Domain.IServices
 {
     public interface INhapDiemService
     {
-        Task<ActionResultResponese<string>> InsertListExcelAsync(string idhocky, string idmonhoc, string urlFile, string idBoMon);
+        Task<ActionResultResponese<string>> InsertListExcelAsync(string idhocky, string idmonhoc, string idfile, string idBoMon, string lastUpdateUserId, string lastUpdateFullName);
     }
 }

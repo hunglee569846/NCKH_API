@@ -234,7 +234,7 @@ namespace WebSite.Core.Infrastructure.Services
             List<XuatDiemPhanBienViewModel> diemphanbien = await _bangdiemRepository.XuatDiemPhanBienExcel(idhocky, idmonhoc,idBoMon);
 
             var createEx = new CreateExcelExtensions();
-            var stream = createEx.CreateExcel(diemphanbien,"Điểm phản biện.");
+            var stream = createEx.CreateExcel(diemphanbien,"DiemPhanBien");
             // return new ActionResultResponese<string>(1, "Nhập điểm không thành công", "Bảng điểm", stream.ToString());
             return stream;
         }
@@ -247,7 +247,7 @@ namespace WebSite.Core.Infrastructure.Services
             List<XuatDiemHoiDongViewModel> diemHoiDong = await _bangdiemRepository.XuatDiemHoiDongExcel(idhocky, idmonhoc,idBoMon);
 
             var createEx = new CreateExcelExtensions();
-            var stream = createEx.CreateExcel(diemHoiDong,"Điểm hội đồng.");
+            var stream = createEx.CreateExcel(diemHoiDong,"Diem");
             // return new ActionResultResponese<string>(1, "Nhập điểm không thành công", "Bảng điểm", stream.ToString());
             return stream;
         }
