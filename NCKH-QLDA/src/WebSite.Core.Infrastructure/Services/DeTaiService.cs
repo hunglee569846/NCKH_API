@@ -176,6 +176,29 @@ namespace WebSite.Core.Infrastructure.Services
             return new ActionResultResponese<string>(result, "Sửa thành công.", "Đề tài.");
 
         }
+        public async Task<ActionResultResponese<string>> UpdateDiemSxAsync(string iddetai, float? diem, string LastUpdateUserId, string LastUpdateFullName, string idBoMon)
+        {
+
+            var info = await _deTaiRepository.GetInfo(iddetai);
+            if (info == null)
+                return new ActionResultResponese<string>(-1, "Đề tài không tồn tại.", "Đề tài.");
+
+            //var isNameExit = await _deTaiRepository.CheckMaDeTai(detaiUpdateMeta.TenDeTai?.Trim());
+            //if (isNameExit)
+            //    return new ActionResultResponese<string>(-4, "Mã đề tài đã tồn tại.", "Đề tài.");
+
+            info.IdDeTai = iddetai?.Trim();
+            info.DiemTrungBinh = diem;
+            info.LastUpdate = DateTime.Now;
+            info.lastUpdateUserId = LastUpdateUserId?.Trim();
+            info.LastUpdateFullName = LastUpdateFullName?.Trim();
+
+            var result = await _deTaiRepository.UpdateAsync(info);
+            if (result <= 0)
+                return new ActionResultResponese<string>(result, "Vào điểm thất bại.", "Đề tài.");
+            return new ActionResultResponese<string>(result, "Vào điểm điểm thành công.", "Đề tài.");
+
+        }
         public async Task<SearchResult<DeTaivsCTDTViewModel>> SelectByIdCTDTAsync(string idhocky,bool isApprove)
         {
 

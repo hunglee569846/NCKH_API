@@ -119,6 +119,20 @@ namespace WebSite.Core.API.Controllers
             }
             return Ok(result);
         }
+
+        [AcceptVerbs("PUT"), Route("UpdateDiemSX/{iddetai}/{diem}")]
+        [SwaggerOperation(Summary = "Vào điểm sản xuất.", Description = "Requires login verification!", OperationId = "UpdateDiemSXAsync", Tags = new[] { "DeTai" })]
+        public async Task<IActionResult> InsertAsync(string iddetai, float? diem)
+        {
+            var result = await _ideTaiService.UpdateDiemSxAsync(iddetai,diem, CurrentUser.MaGiangVien, CurrentUser.FullName, CurrentUser.IdBoMon);
+            if (result.Code <= 0)
+            {
+                //_logger.LogError("Search DeTai controller error " + result.Code);
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+
         //phê duyệt đề tài
         //[AcceptVerbs("PUT"), Route("Approve/{iddetai}/{isApprove}")]
         //[SwaggerOperation(Summary = "UpdateApproveAsync Detai", Description = "Requires login verification!", OperationId = "UpdateApproveAsync", Tags = new[] { "DeTai" })]

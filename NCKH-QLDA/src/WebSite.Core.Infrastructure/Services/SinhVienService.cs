@@ -33,7 +33,7 @@ namespace WebSite.Core.Infrastructure.Services
 
         public async Task<SearchResult<SinhVienSearchViewModel>> GetChuaDeTai(string idhocky, string idmonhoc, string idBoMon)
         {
-            return await _sinhVienRepository.SelectChuaCoDeTai(idhocky,idBoMon,idBoMon);
+            return await _sinhVienRepository.SelectChuaCoDeTai(idhocky, idmonhoc, idBoMon);
         }
         public async Task<ActionResultResponese<string>> InsertAsync(SinhVienMeta sinhvienMeta,string idhocky,string creatorUserId,string creatorFullName, string idBoMon)
         {

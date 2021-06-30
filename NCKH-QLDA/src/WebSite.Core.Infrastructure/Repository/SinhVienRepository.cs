@@ -219,7 +219,7 @@ namespace WebSite.Core.Infrastructure.Repository
                         var data = (await multi.ReadAsync<SinhVienSearchViewModel>()).ToList();
                         if (totalRows == 0 || data == null)
                         {
-                            return new SearchResult<SinhVienSearchViewModel>() { Code = 1, Data = null, Message = "Không có đề tài chưa phân hội đồng." };
+                            return new SearchResult<SinhVienSearchViewModel>() { Code = 1, Data = null, Message = "Không có sinh viên chưa tạo đề tài." };
                         }
                         return new SearchResult<SinhVienSearchViewModel>()
                         {
