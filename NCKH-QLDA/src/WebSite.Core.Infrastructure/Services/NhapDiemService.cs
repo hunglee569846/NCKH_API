@@ -260,7 +260,6 @@ namespace WebSite.Core.Infrastructure.Services
                     var DiemTBC = (listdiemHD.Sum(x => x.DiemSo) + listPB.Sum(y => y.Diem)) / (listdiemHD.Count() + listPB.Count());
 
                     var infoDeTai = await _deTaiRepository.GetInfo(item.IdDeTai);
-
                     infoDeTai.DiemTrungBinh = DiemTBC;
                     infoDeTai.LastUpdate = DateTime.Now;
                     infoDeTai.lastUpdateUserId = lastUpdateUserId?.Trim();

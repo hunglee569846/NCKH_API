@@ -75,5 +75,18 @@ namespace WebSite.Core.API.Controllers
             }
             return Ok(result);
         }
+
+        [SwaggerOperation(Summary = "Danh sach sinh viên chưa có đề tài.", Description = "Requires login verification!", OperationId = "GetDetailSinhVienAsync", Tags = new[] { "SinhVien" })]
+        [AcceptVerbs("GET"), Route("GetDetailSinhVien/{idhocky}/{}")]
+        public async Task<IActionResult> GetChuaCoDeTai(string idsinhvien)
+        {
+            var result = await _SinhViencService.GetByIdAsync(idsinhvien);
+            if (result.Code <= 0)
+            {
+                //_logger.LogError("InsertListAsync SinhVien controller error " + result.Code);
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
     }
 }

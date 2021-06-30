@@ -22,5 +22,6 @@ namespace WebSite.Core.Domain.IRepository
         Task<bool> CheckExits(string idhocky,string masinhvien); //kiem tra sinh vien trong ky
        // Task<bool> CheckExitsActive(string idhocky, string idGVHD); //kiem tra tồn tại của GVHD trong hoc kỳ không có 2 GV giống nhau
         Task<bool> CheckExitsIdSinhVien(string idSinhVien); //kiem tra tồn tại của GVHD trong hoc kỳ
+        Task<SearchResult<SinhVienSearchViewModel>> SelectChuaCoDeTai(string idhocky, string idmonhoc, string idBoMon);
     }
 }

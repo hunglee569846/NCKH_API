@@ -219,7 +219,7 @@ namespace WebSite.Core.Infrastructure.Repository
                 {
                     if (conn.State == ConnectionState.Closed)
                         await conn.OpenAsync();
-                    DynamicParameters para = new DynamicParameters();
+                    
                     DynamicParameters param = new DynamicParameters();
                     param.Add("@IdDeTai", deTai.IdDeTai);
                     param.Add("@IdBoMon", deTai.IdBoMon);
@@ -253,7 +253,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     param.Add("@DeleteFullName", deTai.DeleteFullName);
 
 
-                    rowAffect = await conn.ExecuteAsync("[dbo].[spDeTai_UpdateAsync]", para, commandType: CommandType.StoredProcedure);
+                    rowAffect = await conn.ExecuteAsync("[dbo].[spDeTai_UpdateAsync]", param, commandType: CommandType.StoredProcedure);
                     return rowAffect;
                 }
             }
