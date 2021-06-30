@@ -12,6 +12,13 @@ namespace WebSite.Core.Domain.IRepository
     {
         Task<int> InsertAsync(BangDiem bangdiem);
         Task<int> UpdateDiemAsync(BangDiem bangdiem);
+        Task<BangDiem> GetInfo(string idBangDiem);
+        /// <summary>
+        /// đầu điểm của hội đồng
+        /// </summary>
+        /// <param name="idBangDiem"></param>
+        /// <returns></returns>
+        Task<List<BangDiem>> DetailDiemHD(string idbomon,string idHocKy,string idMonHoc,string idDeTai);
         Task<bool> CheckExit(string iddetai);
         Task<bool> CheckExitIdBangDiem(string idBangDiem);
         //xuất file mẫu điểm phản biện

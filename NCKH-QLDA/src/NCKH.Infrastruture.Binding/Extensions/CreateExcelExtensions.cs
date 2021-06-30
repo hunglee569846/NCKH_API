@@ -3,6 +3,7 @@ using OfficeOpenXml.Style;
 using OfficeOpenXml.Table;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Text;
 
@@ -10,7 +11,7 @@ namespace NCKH.Infrastruture.Binding.Extensions
 {
     public class CreateExcelExtensions
     {
-      
+
         public Stream CreateExcel<T>(List<T> p, string sheetName, Stream stream = null)
         {
             //var list = new List<T>();
@@ -40,6 +41,8 @@ namespace NCKH.Infrastruture.Binding.Extensions
                 excelPackage.Save();
                 return excelPackage.Stream;
             }
+
         }
+
     }
 }

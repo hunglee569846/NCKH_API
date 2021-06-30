@@ -1,4 +1,5 @@
 ﻿using NCKH.Infrastruture.Binding.ViewModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebSite.Core.Domain.ModelMeta;
 using WebSite.Core.Domain.Models;
@@ -18,5 +19,6 @@ namespace WebSite.Core.Domain.IRepository
         Task<bool> CheckExisActive(string idphanbien);
         Task<int> DeleteAsync(string idphanbien);
         Task<PhanBien> GetInfoAsync(string idPhanBien);
+        Task<List<PhanBien>> ListPhanBien(string idBoMon, string idhocky, string idMonHoc, string idDetai);
     }
 }

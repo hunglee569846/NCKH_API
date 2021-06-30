@@ -11,7 +11,7 @@ namespace WebSite.Core.Domain.ViewModel
         public string Note { get; set; }
         // public string IdDeTai { get; set; }
         //public string IdGVPB { get; set; }
-        //public string MaGVHD { get; set; }
+        public string MaGVHD { get; set; }
         public string TenGVHD { get; set; }
         public string MaDeTai { get; set; }
         public string TenDeTai  { get; set; }

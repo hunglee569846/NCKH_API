@@ -6,6 +6,7 @@ using Swashbuckle.AspNetCore.Annotations;
 using Microsoft.AspNetCore.Authorization;
 using NCKH.Infrastruture.Binding;
 using System.Collections.Generic;
+using WebSite.Core.Infrastructure.Services;
 
 namespace WebSite.Core.API.Controllers
 {
@@ -17,9 +18,14 @@ namespace WebSite.Core.API.Controllers
     public class PhanBienController : CoreApiControllerBase
     {
         private readonly IPhanBienServicve _phanbiencService;
-        public PhanBienController(IPhanBienServicve phanbiencService)
+        private readonly INhapDiemService _nhapdiemService;
+        public PhanBienController(IPhanBienServicve phanbiencService,
+                                  INhapDiemService nhapdiemService
+                                    )
         {
             _phanbiencService = phanbiencService;
+            _phanbiencService = phanbiencService;
+            _nhapdiemService = nhapdiemService;
         }
         
         [SwaggerOperation(Summary = "Danh sách phản biện.", Description = "Requires login verification!", OperationId = "GetAllPhanBienAsync", Tags = new[] { "PhanBien" })]
@@ -105,6 +111,19 @@ namespace WebSite.Core.API.Controllers
         public async Task<IActionResult> DeleteAsync(string idPhanBien, string idhocky,string idmonhoc)
         {
             var result = await _phanbiencService.DeleteAsync(idPhanBien, idhocky,idmonhoc);
+            if (result.Code <= 0)
+            {
+                //_logger.LogError("Search PhanBien controller error " + result.Code);
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+
+        [SwaggerOperation(Summary = "Vao điểm phản biện bằng file excel", Description = "Requires login verification!", OperationId = "UpdateDiemFileExcel", Tags = new[] { "PhanBien" })]
+        [AcceptVerbs("POST"), Route("PhanBiem/{idfile}")]
+        public async Task<IActionResult> UpdateDiemFileExcel(string idfile)
+        {
+            var result = await _nhapdiemService.InsertListExcelAsync(idfile,CurrentUser.IdBoMon,CurrentUser.MaGiangVien,CurrentUser.FullName);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Search PhanBien controller error " + result.Code);

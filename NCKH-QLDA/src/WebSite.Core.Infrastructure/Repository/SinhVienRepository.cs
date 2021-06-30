@@ -201,6 +201,40 @@ namespace WebSite.Core.Infrastructure.Repository
                 return false;
             }
         }
+        public async Task<SearchResult<SinhVienSearchViewModel>> SelectChuaCoDeTai(string idhocky, string idmonhoc, string idBoMon)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    if (conn.State == ConnectionState.Closed)
+                        await conn.OpenAsync();
+                    DynamicParameters para = new DynamicParameters();
+                    para.Add("@idHocKy", idhocky);
+                    para.Add("@idMonHoc", idmonhoc);
+                    para.Add("@IdBoMon", idBoMon);
+                    using (var multi = await conn.QueryMultipleAsync("[dbo].[spSinhVien_SearchChuaDeTai]", para, commandType: CommandType.StoredProcedure))
+                    {
+                        var totalRows = (await multi.ReadAsync<int>()).SingleOrDefault();
+                        var data = (await multi.ReadAsync<SinhVienSearchViewModel>()).ToList();
+                        if (totalRows == 0 || data == null)
+                        {
+                            return new SearchResult<SinhVienSearchViewModel>() { Code = 1, Data = null, Message = "Không có sinh viên chưa tạo đề tài." };
+                        }
+                        return new SearchResult<SinhVienSearchViewModel>()
+                        {
+                            Data = data,
+                            TotalRows = totalRows
+                        };
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                //_logger.LogError(ex, "[dbo].[spDetai_SearchChuaPhanHD] SearchAsync GiangVienHuongDanRepository Error.");
+                return new SearchResult<SinhVienSearchViewModel> { TotalRows = 0, Data = null, Code = -1 };
+            }
+        }
 
     }
 }

@@ -36,8 +36,12 @@ namespace WebSite.Core.API.Controllers
             }
             return Ok(result);
         }
-
-        [SwaggerOperation(Summary = "Phân công list đề tài ", Description = "Requires login verification!", OperationId = "PhanCongHoiDongInsertListDeTai", Tags = new[] { "PhanCongHoiDong" })]
+        /// <Description>
+        /// Chú ý check typeApprover 
+        /// = 1 insert HD nghiem thu TN
+        /// = 2 HD ĐATN
+        /// </Description>
+        [SwaggerOperation(Summary = "Phân công list đề tài", Description = "Requires login verification!", OperationId = "PhanCongHoiDongInsertListDeTai", Tags = new[] { "PhanCongHoiDong" })]
         [AcceptVerbs("POST"), Route("PhanCongHoiDongListDetai/{idhoidong}/{idhocky}/{idmonhoc}")]
         public async Task<IActionResult> InserListDeTaitAsync([FromBody]List<BangDiemlistMeta> listdetai, string idhoidong, string idhocky, string idmonhoc)
         {

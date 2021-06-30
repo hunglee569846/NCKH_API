@@ -292,5 +292,30 @@ namespace WebSite.Core.Infrastructure.Repository
             }
 
         }
+
+        public async Task<List<PhanBien>> ListPhanBien(string idBoMon, string idhocky, string idMonHoc, string idDetai)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(_connectionString))
+                {
+                    if (con.State == ConnectionState.Closed)
+                        await con.OpenAsync();
+
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@IdBoMon", idBoMon);
+                    param.Add("@IdHocKy", idhocky);
+                    param.Add("@IdMonHoc", idMonHoc);
+                    param.Add("@IdDeTai", idDetai);
+                    var result = await con.QueryAsync<PhanBien>("[dbo].[spPhanBienListByIdDeTai]", param, commandType: CommandType.StoredProcedure);
+                    return result.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                //_logger.LogError(ex, "[dbo].[spPhanBien_SelectByID] GetInfoAsync PhanBienRepository Error.");
+                return null;
+            }
+        }
     }
 }

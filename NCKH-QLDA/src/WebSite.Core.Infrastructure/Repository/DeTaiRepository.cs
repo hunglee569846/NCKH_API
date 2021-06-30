@@ -219,7 +219,7 @@ namespace WebSite.Core.Infrastructure.Repository
                 {
                     if (conn.State == ConnectionState.Closed)
                         await conn.OpenAsync();
-                    DynamicParameters para = new DynamicParameters();
+                    
                     DynamicParameters param = new DynamicParameters();
                     param.Add("@IdDeTai", deTai.IdDeTai);
                     param.Add("@IdBoMon", deTai.IdBoMon);
@@ -253,7 +253,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     param.Add("@DeleteFullName", deTai.DeleteFullName);
 
 
-                    rowAffect = await conn.ExecuteAsync("[dbo].[spDeTai_UpdateAsync]", para, commandType: CommandType.StoredProcedure);
+                    rowAffect = await conn.ExecuteAsync("[dbo].[spDeTai_UpdateAsync]", param, commandType: CommandType.StoredProcedure);
                     return rowAffect;
                 }
             }
@@ -491,6 +491,29 @@ namespace WebSite.Core.Infrastructure.Repository
             {
                 // _logger.LogError(ex, "CheckMaDeTai DetaiRepository Error.");
                 return false;
+            }
+        }
+
+        public async Task<List<DeTai>> SelectList(string idhocky, string idMonHoc, string idBoMon)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    if (conn.State == ConnectionState.Closed)
+                        await conn.OpenAsync();
+                    DynamicParameters para = new DynamicParameters();
+                    para.Add("@IdBoMon", idBoMon);
+                    para.Add("@IdHocKy", idhocky);
+                    para.Add("@IdMonHoc", idMonHoc);
+                    var result = await conn.QueryAsync<DeTai>("[dbo].[spDeTai_SelectListByMonHoc]", para, commandType: CommandType.StoredProcedure);
+                    return result.ToList();
+                }
+            }
+            catch (Exception)
+            {
+                //_logger.LogError(ex, "[dbo].[spDeTai_SelectListByMonHoc] GetInfoAsync DeTaiRepository Error.");
+                return null;
             }
         }
     }
