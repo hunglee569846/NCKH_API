@@ -129,8 +129,8 @@ namespace WebSite.Core.Infrastructure.Services
             var result = await _hoiDongTotNghiepRepository.UpdateAsync(info);
 
             if (result <= 0)
-                return new ActionResultResponese<string>(-17, "Sửa mới thất bại.", "Hội đồng.");
-            return new ActionResultResponese<string>(1, "Sửa mới thành công", "Hội đồng.");
+                return new ActionResultResponese<string>(-17, "Sửa thất bại.", "Hội đồng.");
+            return new ActionResultResponese<string>(1, "Sửa thành công", "Hội đồng.");
         }
         
 

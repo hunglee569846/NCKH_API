@@ -102,7 +102,7 @@ namespace WebSite.Core.API.Controllers
             var stream = await _bangdiemService.XuatBangDiemExcel(idhocky, idmonhoc,CurrentUser.IdBoMon);
 
             var buffer = stream as MemoryStream;
-
+            
             buffer.Position = 0;
             return File(buffer, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "ExcelDiemPhanBien.xlsx");
 

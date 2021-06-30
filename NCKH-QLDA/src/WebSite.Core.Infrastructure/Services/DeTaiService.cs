@@ -119,7 +119,7 @@ namespace WebSite.Core.Infrastructure.Services
             {
                 var checkIsDat = await _deTaiRepository.CheckIsDat(monhocInfo.IdMonTienQuyet, idsinhvien);
                 if (!checkIsDat)
-                    return new ActionResultResponese<string>(-21, "Sinh viên chưa hoàn thành môn " + monhocInfo.TenMonHoc + " là môn tiên quyết.", "Môn học.");
+                    return new ActionResultResponese<string>(-21, "Sinh viên chưa hoàn thành môn " + monhocInfo.NameMonTienQuyet + " là môn tiên quyết.", "Môn học.");
             }
             var id = Guid.NewGuid().ToString();
             var checkExits = await _deTaiRepository.CheckExits(id);
