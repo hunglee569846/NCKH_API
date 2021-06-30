@@ -19,10 +19,13 @@ namespace WebSite.Core.API.Controllers
     public class DeTaiController : CoreApiControllerBase
     {
         private readonly IDeTaiService _ideTaiService;
+        private readonly INhapDiemService _nhapDiemService;
 
-        public DeTaiController(IDeTaiService ideTaiService)
+        public DeTaiController(IDeTaiService ideTaiService,
+                               INhapDiemService nhapDiemService)
         {
             _ideTaiService = ideTaiService;
+            _nhapDiemService = nhapDiemService;
 
         }
         [AcceptVerbs("GET"), Route("GetAllByHocKy/{idhocky}")]
@@ -135,6 +138,19 @@ namespace WebSite.Core.API.Controllers
         public async Task<IActionResult> DeleteAsync(string iddetai)
         {
             var result = await _ideTaiService.DeleteAsync(iddetai);
+            if (result.Code <= 0)
+            {
+                //_logger.LogError("Search DeTai controller error " + result.Code);
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+
+        [AcceptVerbs("PUT"), Route("UpdateDiemTBC/{idhocky}/{idmMonHoc}")]
+        [SwaggerOperation(Summary = "Cập nhật điểm chung bình chung cho đề tài.", Description = "Requires login verification!", OperationId = "UpdatePointAGV", Tags = new[] { "DeTai" })]
+        public async Task<IActionResult> DeleteAsync(string idhocky,string idmMonHoc)
+        {
+            var result = await _nhapDiemService.ChungBinhDiem(idhocky,idmMonHoc,CurrentUser.IdBoMon,CurrentUser.MaGiangVien,CurrentUser.FullName);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Search DeTai controller error " + result.Code);

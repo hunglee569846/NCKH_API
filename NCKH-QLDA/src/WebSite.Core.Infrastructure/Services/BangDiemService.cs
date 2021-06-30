@@ -96,7 +96,20 @@ namespace WebSite.Core.Infrastructure.Services
             return new ActionResultResponese<string>(result, "Thêm mới bảng điểm thành công.", "Bảng điểm");
 
         }
-
+        /// <summary>
+        /// Insert vào bảng điểm với idMonHoc là đồ án
+        /// kiểm tra môn học với type Aprover ==1 và ==2
+        /// =1 ko insert id gv
+        /// =2 insert  cả thành viên hd vào bảng điểm
+        /// </summary>
+        /// <param name="listDetaiMeta"></param>
+        /// <param name="idhoidong"> hội đồng thuộc môn đồ án</param>
+        /// <param name="idhocky"></param>
+        /// <param name="idmonhoc"></param>
+        /// <param name="creatorUserId"></param>
+        /// <param name="creatorFullName"></param>
+        /// <param name="idBoMon"></param>
+        /// <returns></returns>
         public async Task<ActionResultResponese<string>> InsertListDetaiAsync(List<BangDiemlistMeta> listDetaiMeta,string idhoidong, string idhocky, string idmonhoc, string creatorUserId, string creatorFullName, string idBoMon)
         {
 
@@ -115,18 +128,22 @@ namespace WebSite.Core.Infrastructure.Services
             var infoMonHoc = await _monhocRepository.GetInfoAsync(idmonhoc);
             if (infoMonHoc == null)
                 return new ActionResultResponese<string>(-15, "Môn học không có trong học kỳ.", "Môn học");
-            if (infoMonHoc.TypeApprover.GetHashCode() == 1 || infoMonHoc.TypeApprover.GetHashCode() == 2)
+
+            var listbangdiem = new List<BangDiem>();
+            var infoHoiDong = await _hoidongtotnghiepRepository.GetInfo(idhoidong);
+            if (infoHoiDong == null)
+                return new ActionResultResponese<string>(-10, "Hội đồng không tồn tại", "Hội đồng");
+            if (infoHoiDong.IdMonHoc?.Trim() != idmonhoc?.Trim())
+                return new ActionResultResponese<string>(-11, "Hội đồng không thuộc môn học này", "Hội đồng");
+
+            if (infoMonHoc.TypeApprover.GetHashCode() == 2)
             {
-                var listbangdiem = new List<BangDiem>();
-                var infoHoiDong = await _hoidongtotnghiepRepository.GetInfo(idhoidong);
-                if (infoHoiDong == null)
-                    return new ActionResultResponese<string>(-10, "Hội đồng không tồn tại", "Hội đồng");
-
-
+                
                 var listTVHD = await _chitiethoidongRepository.GetListThanhVien(idhoidong);
                 if (listTVHD == null || listTVHD.Count() == 0)
                     return new ActionResultResponese<string>(-14, "Hội đồng chưa khởi tạo hoặc chưa có thành viên.", "Hội đồng");
 
+               
                 foreach (var itemdetai in listdetai)
                 {
                     //var checkGiangVien = await _GiangVienHuongDanRepository.CheckExits(infoHoiDong.idgv);
@@ -170,7 +187,56 @@ namespace WebSite.Core.Infrastructure.Services
                     
                 }
                 if(listbangdiem.Count == 0)
-                   return new ActionResultResponese<string>(-18, "Thông tin lỗi vui long liên hệ quản trị viên.", "Danh sách đề tài.");
+                   return new ActionResultResponese<string>(-18, "Thông tin lỗi vui lòng liên hệ quản trị viên.", "Danh sách đề tài.");
+
+                foreach (var itemBangDiem in listbangdiem)
+                {
+                    await _bangdiemRepository.InsertAsync(itemBangDiem);
+                }
+                return new ActionResultResponese<string>(1, "Thêm mới bảng điểm thành công.", "Bảng điểm");
+            }
+            else if (infoMonHoc.TypeApprover.GetHashCode() == 1)
+            {
+                foreach (var itemdetai in listdetai)
+                {
+                    //var checkGiangVien = await _GiangVienHuongDanRepository.CheckExits(infoHoiDong.idgv);
+                    //if (!checkGiangVien)
+                    //    return new ActionResultResponese<string>(-12, "Giảng viên không tồn tại", "Giảng viên");
+
+                    var infoDeTai = await _detaiRepository.GetInfo(itemdetai.IdDeTai);
+                    if (infoDeTai == null)
+                        return new ActionResultResponese<string>(-9, "Đề tài không tồn tại.", "Đề tài");
+                    if (infoDeTai.IdMonHoc != idmonhoc)
+                        return new ActionResultResponese<string>(-17, "Đề tài không thuộc môn học này.", "Đề tài");
+
+                    var checkExits = await _bangdiemRepository.CheckExit(itemdetai.IdDeTai);
+                    if (checkExits)
+                        return new ActionResultResponese<string>(-21, "Đề tài đã được phân công hội đồng.", "Danh sach đề tài.");
+
+                    var id = Guid.NewGuid().ToString();
+                  
+                    listbangdiem.Add(new BangDiem()
+                    {
+                        IdBangDiem = id?.Trim(),
+                        IdBoMon = idBoMon?.Trim(),
+                        IdDeTai = itemdetai.IdDeTai?.Trim(),
+                        IdHocKy = idhocky?.Trim(),
+                        IdMonHoc = idmonhoc?.Trim(),
+                        // IdGiangVien = itemgiangvien.IdGiangVien?.Trim(),
+                        IdHoiDong = idhoidong?.Trim(),
+                        IdSinhVien = infoDeTai.IdSinhVien?.Trim(),
+                        CreateTime = DateTime.Now,
+                        CreatorUserId = creatorUserId?.Trim(),
+                        CreatorFullName = creatorFullName?.Trim(),
+                        IsActive = true,
+                        IsDelete = false,
+                        DiemSo = 0,
+                    });
+
+                }
+
+                if (listbangdiem.Count == 0)
+                    return new ActionResultResponese<string>(-18, "Thông tin lỗi vui lòng liên hệ quản trị viên.", "Danh sách đề tài.");
 
                 foreach (var itemBangDiem in listbangdiem)
                 {
@@ -247,7 +313,7 @@ namespace WebSite.Core.Infrastructure.Services
             List<XuatDiemHoiDongViewModel> diemHoiDong = await _bangdiemRepository.XuatDiemHoiDongExcel(idhocky, idmonhoc,idBoMon);
 
             var createEx = new CreateExcelExtensions();
-            var stream = createEx.CreateExcel(diemHoiDong,"Diem");
+            var stream = createEx.CreateExcel(diemHoiDong,"DiemHoiDong");
             // return new ActionResultResponese<string>(1, "Nhập điểm không thành công", "Bảng điểm", stream.ToString());
             return stream;
         }

@@ -120,10 +120,10 @@ namespace WebSite.Core.API.Controllers
         }
 
         [SwaggerOperation(Summary = "Vao điểm phản biện bằng file excel", Description = "Requires login verification!", OperationId = "UpdateDiemFileExcel", Tags = new[] { "PhanBien" })]
-        [AcceptVerbs("POST"), Route("PhanBiem/{idfile}/{idhocky}/{idmonhoc}")]
-        public async Task<IActionResult> UpdateDiemFileExcel(string idhocky,string idfile, string idmonhoc)
+        [AcceptVerbs("POST"), Route("PhanBiem/{idfile}")]
+        public async Task<IActionResult> UpdateDiemFileExcel(string idfile)
         {
-            var result = await _nhapdiemService.InsertListExcelAsync(idhocky, idmonhoc,idfile,CurrentUser.IdBoMon,CurrentUser.MaGiangVien,CurrentUser.FullName);
+            var result = await _nhapdiemService.InsertListExcelAsync(idfile,CurrentUser.IdBoMon,CurrentUser.MaGiangVien,CurrentUser.FullName);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Search PhanBien controller error " + result.Code);

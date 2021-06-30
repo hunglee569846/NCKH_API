@@ -1,4 +1,5 @@
 ﻿using NCKH.Infrastruture.Binding.ViewModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebSite.Core.Domain.Models;
 using WebSite.Core.Domain.ViewModel;
@@ -8,6 +9,7 @@ namespace WebSite.Core.Domain.IRepository
     public interface IDeTaiRepository
     {
         Task<SearchResult<DeTaiSearchViewModel>> SelectByIdHocKy(string idhocky);
+        Task<List<DeTai>> SelectList(string idhocky,string idMonHoc, string idBoMon);
         Task<SearchResult<DeTaiSearchViewModel>> SelectByIdMonHocInHocKy(string idhocky,string idmonhoc);
         Task<SearchResult<DeTaiSearchViewModel>> SelectChuaPhanHD(string idhocky,string idmonhoc,string idBoMon);
         Task<DeTai> GetInfo(string iddetai);

@@ -19,9 +19,15 @@ namespace WebSite.Core.API.Controllers
     public class HoiDongTotNghiepController : CoreApiControllerBase
     {
         private readonly IHoiDongTotNghiepService _hoiDongTotNghiepService;
-        public HoiDongTotNghiepController(IHoiDongTotNghiepService hoiDongTotNghiepService)
+        private readonly IBangDiemService _bangdiemService;
+        private readonly INhapDiemService _nhapdiemService;
+        public HoiDongTotNghiepController(IHoiDongTotNghiepService hoiDongTotNghiepService,
+                                          IBangDiemService bangdiemService,
+                                          INhapDiemService nhapdiemService)
         {
             _hoiDongTotNghiepService = hoiDongTotNghiepService;
+            _bangdiemService = bangdiemService;
+            _nhapdiemService = nhapdiemService;
         }
 
         [SwaggerOperation(Summary = "Danh sach hội đồng theo hoc kỳ.", Description = "Requires login verification!", OperationId = "GetHoiDongTotNghiepAsync", Tags = new[] { "HoiDongTotNghiep" })]
@@ -53,6 +59,19 @@ namespace WebSite.Core.API.Controllers
         public async Task<IActionResult> DeleteAsync(string idhoidong)
         {
             var result = await _hoiDongTotNghiepService.DeleteAsync(idhoidong);
+            return Ok(result);
+        }
+
+        [SwaggerOperation(Summary = "Vào điểm hội đồng bằng file excel", Description = "Requires login verification!", OperationId = "UpdateDiemFileExcel", Tags = new[] { "HoiDongTotNghiep" })]
+        [AcceptVerbs("POST"), Route("DiemHoiDong/{idfile}")]
+        public async Task<IActionResult> UpdateDiemFileExcel(string idfile)
+        {
+            var result = await _nhapdiemService.InsertDiemHoiDongExcelAsync(idfile, CurrentUser.IdBoMon, CurrentUser.MaGiangVien, CurrentUser.FullName);
+            if (result.Code <= 0)
+            {
+                //_logger.LogError("Search PhanBien controller error " + result.Code);
+                return BadRequest(result);
+            }
             return Ok(result);
         }
     }

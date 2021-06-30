@@ -144,7 +144,10 @@ namespace WebSite.Core.Infrastructure.Repository
                     param.Add("@IdHoiDong", bangdiem.IdHoiDong);
                     param.Add("@IdGiangVien", bangdiem.IdGiangVien);
                     param.Add("@NhanXetGV", bangdiem.NhanXetGV);
-                    param.Add("@DiemSo", bangdiem.DiemSo);
+                    if (bangdiem.DiemSo >= 0 && bangdiem.DiemSo <= 10)
+                    {
+                        param.Add("@DiemSo", bangdiem.DiemSo);
+                    }
                     if (bangdiem.NgayVaoDiem != null && bangdiem.NgayVaoDiem != DateTime.MinValue)
                     {
                         param.Add("@NgayVaoDiem", bangdiem.NgayVaoDiem);
@@ -282,6 +285,51 @@ namespace WebSite.Core.Infrastructure.Repository
             catch (Exception ex)
             {
                 return new SearchResult<XuatDiemHoiDongViewModel> { Data = null, Code = 1 };
+            }
+        }
+
+        public async Task<BangDiem> GetInfo(string idBangDiem)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(_ConnectionString))
+                {
+                    if (con.State == ConnectionState.Closed)
+                        await con.OpenAsync();
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@IdBangDiem", idBangDiem);
+                    return await con.QuerySingleOrDefaultAsync<BangDiem>("[dbo].[spBangDiem_GetById]", param, commandType: CommandType.StoredProcedure);
+
+                }
+            }
+            catch (Exception)
+            {
+                // _logger.LogError(ex, "GetInfo BangDiemRepository Error.");
+                return null;
+            }
+        }
+
+        public async Task<List<BangDiem>> DetailDiemHD(string idbomon, string idHocKy, string idMonHoc, string idDeTai)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(_ConnectionString))
+                {
+                    if (con.State == ConnectionState.Closed)
+                        await con.OpenAsync();
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@IdBoMon", idbomon);
+                    param.Add("@IdHocKy", idHocKy);
+                    param.Add("@IdMonHoc", idMonHoc);
+                    param.Add("@IdDeTai", idDeTai);
+                    var result = await con.QueryAsync<BangDiem>("[dbo].[spBangDiem_SlectListByIdDeTai]", param, commandType: CommandType.StoredProcedure);
+                    return result.ToList();
+                }
+            }
+            catch (Exception)
+            {
+                // _logger.LogError(ex, "GetInfo BangDiemRepository Error.");
+                return null;
             }
         }
     }
