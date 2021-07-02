@@ -16,7 +16,7 @@ namespace WebSite.Core.Domain.ViewModel
         public string TenHocKy { get; set; }
         public string IdMonHoc { get; set; }
         public string TenMonHoc { get; set; }
-        public double? DiemTrungBinh { get; set; }
+        public float? DiemTrungBinh { get; set; }
         public bool? IsDat { get; set; }
         public DateTime? CreateTime { get; set; }
         public DateTime? DeteteTime { get; set; }

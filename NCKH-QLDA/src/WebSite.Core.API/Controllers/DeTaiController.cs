@@ -160,11 +160,11 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [AcceptVerbs("PUT"), Route("UpdateDiemTBC/{idhocky}/{idmMonHoc}")]
+        [AcceptVerbs("PUT"), Route("UpdateDiemTBC/{idhocky}/{idmMonHoc}/{idmonhoc}")]
         [SwaggerOperation(Summary = "Cập nhật điểm chung bình chung cho đề tài.", Description = "Requires login verification!", OperationId = "UpdatePointAGV", Tags = new[] { "DeTai" })]
-        public async Task<IActionResult> DeleteAsync(string idhocky,string idmMonHoc)
+        public async Task<IActionResult> DeleteAsync(string idhocky, string idmonhoc)
         {
-            var result = await _nhapDiemService.ChungBinhDiem(idhocky,idmMonHoc,CurrentUser.IdBoMon,CurrentUser.MaGiangVien,CurrentUser.FullName);
+            var result = await _nhapDiemService.ChungBinhDiem(idhocky, idmonhoc, CurrentUser.IdBoMon,CurrentUser.MaGiangVien,CurrentUser.FullName);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Search DeTai controller error " + result.Code);

@@ -25,7 +25,7 @@ namespace WebSite.Core.Infrastructure.Services
             _chitiethoidongRepository = chitiethoidongRepository;
 
         }
-        public async Task<ActionResultResponese<string>> InserListDeTaiAsync(List<ChiTietHoiDongMeta> listChiTietHoiDongmeta, string idhoidong,string idhocky,string idmonhoc, string creartorUserId, string creartorFullName)
+        public async Task<ActionResultResponese<string>> InserListDeTaiAsync(List<ChiTietHoiDongMeta> listChiTietHoiDongmeta, string idhoidong,string idhocky,string idmonhoc, string creartorUserId, string creartorFullName,string idbomon)
         {
             //thông tin hội đồng
             var getinfoHoiDong = await _hoidongtotnghiepRepository.GetInfo(idhoidong);
@@ -51,6 +51,7 @@ namespace WebSite.Core.Infrastructure.Services
                 listChiTietHoiDong.Add(new ChiTietHoiDong
                 {
                     IdChiTietHD = id,
+                    IdBoMon = idbomon?.Trim(),
                     IdHoiDong = getinfoHoiDong.IdHoiDong?.Trim(),
                     TenHoiDong = getinfoHoiDong.TenHoiDong?.Trim(),
                     IdGiangVien = getinfoGVHD.IdGVHD?.Trim(),

@@ -332,5 +332,27 @@ namespace WebSite.Core.Infrastructure.Repository
                 return null;
             }
         }
+
+        public async Task<List<XuatDiemHoiDongViewModel>> XuatDiemHoiDongTTTNExcel(string idhocky, string idmonhoc, string idbomon)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_ConnectionString))
+                {
+                    if (conn.State == ConnectionState.Closed)
+                        await conn.OpenAsync();
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@idhocky", idhocky);
+                    param.Add("@idmonhoc", idmonhoc);
+                    param.Add("@idBoMon", idbomon);
+                    var result = await conn.QueryAsync<XuatDiemHoiDongViewModel>("[dbo].[spXuatExcel_DiemHoiDong_TTTN]", param, commandType: CommandType.StoredProcedure);
+                    return result.ToList();
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
     }
 }

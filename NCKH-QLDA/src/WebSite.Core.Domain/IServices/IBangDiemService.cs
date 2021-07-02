@@ -14,7 +14,7 @@ namespace WebSite.Core.Domain.IServices
     {
         Task<ActionResultResponese<string>> InsertAsync(string iddetai, string idGVHD, string idhoidong, string idhocky, string idmonhoc, string creatorUserId, string creatorFullName, string idBoMon);
         Task<ActionResultResponese<string>> InsertListDetaiAsync(List<BangDiemlistMeta> listdetai,string idhoidong, string idhocky, string idmonhoc,string creatorUserId, string creatorFullName, string idBoMon);
-        Task<ActionResultResponese<string>> UpdateDiemAsync(string idBangDiem, float? diemmso, string nhanxetGV,string creatorUserId, string creatorFullName, string idBoMon);
+        Task<ActionResultResponese<string>> UpdateDiemAsync(string idBangDiem, float diemmso, string nhanxetGV,string creatorUserId, string creatorFullName, string idBoMon);
         //Xuat diem phan bien
         Task<SearchResult<XuatDiemPhanBienViewModel>> XuatDiemPhanBien(string idhocky, string idmonhoc,string idBoMon);
 

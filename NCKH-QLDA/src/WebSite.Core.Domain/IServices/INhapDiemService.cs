@@ -10,8 +10,8 @@ namespace WebSite.Core.Domain.IServices
     public interface INhapDiemService
     {
         Task<ActionResultResponese<List<XuatDiemPhanBienViewModel>>> InsertListExcelAsync(string idfile, string idBoMon, string lastUpdateUserId, string lastUpdateFullName);
-        Task<ActionResultResponese<List<XuatDiemHoiDongViewModel>>> InsertDiemHoiDongExcelAsync(string idfile, string idBoMon, string lastUpdateUserId, string lastUpdateFullName);
-        Task<ActionResultResponese<string>> ChungBinhDiem(string idhocky, string idMonHoc, string idBoMon, string lastUpdateUserId, string lastUpdateFullName);
+        Task<ActionResultResponese<List<XuatDiemHoiDongViewModel>>> InsertDiemHoiDongExcelAsync(string idfile, string idmonhoc, string idBoMon, string lastUpdateUserId, string lastUpdateFullName);
+        Task<ActionResultResponese<string>> ChungBinhDiem(string idhocky, string idMonHoc, string idmonhoc, string lastUpdateUserId, string lastUpdateFullName);
 
 
     }

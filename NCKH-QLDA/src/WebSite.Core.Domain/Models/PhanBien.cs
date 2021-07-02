@@ -10,7 +10,7 @@ namespace WebSite.Core.Domain.Models
         public string IdGVPB { get; set; }
         public string IdBoMon { get; set; }
         public string IdDetai { get; set; }
-        public float? Diem { get; set; }
+        public float Diem { get; set; }
         public string Note { get; set; }
         public string IdHocKy { get; set; }
         public string IdMonHoc { get; set; }

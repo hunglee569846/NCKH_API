@@ -248,7 +248,7 @@ namespace WebSite.Core.Infrastructure.Services
                 return new ActionResultResponese<string>(-16, "Môn học không được phân hội đồng đánh giá.", "Môn học.");
                
         }
-        public async Task<ActionResultResponese<string>> UpdateDiemAsync(string idBangDiem, float? diemmso, string nhanxetGV, string creatorUserId, string creatorFullName, string idBoMon)
+        public async Task<ActionResultResponese<string>> UpdateDiemAsync(string idBangDiem, float diemmso, string nhanxetGV, string creatorUserId, string creatorFullName, string idBoMon)
         {
             var checkBanDiem = await _bangdiemRepository.CheckExitIdBangDiem(idBangDiem);
             if(!checkBanDiem)
@@ -307,15 +307,24 @@ namespace WebSite.Core.Infrastructure.Services
         // Xuat diem phan bien dowload Excel
         public async Task<Stream> XuatHoiDongExcel(string idhocky, string idmonhoc, string idBoMon)
         {
-            //if (getInfoMonHoc.TypeApprover.GetHashCode() == 0)
-            //    return new ActionResultResponese<string>(-46, "Nhập điểm không thành công", "Bảng điểm");
+            var InfoMonHoc = await _monhocRepository.GetInfoAsync(idmonhoc);
+            if (InfoMonHoc.TypeApprover.GetHashCode() == 1)
+            {
+                List<XuatDiemHoiDongViewModel> diemHoiDongTTTN = await _bangdiemRepository.XuatDiemHoiDongTTTNExcel(idhocky, idmonhoc, idBoMon);
+                var createEx = new CreateExcelExtensions();
+                var stream = createEx.CreateExcel(diemHoiDongTTTN, "DiemHoiDong");
+                return stream;
+            }
 
-            List<XuatDiemHoiDongViewModel> diemHoiDong = await _bangdiemRepository.XuatDiemHoiDongExcel(idhocky, idmonhoc,idBoMon);
-
-            var createEx = new CreateExcelExtensions();
-            var stream = createEx.CreateExcel(diemHoiDong,"DiemHoiDong");
+            if (InfoMonHoc.TypeApprover.GetHashCode() == 2)
+            {
+                List<XuatDiemHoiDongViewModel> diemHoiDong = await _bangdiemRepository.XuatDiemHoiDongExcel(idhocky, idmonhoc, idBoMon);
+                var createEx = new CreateExcelExtensions();
+                var stream = createEx.CreateExcel(diemHoiDong, "DiemHoiDong");
+                return stream;
+            }
             // return new ActionResultResponese<string>(1, "Nhập điểm không thành công", "Bảng điểm", stream.ToString());
-            return stream;
+            return null;
         }
         //Xuat diem hoi dong
         public async Task<SearchResult<XuatDiemHoiDongViewModel>> XuatDiemHoiDong(string idhocky, string idmonhoc, string idBoMon)

@@ -23,17 +23,20 @@ namespace WebSite.Core.Infrastructure.Services
         private readonly IBangDiemRepository _bangdiemRepository;
         private readonly IFileRepository _fileRepository;
         private readonly IDeTaiRepository _deTaiRepository;
+        private readonly IMonHocRepository _monHocRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
         public NhapDiemService(IPhanBienRepository phanBienRepository,
                                IBangDiemRepository bangdiemRepository,
                                IFileRepository fileRepository,
                                IWebHostEnvironment webHostEnvironment,
-                               IDeTaiRepository deTaiRepository)
+                               IDeTaiRepository deTaiRepository,
+                               IMonHocRepository monHocRepository)
         {
             _phanBienRepository = phanBienRepository;
             _bangdiemRepository = bangdiemRepository;
             _fileRepository = fileRepository;
             _deTaiRepository = deTaiRepository;
+            _monHocRepository = monHocRepository;
             _webHostEnvironment = webHostEnvironment;
         }
 
@@ -142,105 +145,202 @@ namespace WebSite.Core.Infrastructure.Services
         /// </summary>
         /// <param name="NhapDiemService"></param>
         /// <returns></returns>
-        public async Task<ActionResultResponese<List<XuatDiemHoiDongViewModel>>> InsertDiemHoiDongExcelAsync(string idfile, string idBoMon, string lastUpdateUserId, string lastUpdateFullName)
+        public async Task<ActionResultResponese<List<XuatDiemHoiDongViewModel>>> InsertDiemHoiDongExcelAsync(string idfile, string idmonhoc, string idBoMon, string lastUpdateUserId, string lastUpdateFullName)
         {
+
             var infofile = await _fileRepository.GetInfo(idfile);
             if (infofile == null)
                 return new ActionResultResponese<List< XuatDiemHoiDongViewModel>> (-6, "File điểm không tồn tại.", "File điểm.");
 
-            List<XuatDiemHoiDongViewModel> hoidong = new List<XuatDiemHoiDongViewModel>();
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            var infoMonHoc = await _monHocRepository.GetInfoAsync(idmonhoc);
+            if(infoMonHoc == null )
+                return new ActionResultResponese<List<XuatDiemHoiDongViewModel>>(-14, "môn học không tồn tại.", "Môn học");
 
-            using (var pakage = new ExcelPackage(new FileInfo(_webHostEnvironment.ContentRootPath + infofile.Url)))
+            if (infoMonHoc.TypeApprover == 2)
             {
-                //var worsheet = pakage.Workbook.Worksheets.First()
+                List<XuatDiemHoiDongViewModel> hoidong = new List<XuatDiemHoiDongViewModel>();
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
-                ExcelWorksheet worsheet = pakage.Workbook.Worksheets["DiemHoiDong"];
-                if (worsheet == null)
-                    return new ActionResultResponese<List<XuatDiemHoiDongViewModel>>(-9, "File điểm không đúng định dạng", "File điểm phản biện");
-                for (int i = worsheet.Dimension.Start.Row + 1; i <= worsheet.Dimension.End.Row; i++)
+                using (var pakage = new ExcelPackage(new FileInfo(_webHostEnvironment.ContentRootPath + infofile.Url)))
                 {
-                    if (worsheet.Cells[i, 1].Value != null && worsheet.Cells[i, 2].Value != null && worsheet.Cells[i, 5].Value != null 
-                        && worsheet.Cells[i, 6].Value != null && worsheet.Cells[i, 8].Value != null && worsheet.Cells[i, 10].Value != null)
+                    //var worsheet = pakage.Workbook.Worksheets.First()
+
+                    ExcelWorksheet worsheet = pakage.Workbook.Worksheets["DiemHoiDong"];
+                    if (worsheet == null)
+                        return new ActionResultResponese<List<XuatDiemHoiDongViewModel>>(-9, "File điểm không đúng định dạng", "File điểm phản biện");
+                    for (int i = worsheet.Dimension.Start.Row + 1; i <= worsheet.Dimension.End.Row; i++)
                     {
-                        //int j = 1;
-                        string idBangDiem = worsheet.Cells[i, 1].Value.ToString();
-                        string diemSo = worsheet.Cells[i, 2].Value.ToString();
-                        string nhanXet = worsheet.Cells[i, 3].Value == null ? "" : worsheet.Cells[i, 3].Value.ToString();
-                        float diemtvHD = float.Parse(diemSo);
-                        string maHoiDong = worsheet.Cells[i, 4].Value == null ? "" : worsheet.Cells[i, 10].Value.ToString();
-                        string tenHoiDong = worsheet.Cells[i, 5].Value.ToString();
-                        string maGVHD = worsheet.Cells[i, 6].Value.ToString();
-                        string tenGVHD = worsheet.Cells[i, 7].Value == null ? "" : worsheet.Cells[i, 10].Value.ToString();
-                        string maDeTai = worsheet.Cells[i, 8].Value.ToString();
-                        string tenDeTai = worsheet.Cells[i, 9].Value == null ? "" : worsheet.Cells[i, 10].Value.ToString();
-                        string maSinhVien = worsheet.Cells[i, 10].Value?.ToString();
-                        string TenSinhVien = worsheet.Cells[i, 11].Value == null ? "" : worsheet.Cells[i, 11].Value.ToString();
-                        XuatDiemHoiDongViewModel _hoidong = new XuatDiemHoiDongViewModel()
+                        if (worsheet.Cells[i, 1].Value != null && worsheet.Cells[i, 2].Value != null && worsheet.Cells[i, 5].Value != null
+                            && worsheet.Cells[i, 6].Value != null && worsheet.Cells[i, 8].Value != null && worsheet.Cells[i, 10].Value != null)
                         {
-                            IdBangDiem = idBangDiem?.Trim(),
-                            DiemSo = diemtvHD,
-                            NhanXetGV = nhanXet?.Trim(),
-                            MaGVHD = maGVHD?.Trim(),
-                            TenGVHD = tenGVHD?.Trim(),
-                            MaDeTai = maDeTai?.Trim(),
-                            TenDeTai = tenDeTai?.Trim(),
-                            MaSinhVien = maSinhVien?.Trim(),
-                            TenSinhVien = TenSinhVien?.Trim(),
-                            MaHoiDong = maHoiDong?.Trim(),
-                            TenHoiDong = tenHoiDong?.Trim(),
-                        };
-                        hoidong.Add(_hoidong);
+                            //int j = 1;
+                            string idBangDiem = worsheet.Cells[i, 1].Value.ToString();
+                            string diemSo = worsheet.Cells[i, 2].Value.ToString();
+                            string nhanXet = worsheet.Cells[i, 3].Value == null ? "" : worsheet.Cells[i, 3].Value.ToString();
+                            float diemtvHD = float.Parse(diemSo);
+                            string maHoiDong = worsheet.Cells[i, 4].Value == null ? "" : worsheet.Cells[i, 10].Value.ToString();
+                            string tenHoiDong = worsheet.Cells[i, 5].Value.ToString();
+                            string maGVHD = worsheet.Cells[i, 6].Value.ToString();
+                            string tenGVHD = worsheet.Cells[i, 7].Value == null ? "" : worsheet.Cells[i, 10].Value.ToString();
+                            string maDeTai = worsheet.Cells[i, 8].Value.ToString();
+                            string tenDeTai = worsheet.Cells[i, 9].Value == null ? "" : worsheet.Cells[i, 10].Value.ToString();
+                            string maSinhVien = worsheet.Cells[i, 10].Value?.ToString();
+                            string TenSinhVien = worsheet.Cells[i, 11].Value == null ? "" : worsheet.Cells[i, 11].Value.ToString();
+                            XuatDiemHoiDongViewModel _hoidong = new XuatDiemHoiDongViewModel()
+                            {
+                                IdBangDiem = idBangDiem?.Trim(),
+                                DiemSo = diemtvHD,
+                                NhanXetGV = nhanXet?.Trim(),
+                                MaGVHD = maGVHD?.Trim(),
+                                TenGVHD = tenGVHD?.Trim(),
+                                MaDeTai = maDeTai?.Trim(),
+                                TenDeTai = tenDeTai?.Trim(),
+                                MaSinhVien = maSinhVien?.Trim(),
+                                TenSinhVien = TenSinhVien?.Trim(),
+                                MaHoiDong = maHoiDong?.Trim(),
+                                TenHoiDong = tenHoiDong?.Trim(),
+                            };
+                            hoidong.Add(_hoidong);
+                        }
+                        else break;
                     }
-                    else break;
                 }
-            }
 
 
-            //  List<XuatDiemPhanBienViewModel> dbdiemphanbien = await _bangdiemRepository.XuatDiemPhanBienExcel(idhocky, idmonhoc, idBoMon);
-            //if(dbdiemphanbien.Count() != phanbien.Count())
-            int dem = 0;
-            List<XuatDiemHoiDongViewModel> listUpdateFail = new List<XuatDiemHoiDongViewModel>();
-            foreach (var item in hoidong)
-            {
-                var info = await _bangdiemRepository.GetInfo(item.IdBangDiem?.Trim());
-                if (info == null || item.DiemSo < 0 || item.DiemSo > 10 || info.IdBoMon?.Trim() == idBoMon?.Trim())
+                //  List<XuatDiemPhanBienViewModel> dbdiemphanbien = await _bangdiemRepository.XuatDiemPhanBienExcel(idhocky, idmonhoc, idBoMon);
+                //if(dbdiemphanbien.Count() != phanbien.Count())
+                int dem = 0;
+                List<XuatDiemHoiDongViewModel> listUpdateFail = new List<XuatDiemHoiDongViewModel>();
+                foreach (var item in hoidong)
                 {
-                    dem++;
-                    listUpdateFail.Add(new XuatDiemHoiDongViewModel() 
-                    { 
-                        IdBangDiem = item.IdBangDiem?.Trim(),
-                        DiemSo = item.DiemSo,
-                        MaGVHD = item.MaGVHD?.Trim(),
-                        TenGVHD = item.TenGVHD?.Trim(),
-                        MaSinhVien = item.MaSinhVien?.Trim(),
-                        TenSinhVien = item.TenSinhVien?.Trim(),
-                        MaDeTai = item.MaDeTai?.Trim(),
-                        TenDeTai = item.TenDeTai?.Trim(),
-                        MaHoiDong = item.MaHoiDong?.Trim(),
-                        TenHoiDong = item.TenHoiDong?.Trim(),
-                        
-                    });
-                    continue;
+                    var info = await _bangdiemRepository.GetInfo(item.IdBangDiem?.Trim());
+                    if (info == null || item.DiemSo < 0 || item.DiemSo > 10 || info.IdBoMon?.Trim() == idBoMon?.Trim())
+                    {
+                        dem++;
+                        listUpdateFail.Add(new XuatDiemHoiDongViewModel()
+                        {
+                            IdBangDiem = item.IdBangDiem?.Trim(),
+                            DiemSo = item.DiemSo,
+                            MaGVHD = item.MaGVHD?.Trim(),
+                            TenGVHD = item.TenGVHD?.Trim(),
+                            MaSinhVien = item.MaSinhVien?.Trim(),
+                            TenSinhVien = item.TenSinhVien?.Trim(),
+                            MaDeTai = item.MaDeTai?.Trim(),
+                            TenDeTai = item.TenDeTai?.Trim(),
+                            MaHoiDong = item.MaHoiDong?.Trim(),
+                            TenHoiDong = item.TenHoiDong?.Trim(),
+
+                        });
+                        continue;
+                    }
+                    info.DiemSo = item.DiemSo;
+                    info.NhanXetGV = item.NhanXetGV?.Trim();
+                    info.IdBangDiem = item.IdBangDiem?.Trim();
+                    info.CreatorPointUserId = lastUpdateUserId?.Trim();
+                    info.CreatorPointFullName = lastUpdateFullName?.Trim();
+                    info.NgayVaoDiem = DateTime.Now;
+
+                    await _bangdiemRepository.UpdateDiemAsync(info);
+
                 }
-                info.DiemSo = item.DiemSo;
-                info.NhanXetGV = item.NhanXetGV?.Trim();
-                info.IdBangDiem = item.IdBangDiem?.Trim();
-                info.CreatorPointUserId = lastUpdateUserId?.Trim();
-                info.CreatorPointFullName = lastUpdateFullName?.Trim();
-                info.NgayVaoDiem = DateTime.Now;
-
-                await _bangdiemRepository.UpdateDiemAsync(info);
-
+                if (dem > 0)
+                {
+                    return new ActionResultResponese<List<XuatDiemHoiDongViewModel>>(-7, "Có lỗi khi vào điểm có " + dem + " giảng viên không vào được điểm", "Điểm hội đồng", listUpdateFail);
+                }
+                else if (dem == hoidong.Count())
+                    return new ActionResultResponese<List<XuatDiemHoiDongViewModel>>(-8, "File điểm lỗi không thển vào điểm, vui lòng liên hệ quản trị viên", "File điểm hội đồng.");
             }
-            if (dem > 0)
+            else if (infoMonHoc.TypeApprover == 1)
             {
-                return new ActionResultResponese<List<XuatDiemHoiDongViewModel>>(-7, "Có lỗi khi vào điểm có " + dem + " giảng viên không vào được điểm", "Điểm hội đồng",listUpdateFail);
+                List<XuatDiemHoiDongViewModel> hoidong = new List<XuatDiemHoiDongViewModel>();
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+                using (var pakage = new ExcelPackage(new FileInfo(_webHostEnvironment.ContentRootPath + infofile.Url)))
+                {
+                    //var worsheet = pakage.Workbook.Worksheets.First()
+
+                    ExcelWorksheet worsheet = pakage.Workbook.Worksheets["DiemHoiDong"];
+                    if (worsheet == null)
+                        return new ActionResultResponese<List<XuatDiemHoiDongViewModel>>(-9, "File điểm không đúng định dạng", "File điểm phản biện");
+                    for (int i = worsheet.Dimension.Start.Row + 1; i <= worsheet.Dimension.End.Row; i++)
+                    {
+                        if (worsheet.Cells[i, 1].Value != null && worsheet.Cells[i, 2].Value != null && worsheet.Cells[i, 5].Value != null && worsheet.Cells[i, 8].Value != null && worsheet.Cells[i, 10].Value != null)
+                        {
+                            //int j = 1;
+                            string idBangDiem = worsheet.Cells[i, 1].Value.ToString();
+                            string diemSo = worsheet.Cells[i, 2].Value.ToString();
+                            string nhanXet = worsheet.Cells[i, 3].Value == null ? "" : worsheet.Cells[i, 3].Value.ToString();
+                            float diemtvHD = float.Parse(diemSo);
+                            string maHoiDong = worsheet.Cells[i, 4].Value == null ? "" : worsheet.Cells[i, 10].Value.ToString();
+                            string tenHoiDong = worsheet.Cells[i, 5].Value.ToString();
+                            string maDeTai = worsheet.Cells[i, 8].Value.ToString();
+                            string tenDeTai = worsheet.Cells[i, 9].Value == null ? "" : worsheet.Cells[i, 10].Value.ToString();
+                            string maSinhVien = worsheet.Cells[i, 10].Value?.ToString();
+                            string TenSinhVien = worsheet.Cells[i, 11].Value == null ? "" : worsheet.Cells[i, 11].Value.ToString();
+                            XuatDiemHoiDongViewModel _hoidong = new XuatDiemHoiDongViewModel()
+                            {
+                                IdBangDiem = idBangDiem?.Trim(),
+                                DiemSo = diemtvHD,
+                                NhanXetGV = nhanXet?.Trim(),
+                                MaDeTai = maDeTai?.Trim(),
+                                TenDeTai = tenDeTai?.Trim(),
+                                MaSinhVien = maSinhVien?.Trim(),
+                                TenSinhVien = TenSinhVien?.Trim(),
+                                MaHoiDong = maHoiDong?.Trim(),
+                                TenHoiDong = tenHoiDong?.Trim(),
+                            };
+                            hoidong.Add(_hoidong);
+                        }
+                        else break;
+                    }
+                }
+
+
+                //  List<XuatDiemPhanBienViewModel> dbdiemphanbien = await _bangdiemRepository.XuatDiemPhanBienExcel(idhocky, idmonhoc, idBoMon);
+                //if(dbdiemphanbien.Count() != phanbien.Count())
+                int dem = 0;
+                List<XuatDiemHoiDongViewModel> listUpdateFail = new List<XuatDiemHoiDongViewModel>();
+                foreach (var item in hoidong)
+                {
+                    var info = await _bangdiemRepository.GetInfo(item.IdBangDiem?.Trim());
+                    if (info == null || item.DiemSo < 0 || item.DiemSo > 10 || info.IdBoMon?.Trim() == idBoMon?.Trim())
+                    {
+                        dem++;
+                        listUpdateFail.Add(new XuatDiemHoiDongViewModel()
+                        {
+                            IdBangDiem = item.IdBangDiem?.Trim(),
+                            DiemSo = item.DiemSo,
+                            MaSinhVien = item.MaSinhVien?.Trim(),
+                            TenSinhVien = item.TenSinhVien?.Trim(),
+                            MaDeTai = item.MaDeTai?.Trim(),
+                            TenDeTai = item.TenDeTai?.Trim(),
+                            MaHoiDong = item.MaHoiDong?.Trim(),
+                            TenHoiDong = item.TenHoiDong?.Trim(),
+
+                        });
+                        continue;
+                    }
+                    info.DiemSo = item.DiemSo;
+                    info.NhanXetGV = item.NhanXetGV?.Trim();
+                    info.IdBangDiem = item.IdBangDiem?.Trim();
+                    info.CreatorPointUserId = lastUpdateUserId?.Trim();
+                    info.CreatorPointFullName = lastUpdateFullName?.Trim();
+                    info.NgayVaoDiem = DateTime.Now;
+
+                    await _bangdiemRepository.UpdateDiemAsync(info);
+
+                }
+                if (dem > 0)
+                {
+                    return new ActionResultResponese<List<XuatDiemHoiDongViewModel>>(-21, "Có lỗi khi vào điểm có " + dem + " giảng viên không vào được điểm", "Điểm hội đồng", listUpdateFail);
+                }
+                else if (dem == hoidong.Count())
+                    return new ActionResultResponese<List<XuatDiemHoiDongViewModel>>(-22, "File điểm lỗi không thển vào điểm, vui lòng liên hệ quản trị viên", "File điểm hội đồng.");  
+                    
             }
-            else if (dem == hoidong.Count())
-                return new ActionResultResponese<List<XuatDiemHoiDongViewModel>>(-8, "File điểm lỗi không thển vào điểm, vui lòng liên hệ quản trị viên", "File điểm hội đồng.");
-            else
-                return new ActionResultResponese<List<XuatDiemHoiDongViewModel>>(1, "Vào điểm thành công", "Điểm hội đồng.");
+            return new ActionResultResponese<List<XuatDiemHoiDongViewModel>>(1, "Vào điểm thành công", "Điểm hội đồng.");
+
+
         }
 
 
@@ -258,7 +358,7 @@ namespace WebSite.Core.Infrastructure.Services
                 if (listdiemHD != null && listPB != null)
                 {
                     var DiemTBC = (listdiemHD.Sum(x => x.DiemSo) + listPB.Sum(y => y.Diem)) / (listdiemHD.Count() + listPB.Count());
-
+                    ///var DiemTBC = MathF.Round(d,1,MidpointRounding.ToPositiveInfinity);
                     var infoDeTai = await _deTaiRepository.GetInfo(item.IdDeTai);
                     infoDeTai.DiemTrungBinh = DiemTBC;
                     infoDeTai.LastUpdate = DateTime.Now;

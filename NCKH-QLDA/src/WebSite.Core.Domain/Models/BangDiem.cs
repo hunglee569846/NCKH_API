@@ -15,7 +15,7 @@ namespace WebSite.Core.Domain.Models
 		public string IdHoiDong { get; set; }
 		public string IdGiangVien { get; set; }
 		public string NhanXetGV { get; set; }
-		public float? DiemSo { get; set; }
+		public float DiemSo { get; set; }
 		public DateTime? NgayVaoDiem { get; set; }
 		public string CreatorPointUserId { get; set; }
 		public string CreatorPointFullName { get; set; }

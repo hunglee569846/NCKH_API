@@ -183,10 +183,20 @@ namespace WebSite.Core.Infrastructure.Services
             if (info == null)
                 return new ActionResultResponese<string>(-1, "Đề tài không tồn tại.", "Đề tài.");
 
+            if (diem < 0 || diem > 10)
+                return new ActionResultResponese<string>(-1, "Nhập điểm không hợp lệ", "Đề tài.");
+
             //var isNameExit = await _deTaiRepository.CheckMaDeTai(detaiUpdateMeta.TenDeTai?.Trim());
             //if (isNameExit)
             //    return new ActionResultResponese<string>(-4, "Mã đề tài đã tồn tại.", "Đề tài.");
-
+            if (diem > 0 && diem < 5)
+            {
+                info.IsDat = false;
+            }
+            else if (diem >= 5 && diem <= 10)
+            {
+                info.IsDat = true;
+            }
             info.IdDeTai = iddetai?.Trim();
             info.DiemTrungBinh = diem;
             info.LastUpdate = DateTime.Now;

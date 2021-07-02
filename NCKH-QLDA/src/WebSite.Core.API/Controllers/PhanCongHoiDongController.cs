@@ -55,7 +55,7 @@ namespace WebSite.Core.API.Controllers
 
         [SwaggerOperation(Summary = "Cập nhật điểm thành phần.", Description = "Requires login verification!", OperationId = "UpdateDiemAsync", Tags = new[] { "PhanCongHoiDong" })]
         [AcceptVerbs("PUT"), Route("UpdateDiem/{idBangDiem}/{diemmso}")]
-        public async Task<IActionResult> UpdateDiemAsync(string idBangDiem, float? diemmso, string nhanxetGV)
+        public async Task<IActionResult> UpdateDiemAsync(string idBangDiem, float diemmso, string nhanxetGV)
         {
             var result = await _bangdiemService.UpdateDiemAsync(idBangDiem, diemmso, nhanxetGV, CurrentUser.MaGiangVien, CurrentUser.FullName, CurrentUser.IdBoMon);
             if (result.Code <= 0)

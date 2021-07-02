@@ -42,7 +42,7 @@ namespace WebSite.Core.API.Controllers
         [SwaggerOperation(Summary = "Thêm mới danh sách thanh viên một hội đồng.", Description = "Requires login verification!", OperationId = "InsertListChiTietHoiDong", Tags = new[] { "ChiTietHoiDong" })]
         public async Task<IActionResult> InsertListChiTietHoiDongAsync([FromBody] List<ChiTietHoiDongMeta> listchitiethoidong, string idhoidong,string idhocky,string idmonhoc)
         {
-            var result = await _ChitietHoiDongService.InserListDeTaiAsync(listchitiethoidong, idhoidong,idhocky,idmonhoc,CurrentUser.MaGiangVien,CurrentUser.FullName);
+            var result = await _ChitietHoiDongService.InserListDeTaiAsync(listchitiethoidong, idhoidong,idhocky,idmonhoc,CurrentUser.MaGiangVien,CurrentUser.FullName,CurrentUser.IdBoMon);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Search DeTai controller error " + result.Code);

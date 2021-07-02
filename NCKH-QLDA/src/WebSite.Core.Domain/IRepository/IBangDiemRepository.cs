@@ -28,6 +28,8 @@ namespace WebSite.Core.Domain.IRepository
 
         //xuất file mẫu điểm hoi dong Excel
         Task<List<XuatDiemHoiDongViewModel>> XuatDiemHoiDongExcel(string idhocky, string idmonhoc, string idbomon);
+        //xuất file mẫu điểm hoi dong Excel TTTN ko gv trong bang diem
+        Task<List<XuatDiemHoiDongViewModel>> XuatDiemHoiDongTTTNExcel(string idhocky, string idmonhoc, string idbomon);
         //xuất file mẫu điểm hoi dong
         Task<SearchResult<XuatDiemHoiDongViewModel>> XuatDiemHoiDong(string idhocky, string idmonhocs, string idbomon);
     }
