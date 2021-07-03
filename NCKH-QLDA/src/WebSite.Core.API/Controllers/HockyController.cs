@@ -34,9 +34,9 @@ namespace WebSite.Core.API.Controllers
 
         [AcceptVerbs("POST"), Route("InsertAsyncHocKy/{mahocky}/{tenhocky}")]
         [SwaggerOperation(Summary = "Thêm mới học kỳ.", Description = "Requires login verification!", OperationId = "InsertAsyncHocKy", Tags = new[] { "Hocky" })]
-        public async Task<IActionResult> InsertAsync(string mahocky, string tenhocky)
+        public async Task<IActionResult> InsertAsync(string mahocky, string tenhocky, string namHoc)
         {
-            var result = await _ihockyService.InsertAsync(mahocky, tenhocky, CurrentUser.IdBoMon,CurrentUser.FullName,CurrentUser.IdBoMon);
+            var result = await _ihockyService.InsertAsync(mahocky, tenhocky,namHoc, CurrentUser.IdBoMon,CurrentUser.FullName,CurrentUser.IdBoMon);
             if (result.Code <= 0)
             {
                 // _logger.LogError("Insert Hockys controller code: " + result.Code + " .Message: " + result.Message);
@@ -60,9 +60,9 @@ namespace WebSite.Core.API.Controllers
 
         [AcceptVerbs("PUT"), Route("{idHocKy}/{mahocky}/{tenhocky}")]
         [SwaggerOperation(Summary = "Cập nhật thông tin.", Description = "Requires login verification!", OperationId = "UpdateAsyncHocKy", Tags = new[] { "Hocky" })]
-        public async Task<IActionResult> UpdateAsync(string idHocKy,string mahocky,string tenhocky) //[FromBody]HocKyMeta hockymeta
+        public async Task<IActionResult> UpdateAsync(string idHocKy,string mahocky,string namHoc, string tenhocky) //[FromBody]HocKyMeta hockymeta
         {
-            var result = await _ihockyService.UpDateAsync(idHocKy,mahocky, tenhocky,CurrentUser.MaGiangVien,CurrentUser.FullName,CurrentUser.IdBoMon);
+            var result = await _ihockyService.UpDateAsync(idHocKy,mahocky, tenhocky,namHoc,CurrentUser.MaGiangVien,CurrentUser.FullName,CurrentUser.IdBoMon);
             if (result.Code <= 0)
             {
                 // _logger.LogError("Insert Hockys controller code: " + result.Code + " .Message: " + result.Message);

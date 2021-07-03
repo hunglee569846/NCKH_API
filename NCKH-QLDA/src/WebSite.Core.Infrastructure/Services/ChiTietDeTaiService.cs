@@ -18,13 +18,16 @@ namespace WebSite.Core.Infrastructure.Services
         private readonly IChiTietDeTaiRepository _chitietdetaiRepository;
         private readonly IDeTaiRepository _detaiRepository;
         private readonly IGiangVienHuongDanRepository _giangVienHuongDanRepository;
+        private readonly IMonHocRepository _monhocRepository;
         public ChiTietDeTaiService(IDeTaiRepository detaiRepository,
                                    IChiTietDeTaiRepository chitietdetaiRepository,
-                                   IGiangVienHuongDanRepository giangVienHuongDanRepository)
+                                   IGiangVienHuongDanRepository giangVienHuongDanRepository,
+                                   IMonHocRepository _monhocRepository_monhocRepository)
         {
             _chitietdetaiRepository = chitietdetaiRepository;
             _detaiRepository = detaiRepository;
             _giangVienHuongDanRepository = giangVienHuongDanRepository;
+            _monhocRepository = _monhocRepository;
         }
        public async Task<ActionResultResponese<string>> InserAsync(ChiTietDeTaiMeta chitietdetaimeta,string iddetai,string idGVHDTheoKy,string idhocky,string idmonhoc,string CreatorUserId,string CreatorFullName, string idBoMon)
         {
@@ -89,8 +92,10 @@ namespace WebSite.Core.Infrastructure.Services
 
         public async Task<ActionResultResponese<string>> InserListDeTaiAsync(List<ChiTietDeTaiListDeTaiMeta> listdetaimeta, string idgvhd, string idhocky, string idmonhoc, string CreatorId, string CreatorFullName, string idBoMon)
         {
+            var infoMonHoc = await _monhocRepository.GetInfoAsync(idmonhoc);
+            if (infoMonHoc == null)
+                return new ActionResultResponese<string>(-48, "Môn học không tồn tại", "Môn học.");
 
-            
             //thông tin giảng viên
             var getinfoGVHD = await _giangVienHuongDanRepository.GetInfo(idgvhd);
             if (getinfoGVHD == null)
@@ -105,6 +110,10 @@ namespace WebSite.Core.Infrastructure.Services
             var listChiTietDeTai = new List<ChiTietDeTai>();
             foreach (var iddetai in listiddetai)
             {
+
+                var countGVHD = await _chitietdetaiRepository.CountGiangVienHD(iddetai.IdDeTai?.Trim());
+                if (infoMonHoc.SoLuongGVHD <= countGVHD)
+                    continue;
                 //thông tin đề tài
                 var getinfoDeTai = await _detaiRepository.GetInfo(iddetai.IdDeTai);
                 if (getinfoDeTai == null)

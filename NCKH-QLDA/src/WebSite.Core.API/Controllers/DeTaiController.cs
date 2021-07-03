@@ -160,7 +160,7 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [AcceptVerbs("PUT"), Route("UpdateDiemTBC/{idhocky}/{idmMonHoc}/{idmonhoc}")]
+        [AcceptVerbs("PUT"), Route("UpdateDiemTBC/{idhocky}/{idmonhoc}")]
         [SwaggerOperation(Summary = "Cập nhật điểm chung bình chung cho đề tài.", Description = "Requires login verification!", OperationId = "UpdatePointAGV", Tags = new[] { "DeTai" })]
         public async Task<IActionResult> DeleteAsync(string idhocky, string idmonhoc)
         {

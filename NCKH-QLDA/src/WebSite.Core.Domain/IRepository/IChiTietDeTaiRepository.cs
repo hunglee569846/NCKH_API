@@ -17,5 +17,7 @@ namespace WebSite.Core.Domain.IRepository
         Task<bool> CheckExitsDuplicate(string iddetai,string idGVHD);
         //đề tài và chi tiết đề tài
         Task<SearchResult<DeTaivsCTDTViewModel>> SearchByIdDetai(string iddetai);
+        //số lượng GV đã hd đề tài
+        Task<int> CountGiangVienHD(string idDeTai);
     }
 }

@@ -20,5 +20,6 @@ namespace WebSite.Core.Domain.IRepository
         Task<int> DeleteAsync(string idphanbien);
         Task<PhanBien> GetInfoAsync(string idPhanBien);
         Task<List<PhanBien>> ListPhanBien(string idBoMon, string idhocky, string idMonHoc, string idDetai);
+        Task<int> CoutPhanBien(string idDeTai);
     }
 }

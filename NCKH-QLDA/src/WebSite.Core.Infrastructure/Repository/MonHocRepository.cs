@@ -65,6 +65,8 @@ namespace WebSite.Core.Infrastructure.Repository
                     param.Add("@MaMonHoc", monHoc.MaMonHoc);
                     param.Add("@IdHocKy", monHoc.IdHocKy);
                     param.Add("@TenMonHoc", monHoc.TenMonHoc);
+                    param.Add("@SoLuongGVHD", monHoc.SoLuongGVHD);
+                    param.Add("@SoLuongPhanBien", monHoc.SoLuongPhanBien);
                     param.Add("@TypeApprover", monHoc.TypeApprover);
                     param.Add("@IdMonTienQuyet", monHoc.IdMonTienQuyet);
                     param.Add("@NameMonTienQuyet", monHoc.NameMonTienQuyet);
@@ -208,6 +210,8 @@ namespace WebSite.Core.Infrastructure.Repository
                     param.Add("@TenMonHoc", monHoc.TenMonHoc);
                     param.Add("@TypeApprover", monHoc.TypeApprover);
                     param.Add("@IdMonTienQuyet", monHoc.IdMonTienQuyet);
+                    param.Add("@SoLuongGVHD", monHoc.SoLuongGVHD);
+                    param.Add("@SoLuongPhanBien", monHoc.SoLuongPhanBien);
                     param.Add("@NameMonTienQuyet", monHoc.NameMonTienQuyet);
                     if (monHoc.LastUpdate != null && monHoc.LastUpdate != DateTime.MinValue)
                     {

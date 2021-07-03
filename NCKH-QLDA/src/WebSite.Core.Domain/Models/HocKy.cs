@@ -10,6 +10,7 @@ namespace WebSite.Core.Domain.Models
 		public string IdBoMon { get; set; }
 		public string MaHocKy { get; set; }
 		public string TenHocKy { get; set; }
+		public string NamHoc { get; set; }
 		public DateTime CreateTime { get; set; }
 		public DateTime? LastUpdate { get; set; }
 		public DateTime? DeleteTime { get; set; }

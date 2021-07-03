@@ -317,5 +317,29 @@ namespace WebSite.Core.Infrastructure.Repository
                 return null;
             }
         }
+
+        public async Task<int> CoutPhanBien(string idDeTai)
+        {
+            try
+            {
+                int Results = 0;
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    if (conn.State == ConnectionState.Closed)
+                        await conn.OpenAsync();
+
+                    var sql = @"
+					SELECT ISNULL(COUNT(0),1) FROM dbo.PhanBiens WHERE IdDetai = @idDeTai AND  IsActive =1 AND IsDelete = 0 ";
+
+                    var result = await conn.ExecuteScalarAsync<int>(sql, new { IdDetai = idDeTai });
+                    return Results;
+                }
+            }
+            catch (Exception ex)
+            {
+                //_logger.LogError(ex, "[dbo].[spPhanBien_DeleteAsync] PhanBienRepository Error.");
+                return -1;
+            }
+        }
     }
 }

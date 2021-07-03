@@ -12,8 +12,8 @@ namespace WebSite.Core.Domain.IServices
     public interface IHocvKysService
     {
         Task<SearchResult<HocKySearchViewModel>> GetAll(string IdBoMon);
-        Task<ActionResultResponese<string>> InsertAsync(string mahocky, string tenhocky, string userId, string fullName,string idbomon);
+        Task<ActionResultResponese<string>> InsertAsync(string mahocky, string tenhocky, string namHoc, string userId, string fullName,string idbomon);
         Task<ActionResultResponese<string>> DeleteAsync(string idhocky);
-        Task<ActionResultResponese<string>> UpDateAsync(string idhocky, string mahocky, string tenhocky, string userId, string fullName,string idbomon);
+        Task<ActionResultResponese<string>> UpDateAsync(string idhocky, string mahocky, string tenhocky,string namHoc, string userId, string fullName,string idbomon);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using NCKH.Infrastruture.Binding.Models;
+using NCKH.Infrastruture.Binding.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using WebSite.Core.Domain.IRepository;
 using WebSite.Core.Domain.IServices;
 using WebSite.Core.Domain.ModelMeta;
 using WebSite.Core.Domain.Models;
+using WebSite.Core.Domain.ViewModel;
 
 namespace WebSite.Core.Infrastructure.Services
 {
@@ -119,6 +121,23 @@ namespace WebSite.Core.Infrastructure.Services
             if (result <= 0)
                 return new ActionResultResponese<string>(-11, "Xóa chi tiết hội đồng không thành công", "Chi tiết hội đông");
             return new ActionResultResponese<string>(1, "Xóa chi tiết hội đồng thành công", "Chi tiết hội đông");
+        }
+
+        public async Task<SearchResult<GiangVienGetListViewModel>> SelectByIdHoiDongAsync(string idHoiDong)
+        {
+            var result = await _chitiethoidongRepository.GetListThanhVien(idHoiDong);
+            if (result != null)
+            {
+                return new SearchResult<GiangVienGetListViewModel>
+                {
+                    TotalRows = result.Count(),
+                    Code = 1,
+                    Data = result.ToList()
+                };
+            }
+            else
+                return new SearchResult<GiangVienGetListViewModel> { Code = -2, Message = "Hội đồng không tồn tại", Data = null };
+
         }
     }
 }

@@ -20,15 +20,18 @@ namespace WebSite.Core.Infrastructure.Services
         private readonly IHocKysRepository _hocKysRepository;
         private readonly IGiangVienHuongDanRepository _giangVienHuongDanRepository;
         private readonly IDeTaiRepository _deTaiRepository;
+        private readonly IMonHocRepository _monhocRepository;
         public PhanBienService(IPhanBienRepository phanbienRepository,
                                IHocKysRepository hocKysRepository,
                                IGiangVienHuongDanRepository giangVienHuongDanRepository,
-                               IDeTaiRepository deTaiRepository )
+                               IDeTaiRepository deTaiRepository,
+                               IMonHocRepository monhocRepository)
         {
             _phanbienRepository = phanbienRepository;
             _hocKysRepository = hocKysRepository;
             _giangVienHuongDanRepository = giangVienHuongDanRepository;
             _deTaiRepository = deTaiRepository;
+            _monhocRepository = monhocRepository;
         }
         public async Task<SearchResult<PhanBienSearchViewModel>> GetAllByIdHK(string idhocky,string idBoMon)
         {
@@ -200,6 +203,11 @@ namespace WebSite.Core.Infrastructure.Services
             if (checkGV)
                 return new ActionResultResponese<string>(-43, "Giảng viên đã phản biện đề tài này.", "Phản biện.");
 
+            var infoMonHoc = await _monhocRepository.GetInfoAsync(idmonhoc);
+            if (infoMonHoc == null)
+                return new ActionResultResponese<string>(-48, "Môn học không tồn tại", "Môn học.");
+           
+
             foreach (var idDeTai in listDeTai)
             {
                 var checExitsDeTai = await _deTaiRepository.CheckExits(idDeTai.IdDeTai);
@@ -211,13 +219,15 @@ namespace WebSite.Core.Infrastructure.Services
 
             foreach (var idDeTai in listDeTai)
             {
-                //var checkExitsGVHDinHocKy = await _giangVienHuongDanRepository.CheckExitsActive(idhocky, giangvien.IdGVHD);
-                //if (checkExitsGVHDinHocKy)
-                //    return new ActionResultResponese<string>(-16, "Giảng viên đã có trong kỳ.", "Giang vien hướng dẫn theo kỳ.");
-                //var checkDeTai = await _deTaiRepository.CheckExits(iddetai);
-                //if (!checkDeTai)
-                //    return new ActionResultResponese<string>(-31, "Đề tài không tồn tại.", "Đề tài.");
-                //var giangvienInfo = await _giangVienHuongDanRepository.GetInfoByMaGVHD(idhocky, giangvien.idGVPB);
+                //int count = 0;
+                var checkPhanBien = await _phanbienRepository.CheckExisPhanBien(idGiangVien, idDeTai.IdDeTai, idhocky, idmonhoc);
+                if (checkPhanBien)
+                    continue;
+
+                var countPhanBien = await _phanbienRepository.CoutPhanBien(idDeTai.IdDeTai?.Trim());
+                if (infoMonHoc.SoLuongPhanBien >= countPhanBien)
+                    continue;
+                
                 var id = Guid.NewGuid().ToString();
                 listPhanBien.Add(new PhanBien
                 {
@@ -236,7 +246,8 @@ namespace WebSite.Core.Infrastructure.Services
                 });
             }
             if (listPhanBien.Count() == 0)
-                return new ActionResultResponese<string>(-45, "Xảy ra lỗi vui lòng liên hệ quản trị viênn.");
+                return new ActionResultResponese<string>(-45, "Xảy ra lỗi vui lòng liên hệ quản trị viên.");
+            
             foreach (var giangvien in listPhanBien)
             {
                 await _phanbienRepository.InsertByHk(giangvien);

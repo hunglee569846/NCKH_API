@@ -211,6 +211,30 @@ namespace WebSite.Core.Infrastructure.Repository
                 return -1;
             }
         }
+
+        public async Task<int> CountGiangVienHD(string idDeTai)
+        {
+            try
+            {
+                int Results = 0;
+                using (SqlConnection conn = new SqlConnection(_ConnectionString))
+                {
+                    if (conn.State == ConnectionState.Closed)
+                        await conn.OpenAsync();
+                    DynamicParameters param = new DynamicParameters();
+                    var sql = @"
+					SELECT ISNULL(COUNT(0),1)   FROM dbo.ChiTietDeTai WHERE IdDetai = @idDeTai AND  IsActive =1 AND IsDelete = 0 ";
+
+                    Results = await conn.ExecuteScalarAsync<int>(sql, new { IdDetai = idDeTai });
+                    return Results;
+                }
+            }
+            catch (Exception)
+            {
+                //_logger.LogError(ex, "[dbo].[spPhanBien_DeleteAsync] PhanBienRepository Error.");
+                return -1;
+            }
+        }
     }
 
 }

@@ -15,6 +15,8 @@ namespace WebSite.Core.Domain.Models
 		public int? TypeApprover { get; set; }
 		public string IdMonTienQuyet { get; set; }
 		public string NameMonTienQuyet { get; set; }
+		public int SoLuongGVHD{ get; set; }
+		public int SoLuongPhanBien{ get; set; }
 		public DateTime? LastUpdate { get; set; }
 		public DateTime CreateTime { get; set; }
 		public string CreatorUserId { get; set; }

@@ -23,7 +23,7 @@ namespace WebSite.Core.Infrastructure.Services
         {
             return await _ihocKyRepository.SelectAll(IdBoMon);
         }
-        public async Task<ActionResultResponese<string>> InsertAsync(string mahocky, string tenhocky, string userId, string fullName,string idBoMon)
+        public async Task<ActionResultResponese<string>> InsertAsync(string mahocky, string tenhocky,string namHoc, string userId, string fullName,string idBoMon)
         {
             var idhocky = Guid.NewGuid().ToString();
             var checExist = await _ihocKyRepository.CheckExistAsync(idhocky, mahocky);
@@ -36,9 +36,10 @@ namespace WebSite.Core.Infrastructure.Services
 
             var hockynew = new HocKy()
             {
-                IdHocKy = idhocky,
+                IdHocKy = idhocky?.Trim(),
                 IdBoMon = idBoMon?.Trim(),
-                MaHocKy = mahocky,
+                MaHocKy = mahocky?.Trim(),
+                NamHoc = namHoc?.Trim(),
                 TenHocKy = tenhocky,
                 CreateTime = DateTime.Now,
                 CreatetorId = userId,
@@ -53,7 +54,7 @@ namespace WebSite.Core.Infrastructure.Services
 
         }
         
-        public async Task<ActionResultResponese<string>> UpDateAsync(string idhocky, string mahocky, string tenhocky, string userId, string fullName,string idbomon)
+        public async Task<ActionResultResponese<string>> UpDateAsync(string idhocky, string mahocky, string tenhocky,string namHoc, string userId, string fullName,string idbomon)
         {
             var checkLockDataHK = await _ihocKyRepository.CheckExisIsActivetAsync(idhocky);
             if (!checkLockDataHK)
@@ -67,6 +68,7 @@ namespace WebSite.Core.Infrastructure.Services
             info.IdHocKy = idhocky?.Trim();
             info.MaHocKy = mahocky?.Trim();
             info.TenHocKy = tenhocky?.Trim();
+            info.NamHoc = namHoc?.Trim();
             info.LastUpdate = DateTime.Now; ;
             info.LastUpdateUserId = userId?.Trim();
             info.LastUpdateFullName = fullName?.Trim();

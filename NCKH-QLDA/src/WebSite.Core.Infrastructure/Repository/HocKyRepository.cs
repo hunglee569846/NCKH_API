@@ -63,6 +63,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     param.Add("@IdBoMon", hocky.IdBoMon);
                     param.Add("@MaHocKy", hocky.MaHocKy);
                     param.Add("@TenHocKy", hocky.TenHocKy);
+                    param.Add("@NamHoc", hocky.NamHoc);
                     if (hocky.CreateTime != null && hocky.CreateTime != DateTime.MinValue)
                     {
                         param.Add("@CreateTime", hocky.CreateTime);
@@ -83,32 +84,32 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
         
-        public async Task<int> UpdateAsync(string idhocky, string mahocky,string tenhocky, DateTime? LastUpdate, string userId, string fullName)
-        {
-            try
-            {
-                int TotalRow = 0;
-                using (SqlConnection conn = new SqlConnection(_connectionString))
-                {
-                    if (conn.State == ConnectionState.Closed)
-                        await conn.OpenAsync();
-                    DynamicParameters param = new DynamicParameters();
-                    param.Add("@IdHocKy", idhocky);
-                    param.Add("@MaHocKy", mahocky);
-                    param.Add("@TenHocKy", tenhocky);
-                    param.Add("@LastUpdate", LastUpdate);
-                    param.Add("@LastUpdateUserId", userId);
-                    param.Add("@LastUpdateFullName", fullName);
-                    TotalRow = await conn.ExecuteAsync("[dbo].[spHocKy_UpdateAsync]", param, commandType: CommandType.StoredProcedure);
-                    return TotalRow;
-                }
-            }
-            catch (Exception)
-            {
-                //_logger.LogError(ex, "[dbo].[spHocKy_UpdateAsync] UpdatetAsync HocKyRepository Error.");
-                return -1;
-            }
-        }
+        //public async Task<int> UpdateAsync(string idhocky, string mahocky,string tenhocky, DateTime? LastUpdate, string userId, string fullName)
+        //{
+        //    try
+        //    {
+        //        int TotalRow = 0;
+        //        using (SqlConnection conn = new SqlConnection(_connectionString))
+        //        {
+        //            if (conn.State == ConnectionState.Closed)
+        //                await conn.OpenAsync();
+        //            DynamicParameters param = new DynamicParameters();
+        //            param.Add("@IdHocKy", idhocky);
+        //            param.Add("@MaHocKy", mahocky);
+        //            param.Add("@TenHocKy", tenhocky);
+        //            param.Add("@LastUpdate", LastUpdate);
+        //            param.Add("@LastUpdateUserId", userId);
+        //            param.Add("@LastUpdateFullName", fullName);
+        //            TotalRow = await conn.ExecuteAsync("[dbo].[spHocKy_UpdateAsync]", param, commandType: CommandType.StoredProcedure);
+        //            return TotalRow;
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        //_logger.LogError(ex, "[dbo].[spHocKy_UpdateAsync] UpdatetAsync HocKyRepository Error.");
+        //        return -1;
+        //    }
+        //}
 
         public async Task<bool> CheckExistAsync(string idHocKy,string maHocky)
         {
@@ -260,6 +261,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     param.Add("@IdBoMon", hocKy.IdBoMon);
                     param.Add("@MaHocKy", hocKy.MaHocKy);
                     param.Add("@TenHocKy", hocKy.TenHocKy);
+                    param.Add("@NamHoc", hocKy.NamHoc);
                     if (hocKy.CreateTime != null && hocKy.CreateTime != DateTime.MinValue)
                     {
                         param.Add("@CreateTime", hocKy.CreateTime);

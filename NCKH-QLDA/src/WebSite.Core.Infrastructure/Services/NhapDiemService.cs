@@ -303,7 +303,7 @@ namespace WebSite.Core.Infrastructure.Services
                 foreach (var item in hoidong)
                 {
                     var info = await _bangdiemRepository.GetInfo(item.IdBangDiem?.Trim());
-                    if (info == null || item.DiemSo < 0 || item.DiemSo > 10 || info.IdBoMon?.Trim() == idBoMon?.Trim())
+                    if (info == null || item.DiemSo < 0 || item.DiemSo > 10 || info.IdBoMon?.Trim() != idBoMon?.Trim())
                     {
                         dem++;
                         listUpdateFail.Add(new XuatDiemHoiDongViewModel()
@@ -360,6 +360,14 @@ namespace WebSite.Core.Infrastructure.Services
                     var DiemTBC = (listdiemHD.Sum(x => x.DiemSo) + listPB.Sum(y => y.Diem)) / (listdiemHD.Count() + listPB.Count());
                     ///var DiemTBC = MathF.Round(d,1,MidpointRounding.ToPositiveInfinity);
                     var infoDeTai = await _deTaiRepository.GetInfo(item.IdDeTai);
+                    if (DiemTBC < 5 && DiemTBC >= 0)
+                    {
+                        infoDeTai.IsDat = false;
+                    }
+                    else if (DiemTBC >= 5 && DiemTBC <= 10)
+                    {
+                        infoDeTai.IsDat = true;
+                    }
                     infoDeTai.DiemTrungBinh = DiemTBC;
                     infoDeTai.LastUpdate = DateTime.Now;
                     infoDeTai.lastUpdateUserId = lastUpdateUserId?.Trim();

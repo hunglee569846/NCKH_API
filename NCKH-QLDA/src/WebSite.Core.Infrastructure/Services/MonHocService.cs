@@ -66,6 +66,8 @@ namespace WebSite.Core.Infrastructure.Services
                 MaMonHoc = mamonhoc?.Trim(),
                 IdHocKy = idhocky?.Trim(),
                 TenMonHoc = tenmonhoc?.Trim(),
+                SoLuongGVHD = monHocMeta.SoLuongGVHD,
+                SoLuongPhanBien = monHocMeta.SoLuongPhanBien,
                 CreateTime = DateTime.Now,
                 TypeApprover = typeApprover.GetHashCode(),
                 CreatorUserId = creatorUserId?.Trim(),
@@ -98,7 +100,7 @@ namespace WebSite.Core.Infrastructure.Services
 
             if (monhocmeta.IdMonTienQuyet != "0")
             {
-                var checkExitsMonHoc = await _imonhocRepository.CheckMonHocInHocKyExits(monhocmeta.IdMonTienQuyet, mamonhoc);
+                var checkExitsMonHoc = await _imonhocRepository.CheckMonHocInHocKyExits(monhocmeta.IdMonTienQuyet, idhocky);
                 if (!checkExitsMonHoc)
                     return new ActionResultResponese<string>(-11, "Môn học không tồn tại.", "Môn tiên quyết.");
             }
@@ -112,6 +114,8 @@ namespace WebSite.Core.Infrastructure.Services
             info.IdHocKy = idhocky?.Trim();
             info.TenMonHoc = tenmonhoc?.Trim();
             info.TypeApprover = typeApprover.GetHashCode();
+            info.SoLuongGVHD = monhocmeta.SoLuongGVHD;
+            info.SoLuongPhanBien = monhocmeta.SoLuongPhanBien;
             info.IdMonTienQuyet = getInfo == null ? montienquyet.ToString() : getInfo.IdMonHoc?.Trim();
             info.NameMonTienQuyet = getInfo == null ? montienquyet.ToString() : getInfo.TenMonHoc?.Trim();
             info.LastUpdate = DateTime.Now;
