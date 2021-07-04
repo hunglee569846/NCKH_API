@@ -11,6 +11,7 @@ namespace WebSite.Core.Domain.IRepository
         Task<SearchResult<DeTaiSearchViewModel>> SelectByIdHocKy(string idhocky);
         Task<List<DeTai>> SelectList(string idhocky,string idMonHoc, string idBoMon);
         Task<SearchResult<DeTaiSearchViewModel>> SelectByIdMonHocInHocKy(string idhocky,string idmonhoc);
+        Task<SearchResult<DeTaiPhanBienViewModel>> DeTaiPhanBien(string idhocky,string idmonhoc, string IdBoMon, string IdGVHD);
         Task<SearchResult<DeTaiSearchViewModel>> SelectChuaPhanHD(string idhocky,string idmonhoc,string idBoMon);
         Task<DeTai> GetInfo(string iddetai);
         Task<SearchResult<DeTaivsCTDTViewModel>> SelectByIdCTDTAsync(string idhocky, bool isApprove);

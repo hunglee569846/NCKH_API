@@ -12,6 +12,7 @@ namespace WebSite.Core.Domain.IServices
         Task<SearchResult<DeTaiSearchViewModel>> GetByIdHocKyAsync(string idhocky);
         Task<SearchResult<DeTaiSearchViewModel>> GetByIdMonHocInHocKyAsync(string idhocky,string idmonhoc);
         Task<SearchResult<DeTaiSearchViewModel>> GetChuaPhanHDAsync(string idhocky,string idmonhoc,string idBoMon);
+        Task<SearchResult<DeTaiPhanBienViewModel>> DeTaiPhanPhanBien(string idhocky,string idmonhoc,string idBoMon,string idGVHD);
         Task<ActionResultResponese<string>> InsertAsync(DeTaiInsertMeta detaiInsertMeta, string madetai, string idhocky, string idmonhoc, string idsinhvien, string creatorUserId, string creatorFullName, string idBoMon);
         Task<ActionResultResponese<string>> UpdateAsync(DeTaiUpdateMeta detaiUpdateMeta, string iddetai, string creatorUserId, string creatorFullName, string idBoMon);
         //vào điên thực tập sản xuất

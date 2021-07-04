@@ -322,7 +322,7 @@ namespace WebSite.Core.Infrastructure.Repository
         {
             try
             {
-                int Results = 0;
+                
                 using (SqlConnection conn = new SqlConnection(_connectionString))
                 {
                     if (conn.State == ConnectionState.Closed)
@@ -331,7 +331,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     var sql = @"
 					SELECT ISNULL(COUNT(0),1) FROM dbo.PhanBiens WHERE IdDetai = @idDeTai AND  IsActive =1 AND IsDelete = 0 ";
 
-                    var result = await conn.ExecuteScalarAsync<int>(sql, new { IdDetai = idDeTai });
+                    var Results = await conn.ExecuteScalarAsync<int>(sql, new { IdDetai = idDeTai });
                     return Results;
                 }
             }

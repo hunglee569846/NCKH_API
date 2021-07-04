@@ -225,7 +225,7 @@ namespace WebSite.Core.Infrastructure.Services
                     continue;
 
                 var countPhanBien = await _phanbienRepository.CoutPhanBien(idDeTai.IdDeTai?.Trim());
-                if (infoMonHoc.SoLuongPhanBien >= countPhanBien)
+                if (infoMonHoc.SoLuongPhanBien <= countPhanBien)
                     continue;
                 
                 var id = Guid.NewGuid().ToString();
@@ -245,9 +245,11 @@ namespace WebSite.Core.Infrastructure.Services
                     IsDelete = false
                 });
             }
-            if (listPhanBien.Count() == 0)
+            if (listPhanBien.Count() == 0 && listDeTai.Count() !=0)
                 return new ActionResultResponese<string>(-45, "Xảy ra lỗi vui lòng liên hệ quản trị viên.");
-            
+            else if (listPhanBien.Count() == 0 && listDeTai.Count() == 0)
+                return new ActionResultResponese<string>(-46, "Vui lòng chọn đề tài");
+
             foreach (var giangvien in listPhanBien)
             {
                 await _phanbienRepository.InsertByHk(giangvien);

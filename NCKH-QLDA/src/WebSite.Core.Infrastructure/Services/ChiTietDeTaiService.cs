@@ -22,12 +22,12 @@ namespace WebSite.Core.Infrastructure.Services
         public ChiTietDeTaiService(IDeTaiRepository detaiRepository,
                                    IChiTietDeTaiRepository chitietdetaiRepository,
                                    IGiangVienHuongDanRepository giangVienHuongDanRepository,
-                                   IMonHocRepository _monhocRepository_monhocRepository)
+                                   IMonHocRepository monhocRepository)
         {
             _chitietdetaiRepository = chitietdetaiRepository;
             _detaiRepository = detaiRepository;
             _giangVienHuongDanRepository = giangVienHuongDanRepository;
-            _monhocRepository = _monhocRepository;
+            _monhocRepository = monhocRepository;
         }
        public async Task<ActionResultResponese<string>> InserAsync(ChiTietDeTaiMeta chitietdetaimeta,string iddetai,string idGVHDTheoKy,string idhocky,string idmonhoc,string CreatorUserId,string CreatorFullName, string idBoMon)
         {
@@ -141,7 +141,7 @@ namespace WebSite.Core.Infrastructure.Services
             }
            
             if (listChiTietDeTai.Count == 0)
-                return new ActionResultResponese<string>(-15, "Vui Chọn đề tài.", "Chi tiết đề tài.");
+                return new ActionResultResponese<string>(-15, "Vui Chọn đề tài, đề tài bạn chọn đã đủ giảng viên hướng dẫn.", "Chi tiết đề tài.");
             foreach (var chitietdetai in listChiTietDeTai)
             {
                await _chitietdetaiRepository.InserAsync(chitietdetai);

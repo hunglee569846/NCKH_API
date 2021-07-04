@@ -172,5 +172,18 @@ namespace WebSite.Core.API.Controllers
             }
             return Ok(result);
         }
+
+        [AcceptVerbs("GET"), Route("PhanPhanBien/{idhocky}/{idmonhoc}/{IdGVHD}")]
+        [SwaggerOperation(Summary = "Danh sách đề tài phân phản biện.", Description = "Requires login verification!", OperationId = "DeTaiPhanPhanBien", Tags = new[] { "DeTai" })]
+        public async Task<IActionResult> DeTaiPhanPhanBien(string idhocky, string idmonhoc,string IdGVHD)
+        {
+            var result = await _ideTaiService.DeTaiPhanPhanBien(idhocky, idmonhoc, CurrentUser.IdBoMon, IdGVHD);
+            if (result.Code <= 0)
+            {
+                //_logger.LogError("Search DeTai controller error " + result.Code);
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
     }
 }

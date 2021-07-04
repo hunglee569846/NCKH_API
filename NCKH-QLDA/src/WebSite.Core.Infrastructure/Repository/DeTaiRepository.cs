@@ -516,5 +516,35 @@ namespace WebSite.Core.Infrastructure.Repository
                 return null;
             }
         }
+
+        public async Task<SearchResult<DeTaiPhanBienViewModel>> DeTaiPhanBien(string idhocky, string idmonhoc, string IdBoMon, string IdGVHD)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    if (conn.State == ConnectionState.Closed)
+                        await conn.OpenAsync();
+                    DynamicParameters para = new DynamicParameters();
+                    para.Add("@IdHocKy", idhocky);
+                    para.Add("@IdMonHoc", idmonhoc);
+                    para.Add("@IdBoMon", IdBoMon);
+                    para.Add("@IdGVHD", IdGVHD);
+                    using (var multi = await conn.QueryMultipleAsync("[dbo].[spDeTai_LocChiTietDT]", para, commandType: CommandType.StoredProcedure))
+                    {
+                        return new SearchResult<DeTaiPhanBienViewModel>()
+                        {
+                            TotalRows = (await multi.ReadAsync<int>()).SingleOrDefault(),
+                            Data = (await multi.ReadAsync<DeTaiPhanBienViewModel>()).ToList()
+                        };
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                //_logger.LogError(ex, "[dbo].[spHocKy_SelectAll] SearchAsync GiangVienHuongDanRepository Error.");
+                return new SearchResult<DeTaiPhanBienViewModel> { TotalRows = 0, Data = null };
+            }
+        }
     }
 }

@@ -243,5 +243,10 @@ namespace WebSite.Core.Infrastructure.Services
                 return new ActionResultResponese<string>(-12, "Phê duyệt không thành công.", "Đề tài.");
             return new ActionResultResponese<string>(1, "Phê duyệt thành công.", "Đề tài.");
         }
+
+        public async Task<SearchResult<DeTaiPhanBienViewModel>> DeTaiPhanPhanBien(string idhocky, string idmonhoc, string idBoMon, string idGVHD)
+        {
+            return await _deTaiRepository.DeTaiPhanBien(idhocky, idmonhoc,idBoMon,idGVHD);
+        }
     }
 }
