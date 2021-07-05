@@ -54,7 +54,18 @@ namespace WebSite.Core.Infrastructure.Services
             return await _hoiDongTotNghiepRepository.SelectAll(idhocky, idbomon);
         }
 
-       public async Task<ActionResultResponese<string>> InsertAsync(HoiDongTotNghiepMeta hoidongMeta, string idhocky, string idmonhoc,string creatorUserId, string creatorFullName,string idBoMon)
+        public async Task<SearchResult<HoiDongTotNghiepViewModel>> GetByIdMonHoc(string idhocky, string idmonhoc, string idbomon)
+        {
+            var checkExit = await _hocKysRepository.CheckExisIsActivetAsync(idhocky);
+            if (checkExit == false)
+                return new SearchResult<HoiDongTotNghiepViewModel>() { Code = -1, Data = null, Message = "Học kỳ không tồn tại." };
+            var checkMonHoc = await _monhocRepository.CheckExitsIsActvive(idmonhoc);
+            if (checkMonHoc == false)
+                return new SearchResult<HoiDongTotNghiepViewModel>() { Code = -1, Data = null, Message = "Môn học không tồn tại" };
+            return await _hoiDongTotNghiepRepository.GetByMonHoc(idhocky,idmonhoc, idbomon);
+        }
+
+        public async Task<ActionResultResponese<string>> InsertAsync(HoiDongTotNghiepMeta hoidongMeta, string idhocky, string idmonhoc,string creatorUserId, string creatorFullName,string idBoMon)
         {
             string id = Guid.NewGuid().ToString();
 
@@ -77,7 +88,9 @@ namespace WebSite.Core.Infrastructure.Services
             if (infoHocKy == null)
                 return new ActionResultResponese<string>(-4, "Học kỳ không tồn tại.", "Học kỳ.");
 
-            var checkmaHD = await _hoiDongTotNghiepRepository.CheckExitMaHD(hoidongMeta.MaHoiDong, idhocky);
+            var maHoiDong = await _hoiDongTotNghiepRepository.GetCodeHoiDong(idBoMon);
+
+            var checkmaHD = await _hoiDongTotNghiepRepository.CheckExitMaHD(maHoiDong, idhocky);
             if (checkmaHD)
                 return new ActionResultResponese<string>(-21, "Hội đồng đã tồn tại.", "Hội đồng.");
 
@@ -86,11 +99,12 @@ namespace WebSite.Core.Infrastructure.Services
             {
                 IdHoiDong = id?.Trim(),
                 IdBoMon = idBoMon?.Trim(),
-                MaHoiDong = hoidongMeta.MaHoiDong?.Trim(),
+                MaHoiDong = maHoiDong?.Trim(),
                 TenHoiDong = hoidongMeta.TenHoiDong?.Trim(),
                 IdHocKy = idhocky?.Trim(),
                 IdMonHoc = idmonhoc?.Trim(),
                 CreateTime = DateTime.Now,
+                DiaDiem = hoidongMeta.DiaDiem?.Trim(),
                 NgayBaoVe = hoidongMeta.NgayBaoVe,
                 LastUpdate = DateTime.Now,
                 CreatorUserId = creatorUserId?.Trim(),
@@ -111,14 +125,15 @@ namespace WebSite.Core.Infrastructure.Services
             if (info == null)
                 return new ActionResultResponese<string>(-14, "Hội đồng không tồn tại.", "Hội đồng.");
 
-            var isNameExit = await _hoiDongTotNghiepRepository.CheckExitMaHD(hoidongMeta.MaHoiDong?.Trim(), idhockky?.Trim());
-            if (isNameExit)
-                return new ActionResultResponese<string>(-4, "Mã hội đồng đã tồn tại.", "Hội đồng.");
+           // var isNameExit = await _hoiDongTotNghiepRepository.CheckExitMaHD(hoidongMeta.MaHoiDong?.Trim(), idhockky?.Trim());
+           // if (isNameExit)
+              //  return new ActionResultResponese<string>(-4, "Mã hội đồng đã tồn tại.", "Hội đồng.");
 
             info.IdHoiDong = idhoidong?.Trim();
             info.IdBoMon = idBoMon?.Trim();
-            info.MaHoiDong = hoidongMeta.MaHoiDong?.Trim();
+            //info.MaHoiDong = hoidongMeta.MaHoiDong?.Trim();
             info.TenHoiDong = hoidongMeta.TenHoiDong?.Trim();
+            info.DiaDiem = hoidongMeta.DiaDiem?.Trim();
             info.IdHocKy = idhockky?.Trim();
             info.IdMonHoc = idMonhoc?.Trim();
             info.NgayBaoVe = hoidongMeta.NgayBaoVe;
@@ -133,7 +148,6 @@ namespace WebSite.Core.Infrastructure.Services
             return new ActionResultResponese<string>(1, "Sửa thành công", "Hội đồng.");
         }
         
-
     }
 
 }

@@ -14,6 +14,7 @@ namespace WebSite.Core.Domain.ViewModel
         public string DonViThucTap { get; set; }
         public string LopHoc { get; set; }
         public string IdHocKy { get; set; }
+        public string TenChuyenNganh { get; set; }
         public DateTime? CreateTime { get; set; }
         public string CreatorUserId { get; set; }
         public string CreatorFullName { get; set; }

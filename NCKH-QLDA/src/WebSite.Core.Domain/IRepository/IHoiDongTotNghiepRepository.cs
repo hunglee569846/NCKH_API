@@ -11,6 +11,7 @@ namespace WebSite.Core.Domain.IRepository
     public interface IHoiDongTotNghiepRepository
     {
         Task<SearchResult<HoiDongTotNghiepViewModel>> SelectAll(string idhocky,string idbomon);
+        Task<SearchResult<HoiDongTotNghiepViewModel>> GetByMonHoc(string idhocky,string idMonHoc,string idbomon);
         Task<int> InsertAsync(HoiDongTotNghiep hoidong);
         Task<int> UpdateAsync(HoiDongTotNghiep hoidong);
         Task<int> DeleteAsync(string idhoidong);
@@ -18,5 +19,6 @@ namespace WebSite.Core.Domain.IRepository
         Task<bool> CheckExitMaHD(string maHoiDong, string idhocky);
         Task<bool> CheckExitIsActive(string idhoidong);
         Task<HoiDongTotNghiep> GetInfo(string idhoidongtotnghiep);
+        Task<string> GetCodeHoiDong(string maBoMon);
     }
 }

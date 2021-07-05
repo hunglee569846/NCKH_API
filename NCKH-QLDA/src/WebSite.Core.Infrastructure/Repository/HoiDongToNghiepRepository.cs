@@ -66,6 +66,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     param.Add("@TenHoiDong", hoiDongTotNghiep.TenHoiDong);
                     param.Add("@IdHocKy", hoiDongTotNghiep.IdHocKy);
                     param.Add("@IdMonHoc", hoiDongTotNghiep.IdMonHoc);
+                    param.Add("@DiaDiem", hoiDongTotNghiep.DiaDiem);
                     if (hoiDongTotNghiep.NgayBaoVe != null && hoiDongTotNghiep.NgayBaoVe != DateTime.MinValue)
                     {
                         param.Add("@NgayBaoVe", hoiDongTotNghiep.NgayBaoVe);
@@ -112,6 +113,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     param.Add("@TenHoiDong", hoiDongTotNghiep.TenHoiDong);
                     param.Add("@IdHocKy", hoiDongTotNghiep.IdHocKy);
                     param.Add("@IdMonHoc", hoiDongTotNghiep.IdMonHoc);
+                    param.Add("@DiaDiem", hoiDongTotNghiep.DiaDiem);
                     if (hoiDongTotNghiep.NgayBaoVe != null && hoiDongTotNghiep.NgayBaoVe != DateTime.MinValue)
                     {
                         param.Add("@NgayBaoVe", hoiDongTotNghiep.NgayBaoVe);
@@ -251,6 +253,57 @@ namespace WebSite.Core.Infrastructure.Repository
             {
                 // _logger.LogError(ex, "CheckExistActiveAsync HocKyRepository Error.");
                 return false;
+            }
+        }
+
+        public async Task<string> GetCodeHoiDong(string maBoMon)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(_ConnectionString))
+                {
+                    if (con.State == ConnectionState.Closed)
+                        await con.OpenAsync();
+
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@MaBoMon", maBoMon);
+                    return await con.ExecuteScalarAsync<string>("[dbo].[spHoiDong_Code]", param, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception ex)
+            {
+                //_logger.LogError(ex, "GetCode ServiceRepository Error.");
+                return string.Empty;
+            }
+        }
+
+        public async Task<SearchResult<HoiDongTotNghiepViewModel>> GetByMonHoc(string idhocky, string idMonHoc, string idbomon)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_ConnectionString))
+                {
+                    if (conn.State == ConnectionState.Closed)
+                        await conn.OpenAsync();
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@IdHocKy", idhocky);
+                    param.Add("@IdBoMon", idbomon);
+                    param.Add("@IdMonHoc", idMonHoc);
+
+                    using (var multi = await conn.QueryMultipleAsync("[dbo].[spHoiDongToNghiep_SrcMonHoc]", param, commandType: CommandType.StoredProcedure))
+                    {
+                        return new SearchResult<HoiDongTotNghiepViewModel>
+                        {
+                            TotalRows = (await multi.ReadAsync<int>()).SingleOrDefault(),
+                            Data = (await multi.ReadAsync<HoiDongTotNghiepViewModel>()).ToList()
+                        };
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                // _logger.LogError(ex, "[dbo].[spHoiDongToNghiep_searchByHK] SearchAsync HoiDongToNghiepRepository Error.");
+                return new SearchResult<HoiDongTotNghiepViewModel> { TotalRows = 0, Data = null };
             }
         }
     }

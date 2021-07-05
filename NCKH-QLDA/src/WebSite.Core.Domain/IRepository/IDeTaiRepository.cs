@@ -26,5 +26,6 @@ namespace WebSite.Core.Domain.IRepository
         Task<bool> CheckExitsActive(string idhocky, string idmonhoc); //kiem tra tồn tại của mon hoc trong hoc kỳ
         Task<bool> CheckExitsKyHoc(string idhocky); //kiem tra tồn tại của mon hoc trong hoc kỳ
         Task<bool> CheckExitsSinhVien(string idhocky,string idmonhoc,string idsinhvien); //kiem tra tồn tại của sinh vien trong hoc ky mon hoc
+        Task<bool> CheckDeTaiVsMonHoc(string idhocky,string idmonhoc,string idDeTai, string idBoMon); //Kiem tra đề tài trong mon hoc cung de tai khác môn học
     }
 }

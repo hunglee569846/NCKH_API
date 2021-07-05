@@ -38,6 +38,14 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
+        [SwaggerOperation(Summary = "Danh sach hội đồng theo môn học của hoc kỳ.", Description = "Requires login verification!", OperationId = "GetHoiDongTotNghiepByMonHocAsync", Tags = new[] { "HoiDongTotNghiep" })]
+        [AcceptVerbs("GET"), Route("GetAllHoiDong/{idhocky}/{idmonhoc}")]
+        public async Task<IActionResult> GetByMonHoc(string idhocky,string idmonhoc)
+        {
+            var result = await _hoiDongTotNghiepService.GetByIdMonHoc(idhocky, idmonhoc, CurrentUser.IdBoMon);
+            return Ok(result);
+        }
+
         [SwaggerOperation(Summary = "Thêm mới một hội đồng.", Description = "Requires login verification!", OperationId = "InsertHoiDong", Tags = new[] { "HoiDongTotNghiep" })]
         [AcceptVerbs("POST"), Route("InsertHoiDong/{idhocky}/{idmonhoc}")]
         public async Task<IActionResult> InsertAsync([FromBody]HoiDongTotNghiepMeta hoidongMeta, string idhocky, string idmonhoc)

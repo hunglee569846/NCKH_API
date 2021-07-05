@@ -546,5 +546,29 @@ namespace WebSite.Core.Infrastructure.Repository
                 return new SearchResult<DeTaiPhanBienViewModel> { TotalRows = 0, Data = null };
             }
         }
+
+        public async Task<bool> CheckDeTaiVsMonHoc(string idhocky, string idmonhoc, string idDeTai , string idBoMon)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(_connectionString))
+                {
+                    if (con.State == ConnectionState.Closed)
+                        await con.OpenAsync();
+
+                    var sql = @"
+					SELECT IIF(EXISTS(SELECT 1 FROM dbo.DeTais WHERE IdBoMon = @idBoMon AND IdDeTai = @idDeTai 
+                    AND IdMonHoc = @idmonhoc AND IdHocKy = @idhocky AND IsActive = 1 AND IsDelete = 0 ),1,0)";
+
+                    var result = await con.ExecuteScalarAsync<bool>(sql, new { IdBoMon = @idBoMon, IdDeTai = @idDeTai, IdMonHoc = @idmonhoc, IdHocKy = idhocky });
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                // _logger.LogError(ex, "CheckMaDeTai DetaiRepository Error.");
+                return false;
+            }
+        }
     }
 }

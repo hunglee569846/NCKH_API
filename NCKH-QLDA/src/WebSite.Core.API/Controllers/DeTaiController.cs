@@ -94,11 +94,11 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [AcceptVerbs("POST"), Route("InsertDeTai/{madetai}/{idhocky}/{idmonhoc}/{idsinhvien}")]
+        [AcceptVerbs("POST"), Route("InsertDeTai/{idhocky}/{idmonhoc}/{idsinhvien}")]
         [SwaggerOperation(Summary = "Thêm mới đề tài.", Description = "Requires login verification!", OperationId = "InsertAsync", Tags = new[] { "DeTai" })]
-        public async Task<IActionResult> InsertAsync([FromBody] DeTaiInsertMeta detaiInsertMeta, string madetai, string idhocky, string idmonhoc, string idsinhvien)
+        public async Task<IActionResult> InsertAsync([FromBody] DeTaiInsertMeta detaiInsertMeta , string idhocky, string idmonhoc, string idsinhvien)
         {
-            var result = await _ideTaiService.InsertAsync(detaiInsertMeta, madetai, idhocky, idmonhoc, idsinhvien,CurrentUser.MaGiangVien,CurrentUser.FullName,CurrentUser.IdBoMon);
+            var result = await _ideTaiService.InsertAsync(detaiInsertMeta, idhocky, idmonhoc, idsinhvien,CurrentUser.MaGiangVien,CurrentUser.FullName,CurrentUser.IdBoMon);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Search DeTai controller error " + result.Code);

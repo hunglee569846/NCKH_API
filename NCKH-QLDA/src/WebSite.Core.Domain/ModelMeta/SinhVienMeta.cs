@@ -13,6 +13,8 @@ namespace WebSite.Core.Domain.ModelMeta
         public string DonViThucTap { get; set; }
         public string MaLopHoc { get; set; }
         public string LopHoc { get; set; }
+        public string MaChuyenNganh { get; set; }
+        public string TenChuyenNganh { get; set; }
         //public string IdHocKy { get; set; }
     }
 }

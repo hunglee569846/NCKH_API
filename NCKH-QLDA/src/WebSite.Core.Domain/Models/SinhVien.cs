@@ -16,6 +16,8 @@ namespace WebSite.Core.Domain.Models
         public string MaLopHoc { get; set; }
         public string LopHoc { get; set; }
         public string IdHocKy { get; set; }
+        public string MaChuyenNganh { get; set; }
+        public string TenChuyenNganh { get; set; }
         public bool? IsActive { get; set; }
         public bool? IsDelete { get; set; }
         public DateTime? CreateTime { get; set; }

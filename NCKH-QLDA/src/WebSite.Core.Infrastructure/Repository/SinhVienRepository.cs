@@ -124,6 +124,8 @@ namespace WebSite.Core.Infrastructure.Repository
                     param.Add("@MaLopHoc", sinhVien.MaLopHoc);
                     param.Add("@LopHoc", sinhVien.LopHoc);
                     param.Add("@IdHocKy", sinhVien.IdHocKy);
+                    param.Add("@TenChuyenNganh", sinhVien.TenChuyenNganh);
+                    param.Add("MaChuyenNganh", sinhVien.MaChuyenNganh);
                     if (sinhVien.CreateTime != null && sinhVien.CreateTime != DateTime.MinValue)
                     {
                         param.Add("@CreateTime", sinhVien.CreateTime);

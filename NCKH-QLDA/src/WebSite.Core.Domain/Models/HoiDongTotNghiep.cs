@@ -12,6 +12,7 @@ namespace WebSite.Core.Domain.Models
         public string TenHoiDong { get; set; }
         public string IdHocKy { get; set; }
         public string IdMonHoc { get; set; }
+        public string DiaDiem { get; set; }
         public DateTime? CreateTime { get; set; }
         public DateTime? LastUpdate { get; set; }
         public string CreatorUserId { get; set; }

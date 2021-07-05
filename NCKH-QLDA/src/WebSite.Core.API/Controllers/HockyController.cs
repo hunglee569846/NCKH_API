@@ -32,11 +32,11 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [AcceptVerbs("POST"), Route("InsertAsyncHocKy/{mahocky}/{tenhocky}")]
+        [AcceptVerbs("POST"), Route("InsertAsyncHocKy/{hocky}")]
         [SwaggerOperation(Summary = "Thêm mới học kỳ.", Description = "Requires login verification!", OperationId = "InsertAsyncHocKy", Tags = new[] { "Hocky" })]
-        public async Task<IActionResult> InsertAsync(string mahocky, string tenhocky, string namHoc)
+        public async Task<IActionResult> InsertAsync(int hocky)
         {
-            var result = await _ihockyService.InsertAsync(mahocky, tenhocky,namHoc, CurrentUser.IdBoMon,CurrentUser.FullName,CurrentUser.IdBoMon);
+            var result = await _ihockyService.InsertAsync(hocky, CurrentUser.IdBoMon,CurrentUser.FullName,CurrentUser.IdBoMon);
             if (result.Code <= 0)
             {
                 // _logger.LogError("Insert Hockys controller code: " + result.Code + " .Message: " + result.Message);

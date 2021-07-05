@@ -23,24 +23,26 @@ namespace WebSite.Core.Infrastructure.Services
         {
             return await _ihocKyRepository.SelectAll(IdBoMon);
         }
-        public async Task<ActionResultResponese<string>> InsertAsync(string mahocky, string tenhocky,string namHoc, string userId, string fullName,string idBoMon)
+        public async Task<ActionResultResponese<string>> InsertAsync(int hocky, string userId, string fullName,string idBoMon)
         {
             var idhocky = Guid.NewGuid().ToString();
-            var checExist = await _ihocKyRepository.CheckExistAsync(idhocky, mahocky);
-            if (checExist)
-                return new ActionResultResponese<string>(-2, "Mã học kỳ đã tồn tại", "Học Kỳ");
 
-            var checExistMaHocKy = await _ihocKyRepository.CheckExisMaHocKy(mahocky);
+            var nameHocKy = "Học kỳ " + hocky;
+            var namHoc1 = DateTime.Now.Year.ToString() + " - " + (DateTime.Now.AddYears(1)).Year.ToString();
+            var mahocky1 = "HK" + hocky.ToString() + DateTime.Now.Year.ToString() + (DateTime.Now.AddYears(1)).Year.ToString();
+            var checExistMaHocKy = await _ihocKyRepository.CheckExisMaHocKy(mahocky1);
             if (checExistMaHocKy)
-                return new ActionResultResponese<string>(-2, "Mã học kỳ đã tồn tại", "Học Kỳ");
-
+                return new ActionResultResponese<string>(-2, "Học kỳ đã tồn tại", "Học Kỳ");
+            //var checExist = await _ihocKyRepository.CheckExistAsync(idhocky, mahocky1);
+            //if (checExist)
+            //    return new ActionResultResponese<string>(-2, "Mã học kỳ đã tồn tại", "Học Kỳ");
             var hockynew = new HocKy()
             {
                 IdHocKy = idhocky?.Trim(),
                 IdBoMon = idBoMon?.Trim(),
-                MaHocKy = mahocky?.Trim(),
-                NamHoc = namHoc?.Trim(),
-                TenHocKy = tenhocky,
+                MaHocKy = mahocky1?.Trim(),
+                NamHoc = namHoc1?.Trim(),
+                TenHocKy = nameHocKy?.Trim(),
                 CreateTime = DateTime.Now,
                 CreatetorId = userId,
                 CreatorFullName = fullName
