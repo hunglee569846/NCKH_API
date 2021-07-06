@@ -44,11 +44,12 @@ namespace Core.Domain.IRepository
 
         //Task<int> Update_IsActiveAsync(UserAccount userAccount);
 
-        //Task<int> Update_PasswordAsync(UserAccount userAccount);
+        Task<int> Update_PasswordAsync(UserAccount userAccount);
 
         //Task<bool> CheckExisTenantIdAsync(string tenantId);
 
        Task<bool> CheckIsAdminAsync(string id);
+       Task<SearchResult<TaiKhoanViewModel>> GetTaiKhoanByBoMon(string idBoMon);
 
         //Task<int> SentEmailCodeAsync(UserAccount userAccount);
     } 

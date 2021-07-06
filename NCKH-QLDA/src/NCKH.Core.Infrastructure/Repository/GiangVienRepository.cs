@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using NCKH.Core.Domain.IRepository;
 using NCKH.Core.Domain.ViewModel;
+using NCKH.Infrastruture.Binding.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -73,7 +74,7 @@ namespace NCKH.Core.Infrastructure.Repository
 				return new List<GiangVienSearchViewModel>();
 			}
 		}
-		public async Task<ThongTinGiangVienViewModel> GetInfoAsync(string idgiangvien)
+		public async Task<SearchResult<ThongTinGiangVienViewModel>> GetInfoAsync(string idgiangvien)
 		{
 			try
 			{
@@ -84,12 +85,19 @@ namespace NCKH.Core.Infrastructure.Repository
 
 					DynamicParameters param = new DynamicParameters();
 					param.Add("@IdGiangVien", idgiangvien);
-					return await con.QuerySingleOrDefaultAsync<ThongTinGiangVienViewModel>("[dbo].[spThongTinGiangVien]", param, commandType: CommandType.StoredProcedure);
+					var results = await con.QueryAsync<ThongTinGiangVienViewModel>("[dbo].[spThongTinGiangVien]", param, commandType: CommandType.StoredProcedure);
+                    if (results == null)
+                    {
+						return new SearchResult<ThongTinGiangVienViewModel>() { Code = -1, Message = "Giảng viên không tồn tại.", Data = null };
+
+					}else
+						return new SearchResult<ThongTinGiangVienViewModel>() { Code = 1, Message = "Giảng viên", Data = results };
+
 				}
 			}
 			catch (Exception ex)
 			{
-				_logger.LogError(ex, "[dbo].[spThongTinGiangVien] GetInfoAsync GiangVienRepository Error.");
+				//_logger.LogError(ex, "[dbo].[spThongTinGiangVien] GetInfoAsync GiangVienRepository Error.");
 				return null;
 			}
 		}

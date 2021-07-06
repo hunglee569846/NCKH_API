@@ -13,11 +13,11 @@ namespace WebSite.Core.Domain.IRepository
         Task<int> InsertAsync(SinhVien sinhvien);
         Task<SearchResult<SinhVienSearchViewModel>> SelectAllByHocKyAsync(string idhocky,string idbomon);
         //Task<SearchResult<GiangVienHuongDanViewModel>> SelectByIdHocKyAsync(string idhocky);
-        Task<SinhVienSearchViewModel> GetInfo(string idsinhvien);
+        Task<SinhVien> GetInfo(string idsinhvien);
         Task<SearchResult<SinhVienSearchViewModel>> SearchById(string idsinhvien);
         //Task<GVHDTheoKy> GetInfoByMaGVHD(string idhocky, string maGVHD);
         //Task<int> InsertAsync(GVHDTheoKy gvhdky);
-        //Task<int> UpdatetAsync(GVHDTheoKy gvhdky);
+        Task<int> UpdateAsync(SinhVien sinhVien);
         //Task<int> DeleteByIdAsync(string idgvhdTheoky, string deleteUserId, string deleteFullName, DateTime? ngayxoa);
         Task<bool> CheckExits(string idhocky,string masinhvien); //kiem tra sinh vien trong ky
        // Task<bool> CheckExitsActive(string idhocky, string idGVHD); //kiem tra tồn tại của GVHD trong hoc kỳ không có 2 GV giống nhau

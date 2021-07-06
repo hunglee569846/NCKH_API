@@ -49,7 +49,7 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
 
-        public async Task<SinhVienSearchViewModel> GetInfo(string idsinhvien)
+        public async Task<SinhVien> GetInfo(string idsinhvien)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     DynamicParameters para = new DynamicParameters();
                     para.Add("@IdSinhVien", idsinhvien);
 
-                    return await conn.QuerySingleOrDefaultAsync<SinhVienSearchViewModel>("[dbo].[spSinhVien_ByIdSinhVien]", para, commandType: CommandType.StoredProcedure);
+                    return await conn.QuerySingleOrDefaultAsync<SinhVien>("[dbo].[spSinhVien_ByIdSinhVien]", para, commandType: CommandType.StoredProcedure);
 
                 }
             }
@@ -238,5 +238,59 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
 
+        public async Task<int> UpdateAsync(SinhVien sinhVien)
+        {
+            try
+            {
+                int rowAffected = 0;
+                using (SqlConnection con = new SqlConnection(_connectionString))
+                {
+                    if (con.State == ConnectionState.Closed)
+                        await con.OpenAsync();
+
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@IdSinhVien", sinhVien.IdSinhVien);
+                    param.Add("@IdBoMon", sinhVien.IdBoMon);
+                    param.Add("@MaSinhVien", sinhVien.MaSinhVien);
+                    param.Add("@TenSinhVien", sinhVien.TenSinhVien);
+                    param.Add("@Email", sinhVien.Email);
+                    param.Add("@DienThoai", sinhVien.DienThoai);
+                    param.Add("@DonViThucTap", sinhVien.DonViThucTap);
+                    param.Add("@MaLopHoc", sinhVien.MaLopHoc);
+                    param.Add("@LopHoc", sinhVien.LopHoc);
+                    param.Add("@IdHocKy", sinhVien.IdHocKy);
+                    param.Add("@TenChuyenNganh", sinhVien.TenChuyenNganh);
+                    if (sinhVien.CreateTime != null && sinhVien.CreateTime != DateTime.MinValue)
+                    {
+                        param.Add("@CreateTime", sinhVien.CreateTime);
+                    }
+                    param.Add("@CreatorUserId", sinhVien.CreatorUserId);
+                    param.Add("@CreatorFullName", sinhVien.CreatorFullName);
+                    if (sinhVien.LastUpdate != null && sinhVien.LastUpdate != DateTime.MinValue)
+                    {
+                        param.Add("@LastUpdate", sinhVien.LastUpdate);
+                    }
+                    param.Add("@LastUpdateUserId", sinhVien.LastUpdateUserId);
+                    param.Add("@LastUpdateFullName", sinhVien.LastUpdateFullName);
+                    if (sinhVien.DeleteTime != null && sinhVien.DeleteTime != DateTime.MinValue)
+                    {
+                        param.Add("@DeleteTime", sinhVien.DeleteTime);
+                    }
+                    param.Add("@DeleteUserId", sinhVien.DeleteUserId);
+                    param.Add("@DeleteFullName", sinhVien.DeleteFullName);
+                    param.Add("@IsActive", sinhVien.IsActive);
+                    param.Add("@IsDelete", sinhVien.IsDelete);
+                    rowAffected = await con.ExecuteAsync("[dbo].[spSinhVien_Update]", param, commandType: CommandType.StoredProcedure);
+                }
+                return rowAffected;
+            }
+            catch (Exception ex)
+            {
+               // _logger.LogError(ex, "[dbo].[spSinhVien_Update] UpdateAsync SinhVienRepository Error.");
+                return -1;
+            }
+        }
+
+       
     }
 }

@@ -131,5 +131,24 @@ namespace WebSite.Core.Infrastructure.Services
         {
             return await _sinhVienRepository.SelectAllByHocKyAsync(idhocky,idbomon);
         }
+
+        public async Task<ActionResultResponese<string>> UpdateAsync(string lastUpdateUserId, string lastUpdateFullName ,string idbomon, string idSinhVien, SinhVienMeta sinhVienMeta)
+        {
+            var info = await _sinhVienRepository.GetInfo(idSinhVien);
+            if (info == null)
+                return new ActionResultResponese<string>(-1, "Sinh viên không tồn tại","Sinh viên");
+            info.IdBoMon = idbomon?.Trim();
+            info.DonViThucTap = sinhVienMeta.DonViThucTap?.Trim();
+            info.LastUpdate = DateTime.Now;
+            info.LastUpdateUserId = lastUpdateUserId;
+            info.LastUpdateFullName = lastUpdateFullName;
+
+            var result = await _sinhVienRepository.UpdateAsync(info);
+
+            if (result <= 0)
+                return new ActionResultResponese<string>(result, "Cập nhật thất bại","sinh viên");
+
+            return new ActionResultResponese<string>(result,"Cập nhật thành công", "sinh viên");
+        }
     }
 }

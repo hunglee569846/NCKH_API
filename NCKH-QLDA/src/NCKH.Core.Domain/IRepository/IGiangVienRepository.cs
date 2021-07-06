@@ -1,4 +1,5 @@
 ﻿using NCKH.Core.Domain.ViewModel;
+using NCKH.Infrastruture.Binding.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,7 +15,7 @@ namespace NCKH.Core.Domain.IRepository
 		//Task<int> UpdateAsync(GiangVien giangVien);
 		//Task<int> DeleteAsync(GiangVien giangVien);
 		//Task<int> ForceDeleteAsync(string id);
-		Task<ThongTinGiangVienViewModel> GetInfoAsync(string id);
+		Task<SearchResult<ThongTinGiangVienViewModel>> GetInfoAsync(string idgiangvien);
 		//Task<GiangVien> GetInfoAsync(string id);
 		//Task<bool> CheckExistsAsync(string id);
 		//Task<bool> CheckExistsNameAsync(string id, string name);

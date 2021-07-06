@@ -383,7 +383,7 @@ namespace WebSite.Core.Infrastructure.Services
             if (dem > 0)
                 return new ActionResultResponese<string>(-11, "Có " + dem + " đề tài không cập nhật được điểm, vui lòng kiểm tra lại.");
             else if (dem == detailist.Count())
-                return new ActionResultResponese<string>(-13, "Lỗi hệ thống không thể cập nhật điểm, liên hệ quản trị viên ");
+                return new ActionResultResponese<string>(-13, "Lỗi hệ thống không thể cập nhật điểm, liên hệ quản trị viên");
             else if(detailist.Count() - dem == 0)
                 return new ActionResultResponese<string>(1, "Cập nhật điểm các đề tài thành công","điểm đề tài");
             return new ActionResultResponese<string>(1, "Cập nhật điểm các đề tài thành công", "điểm đề tài");

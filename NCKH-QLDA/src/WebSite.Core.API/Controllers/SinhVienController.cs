@@ -88,5 +88,18 @@ namespace WebSite.Core.API.Controllers
             }
             return Ok(result);
         }
+
+        [SwaggerOperation(Summary = "Cập nhật đơn vị thực tập.", Description = "Requires login verification!", OperationId = "UpdateDonViAsync", Tags = new[] { "SinhVien" })]
+        [AcceptVerbs("PUT"), Route("DonViThucTap/{idSinhVien}")]
+        public async Task<IActionResult> UpdateDonViTT([FromBody] SinhVienMeta sinhvien, string idSinhVien)
+        {
+            var result = await _SinhViencService.UpdateAsync(CurrentUser.MaGiangVien,CurrentUser.FullName,CurrentUser.IdBoMon,idSinhVien, sinhvien);
+            if (result.Code <= 0)
+            {
+                //_logger.LogError("InsertListAsync SinhVien controller error " + result.Code);
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
     }
 }

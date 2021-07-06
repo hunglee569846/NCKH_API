@@ -6,6 +6,7 @@ namespace NCKH.Core.Domain.ViewModel
 {
     public class ThongTinGiangVienViewModel
     {
+		public string Id { get; set; }
 		public string IdThongTinChung { get; set; }
 		public string MaNhomChuyenNganh { get; set; }
 		public string TenNhomChuyenNganh { get; set; }

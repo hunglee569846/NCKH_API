@@ -48,6 +48,33 @@ namespace Core.API.Controllers
         //    return Ok(result);
         //}
 
-        
+        [SwaggerOperation(Summary = "Lưu thông tin tài khoản", Description = "Requires login verification!", OperationId = "ChangePassword", Tags = new[] { "UserAccount" })]
+        [Route("change-password"), AcceptVerbs("PUT")]
+        public async Task<IActionResult> UpdatePasswordAsync([FromBody] UpdatePasswordMeta updatePasswordMeta)
+        {
+            var result = await _userAccountService.UpdatePasswordAsync(CurrentUser.IdAcount,CurrentUser.MaGiangVien, CurrentUser.FullName, updatePasswordMeta);
+            if (result.Code < 0)
+            {
+                //_logger.LogError("Change Password userAccount controller code: " + result.Code + " .Message: " + result.Message);
+                return BadRequest(result);
+            }
+
+            return Ok(result);
+        }
+
+        [SwaggerOperation(Summary = "Danh sach tai khoan theo bộ môn", Description = "Requires login verification!", OperationId = "ListAccountByBoMon", Tags = new[] { "UserAccount" })]
+        [Route("GetListAccount/{idBoMon}"), AcceptVerbs("GET")]
+        public async Task<IActionResult> GetAccountByBoMon(string idBoMon)
+        {
+            var result = await _userAccountService.GetTaiKhoanByBoMon(idBoMon);
+            if (result.Code < 0)
+            {
+                //_logger.LogError("Change Password userAccount controller code: " + result.Code + " .Message: " + result.Message);
+                return BadRequest(result);
+            }
+
+            return Ok(result);
+        }
+
     }
 }

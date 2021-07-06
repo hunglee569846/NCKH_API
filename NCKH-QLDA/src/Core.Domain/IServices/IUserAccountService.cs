@@ -23,7 +23,9 @@ namespace Core.Domain.IServices
         //Task<ActionResultResponese> UpdateIsActiveAsync(string tenantId, string lastUpdateUserId, string lastUpdateFullName, string lastUpdateAvatar, string userName, UserType type, bool isActive);
         int UpdateAccessFailCount(string idKhoa, string userName, UserType type, int failCount, bool lockoutOnFailure = false);
         
-        //Task<ActionResultResponese> ResetPasswordAsync(string tenantId, string lastUpdateUserId, string lastUpdateFullName, string lastUpdateAvatar, string userName, UserType type, string pwd);
+        Task<ActionResultResponese> ResetPasswordAsync(string tenantId, string lastUpdateUserId, string lastUpdateFullName, string lastUpdateAvatar, string userName, UserType type, string pwd);
+        Task<ActionResultResponese> UpdatePasswordAsync(string userId, string lastUpdateUserId, string lastUpdateFullName, UpdatePasswordMeta updatePasswordMeta);
+        Task<SearchResult<TaiKhoanViewModel>> GetTaiKhoanByBoMon(string idBoMon);
         //Task<List<UserAccountViewModel>> GetShortUserInfoByListUserId(string tenantId, List<string> userIds);
         //Task<ActionResultResponese<string>> CheckExitUserNameAsync(string domain, string userName, UserType type);
         //Task<ActionResultResponese> SentEmailCodeAsync(string domain, string userName, UserType type);
