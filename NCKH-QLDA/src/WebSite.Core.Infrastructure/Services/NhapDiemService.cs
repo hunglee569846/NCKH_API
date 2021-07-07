@@ -104,7 +104,7 @@ namespace WebSite.Core.Infrastructure.Services
             foreach (var item in phanbien)
             {
                 var info = await _phanBienRepository.GetInfoAsync(item.IdPhanBien?.Trim());
-                if (info == null || item.Diem < 0 || item.Diem > 10 || info.IdBoMon?.Trim() == idBoMon?.Trim())
+                if (info == null || item.Diem < 0 || item.Diem > 10 || info.IdBoMon?.Trim() != idBoMon?.Trim())
                 {
                     dem++;
                     diemPhanBienFail.Add(new XuatDiemPhanBienViewModel()
@@ -178,12 +178,12 @@ namespace WebSite.Core.Infrastructure.Services
                             string diemSo = worsheet.Cells[i, 2].Value.ToString();
                             string nhanXet = worsheet.Cells[i, 3].Value == null ? "" : worsheet.Cells[i, 3].Value.ToString();
                             float diemtvHD = float.Parse(diemSo);
-                            string maHoiDong = worsheet.Cells[i, 4].Value == null ? "" : worsheet.Cells[i, 10].Value.ToString();
+                            string maHoiDong = worsheet.Cells[i, 4].Value == null ? "" : worsheet.Cells[i, 4].Value.ToString();
                             string tenHoiDong = worsheet.Cells[i, 5].Value.ToString();
                             string maGVHD = worsheet.Cells[i, 6].Value.ToString();
-                            string tenGVHD = worsheet.Cells[i, 7].Value == null ? "" : worsheet.Cells[i, 10].Value.ToString();
+                            string tenGVHD = worsheet.Cells[i, 7].Value == null ? "" : worsheet.Cells[i, 7].Value.ToString();
                             string maDeTai = worsheet.Cells[i, 8].Value.ToString();
-                            string tenDeTai = worsheet.Cells[i, 9].Value == null ? "" : worsheet.Cells[i, 10].Value.ToString();
+                            string tenDeTai = worsheet.Cells[i, 9].Value == null ? "" : worsheet.Cells[i, 9].Value.ToString();
                             string maSinhVien = worsheet.Cells[i, 10].Value?.ToString();
                             string TenSinhVien = worsheet.Cells[i, 11].Value == null ? "" : worsheet.Cells[i, 11].Value.ToString();
                             XuatDiemHoiDongViewModel _hoidong = new XuatDiemHoiDongViewModel()
@@ -214,7 +214,7 @@ namespace WebSite.Core.Infrastructure.Services
                 foreach (var item in hoidong)
                 {
                     var info = await _bangdiemRepository.GetInfo(item.IdBangDiem?.Trim());
-                    if (info == null || item.DiemSo < 0 || item.DiemSo > 10 || info.IdBoMon?.Trim() == idBoMon?.Trim())
+                    if (info == null || item.DiemSo < 0 || item.DiemSo > 10 || info.IdBoMon?.Trim() != idBoMon?.Trim())
                     {
                         dem++;
                         listUpdateFail.Add(new XuatDiemHoiDongViewModel()

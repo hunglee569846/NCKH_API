@@ -15,6 +15,7 @@ namespace WebSite.Core.Domain.IRepository
         Task<int> DeleteAsync(string idchitietdetai);
         Task<bool> CheckExits(string iddetai);
         Task<bool> CheckExitsDuplicate(string iddetai,string idGVHD);
+        Task<List<ChiTietDeTaiViewModel>> GetCheckGVHDnotPB(string iddetai);
         //đề tài và chi tiết đề tài
         Task<SearchResult<DeTaivsCTDTViewModel>> SearchByIdDetai(string iddetai);
         //số lượng GV đã hd đề tài

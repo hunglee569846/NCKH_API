@@ -25,7 +25,7 @@ namespace WebSite.Core.Infrastructure.Repository
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection())
+                using (SqlConnection conn = new SqlConnection(_ConnectionString))
                 {
                     if (conn.State == ConnectionState.Closed)
                         await conn.OpenAsync();
@@ -233,6 +233,30 @@ namespace WebSite.Core.Infrastructure.Repository
             {
                 //_logger.LogError(ex, "[dbo].[spPhanBien_DeleteAsync] PhanBienRepository Error.");
                 return -1;
+            }
+        }
+
+        public async Task<List<ChiTietDeTaiViewModel>> GetCheckGVHDnotPB(string iddetai)
+        {
+            try
+            {
+                
+                using (SqlConnection conn = new SqlConnection(_ConnectionString))
+                {
+                    if (conn.State == ConnectionState.Closed)
+                        await conn.OpenAsync();
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@IdDeTai", iddetai);
+
+                    var rowAffect = await conn.QueryAsync<ChiTietDeTaiViewModel>("[dbo].[spChiTietDeTai_GetList]", param, commandType: CommandType.StoredProcedure);
+                    return rowAffect.ToList();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                //_logger.LogError(ex, "[dbo].[spPhanBien_DeleteAsync] PhanBienRepository Error.");
+                return null;
             }
         }
     }

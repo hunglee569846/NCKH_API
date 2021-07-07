@@ -70,5 +70,18 @@ namespace WebSite.Core.API.Controllers
             }
             return Ok(result);
         }
+
+        [AcceptVerbs("PUT"), Route("LockData/{idHocKy}/{islock}")]
+        [SwaggerOperation(Summary = "Khóa dữ liệu học kỳ.", Description = "Requires login verification!", OperationId = "LockData", Tags = new[] { "Hocky" })]
+        public async Task<IActionResult> LockData(string idHocKy, bool islock) //[FromBody]HocKyMeta hockymeta
+        {
+            var result = await _ihockyService.LockData(idHocKy, islock, CurrentUser.IdBoMon);
+            if (result.Code <= 0)
+            {
+                // _logger.LogError("Insert Hockys controller code: " + result.Code + " .Message: " + result.Message);
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
     }
 }

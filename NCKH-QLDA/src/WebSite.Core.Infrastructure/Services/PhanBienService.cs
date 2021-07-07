@@ -21,17 +21,20 @@ namespace WebSite.Core.Infrastructure.Services
         private readonly IGiangVienHuongDanRepository _giangVienHuongDanRepository;
         private readonly IDeTaiRepository _deTaiRepository;
         private readonly IMonHocRepository _monhocRepository;
+        private readonly IChiTietDeTaiRepository _chiTietDeTaiRepository;
         public PhanBienService(IPhanBienRepository phanbienRepository,
                                IHocKysRepository hocKysRepository,
                                IGiangVienHuongDanRepository giangVienHuongDanRepository,
                                IDeTaiRepository deTaiRepository,
-                               IMonHocRepository monhocRepository)
+                               IMonHocRepository monhocRepository,
+                               IChiTietDeTaiRepository chiTietDeTaiRepository)
         {
             _phanbienRepository = phanbienRepository;
             _hocKysRepository = hocKysRepository;
             _giangVienHuongDanRepository = giangVienHuongDanRepository;
             _deTaiRepository = deTaiRepository;
             _monhocRepository = monhocRepository;
+            _chiTietDeTaiRepository = chiTietDeTaiRepository;
         }
         public async Task<SearchResult<PhanBienSearchViewModel>> GetAllByIdHK(string idhocky,string idBoMon)
         {
@@ -219,6 +222,11 @@ namespace WebSite.Core.Infrastructure.Services
 
             foreach (var idDeTai in listDeTai)
             {
+                List<ChiTietDeTaiViewModel> listCTDT = await _chiTietDeTaiRepository.GetCheckGVHDnotPB(idDeTai.IdDeTai?.Trim());
+
+                bool check = listCTDT.Any(item => item.IdGVHD?.Trim() == idGiangVien?.Trim());
+                if (check)
+                    continue;
                 //int count = 0;
                 var checkPhanBien = await _phanbienRepository.CheckExisPhanBien(idGiangVien, idDeTai.IdDeTai, idhocky, idmonhoc);
                 if (checkPhanBien)
@@ -246,7 +254,7 @@ namespace WebSite.Core.Infrastructure.Services
                 });
             }
             if (listPhanBien.Count() == 0 && listDeTai.Count() !=0)
-                return new ActionResultResponese<string>(-45, "Xảy ra lỗi vui lòng liên hệ quản trị viên.");
+                return new ActionResultResponese<string>(-45, "Giảng viên đã được phân phản biện hoặc không được phép phản biện đề tài đã hướng dẫn.");
             else if (listPhanBien.Count() == 0 && listDeTai.Count() == 0)
                 return new ActionResultResponese<string>(-46, "Vui lòng chọn đề tài");
 

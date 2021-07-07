@@ -14,6 +14,7 @@ namespace WebSite.Core.Domain.IServices
         Task<SearchResult<HocKySearchViewModel>> GetAll(string IdBoMon);
         Task<ActionResultResponese<string>> InsertAsync(int hocky, string userId, string fullName, string idBoMon);
         Task<ActionResultResponese<string>> DeleteAsync(string idhocky);
+        Task<ActionResultResponese<string>> LockData(string idhocky, bool isLockData,string idbomon);
         Task<ActionResultResponese<string>> UpDateAsync(string idhocky, string mahocky, string tenhocky,string namHoc, string userId, string fullName,string idbomon);
     }
 }

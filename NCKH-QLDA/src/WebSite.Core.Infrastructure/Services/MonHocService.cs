@@ -27,6 +27,9 @@ namespace WebSite.Core.Infrastructure.Services
 
         public async Task<SearchResult<MonHocSearchViewModel>> GetAllAsyncByIdHocKy(string idhocky,string idbomon)
         {
+            var infoHocKy = await _ihocKyscRepository.SearchInfo(idhocky);
+            if(infoHocKy.IsLockData)
+                return new SearchResult<MonHocSearchViewModel> { TotalRows = 0, Data = null, Code = -1, Message = "Dữ liệu học kỳ đã khóa vui lòng liên hệ quản trị viên." };
             var result = await _ihocKyscRepository.CheckExisIsActivetAsync(idhocky);
             if(result == false)
                 return new SearchResult<MonHocSearchViewModel> { TotalRows = 0, Data = null,Code = -1 ,Message="Học kỳ không tồn tại."};
@@ -35,8 +38,8 @@ namespace WebSite.Core.Infrastructure.Services
         //Khoi tao mon hoc tien quyet
         public async Task<ActionResultResponese<string>> InsertAsync(MonHocMeta monHocMeta, string idhocky,TypeDataApprover typeApprover, string creatorUserId, string creatorFullName,string mamonhoc,string tenmonhoc,string idbomon)
         {
-            var checkLockDataHK = await _ihocKyscRepository.CheckExisIsActivetAsync(idhocky);
-            if (!checkLockDataHK)
+            var infoHocKy = await _ihocKyscRepository.SearchInfo(idhocky);
+            if (infoHocKy.IsLockData)
                 return new ActionResultResponese<string>(-99, "Dữ liệu đã khóa.", "Học kỳ");
             var checExits = await _ihocKyscRepository.CheckExisIsActivetAsync(idhocky);
             if (!checExits)

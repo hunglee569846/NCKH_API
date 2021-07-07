@@ -93,7 +93,28 @@ namespace WebSite.Core.Infrastructure.Services
                 return new ActionResultResponese<string>(result, "Xóa không thành công", "Học kỳ");
             return new ActionResultResponese<string>(result, "Xóa thành công", "Học kỳ");
 
-        } 
+        }
 
+        public async Task<ActionResultResponese<string>> LockData(string idhocky, bool isLockData,string idbomon)
+        {
+            var infoHocKy = await _ihocKyRepository.SearchInfo(idhocky);
+
+            if (infoHocKy == null)
+                return new ActionResultResponese<string>(-51, "Học kỳ khồn tồn tại", "Học kỳ");
+            if (infoHocKy.IdBoMon != idbomon?.Trim())
+                return new ActionResultResponese<string>(-51, "Bạn không có quyền khóa dữ liệu bộ môn này", "Học kỳ");
+
+            infoHocKy.IsLockData = isLockData;
+            infoHocKy.IdBoMon = idbomon?.Trim();
+
+            var result = await _ihocKyRepository.UpdateAsync(infoHocKy);
+            if (result > 0 && isLockData == true)
+                return new ActionResultResponese<string>(result, "Khóa dữ liệu thành công", "Học kỳ");
+            if (result > 0 && isLockData == false)
+                return new ActionResultResponese<string>(result, "Mở khóa dữ liệu thành công", "Học kỳ");
+
+            return new ActionResultResponese<string>(result, "Khóa dữ liệu không thành công", "Học kỳ");
+                    
+        }
     }
 }

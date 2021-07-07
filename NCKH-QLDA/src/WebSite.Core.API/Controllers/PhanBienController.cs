@@ -120,7 +120,7 @@ namespace WebSite.Core.API.Controllers
         }
 
         [SwaggerOperation(Summary = "Vao điểm phản biện bằng file excel", Description = "Requires login verification!", OperationId = "UpdateDiemFileExcel", Tags = new[] { "PhanBien" })]
-        [AcceptVerbs("POST"), Route("PhanBiem/{idfile}")]
+        [AcceptVerbs("POST"), Route("PhanBien/{idfile}")]
         public async Task<IActionResult> UpdateDiemFileExcel(string idfile)
         {
             var result = await _nhapdiemService.InsertListExcelAsync(idfile,CurrentUser.IdBoMon,CurrentUser.MaGiangVien,CurrentUser.FullName);

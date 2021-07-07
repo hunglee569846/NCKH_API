@@ -16,6 +16,7 @@ namespace WebSite.Core.Domain.IRepository
         Task<int> InsertAsync(HocKy hocky);
         Task<int> DeleteAsync(string idhocky);
         Task<int> UpdateAsync(HocKy hocKy);
+       // Task<int> LockData(HocKy hocKy);
         //Task<int> UpdateAsync(string idhocky, string mahocky, string tenhocky, DateTime? LastUpdate, string userId, string fullName);
         Task<bool> CheckExistAsync(string idHocKy,string maHocky);
         Task<bool> CheckExisIsActivetAsync(string idHocKy);
