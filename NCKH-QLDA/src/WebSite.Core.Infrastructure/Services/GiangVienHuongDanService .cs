@@ -135,29 +135,36 @@ namespace WebSite.Core.Infrastructure.Services
 			return new ActionResultResponese<string>(1, "Thêm mới danh sách giảng viên thành công.", "Giảng viên.");
 
 		}
-		public async Task<ActionResultResponese<string>> UpdateAsync(GVHDupdateMeta gvhdkyUpdateMeta, string idGVHD, string idGvhdTheoKy, TypeGVHD tygvhd,string CreatorUserId,string creatorFullName, string idbomon)
+		public async Task<ActionResultResponese<string>> UpdateAsync(GVHDupdateMeta gvhdkyUpdateMeta, string idGvhdTheoKy, TypeGVHD tygvhd,string CreatorUserId,string creatorFullName, string idbomon)
         {
-			var checkGVHDTheoKy = await _giangVienHuongDanRepository.CheckExits(idGvhdTheoKy);
-			if (!checkGVHDTheoKy)
-				return new ActionResultResponese<string>(-6, "Bản ghi không tồn tại.", "Giang viên hướng dẫn theo kỳ.");
-			var checkExitsGVHD = await _giangVienHuongDanRepository.CheckExitsGVHD(idGVHD);
-			if (!checkExitsGVHD)
-				return new ActionResultResponese<string>(-10, "Giảng viên không tồn tại.", "Giang vien hướng dẫn theo kỳ.");
-			var gvhdky = new GVHDTheoKy()
-			{
-				IdGVHDTheoKy = idGvhdTheoKy?.Trim(),
-				IdBoMon = idbomon?.Trim(),
-				IdGVHD = idGVHD?.Trim(),
-				DonViCongTac = gvhdkyUpdateMeta.DonViCongTac?.Trim(),
-				Email = gvhdkyUpdateMeta.Email?.Trim(),
-				DienThoai = gvhdkyUpdateMeta.DienThoai?.Trim(),
-				Type = tygvhd,
-				lastUpdateUserId = CreatorUserId?.Trim(),
-				LastUpdateFullName = creatorFullName?.Trim()
-			};
-			if (gvhdky == null)
-				return new ActionResultResponese<string>(-12, "Dữ liệu trống.", "Giảng viên hướng dẫn theo kỳ.");
-			var result = await _giangVienHuongDanRepository.UpdatetAsync(gvhdky);
+			//var checkGVHDTheoKy = await _giangVienHuongDanRepository.CheckExits(idGvhdTheoKy);
+			//if (!checkGVHDTheoKy)
+			//	return new ActionResultResponese<string>(-6, "Bản ghi không tồn tại.", "Giang viên hướng dẫn theo kỳ.");
+
+			var infoGiangVien = await _giangVienHuongDanRepository.GetInfo(idGvhdTheoKy);
+			if (infoGiangVien == null)
+				return new ActionResultResponese<string>(-6, "Giảng viên không tồn tại", "Giảng viên hướng dẫn");
+			
+			if (infoGiangVien.IdBoMon != idbomon?.Trim())
+				return new ActionResultResponese<string>(-6, "Bạn không có quyền sửa giảng viên này", "Giảng viên hướng dẫn");
+
+			//var checkExitsGVHD = await _giangVienHuongDanRepository.CheckExitsGVHD(idGVHD);
+			//if (!checkExitsGVHD)
+			//	return new ActionResultResponese<string>(-10, "Giảng viên không tồn tại.", "Giang vien hướng dẫn theo kỳ.");
+
+			infoGiangVien.IdGVHDTheoKy = idGvhdTheoKy?.Trim();
+			infoGiangVien.DonViCongTac = gvhdkyUpdateMeta.DonViCongTac?.Trim();
+			infoGiangVien.TenGVHD = gvhdkyUpdateMeta.TenGVHD?.Trim();
+			infoGiangVien.Email = gvhdkyUpdateMeta.Email?.Trim();
+			infoGiangVien.DienThoai = gvhdkyUpdateMeta.DienThoai?.Trim();
+			infoGiangVien.lastUpdateUserId = CreatorUserId?.Trim();
+			infoGiangVien.LastUpdateFullName = creatorFullName?.Trim();
+			infoGiangVien.LastUpdate = DateTime.Now;
+			infoGiangVien.Type = tygvhd;
+			
+			//if (infoGiangVien == null)
+			//	return new ActionResultResponese<string>(-12, "Dữ liệu trống.", "Giảng viên hướng dẫn theo kỳ.");
+			var result = await _giangVienHuongDanRepository.UpdatetAsync(infoGiangVien);
 			if (result <= 0)
 				return new ActionResultResponese<string>(result, "Sửa thất bại.", "Giảng viên hướng dẫn theo kỳ.");
 			return new ActionResultResponese<string>(result, "Sửa thành công.", "Giảng viên hướng dẫn theo kỳ.");

@@ -156,6 +156,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     DynamicParameters para = new DynamicParameters();
                     para.Add("@IdGVHDTheoKy", giangvienhuongdan.IdGVHDTheoKy);
                     para.Add("@DonViCongTac", giangvienhuongdan.DonViCongTac);
+                    para.Add("@TenGVHD", giangvienhuongdan.TenGVHD);
                     para.Add("@Email", giangvienhuongdan.Email);
                     para.Add("@DienThoai", giangvienhuongdan.DienThoai);
                     para.Add("@Type", giangvienhuongdan.Type);

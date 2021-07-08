@@ -66,11 +66,11 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [AcceptVerbs("PUT"), Route("UpDate/{idGVHD}/{idGvhdTheoKy}/{tygvhd}")]
+        [AcceptVerbs("PUT"), Route("UpDate /{idGvhdTheoKy}/{tygvhd}")]
         [SwaggerOperation(Summary = "Sửa thông tin giảng viên.", Description = "Requires login verification!", OperationId = "UpdateGiangVienHuongDanTheoKy", Tags = new[] { "GiangVienHuongDan" })]
-        public async Task<IActionResult> UpdateAsync([FromBody] GVHDupdateMeta gvhdkyUpdateMeta, string idGVHD, string idGvhdTheoKy, TypeGVHD tygvhd)
+        public async Task<IActionResult> UpdateAsync([FromBody] GVHDupdateMeta gvhdkyUpdateMeta, string idGvhdTheoKy, TypeGVHD tygvhd)
         {
-            var result = await _iGiangVienHuongDanService.UpdateAsync(gvhdkyUpdateMeta, idGVHD, idGvhdTheoKy, tygvhd,CurrentUser.MaGiangVien,CurrentUser.FullName, CurrentUser.IdBoMon);
+            var result = await _iGiangVienHuongDanService.UpdateAsync(gvhdkyUpdateMeta, idGvhdTheoKy, tygvhd,CurrentUser.MaGiangVien,CurrentUser.FullName, CurrentUser.IdBoMon);
             if (result.Code <= 0)
             {
                 //  _logger.LogError("Update GiangVienHuongDan controller code: " + result.Code + " .Message: " + result.Message);
