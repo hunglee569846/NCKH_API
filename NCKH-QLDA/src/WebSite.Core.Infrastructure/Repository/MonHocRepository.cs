@@ -102,7 +102,7 @@ namespace WebSite.Core.Infrastructure.Repository
 
         }
 
-       public async Task<bool> CheckExits(string idmonhoc, string mamonhoc)
+       public async Task<bool> CheckExits(string IdHocKy, string MaMonHoc)
         {
             try
             {
@@ -112,9 +112,9 @@ namespace WebSite.Core.Infrastructure.Repository
                         await con.OpenAsync();
 
                     var sql = @"
-					SELECT IIF (EXISTS (SELECT 1 FROM dbo.MonHocs WHERE IdMonHoc = @idmonhoc AND MaMonHoc = @mamonhoc AND IsActive = 1 AND IsDelete = 0), 1, 0)";
+					SELECT IIF (EXISTS (SELECT 1 FROM dbo.MonHocs WHERE IdHocKy = @IdHocKy AND MaMonHoc = @MaMonHoc AND IsActive = 1 AND IsDelete = 0), 1, 0)";
 
-                    var result = await con.ExecuteScalarAsync<bool>(sql, new { IdMonHoc = idmonhoc, MaMonHoc = mamonhoc });
+                    var result = await con.ExecuteScalarAsync<bool>(sql, new { IdHocKy = IdHocKy, MaMonHoc = MaMonHoc });
                     return result;
                 }
             }

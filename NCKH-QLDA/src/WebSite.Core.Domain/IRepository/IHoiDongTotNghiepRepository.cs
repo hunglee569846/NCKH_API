@@ -20,5 +20,10 @@ namespace WebSite.Core.Domain.IRepository
         Task<bool> CheckExitIsActive(string idhoidong);
         Task<HoiDongTotNghiep> GetInfo(string idhoidongtotnghiep);
         Task<string> GetCodeHoiDong(string maBoMon);
+
+        ///Search Hoi Dong ngay bao ve tu ngay - den ngay
+
+        Task<SearchResult<HoiDongSearchViewModel>> SearchHoiDongNgayBaoVe(string idBoMon, DateTime? ngayBatDau, DateTime? ngayKetThuc);
+
     }
 }

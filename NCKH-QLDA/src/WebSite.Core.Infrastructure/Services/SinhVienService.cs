@@ -150,5 +150,25 @@ namespace WebSite.Core.Infrastructure.Services
 
             return new ActionResultResponese<string>(result,"Cập nhật thành công", "sinh viên");
         }
+
+        public async Task<ActionResultResponese<string>> UpdateDonViThucTap(List<UpDateDonViTTMeta> donViThucTapMeta, string LastUpdateUserId, string LastUpDateFullName)
+        {
+            int dem = 0;
+            foreach (var item in donViThucTapMeta)
+            {
+                var infoSinhVien = await _sinhVienRepository.GetInfo(item.IdSinnhVien?.Trim());
+                if(infoSinhVien == null)
+                    return new ActionResultResponese<string>(-3, "Thông tin sinh viên không tồn tại", "sinh viên");
+
+                infoSinhVien.DonViThucTap = item.DonViThucTap?.Trim();
+
+                var result = await _sinhVienRepository.UpdateAsync(infoSinhVien);
+                if (result >= 0)
+                    dem++;
+            }
+            if (dem <= 0)
+                return new ActionResultResponese<string>(-4, "Cập nhật đơn vị thực tập không thành công", "sinh viên");
+            return new ActionResultResponese<string>(1, "cập nhâp thành công đơn vị thực tập " + dem +" sinh viên", "sinh viên");
+        }
     }
 }

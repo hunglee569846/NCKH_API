@@ -15,7 +15,7 @@ namespace WebSite.Core.Domain.IRepository
         Task<int> InsertAsync(MonHoc monhoc);
         Task<int> UpdateAsync(MonHoc monhoc);
         Task<int> DeleteAsync(MonHoc monhoc);
-        Task<bool> CheckExits(string idmonhoc, string mamonhoc);
+        Task<bool> CheckExits(string idHocKy, string maMonHoc);
         Task<bool> CheckMonHocInHocKyExits(string idmonhoc, string idhocky);
         Task<bool> CheckExitsIsActvive(string idmonhoc);
         Task<bool> CheckExitsMaMonHoc(string mamonhoc);

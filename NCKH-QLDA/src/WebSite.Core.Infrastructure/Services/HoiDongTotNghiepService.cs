@@ -147,7 +147,12 @@ namespace WebSite.Core.Infrastructure.Services
                 return new ActionResultResponese<string>(-17, "Sửa thất bại.", "Hội đồng.");
             return new ActionResultResponese<string>(1, "Sửa thành công", "Hội đồng.");
         }
-        
+        public async Task<SearchResult<HoiDongSearchViewModel>> SearchHoiDongNgayBaoVe(string idBoMon, DateTime? ngayBatDau, DateTime? ngayKetThuc)
+        {
+            return await _hoiDongTotNghiepRepository.SearchHoiDongNgayBaoVe(idBoMon, ngayBatDau, ngayKetThuc);
+        }
+
     }
+
 
 }

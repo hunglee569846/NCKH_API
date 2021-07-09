@@ -36,7 +36,7 @@ namespace WebSite.Core.API.Controllers
         [SwaggerOperation(Summary = "Thêm mới học kỳ.", Description = "Requires login verification!", OperationId = "InsertAsyncHocKy", Tags = new[] { "Hocky" })]
         public async Task<IActionResult> InsertAsync(int hocky)
         {
-            var result = await _ihockyService.InsertAsync(hocky, CurrentUser.IdBoMon,CurrentUser.FullName,CurrentUser.IdBoMon);
+            var result = await _ihockyService.InsertAsync(hocky, CurrentUser.MaGiangVien,CurrentUser.FullName,CurrentUser.IdBoMon);
             if (result.Code <= 0)
             {
                 // _logger.LogError("Insert Hockys controller code: " + result.Code + " .Message: " + result.Message);

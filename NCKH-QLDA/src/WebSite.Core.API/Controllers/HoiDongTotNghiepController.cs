@@ -70,11 +70,11 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [SwaggerOperation(Summary = "Vào điểm hội đồng bằng file excel", Description = "Requires login verification!", OperationId = "UpdateDiemFileExcel", Tags = new[] { "HoiDongTotNghiep" })]
-        [AcceptVerbs("POST"), Route("DiemHoiDong/{idfile}/{idmonhoc}")]
-        public async Task<IActionResult> UpdateDiemFileExcel(string idfile,string idmonhoc)
+        [SwaggerOperation(Summary = "Search Hội đồng theo ngày bảo vệ tu ngay den ngay", Description = "Requires login verification!", OperationId = "SearchHoiDong", Tags = new[] { "HoiDongTotNghiep" })]
+        [AcceptVerbs("GET"), Route("SearchHoiDong/{NgayBatDau}/{NgayKetThuc}")]
+        public async Task<IActionResult> SearchHoiDong(DateTime NgayBatDau,DateTime NgayKetThuc)
         {
-            var result = await _nhapdiemService.InsertDiemHoiDongExcelAsync(idfile, idmonhoc, CurrentUser.IdBoMon, CurrentUser.MaGiangVien, CurrentUser.FullName);
+            var result = await _hoiDongTotNghiepService.SearchHoiDongNgayBaoVe(CurrentUser.IdBoMon,NgayBatDau,NgayKetThuc);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Search PhanBien controller error " + result.Code);

@@ -7,7 +7,7 @@ namespace WebSite.Core.Domain.ModelMeta
 {
     public class GiangVienHDMeta
     {
-        public string IdGVHD { get; set; }
+        //public string IdGVHD { get; set; }
         public string MaGVHD { get; set; }
         public string TenGVHD { get; set; }
         public string DonViCongTac { get; set; }

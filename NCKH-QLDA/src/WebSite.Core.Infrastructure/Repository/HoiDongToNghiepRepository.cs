@@ -306,5 +306,51 @@ namespace WebSite.Core.Infrastructure.Repository
                 return new SearchResult<HoiDongTotNghiepViewModel> { TotalRows = 0, Data = null };
             }
         }
+
+        public async Task<SearchResult<HoiDongSearchViewModel>> SearchHoiDongNgayBaoVe(string idBoMon, DateTime? ngayBatDau, DateTime? ngayKetThuc)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_ConnectionString))
+                {
+                    if (conn.State == ConnectionState.Closed)
+                        await conn.OpenAsync();
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@NgayBatDau", ngayBatDau);
+                    param.Add("@NgayKetThuc", ngayKetThuc);
+                    param.Add("@IdBomMon", idBoMon);
+
+                    using (var multi = await conn.QueryMultipleAsync("[dbo].[spHoiDong_SearchNgayBaoVe]", param, commandType: CommandType.StoredProcedure))
+                    {
+                        var TotalRows = (await multi.ReadAsync<int>()).SingleOrDefault();
+                        var listHoiDong = (await multi.ReadAsync<HoiDongSearchViewModel>()).ToList();
+                        var listThanhVien = (await multi.ReadAsync<ChiTietThanhVienHDViewModel>()).ToList();
+                        if(listHoiDong == null)
+                        {
+                            return new SearchResult<HoiDongSearchViewModel>() { Code = -1,Data = null };
+                        }
+                        else
+                        {
+                            listHoiDong.ForEach(x =>
+                            {
+                                x.ThanhVienHD = listThanhVien.Where(tv => tv.IdHoiDong == x.IdHoiDong).ToList();
+                            });
+
+                            return new SearchResult<HoiDongSearchViewModel>
+                            {
+                                TotalRows = TotalRows,
+                                Data = listHoiDong
+                            };
+                        }
+                       
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                // _logger.LogError(ex, "[dbo].[spHoiDong_SearchNgayBaoVe] SearchAsync HoiDongToNghiepRepository Error.");
+                return new SearchResult<HoiDongSearchViewModel> { TotalRows = 0, Data = null };
+            }
+        }
     }
 }

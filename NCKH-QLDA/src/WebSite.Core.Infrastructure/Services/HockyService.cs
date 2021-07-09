@@ -44,7 +44,7 @@ namespace WebSite.Core.Infrastructure.Services
                 NamHoc = namHoc1?.Trim(),
                 TenHocKy = nameHocKy?.Trim(),
                 CreateTime = DateTime.Now,
-                CreatetorId = userId,
+                CreatetorId = userId?.Trim(),
                 CreatorFullName = fullName
             };
             if (hockynew == null)

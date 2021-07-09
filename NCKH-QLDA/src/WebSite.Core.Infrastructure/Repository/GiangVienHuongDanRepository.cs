@@ -294,5 +294,28 @@ namespace WebSite.Core.Infrastructure.Repository
                 return null;
             }
         }
+
+        public async Task<List<ThongKeGiangVienViewModel>> ThongKeGiangVien(string idHocKy, string idBoMon)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    if (conn.State == ConnectionState.Closed)
+                        await conn.OpenAsync();
+                    DynamicParameters para = new DynamicParameters();
+                    para.Add("@IdHocKy", idHocKy);
+                    para.Add("@IdBoMon", idBoMon);
+
+                    var result = await conn.QueryAsync<ThongKeGiangVienViewModel>("[dbo].[spGiangVienHuongDan_GetInfoByHK]", para, commandType: CommandType.StoredProcedure);
+                    return result.ToList();
+                }
+            }
+            catch (Exception)
+            {
+                //_logger.LogError(ex, "[dbo].[spGiangVienHuongDan_GetInfoByHK] DeleteAsync GiangVienHuongDanRepository Error.");
+                return null;
+            }
+        }
     }
 }

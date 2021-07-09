@@ -57,7 +57,7 @@ namespace WebSite.Core.Infrastructure.Services
 			{
 				IdGVHDTheoKy = id.Trim(),
 				IdBoMon = idbomon?.Trim(),
-				IdGVHD = gvhdkyMeta.IdGVHD?.Trim(),
+				IdGVHD = Guid.NewGuid().ToString(),
 				MaGVHD = gvhdkyMeta.MaGVHD?.Trim(),
 				TenGVHD = gvhdkyMeta.TenGVHD?.Trim(),
 				IdHocKy = idhocky?.Trim(),
@@ -182,5 +182,7 @@ namespace WebSite.Core.Infrastructure.Services
 				return new ActionResultResponese<string>(result, "Xóa thất bại.", "Giang viên hướng dẫn theo kỳ.");
 			return new ActionResultResponese<string>(result, "Xóa thành công.", "Giang viên hướng dẫn theo kỳ.");
 		}
+
+		
 	}
 }
