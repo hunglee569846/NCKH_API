@@ -134,7 +134,7 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
 
-        public async Task<bool> CheckExisMaHocKy(string mahocky)
+        public async Task<bool> CheckExisMaHocKy(string mahocky,string idbomon)
         {
             try
             {
@@ -144,7 +144,7 @@ namespace WebSite.Core.Infrastructure.Repository
                         await con.OpenAsync();
 
                     var sql = @"
-					SELECT IIF (EXISTS (SELECT 1 FROM dbo.HocKys WHERE MaHocKy = @mahocky AND IsActive = 1 AND IsDelete = 0), 1, 0)";
+					SELECT IIF (EXISTS (SELECT 1 FROM dbo.HocKys WHERE MaHocKy = @mahocky AND IdBoMon = @IdBoMon AND IsActive = 1 AND IsDelete = 0), 1, 0)";
 
                     var result = await con.ExecuteScalarAsync<bool>(sql, new {MaHocKy = mahocky });
                     return result;

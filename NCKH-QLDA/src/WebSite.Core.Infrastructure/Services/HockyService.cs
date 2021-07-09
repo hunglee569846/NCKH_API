@@ -30,7 +30,7 @@ namespace WebSite.Core.Infrastructure.Services
             var nameHocKy = "Học kỳ " + hocky;
             var namHoc1 = DateTime.Now.Year.ToString() + " - " + (DateTime.Now.AddYears(1)).Year.ToString();
             var mahocky1 = "HK" + hocky.ToString() + DateTime.Now.Year.ToString() + (DateTime.Now.AddYears(1)).Year.ToString();
-            var checExistMaHocKy = await _ihocKyRepository.CheckExisMaHocKy(mahocky1);
+            var checExistMaHocKy = await _ihocKyRepository.CheckExisMaHocKy(mahocky1,idBoMon);
             if (checExistMaHocKy)
                 return new ActionResultResponese<string>(-2, "Học kỳ đã tồn tại", "Học Kỳ");
             //var checExist = await _ihocKyRepository.CheckExistAsync(idhocky, mahocky1);
@@ -61,7 +61,7 @@ namespace WebSite.Core.Infrastructure.Services
             var checkLockDataHK = await _ihocKyRepository.CheckExisIsActivetAsync(idhocky);
             if (!checkLockDataHK)
                 return new ActionResultResponese<string>(-99, "Dữ liệu đã khóa.", "Học kỳ");
-            var checkMaHK = await _ihocKyRepository.CheckExisMaHocKy(mahocky);
+            var checkMaHK = await _ihocKyRepository.CheckExisMaHocKy(mahocky,idbomon);
             if (checkMaHK)
                 return new ActionResultResponese<string>(-98, "Mã học kỳ đã tồn tại.", "Học kỳ");
             var info = await _ihocKyRepository.SearchInfo(idhocky);

@@ -21,6 +21,6 @@ namespace WebSite.Core.Domain.IRepository
         Task<bool> CheckExistAsync(string idHocKy,string maHocky);
         Task<bool> CheckExisIsActivetAsync(string idHocKy);
         Task<bool> CheckLockDataAsync(string idHocKy);
-        Task<bool> CheckExisMaHocKy(string mahocky);
+        Task<bool> CheckExisMaHocKy(string mahocky, string idbomon);
     }
 }
