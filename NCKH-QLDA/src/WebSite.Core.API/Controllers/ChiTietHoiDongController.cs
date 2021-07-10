@@ -64,11 +64,11 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [AcceptVerbs("DELETE"), Route("DeleteChiTietHoiDong/{idhoidong}")]
+        [AcceptVerbs("DELETE"), Route("DeleteChiTietHoiDong/{idchitietHD}")]
         [SwaggerOperation(Summary = "xóa thành viên hội đồng.", Description = "Requires login verification!", OperationId = "DeleteChiTietHoiDong", Tags = new[] { "ChiTietHoiDong" })]
-        public async Task<IActionResult> DeleteChiTietHoiDongAsync(string idhoidong)
+        public async Task<IActionResult> DeleteChiTietHoiDongAsync(string idchitietHD)
         {
-            var result = await _ChitietHoiDongService.DeleteAsync(idhoidong);
+            var result = await _ChitietHoiDongService.DeleteAsync(idchitietHD);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Search DeTai controller error " + result.Code);
