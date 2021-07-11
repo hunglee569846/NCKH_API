@@ -21,12 +21,15 @@ namespace WebSite.Core.Infrastructure.Services
         private readonly IFileRepository _fileRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IFolderRepository _folderRepository;
-        public FileService(IFileRepository fileRepository, IFolderRepository folderRepository, IWebHostEnvironment WebHostEnvironment)
+        private readonly IGiangVienHuongDanRepository _giangVienHuongDanRepository;
+        public FileService(IFileRepository fileRepository, IFolderRepository folderRepository, IWebHostEnvironment WebHostEnvironment, IGiangVienHuongDanRepository giangVienHuongDanRepository)
         {
             _fileRepository = fileRepository;
             _folderRepository = folderRepository;
+            _giangVienHuongDanRepository = giangVienHuongDanRepository;
             _webHostEnvironment = WebHostEnvironment;
         }
+
         public async Task<SearchResult<FileViewModel>> SearchAsync(string IdFile)
         {
             return await _fileRepository.SearchAsync(IdFile);
@@ -152,6 +155,15 @@ namespace WebSite.Core.Infrastructure.Services
                 return new ActionResultResponese<string>(-5, "Tải thất bại","file.");
 
             return new ActionResultResponese<string>(1, "Tải xuống thành công.", info.Id, mapPath);
+        }
+
+        public async Task<Stream> GioGiangDayExcel(string idhocky, string idBoMon)
+        {
+            List<ThongKeGiangVienViewModel> thongkegiangvien = await _giangVienHuongDanRepository.ThongKeGiangVien(idhocky,idBoMon);
+            var createEx = new CreateExcelExtensions();
+            var stream = createEx.CreateExcel(thongkegiangvien, "ThoiGianGiangDay");
+            return stream;
+
         }
     }
 }

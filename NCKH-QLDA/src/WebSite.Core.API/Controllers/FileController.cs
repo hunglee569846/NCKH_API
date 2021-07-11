@@ -20,12 +20,15 @@ namespace WebSite.Core.API.Controllers
     {
         private readonly IFileService _fileService;
         private readonly IBangDiemService _bangdiemService;
+        private readonly IGiangVienHuongDanService _giangVienHuongDanService;
         //private readonly IFileService _fileService;
         public FileController(IFileService fileservice,
-                              IBangDiemService bangdiemService)
+                              IBangDiemService bangdiemService,
+                              IGiangVienHuongDanService giangVienHuongDanService)
         {
             _fileService = fileservice;
             _bangdiemService = bangdiemService;
+            _giangVienHuongDanService = giangVienHuongDanService;
         }
         [Route("SearchID/IdPath/FolderName/{IdFile}"), AcceptVerbs("GET")]
         [SwaggerOperation(Summary = "Xem thông tin file.", Description = "Requires login verification!", OperationId = "SearchById", Tags = new[] { "File" })]
@@ -118,6 +121,19 @@ namespace WebSite.Core.API.Controllers
 
             buffer.Position = 0;
             return File(buffer, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "ExcelDiemHoiDong.xlsx");
+
+        }
+
+        [SwaggerOperation(Summary = "Giờ giảng dạy của giảng viên", Description = "Requires login verification!", OperationId = "downloadThongKeGVHD", Tags = new[] { "File" })]
+        [Route("downloadsGioGiangDay/{idhocky}"), AcceptVerbs("GET")]
+        public async Task<IActionResult> GioGiangDayAsync(string idhocky)
+        {
+            var stream = await _fileService.GioGiangDayExcel(idhocky, CurrentUser.IdBoMon);
+
+            var buffer = stream as MemoryStream;
+
+            buffer.Position = 0;
+            return File(buffer, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "ExcelGioGiangDay.xlsx");
 
         }
     }

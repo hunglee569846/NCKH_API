@@ -3,6 +3,7 @@ using NCKH.Infrastruture.Binding.Models;
 using NCKH.Infrastruture.Binding.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using WebSite.Core.Domain.ViewModel;
@@ -20,5 +21,8 @@ namespace WebSite.Core.Domain.IServices
         //Task<ActionResultReponese<FileDetailViewModel>> GetDetailAsync(string tenantId, string userId, string id);
         Task<List<FileViewModel>> GetsAll(string IdBoMon, int FolderId);
         Task<ActionResultResponese<string>> DownloadAsync(string id);
+
+        //Xuat thong ke giang vien
+        Task<Stream> GioGiangDayExcel(string idhocky, string idBoMonc);
     }
 }

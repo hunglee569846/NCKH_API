@@ -21,7 +21,7 @@ namespace WebSite.Core.Domain.IServices
         //Xuat diem phan bien dowload Excel
         Task<Stream> XuatBangDiemExcel(string idhocky, string idmonhoc,string idBoMon);
         //Xuat diem Hoi Dong dowload Excel
-        Task<Stream> XuatHoiDongExcel(string idhocky, string idmonho, string idBoMonc);
+        Task<Stream> XuatHoiDongExcel(string idhocky, string idmonhoc, string idBoMonc);
         //Xuat diem hoi dong
         Task<SearchResult<XuatDiemHoiDongViewModel>> XuatDiemHoiDong(string idhocky, string idmonhoc, string idBoMon);
     }

@@ -307,7 +307,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     para.Add("@IdHocKy", idHocKy);
                     para.Add("@IdBoMon", idBoMon);
 
-                    var result = await conn.QueryAsync<ThongKeGiangVienViewModel>("[dbo].[spGiangVienHuongDan_GetInfoByHK]", para, commandType: CommandType.StoredProcedure);
+                    var result = await conn.QueryAsync<ThongKeGiangVienViewModel>("[dbo].[spThongKe_GiangVien]", para, commandType: CommandType.StoredProcedure);
                     return result.ToList();
                 }
             }
