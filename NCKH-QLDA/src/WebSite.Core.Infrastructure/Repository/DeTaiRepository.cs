@@ -423,7 +423,7 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
 
-        public async Task<int> DeleteAsync(string iddetai)
+        public async Task<int> DeleteAsync(string iddetai, string deleteUserId,string deleteFullName,DateTime deteteTime)
         {
             try
             {
@@ -433,10 +433,10 @@ namespace WebSite.Core.Infrastructure.Repository
                     if (conn.State == ConnectionState.Closed)
                         await conn.OpenAsync();
                     DynamicParameters para = new DynamicParameters();
-                    para.Add("@IdDeTai", iddetai);
-                    para.Add("@DeleteUserId", iddetai);
-                    para.Add("@DeleteFullName", iddetai);
-                    para.Add("@DeteteTime", iddetai);
+                    para.Add("@IdDeTai", iddetai?.Trim());
+                    para.Add("@DeleteUserId", deleteUserId?.Trim());
+                    para.Add("@DeleteFullName", deleteFullName?.Trim());
+                    para.Add("@DeteteTime", deteteTime);
                     rowAffect = await conn.ExecuteAsync("[dbo].[spDeTai_DeleteAsync]", para, commandType: CommandType.StoredProcedure);
                     return rowAffect;
                 }

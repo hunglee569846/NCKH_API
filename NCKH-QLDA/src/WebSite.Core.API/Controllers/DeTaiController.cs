@@ -151,7 +151,7 @@ namespace WebSite.Core.API.Controllers
         [SwaggerOperation(Summary = "Xóa đề tài.", Description = "Requires login verification!", OperationId = "DeleteAsync", Tags = new[] { "DeTai" })]
         public async Task<IActionResult> DeleteAsync(string iddetai)
         {
-            var result = await _ideTaiService.DeleteAsync(iddetai);
+            var result = await _ideTaiService.DeleteAsync(iddetai,CurrentUser.MaGiangVien,CurrentUser.FullName);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Search DeTai controller error " + result.Code);

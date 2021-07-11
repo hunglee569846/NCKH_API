@@ -105,7 +105,7 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
 
-        public async Task<bool> CheckExits(string idchitiethoidong)
+        public async Task<bool> CheckExits(string IdChiTietHD)
         {
             try
             {
@@ -115,13 +115,13 @@ namespace WebSite.Core.Infrastructure.Repository
                         await con.OpenAsync();
 
                     var sql = @"
-					SELECT IIF (EXISTS (SELECT 1 FROM dbo.ChiTietHoiDongs WHERE IdChiTietHD = @idchitiethoidong AND IsActive = 1 AND IsDelete = 0), 1, 0)";
+					SELECT IIF (EXISTS (SELECT 1 FROM dbo.ChiTietHoiDongs WHERE IdChiTietHD = @IdChiTietHD AND IsActive = 1 AND IsDelete = 0), 1, 0)";
 
-                    var result = await con.ExecuteScalarAsync<bool>(sql, new { IdChiTietHD = idchitiethoidong });
+                    var result = await con.ExecuteScalarAsync<bool>(sql, new { IdChiTietHD = IdChiTietHD });
                     return result;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 //_logger.LogError(ex, "CheckMaDeTai DetaiRepository Error.");
                 return false;

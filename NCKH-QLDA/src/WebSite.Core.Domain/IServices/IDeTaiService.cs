@@ -19,7 +19,7 @@ namespace WebSite.Core.Domain.IServices
         Task<ActionResultResponese<string>> UpdateDiemSxAsync(string iddetai, float? diem, string LastUpdateUserId, string LastUpdateFullName, string idBoMon);
         // hien thi nhung de tai duoc phe duyet hoac chua phe duyet
         Task<SearchResult<DeTaivsCTDTViewModel>> SelectByIdCTDTAsync(string idhocky, bool isApprove);
-        Task<ActionResultResponese<string>> DeleteAsync(string iddetai);
+        Task<ActionResultResponese<string>> DeleteAsync(string iddetai, string deleteUserId, string deleteFullName);
         Task<ActionResultResponese<string>> UpdateAproveAsync(string iddetai,bool isApprove);
     }
 }

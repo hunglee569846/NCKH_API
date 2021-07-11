@@ -146,7 +146,7 @@ namespace WebSite.Core.Infrastructure.Repository
                     var sql = @"
 					SELECT IIF (EXISTS (SELECT 1 FROM dbo.HocKys WHERE MaHocKy = @mahocky AND IdBoMon = @IdBoMon AND IsActive = 1 AND IsDelete = 0), 1, 0)";
 
-                    var result = await con.ExecuteScalarAsync<bool>(sql, new {MaHocKy = mahocky });
+                    var result = await con.ExecuteScalarAsync<bool>(sql, new {MaHocKy = mahocky , IdBoMon  = idbomon });
                     return result;
                 }
             }
