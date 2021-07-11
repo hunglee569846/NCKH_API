@@ -94,10 +94,10 @@ namespace WebSite.Core.API.Controllers
         }
 
         [SwaggerOperation(Summary = "Vào điểm phản biện", Description = "Requires login verification!", OperationId = "UpdateDiemAsync", Tags = new[] { "PhanBien" })]
-        [AcceptVerbs("PUT"), Route("UpdateDiemPhanBien/{idPhanBien}/{Diem}")]
-        public async Task<IActionResult> UpdateDiemAsync([FromBody] NoteMeta note, float Diem, string idPhanBien)
+        [AcceptVerbs("PUT"), Route("UpdateDiemPhanBien/{idPhanBien}")]
+        public async Task<IActionResult> UpdateDiemAsync([FromBody] NoteMeta note, string idPhanBien)
         {
-            var result = await _phanbiencService.UpdateDiemAsync(idPhanBien, Diem, note);
+            var result = await _phanbiencService.UpdateDiemAsync(idPhanBien, note);
             if (result.Code <= 0)
             {
                 //_logger.LogError("Search PhanBien controller error " + result.Code);

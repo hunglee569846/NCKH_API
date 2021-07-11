@@ -167,14 +167,14 @@ namespace WebSite.Core.Infrastructure.Services
             return new ActionResultResponese<string>(result, "Sửa thành công.", "Phản biện.");
         }
 
-        public async Task<ActionResultResponese<string>> UpdateDiemAsync(string idphanbien, float Diem, NoteMeta note)
+        public async Task<ActionResultResponese<string>> UpdateDiemAsync(string idphanbien, NoteMeta note)
         {
             var checExitsPB = await _phanbienRepository.CheckExis(idphanbien);
             if (!checExitsPB)
                 return new ActionResultResponese<string>(-11, "Phản biện không có trong kỳ.", "Học kỳ.");
-            if(10< Diem || Diem < 0)
+            if(10< note.Diem || note.Diem < 0)
                 return new ActionResultResponese<string>(-12, "Nhập sai!", "điểm phản biện.");
-            var result = await _phanbienRepository.UpdateDiem(note, Diem, idphanbien);
+            var result = await _phanbienRepository.UpdateDiem(note, idphanbien);
             if(result <=0 )
                 return new ActionResultResponese<string>(-1, "Nhập điểm thất bại.", "Phản biện.");
             return new ActionResultResponese<string>(1, "Nhập điểm thành công.", "Phản biện.");

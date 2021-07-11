@@ -7,5 +7,6 @@ namespace WebSite.Core.Domain.ModelMeta
     public class NoteMeta
     {
         public string Note { get; set; }
+        public float Diem { get; set; }
     }
 }

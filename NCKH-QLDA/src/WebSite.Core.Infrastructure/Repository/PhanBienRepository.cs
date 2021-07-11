@@ -226,7 +226,7 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
 
-        public async Task<int> UpdateDiem(NoteMeta note, float diem, string idPhanBien)
+        public async Task<int> UpdateDiem(NoteMeta note, string idPhanBien)
         {
             try
             {
@@ -237,7 +237,7 @@ namespace WebSite.Core.Infrastructure.Repository
                         await conn.OpenAsync();
                     DynamicParameters param = new DynamicParameters();
                     param.Add("@IdPhanBien", idPhanBien);
-                    param.Add("@Diem", diem);
+                    param.Add("@Diem", note.Diem);
                     param.Add("@Note", note.Note);
                     rowAffect = await conn.ExecuteAsync("[dbo].[spPhanBien_UpdateDiem]", param, commandType: CommandType.StoredProcedure);
                     return rowAffect;

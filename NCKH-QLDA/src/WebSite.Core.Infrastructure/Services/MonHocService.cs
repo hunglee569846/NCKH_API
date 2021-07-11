@@ -95,11 +95,12 @@ namespace WebSite.Core.Infrastructure.Services
 
             if (info.IdBoMon != idbomon)
                 return new ActionResultResponese<string>(-3, "Có lỗi xảy ra vui lòng liên hệ quản trị viên","Môn học");
-
-            var isNameExit = await _imonhocRepository.CheckExitsMaMonHoc(mamonhoc?.Trim());
-            if (isNameExit)
-                return new ActionResultResponese<string>(-4, "Mã môn học đã tồn tại.", "Môn học");
-
+            if(info.MaMonHoc != mamonhoc?.Trim())
+            {
+                var isNameExit = await _imonhocRepository.CheckExitsMaMonHoc(mamonhoc?.Trim());
+                if (isNameExit)
+                    return new ActionResultResponese<string>(-4, "Mã môn học đã tồn tại.", "Môn học");
+            }
 
             if (monhocmeta.IdMonTienQuyet != "0")
             {
