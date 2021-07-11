@@ -225,7 +225,7 @@ namespace WebSite.Core.Infrastructure.Services
             
         }
 
-        public async Task<ActionResultResponese<string>> DeleteAsync(string iddetai)
+        public async Task<ActionResultResponese<string>> DeleteAsync(string iddetai, string deleteUserId, string deleteFullName)
         {
             //var checExitDeTai = await _chiTietDeTaiRepository.CheckExits(iddetai);
             //if (!checExitDeTai)
@@ -233,7 +233,7 @@ namespace WebSite.Core.Infrastructure.Services
             var checkDeTai = await _deTaiRepository.CheckExits(iddetai);
             if (!checkDeTai)
                 return new ActionResultResponese<string>(-8, "Đề tài không tồn tại.", "Môn học.");
-            var result = await _deTaiRepository.DeleteAsync(iddetai);
+            var result = await _deTaiRepository.DeleteAsync(iddetai,deleteUserId,deleteFullName,DateTime.Now);
             if (result <= 0)
                 return new ActionResultResponese<string>(-9, "Xóa không thành công.", "Đề tài.");
             return new ActionResultResponese<string>(1, "Xóa thành công.", "Đề tài.");

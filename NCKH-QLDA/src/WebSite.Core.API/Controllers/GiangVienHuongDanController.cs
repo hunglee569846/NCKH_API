@@ -66,7 +66,7 @@ namespace WebSite.Core.API.Controllers
             return Ok(result);
         }
 
-        [AcceptVerbs("PUT"), Route("UpDate /{idGvhdTheoKy}/{tygvhd}")]
+        [AcceptVerbs("PUT"), Route("UpDate/{idGvhdTheoKy}/{tygvhd}")]
         [SwaggerOperation(Summary = "Sửa thông tin giảng viên.", Description = "Requires login verification!", OperationId = "UpdateGiangVienHuongDanTheoKy", Tags = new[] { "GiangVienHuongDan" })]
         public async Task<IActionResult> UpdateAsync([FromBody] GVHDupdateMeta gvhdkyUpdateMeta, string idGvhdTheoKy, TypeGVHD tygvhd)
         {

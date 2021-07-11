@@ -1,4 +1,5 @@
 ﻿using NCKH.Infrastruture.Binding.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebSite.Core.Domain.Models;
@@ -18,7 +19,7 @@ namespace WebSite.Core.Domain.IRepository
         Task<int> InsertAsync(DeTai detai);
         Task<int> UpdateAsync(DeTai detai);
         Task<int> UpdateApproveAsync(string iddetai,bool isApprove);
-        Task<int> DeleteAsync(string iddetai);
+        Task<int> DeleteAsync(string iddetai, string deleteUserId, string deleteFullName, DateTime deteteTime);
         Task<bool> CheckIsDat(string idmonhoc,string maSinhVien); //kiem tra ban ghi ton tai
         Task<bool> CheckExits(string iddetai); //kiem tra ban ghi ton tai
         Task<bool> CheckApprove(string iddetai); //kiem tra de tai duoc duyet

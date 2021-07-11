@@ -7,6 +7,7 @@ namespace WebSite.Core.Domain.ViewModel
 {
     public class GiangVienGetListViewModel
     {
+        public string IdChiTietHoiDong { get; set; }
         public string IdGVHDTheoKy { get; set; }
         public string IdGiangVien { get; set; }
         public string MaGVHD { get; set; }
