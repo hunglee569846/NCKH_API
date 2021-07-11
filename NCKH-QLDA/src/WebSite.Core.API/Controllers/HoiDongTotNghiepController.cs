@@ -82,6 +82,19 @@ namespace WebSite.Core.API.Controllers
             }
             return Ok(result);
         }
+
+        [SwaggerOperation(Summary = "Vào điểm hội đồng bằng file excel", Description = "Requires login verification!", OperationId = "UpdateDiemFileExcel", Tags = new[] { "HoiDongTotNghiep" })]
+        [AcceptVerbs("POST"), Route("DiemHoiDong/{idfile}/{idmonhoc}")]
+        public async Task<IActionResult> UpdateDiemFileExcel(string idfile, string idmonhoc)
+        {
+            var result = await _nhapdiemService.InsertDiemHoiDongExcelAsync(idfile, idmonhoc, CurrentUser.IdBoMon, CurrentUser.MaGiangVien, CurrentUser.FullName);
+            if (result.Code <= 0)
+            {
+                //_logger.LogError("Search PhanBien controller error " + result.Code);
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
     }
 }
 
