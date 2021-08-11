@@ -29,9 +29,5 @@
     <ProjectReference Include="..\WebSite.Core.Infrastructure\WebSite.Core.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="uploadsAPIQLDA\" />
-  </ItemGroup>
-
 
 </Project>

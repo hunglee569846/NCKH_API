@@ -114,5 +114,18 @@ namespace WebSite.Core.API.Controllers
             }
             return Ok(result);
         }
+
+        [SwaggerOperation(Summary = "Danh sách sinh viên từ file Excel.", Description = "Requires login verification!", OperationId = "listSinhVien", Tags = new[] { "SinhVien" })]
+        [AcceptVerbs("POST"), Route("InsertExcel/{idfile}/{idhocky}")]
+        public async Task<IActionResult> InsertlistFromExcel(string idfile, string idhocky)
+        {
+            var result = await _SinhViencService.InsertFromExcelAsync(idfile, idhocky, CurrentUser.MaGiangVien, CurrentUser.FullName, CurrentUser.IdBoMon);
+            if (result.Code <= 0)
+            {
+                //_logger.LogError("InsertListAsync SinhVien controller error " + result.Code);
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
     }
 }

@@ -21,5 +21,8 @@ namespace WebSite.Core.Domain.IServices
         //Task<ActionResultResponese<string>> InsertListGVHDAsync(List<GiangVienListMeta> gvhdlistMeta, string idhocky, string CreatorUserId, string CreatorFullName);
         //Task<ActionResultResponese<string>> UpdateAsync(GVHDupdateMeta gvhdkyUpdateMeta, string idGVHD, string idGvhdTheoKy, TypeGVHD tygvhd, string LastUpdateUserId, string LastUpdateFullName);
         //Task<ActionResultResponese<string>> DeleteAsync(string idgvhdTheoky, string deleteUserId, string deleteFullName);
+       
+        //Theem sinh viên file Excel
+        Task<ActionResultResponese<string>> InsertFromExcelAsync(string idfile, string idhocky, string creatorUserId, string creatorFullName, string idBoMon);
     }
 }
