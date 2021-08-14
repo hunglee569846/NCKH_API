@@ -2,6 +2,7 @@
 using NCKH.Infrastruture.Binding.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using WebSite.Core.Domain.ModelMeta;
@@ -24,5 +25,10 @@ namespace WebSite.Core.Domain.IServices
        
         //Theem sinh viên file Excel
         Task<ActionResultResponese<string>> InsertFromExcelAsync(string idfile, string idhocky, string creatorUserId, string creatorFullName, string idBoMon);
+
+        //Xuat sinh viên file Excel tao de tai
+
+        //Task<Stream> XuatSinhVienExcel(string idhocky, string idBoMon);
+
     }
 }

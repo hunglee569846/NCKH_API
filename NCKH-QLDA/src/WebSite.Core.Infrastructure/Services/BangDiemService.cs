@@ -26,6 +26,7 @@ namespace WebSite.Core.Infrastructure.Services
         private readonly IDeTaiRepository _detaiRepository;
         private readonly IHoiDongTotNghiepRepository _hoidongtotnghiepRepository;
         private readonly IChiTietHoiDongRepository _chitiethoidongRepository;
+        private readonly ISinhVienRepository _sinhVienRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
         public BangDiemService(IBangDiemRepository bangdiemRepository,
                                IHocKysRepository hockyRepository,
@@ -34,6 +35,7 @@ namespace WebSite.Core.Infrastructure.Services
                                IDeTaiRepository detaiRepository,
                                IHoiDongTotNghiepRepository hoidongtotnghiepRepository,
                                IChiTietHoiDongRepository chitiethoidongRepository,
+                               ISinhVienRepository sinhVienRepository,
                                IWebHostEnvironment webHostEnvironment)
         {
             _bangdiemRepository = bangdiemRepository;
@@ -43,6 +45,7 @@ namespace WebSite.Core.Infrastructure.Services
             _detaiRepository = detaiRepository;
             _hoidongtotnghiepRepository = hoidongtotnghiepRepository;
             _chitiethoidongRepository = chitiethoidongRepository;
+            _sinhVienRepository = sinhVienRepository;
             _webHostEnvironment = webHostEnvironment;
         }
 
@@ -340,6 +343,15 @@ namespace WebSite.Core.Infrastructure.Services
             if (getInfoMonHoc.TypeApprover.GetHashCode() == 2)
                 return new SearchResult<XuatDiemHoiDongViewModel> { Code = -55, Data = null, Message = "Môn học không có đánh giá phản biện." };
             return await _bangdiemRepository.XuatDiemHoiDong(idhocky, idmonhoc, idBoMon);
+        }
+
+        public async Task<Stream> XuatSinhVienExcel(string idhocky, string idBoMon)
+        {
+            List<DataSinhVienVewModel> dataSinhVien = await _sinhVienRepository.DataSinhVienByMonHoc(idhocky, idBoMon);
+
+            var createEx = new CreateExcelExtensions();
+            var stream = createEx.CreateExcel(dataSinhVien, "DeTaiSinhVien");
+            return stream;
         }
     }
 }

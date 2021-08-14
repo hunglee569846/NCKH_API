@@ -185,5 +185,18 @@ namespace WebSite.Core.API.Controllers
             }
             return Ok(result);
         }
+
+        [AcceptVerbs("POST"), Route("Detai/{idfile}/{idhocky}/{idmonhoc}")]
+        [SwaggerOperation(Summary = "Thêm mới đề tài từ Excel.", Description = "Requires login verification!", OperationId = "InsertDeTaiFromExcel", Tags = new[] { "DeTai" })]
+        public async Task<IActionResult> InsertDeTaiFromExcel(string idfile, string idhocky, string idmonhoc)
+        {
+            var result = await _ideTaiService.InsertFromExcelAsync(idfile,idhocky, idmonhoc, CurrentUser.MaGiangVien,CurrentUser.FullName,CurrentUser.IdBoMon);
+            if (result.Code <= 0)
+            {
+                //_logger.LogError("Search DeTai controller error " + result.Code);
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
     }
 }

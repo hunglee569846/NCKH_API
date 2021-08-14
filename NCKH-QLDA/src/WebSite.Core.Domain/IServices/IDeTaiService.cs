@@ -21,5 +21,9 @@ namespace WebSite.Core.Domain.IServices
         Task<SearchResult<DeTaivsCTDTViewModel>> SelectByIdCTDTAsync(string idhocky, bool isApprove);
         Task<ActionResultResponese<string>> DeleteAsync(string iddetai, string deleteUserId, string deleteFullName);
         Task<ActionResultResponese<string>> UpdateAproveAsync(string iddetai,bool isApprove);
+
+        ///them de taij ban file excel
+
+        Task<ActionResultResponese<string>> InsertFromExcelAsync(string idfile, string idhocky, string idmonhoc, string creatorUserId, string creatorFullName, string idBoMon);
     }
 }

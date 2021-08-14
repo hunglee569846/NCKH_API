@@ -291,6 +291,25 @@ namespace WebSite.Core.Infrastructure.Repository
             }
         }
 
-       
+        public async Task<List<DataSinhVienVewModel>> DataSinhVienByMonHoc(string idhocky, string idBoMon)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    if (conn.State == ConnectionState.Closed)
+                        await conn.OpenAsync();
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@IdHocKy", idhocky);
+                    param.Add("@IdBoMon", idBoMon);
+                    var result = await conn.QueryAsync<DataSinhVienVewModel>("[dbo].[spSinhVienExportExcel]", param, commandType: CommandType.StoredProcedure);
+                    return result.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                return new List<DataSinhVienVewModel>();
+            }
+        }
     }
 }

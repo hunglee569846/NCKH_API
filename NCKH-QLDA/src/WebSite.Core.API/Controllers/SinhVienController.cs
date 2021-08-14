@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using WebSite.Core.Domain.IServices;
 using WebSite.Core.Domain.ModelMeta;
 using System.Collections.Generic;
+using System.IO;
 
 namespace WebSite.Core.API.Controllers
 {
@@ -19,9 +20,12 @@ namespace WebSite.Core.API.Controllers
     public class SinhVienController : CoreApiControllerBase
     {
         private readonly ISinhVienService _SinhViencService;
-        public SinhVienController(ISinhVienService sinhvienService)
+        private readonly IBangDiemService _bangDiemService;
+        public SinhVienController(ISinhVienService sinhvienService,
+                                   IBangDiemService bangDiemService)
         {
             _SinhViencService = sinhvienService;
+            _bangDiemService = bangDiemService;
         }
 
         [SwaggerOperation(Summary = "Thêm mới một sinh viên", Description = "Requires login verification!", OperationId = "InsertSinhVienAsync", Tags = new[] { "SinhVien" })]
@@ -127,5 +131,19 @@ namespace WebSite.Core.API.Controllers
             }
             return Ok(result);
         }
+
+        [SwaggerOperation(Summary = "Danh sách sinh viên khởi tạo đề tài", Description = "Requires login verification!", OperationId = "DataSinhVien", Tags = new[] { "SinhVien" })]
+        [AcceptVerbs("GET"), Route("DataSinhVien/{idhocky}")]
+        public async Task<IActionResult> DownloadDataSinhVienAsync(string idhocky)
+        {
+            var stream = await _bangDiemService.XuatSinhVienExcel(idhocky, CurrentUser.IdBoMon);
+
+            var buffer = stream as MemoryStream;
+
+            buffer.Position = 0;
+            return File(buffer, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "ExcelSinhVien.xlsx");
+
+        }
+
     }
 }

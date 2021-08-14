@@ -1,6 +1,11 @@
-﻿using NCKH.Infrastruture.Binding.Models;
+﻿using Microsoft.AspNetCore.Hosting;
+using NCKH.Infrastruture.Binding.Models;
 using NCKH.Infrastruture.Binding.ViewModel;
+using OfficeOpenXml;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using WebSite.Core.Domain.IRepository;
 using WebSite.Core.Domain.IServices;
@@ -18,17 +23,23 @@ namespace WebSite.Core.Infrastructure.Services
         private readonly IHocKysRepository _hockyRepository;
         private readonly ISinhVienRepository _sinhVienRepository;
         private readonly IChiTietDeTaiRepository _chiTietDeTaiRepository;
+        private readonly IFileRepository _fileRepository;
+        private readonly IWebHostEnvironment _webHostEnvironment;
         public DeTaiService(IDeTaiRepository deTaiRepository,
                             IMonHocRepository monhocRepository,
                             IHocKysRepository hockyRepository,
                             ISinhVienRepository sinhVienRepository,
-                            IChiTietDeTaiRepository chiTietDeTaiRepository) 
+                            IChiTietDeTaiRepository chiTietDeTaiRepository,
+                            IFileRepository fileRepository,
+                            IWebHostEnvironment webHostEnvironment) 
         {
             _deTaiRepository = deTaiRepository;
             _monhocRepository = monhocRepository;
             _hockyRepository = hockyRepository;
             _sinhVienRepository = sinhVienRepository;
             _chiTietDeTaiRepository = chiTietDeTaiRepository;
+            _fileRepository = fileRepository;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public async Task<SearchResult<DeTaiSearchViewModel>> GetByIdHocKyAsync(string idhocky)
@@ -253,6 +264,126 @@ namespace WebSite.Core.Infrastructure.Services
         public async Task<SearchResult<DeTaiPhanBienViewModel>> DeTaiPhanPhanBien(string idhocky, string idmonhoc, string idBoMon, string idGVHD)
         {
             return await _deTaiRepository.DeTaiPhanBien(idhocky, idmonhoc,idBoMon,idGVHD);
+        }
+
+        public async Task<ActionResultResponese<string>> InsertFromExcelAsync(string idfile, string idhocky, string idmonhoc, string creatorUserId, string creatorFullName, string idBoMon)
+        {
+            
+            var checExistMonHoc = await _monhocRepository.CheckExitsIsActvive(idmonhoc);
+            if (!checExistMonHoc)
+                return new ActionResultResponese<string>(-5, "Môn học không tồn tại.", "Môn học.");
+            var infofile = await _fileRepository.GetInfo(idfile);
+            if (infofile == null)
+                return new ActionResultResponese<string>(-6, "File điểm không tồn tại.", "File điểm.");
+
+
+            List<DeTaiFromExcelMeta> _listDeTaiSinhVien = new List<DeTaiFromExcelMeta>();
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+            using (var pakage = new ExcelPackage(new FileInfo(_webHostEnvironment.ContentRootPath + infofile.Url)))
+            {
+                ExcelWorksheet worsheet = pakage.Workbook.Worksheets["DeTaiSinhVien"];
+                if (worsheet == null)
+                    return new ActionResultResponese<string>(-9, "File sinh viên không đúng định dạng", "File danh sách sinh viên");
+                for (int i = worsheet.Dimension.Start.Row + 1; i <= worsheet.Dimension.End.Row; i++)
+                {
+                    if (worsheet.Cells[i, 1].Value != null && worsheet.Cells[i, 2].Value != null && worsheet.Cells[i, 5].Value != null
+                        && worsheet.Cells[i, 6].Value != null && worsheet.Cells[i, 8].Value != null && worsheet.Cells[i, 10].Value != null)
+                    {
+                        //int j = 1;
+                        string idsinhvien = worsheet.Cells[i, 1].Value.ToString();
+                        string maSinhVien = worsheet.Cells[i, 2].Value.ToString();
+                        string TenDeTai = worsheet.Cells[i, 3].Value == null ? "" : worsheet.Cells[i, 3].Value.ToString();
+                        DeTaiFromExcelMeta _detaisinhVien = new DeTaiFromExcelMeta()
+                        {
+                            IdSinhVien = idsinhvien?.Trim(),
+                            IdBoMon = idBoMon?.Trim(),
+                            MaSinhVien = maSinhVien?.Trim(),
+                            TenDeTai = TenDeTai?.Trim(),
+                        };
+                        _listDeTaiSinhVien.Add(_detaisinhVien);
+                    }
+                    else break;
+                }
+
+                var demsucess = 0;
+
+                if (_listDeTaiSinhVien != null)
+                {
+                    var dem = 0;
+                    foreach (var item in _listDeTaiSinhVien)
+                    {
+                        var infoSinhVien = await _sinhVienRepository.GetInfo(item.IdSinhVien);
+                        if (infoSinhVien == null)
+                        {
+                            dem++;
+                            continue;
+                        }
+                        var checkSinhVien = await _deTaiRepository.CheckExitsSinhVien(idhocky, idmonhoc, item.IdSinhVien);
+                        if (checkSinhVien)
+                        {
+                            dem++;
+                            continue;
+                        }
+
+                        var checExitHocKy = await _hockyRepository.CheckExisIsActivetAsync(idhocky);
+                        if (!checExitHocKy)
+                        {
+                            dem++;
+                            continue;
+                        }
+                        
+                        var monhocInfo = await _monhocRepository.GetInfoAsync(idmonhoc);
+                        var idTienQuyet = "0";
+                        if (monhocInfo.IdMonTienQuyet != idTienQuyet)
+                        {
+                            var checkIsDat = await _deTaiRepository.CheckIsDat(monhocInfo.IdMonTienQuyet, item.IdSinhVien);
+                            if (!checkIsDat)
+                                return new ActionResultResponese<string>(-21, "Sinh viên chưa hoàn thành môn " + monhocInfo.NameMonTienQuyet + " là môn tiên quyết.", "Môn học.");
+                        }
+                        var id = Guid.NewGuid().ToString();
+                        //var checkExits = await _deTaiRepository.CheckExits(id);
+                        //if (checkExits)
+                        //    return new ActionResultResponese<string>(-6, "IdDeTai đã tồn tại.", "Đề tài.");
+                        var checkExitsMaDeTai = await _deTaiRepository.CheckDeTaiVsMonHoc(idhocky, idmonhoc, id, idBoMon);
+                        if (checkExitsMaDeTai)
+                        {
+                            dem++;
+                            continue;
+                        }
+
+                        var maDeTai = "DT" + infoSinhVien.MaSinhVien?.Trim();
+
+                        var detai = new DeTai()
+                        {
+                            IdDeTai = id?.Trim(),
+                            IdBoMon = idBoMon?.Trim(),
+                            MaDeTai = maDeTai?.Trim(),
+                            TenDeTai = item.TenDeTai?.Trim(),
+                            IdSinhVien = item.IdSinhVien?.Trim(),
+                            IdHocKy = idhocky?.Trim(),
+                            IdMonHoc = idmonhoc?.Trim(),
+                            DiemTrungBinh = 0,
+                            IsDat = false,
+                            CreateTime = DateTime.Now,
+                            CreatorUserId = creatorUserId?.Trim(),
+                            CreatorFullName = creatorFullName?.Trim(),
+                        };
+                        if (detai == null)
+                            return new ActionResultResponese<string>(-8, "Dữ liệu trống", "Đề tài.");
+                        var result = await _deTaiRepository.InsertAsync(detai);
+                        if (result > 0)
+                        {
+                            demsucess++;
+                        }
+                    }
+                }
+                if (demsucess > 0)
+                    return new ActionResultResponese<string>(1,"Có "+ _listDeTaiSinhVien.Count() + "sinh viênn","","Khởi tạo thành công "+ demsucess +" đề tài.");
+                else
+                    return new ActionResultResponese<string>("Khởi tạo đề tài thất bại kiểm tra lại file và gửi lại");
+
+            }
         }
     }
 }

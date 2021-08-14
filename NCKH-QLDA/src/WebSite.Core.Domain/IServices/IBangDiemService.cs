@@ -24,5 +24,10 @@ namespace WebSite.Core.Domain.IServices
         Task<Stream> XuatHoiDongExcel(string idhocky, string idmonhoc, string idBoMonc);
         //Xuat diem hoi dong
         Task<SearchResult<XuatDiemHoiDongViewModel>> XuatDiemHoiDong(string idhocky, string idmonhoc, string idBoMon);
+
+        // xuất dữ liệu sinh viên khởi tạo đề tài
+        Task<Stream> XuatSinhVienExcel(string idhocky, string idBoMon);
+
+
     }
 }
